@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4B0A5906-3194-45CC-85D6-37C8387EF04E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Utility</RootNamespace>
+    <AssemblyName>Utility</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sql\Sqlhelper.cs" />
+    <Compile Include="UControl\HorizonLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Encryption.cs" />
+    <Compile Include="FilesUpAndDown\DownLoadHelper.cs" />
+    <Compile Include="FilesUpAndDown\FileDown.cs" />
+    <Compile Include="FilesUpAndDown\FileUp.cs" />
+    <Compile Include="FilesUpAndDown\UpLoadFiles.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Frm_ImageFormatConvert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_ImageFormatConvert.Designer.cs">
+      <DependentUpon>Frm_ImageFormatConvert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_progressMemtion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_progressMemtion.Designer.cs">
+      <DependentUpon>Frm_progressMemtion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageToIcon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageToIcon.Designer.cs">
+      <DependentUpon>ImageToIcon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UControl\txtBoxWithDate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UControl\txtBoxWithDate.Designer.cs">
+      <DependentUpon>txtBoxWithDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\EmbedForm.cs" />
+    <Compile Include="UControl\VeticalLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_config.Designer.cs">
+      <DependentUpon>Frm_config.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Frm_ImageFormatConvert.resx">
+      <DependentUpon>Frm_ImageFormatConvert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_progressMemtion.resx">
+      <DependentUpon>Frm_progressMemtion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageToIcon.resx">
+      <DependentUpon>ImageToIcon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UControl\txtBoxWithDate.resx">
+      <DependentUpon>txtBoxWithDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_config.resx">
+      <DependentUpon>Frm_config.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
