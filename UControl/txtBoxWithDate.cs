@@ -14,6 +14,9 @@ namespace Utility.UControl
         public txtBoxWithDate()
         {
             InitializeComponent();
+            dtp_inTextBox.Format = DateTimePickerFormat.Custom;
+            dtp_inTextBox.CustomFormat = "";
+            
         }
 
         private string _text;

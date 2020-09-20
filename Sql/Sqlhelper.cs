@@ -11,13 +11,19 @@ namespace Utility.Sql
   public  class Sqlhelper
     {
 
-
-        private static ConnectionStringSettings connectionStrings()
+        /// <summary>
+        /// 返回sqlConnection
+        /// </summary>
+        /// <returns></returns>
+        private static SqlConnection sqlConnection()
         {
 
-            ConnectionStringSettings conStrings = ConfigurationManager.ConnectionStrings["myConcetion"];
+            string conString = ConfigurationManager.ConnectionStrings["myConcetion"].ToString();
+            string deConString = Encrypt.Decode(conString);
+            //ConnectionStringSettings conStrings = new ConnectionStringSettings("busynessDate", deConString);
+            SqlConnection sqlConnection = new SqlConnection(deConString);
 
-            return conStrings;
+            return sqlConnection;
 
         }
 
@@ -30,20 +36,22 @@ namespace Utility.Sql
         public static SqlDataReader GetSqlDataReader(string strSql, SqlParameter[] parameters)
         {
 
-            
-            SqlConnection sqlConnection = new SqlConnection(connectionStrings().ConnectionString); ;
-            sqlConnection.Open();
+            SqlConnection connection = sqlConnection();
+            connection.Open();
 
             SqlCommand cmd = new SqlCommand();
 
-            cmd.Connection = sqlConnection;
+            cmd.Connection = connection;
             cmd.CommandText = strSql;
 
             cmd.Parameters.AddRange(parameters);
+            //执行完后不能调用sqlconection.close方法去关闭连接，否则sqldatareader对象无法调用
+            //其read方法，采用commandBehavior.closeConection枚举可在关闭sqldatareader时自动
+            //关闭SqlConnection,同时也说明Command.ExecuteReader方法并未执行真正的查询，仅仅是
+            //构造SqlDataReader对象
             SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-            sqlConnection.Close();
-
-            return reader;
+            
+                        return reader;
 
 
 
@@ -61,12 +69,12 @@ namespace Utility.Sql
         /// <returns>返回一张查询结果表</returns> 
         public static DataTable GetDataTable(string strSql, params SqlParameter[] parameters)
         {
-            using (SqlConnection sqlConnection = new SqlConnection(connectionStrings().ConnectionString))
+            using (SqlConnection conn = sqlConnection())
             {
-                sqlConnection.Open();
+                conn.Open();
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.Connection = sqlConnection;
+                    cmd.Connection = conn;
                     cmd.CommandText = strSql;
                     foreach (SqlParameter p in parameters)
                     {
@@ -76,7 +84,7 @@ namespace Utility.Sql
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {
                         adapter.Fill(ds);
-                        sqlConnection.Close();
+                        conn.Close();
                         return ds.Tables[0];
                     }
 
@@ -96,19 +104,19 @@ namespace Utility.Sql
         public static DataTable GetDataTable(string strSql)
         {
 
-            using (SqlConnection sqlConnection = new SqlConnection(connectionStrings().ConnectionString))
+            using (SqlConnection conn = sqlConnection())
             {
-                sqlConnection.Open();
+                conn.Open();
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.Connection = sqlConnection;
+                    cmd.Connection = conn;
                     cmd.CommandText = strSql;
 
                     DataSet ds = new DataSet();
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {
                         adapter.Fill(ds);
-                        sqlConnection.Close();
+                        conn.Close();
                         return ds.Tables[0];
                     }
                 }
