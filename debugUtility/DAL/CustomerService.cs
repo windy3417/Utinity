@@ -36,7 +36,15 @@ namespace DebugUtility.DAL
                 //简化写法
                 return db.CustomerSet.ToList<CustomerSet>();
                 
+                
             }
+        }
+
+        public DataTable getCustmer()
+        {
+            String sql = "select * from customerset";
+            return Sqlhelper.GetDataTable(sql);
+
         }
     }
 }

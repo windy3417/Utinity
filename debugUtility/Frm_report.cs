@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DebugUtility.DAL;
+using Utility;
 
 namespace DebugUtility
 {
@@ -25,7 +26,18 @@ namespace DebugUtility
 
         private void Frm_report_Load(object sender, EventArgs e)
         {
-            this.bind_DG_datasource();
+            //this.bind_DG_datasource();
+        }
+
+        private void Tsb_query_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = new CustomerService().getCustmer();
+        }
+
+        private void Tsb_export_Click(object sender, EventArgs e)
+        {
+            Excel.ExportExcel exportExcel = new Excel.ExportExcel();
+            exportExcel.ExportExcelWithNPOI(new CustomerService().getCustmer(), "test");
         }
     }
 }
