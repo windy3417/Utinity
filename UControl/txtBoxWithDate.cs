@@ -14,13 +14,21 @@ namespace Utility.UControl
         public txtBoxWithDate()
         {
             InitializeComponent();
+            //日期格式化
+            dtp_inTextBox.CustomFormat = "yyyy-MM-dd";
             dtp_inTextBox.Format = DateTimePickerFormat.Custom;
-            dtp_inTextBox.CustomFormat = "";
-            
+            checkBox1.Visible = false;
+
+
         }
 
         private string _text;
-       
+
+        //delegate 
+        //public event ContainerTextChange;
+
+
+        //text属性用于前端存储时间数据，而不需要在控件容器中寻找日期控件的值
         public override string  Text 
         { get{
                 return _text;
@@ -31,16 +39,85 @@ namespace Utility.UControl
         /// <summary>
         /// dateTimePick控件选择日期后生成值到textBox控件中
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name = "sender" ></ param >
+        /// < param name="e"></param>
         private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            dtp_inTextBox.CustomFormat = "yyyy-mm-dd";
-            dtp_inTextBox.Format = DateTimePickerFormat.Custom;
-            txt_withDate.Text = dtp_inTextBox.Value.ToString().Substring(0, 10);
-            _text = txt_withDate.Text;
-            dtp_inTextBox.Checked = false;
-            //注意属性中rightToLeftLayout的值等于true,否则控件的日期选择框在选择完日期后有字迹显示在框中
+           
+            //赋值给checkBox,如果直接赋值给textBox,则一激活dateTimePicker控件
+            //（即便不是手动选择日期，只要代码中涉及到对该控件的操作，比如遍历容器当中的控件或Enable控件）
+            //就会赋值给textBox，这样不符合前端使用者的本意，故使用CheckBox控件过渡
+            txt_withDate.Text = "";
+            checkBox1.Checked = false;
+            //checkBox1.Text = dtp_inTextBox.Value.ToString().Substring(0, 10);
+            checkBox1.Visible = true;
+            checkBox1.Text = dtp_inTextBox.Text;
+            
+            //_text = txt_withDate.Text;
+            //dtp_inTextBox.Checked = false;
+            //注意属性中rightToLeftLayout的值等于true,
+            //否则控件的日期选择框在选择完日期后有字迹显示在框中
+        }
+
+
+
+        /// <summary>
+        /// checkBox选择后，设定文本框与自定义控件的值
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_withDate.Text = "";
+            if (checkBox1.Checked==true)
+            {
+                txt_withDate.Text = dtp_inTextBox.Text;
+                _text = dtp_inTextBox.Text;
+                checkBox1.Text = "";
+                checkBox1.Visible = false;
+            }
+            else
+            {
+                txt_withDate.Text = "";
+                _text ="";
+            }
+        }
+
+        /// <summary>
+     /// 进入时，显示时间
+     /// </summary>
+     /// <param name="sender"></param>
+     /// <param name="e"></param>
+
+        private void TxtBoxWithDate_Enter(object sender, EventArgs e)
+        {
+            if (txt_withDate.Text == "")
+            {
+                checkBox1.Visible = true;
+                checkBox1.Text = dtp_inTextBox.Value.ToString().Substring(0, 10);
+            }
+        }
+
+        /// <summary>
+        /// 文本框鼠标进入且文本框无值时，显示时间
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Txt_withDate_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (txt_withDate.Text=="")
+            {
+                checkBox1.Visible = true;
+                checkBox1.Text = dtp_inTextBox.Value.ToString().Substring(0, 10);
+            }
+            
+        }
+
+        private void 
+            
+            textHander()
+        {
+            txt_withDate.Text = _text;
         }
     }
 }

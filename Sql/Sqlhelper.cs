@@ -10,15 +10,17 @@ namespace Utility.Sql
 {
   public  class Sqlhelper
     {
+       
 
         /// <summary>
         /// 返回sqlConnection
         /// </summary>
         /// <returns></returns>
-        private static SqlConnection sqlConnection()
+        public static SqlConnection sqlConnection()
         {
 
             string conString = ConfigurationManager.ConnectionStrings["myConcetion"].ToString();
+            
             string deConString = Encrypt.Decode(conString);
             //ConnectionStringSettings conStrings = new ConnectionStringSettings("busynessDate", deConString);
             SqlConnection sqlConnection = new SqlConnection(deConString);

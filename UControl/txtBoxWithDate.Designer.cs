@@ -30,6 +30,7 @@
         {
             this.txt_withDate = new System.Windows.Forms.TextBox();
             this.dtp_inTextBox = new System.Windows.Forms.DateTimePicker();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // txt_withDate
@@ -39,6 +40,8 @@
             this.txt_withDate.Name = "txt_withDate";
             this.txt_withDate.Size = new System.Drawing.Size(169, 21);
             this.txt_withDate.TabIndex = 0;
+            this.txt_withDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_withDate.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Txt_withDate_MouseDown);
             // 
             // dtp_inTextBox
             // 
@@ -50,14 +53,30 @@
             this.dtp_inTextBox.TabIndex = 1;
             this.dtp_inTextBox.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
             // 
-            // UserControl1
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.checkBox1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.checkBox1.Location = new System.Drawing.Point(9, 3);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(13, 12);
+            this.checkBox1.TabIndex = 2;
+            this.checkBox1.UseVisualStyleBackColor = false;
+            this.checkBox1.Visible = false;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
+            // 
+            // txtBoxWithDate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.dtp_inTextBox);
             this.Controls.Add(this.txt_withDate);
-            this.Name = "UserControl1";
+            this.Name = "txtBoxWithDate";
             this.Size = new System.Drawing.Size(169, 21);
+            this.Enter += new System.EventHandler(this.TxtBoxWithDate_Enter);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -67,5 +86,6 @@
 
         private System.Windows.Forms.TextBox txt_withDate;
         private System.Windows.Forms.DateTimePicker dtp_inTextBox;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

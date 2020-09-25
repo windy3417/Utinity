@@ -63,7 +63,7 @@
             // 
             this.txtBoxWithDatePicker2.Location = new System.Drawing.Point(398, 39);
             this.txtBoxWithDatePicker2.Name = "txtBoxWithDatePicker2";
-            this.txtBoxWithDatePicker2.Size = new System.Drawing.Size(125, 21);
+            this.txtBoxWithDatePicker2.Size = new System.Drawing.Size(219, 21);
             this.txtBoxWithDatePicker2.TabIndex = 4;
             // 
             // txtBoxWithDatePicker1

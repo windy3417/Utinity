@@ -16,7 +16,7 @@ namespace DebugUtility.DAL
     public partial class scrapSettleEntities : DbContext
     {
         public scrapSettleEntities()
-            : base("name=scrapSettleEntities")
+            : base("name=myConection")
         {
         }
     

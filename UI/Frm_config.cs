@@ -19,6 +19,7 @@ namespace Utility.UI
         public Frm_config()
         {
             InitializeComponent();
+            this.button_confirm.Enabled = false;
         }
 
         private void Frm_config_Load(object sender, EventArgs e)
@@ -47,12 +48,7 @@ namespace Utility.UI
         /// <param name="e"></param>
         private void button_testConect_Click(object sender, EventArgs e)
         {
-            /// <summary>
-            /// 本地数据库连接是否成功
-            /// </summary>
-            /// <returns></returns>
-
-
+            
 
             //获取数据库连接字符串
             string con = "Data Source=" + textBox_server.Text + ";Initial Catalog=" + textBox_database.Text + ";User ID= " + textBox_user.Text + ";Password=" +
@@ -67,6 +63,7 @@ namespace Utility.UI
                 {
                     MessageBox.Show("连接成功！", "连接提示");
 
+                    this.button_confirm.Enabled = true;
                 }
                 else
                 {
@@ -207,22 +204,22 @@ namespace Utility.UI
         {
             bool isModified = false;    //记录该连接串是否已经存在
 
-
+            string provider = "System.Data.SqlClient;";
             string conString = "Data Source=" + textBox_server.Text + ";Initial Catalog=" + textBox_database.Text + ";" +
                 "User ID=" + textBox_user.Text + ";Password="
                 + textBox_password.Text + ";Pooling=False;";
             //加密码连接字符串
             string encryptConString = Utility.Encrypt.Encode(conString);
 
-
-
+            
             if (ConfigurationManager.ConnectionStrings["myConcetion"] != null)
             {
                 isModified = true;
             }
-            //新建一个连接字符串实例 
+            //新建一个连接字符串实例,三个参数的构造函数可以兼容EF的连接字符串
+            //因为EF可以连接多种数据库，所以必须提供providerName
 
-            ConnectionStringSettings mySettings = new ConnectionStringSettings("myConcetion", encryptConString);
+            ConnectionStringSettings mySettings = new ConnectionStringSettings("myConcetion", encryptConString,provider);
 
             // 打开可执行的配置文件*.exe.config 
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
