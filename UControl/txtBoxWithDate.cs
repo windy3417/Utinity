@@ -18,23 +18,61 @@ namespace Utility.UControl
             dtp_inTextBox.CustomFormat = "yyyy-MM-dd";
             dtp_inTextBox.Format = DateTimePickerFormat.Custom;
             checkBox1.Visible = false;
+            ContainerTextChange += textChanged;
 
 
         }
+
+     
 
         private string _text;
 
-        //delegate 
-        //public event ContainerTextChange;
+        #region 事件
+        public event EventHandler ContainerTextChange;
+
+        /// <summary>
+        /// 引发值更新事件
+        /// </summary>
+        /// <param name="e"></param>
+        protected virtual void onContinerTextChange(EventArgs e)
+        {
+            ContainerTextChange?.Invoke(this, e);
+        }
+
+        private void textChanged(object sender, EventArgs e)
+        {
+            txt_withDate.Text = _text;
+        }
 
 
+        #endregion
+
+
+
+        #region 属性
         //text属性用于前端存储时间数据，而不需要在控件容器中寻找日期控件的值
-        public override string  Text 
-        { get{
+        public override string Text
+        {
+            get
+            {
                 return _text;
             }
-            set { _text = value; }
+            set
+            {
+                if (_text==value)
+                {
+                    return;
+                }
+                
+                _text = value;
+                onContinerTextChange(EventArgs.Empty);
+
+
+            }
         }
+        #endregion
+        
+
 
         /// <summary>
         /// dateTimePick控件选择日期后生成值到textBox控件中
