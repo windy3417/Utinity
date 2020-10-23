@@ -34,6 +34,8 @@
             this.txtBoxWithDatePicker2 = new Utility.UControl.txtBoxWithDate();
             this.txtBoxWithDatePicker1 = new Utility.UControl.txtBoxWithDate();
             this.userControl11 = new Utility.UControl.txtBoxWithDate();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txt_mendDate = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // dateTimePicker1
@@ -61,7 +63,7 @@
             // 
             // txtBoxWithDatePicker2
             // 
-            this.txtBoxWithDatePicker2.Location = new System.Drawing.Point(398, 39);
+            this.txtBoxWithDatePicker2.Location = new System.Drawing.Point(502, 51);
             this.txtBoxWithDatePicker2.Name = "txtBoxWithDatePicker2";
             this.txtBoxWithDatePicker2.Size = new System.Drawing.Size(219, 21);
             this.txtBoxWithDatePicker2.TabIndex = 4;
@@ -80,11 +82,30 @@
             this.userControl11.Size = new System.Drawing.Size(169, 21);
             this.userControl11.TabIndex = 5;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(291, 75);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "修改";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txt_mendDate
+            // 
+            this.txt_mendDate.Location = new System.Drawing.Point(291, 32);
+            this.txt_mendDate.Name = "txt_mendDate";
+            this.txt_mendDate.Size = new System.Drawing.Size(100, 21);
+            this.txt_mendDate.TabIndex = 7;
+            // 
             // Frm_child
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txt_mendDate);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.userControl11);
             this.Controls.Add(this.txtBoxWithDatePicker2);
             this.Controls.Add(this.dateTimePicker2);
@@ -94,6 +115,7 @@
             this.Name = "Frm_child";
             this.Text = "子窗体";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -105,5 +127,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private Utility.UControl.txtBoxWithDate txtBoxWithDatePicker2;
         private Utility.UControl.txtBoxWithDate userControl11;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txt_mendDate;
     }
 }

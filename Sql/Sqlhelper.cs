@@ -10,10 +10,10 @@ namespace Utility.Sql
 {
   public  class Sqlhelper
     {
-       
+
 
         /// <summary>
-        /// 返回sqlConnection
+        /// 返回sqlConnection，默认连接字符串名称是“myConcetion”
         /// </summary>
         /// <returns></returns>
         public static SqlConnection sqlConnection()
@@ -29,42 +29,11 @@ namespace Utility.Sql
 
         }
 
+        
+
+        #region 查询
         /// <summary> 
-        /// 返回sqlDataReader 
-        /// </summary> 
-        /// <param name="strSql">查询语句</param> 
-        /// <param name="parameters">可能带的参数</param> 
-        /// <returns>返回一张查询结果表</returns> 
-        public static SqlDataReader GetSqlDataReader(string strSql, SqlParameter[] parameters)
-        {
-
-            SqlConnection connection = sqlConnection();
-            connection.Open();
-
-            SqlCommand cmd = new SqlCommand();
-
-            cmd.Connection = connection;
-            cmd.CommandText = strSql;
-
-            cmd.Parameters.AddRange(parameters);
-            //执行完后不能调用sqlconection.close方法去关闭连接，否则sqldatareader对象无法调用
-            //其read方法，采用commandBehavior.closeConection枚举可在关闭sqldatareader时自动
-            //关闭SqlConnection,同时也说明Command.ExecuteReader方法并未执行真正的查询，仅仅是
-            //构造SqlDataReader对象
-            SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-            
-                        return reader;
-
-
-
-
-
-
-        }
-
-
-        /// <summary> 
-        /// 执行查询并将结果返回至DataTable中 
+        /// 带参数执行查询并将结果返回至DataTable中 
         /// </summary> 
         /// <param name="strSql">查询语句</param> 
         /// <param name="parameters">查询参数</param> 
@@ -95,14 +64,12 @@ namespace Utility.Sql
             }
         }
 
-
-
-
         /// <summary> 
-        /// 执行查询并将结果返回至DataTable中 ，不带查询参数
+        /// 不带查询参数执行查询并将结果返回至DataTable中
         /// </summary> 
         /// <param name="strSql">查询语句</param> 
         /// <returns>返回一张查询结果表</returns> 
+        
         public static DataTable GetDataTable(string strSql)
         {
 
@@ -125,6 +92,92 @@ namespace Utility.Sql
 
             }
         }
+
+        /// <summary> 
+        /// 返回sqlDataReader 
+        /// </summary> 
+        /// <param name="strSql">查询语句</param> 
+        /// <param name="parameters">可能带的参数</param> 
+        /// <returns>返回一张查询结果表</returns> 
+        public static SqlDataReader GetSqlDataReader(string strSql, SqlParameter[] parameters)
+        {
+
+            SqlConnection connection = sqlConnection();
+            connection.Open();
+
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = connection;
+            cmd.CommandText = strSql;
+
+            cmd.Parameters.AddRange(parameters);
+            //执行完后不能调用sqlconection.close方法去关闭连接，否则sqldatareader对象无法调用
+            //其read方法，采用commandBehavior.closeConection枚举可在关闭sqldatareader时自动
+            //关闭SqlConnection,同时也说明Command.ExecuteReader方法并未执行真正的查询，仅仅是
+            //构造SqlDataReader对象
+            SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+            return reader;
+
+
+
+
+
+
+        }
+        #endregion
+
+
+        #region 增删改
+
+        /// <summary>
+        /// 不带参数执行对数据的增删改操作
+        /// </summary>
+        /// <param name="SQLstring"></param>
+        public static void UpdateNOparameters(SqlConnection conn, string SQLstring)
+        {
+
+
+            conn.Open();
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = conn;
+                cmd.CommandText = SQLstring;
+
+                cmd.ExecuteNonQuery();
+            }
+            conn.Close();
+        }
+
+
+        /// <summary>
+        /// 不带参数执行对数据的增删改操作
+        /// </summary>
+        /// <param name="SQLstring"></param>
+        public static int  UpdateWithparameters(string SQLstring ,SqlParameter[] sqlParameters)
+        {
+
+
+            SqlConnection connection = sqlConnection();
+            connection.Open();
+
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = connection;
+            cmd.CommandText = SQLstring;
+
+            cmd.Parameters.AddRange(sqlParameters);
+            int influnce= cmd.ExecuteNonQuery();
+
+            connection.Close();
+            return influnce;
+        }
+
+        #endregion
+
+
+
+
 
         /// <summary>
         /// 执行外挂数据库的存储过程
@@ -157,24 +210,7 @@ namespace Utility.Sql
 
         }
 
-        /// <summary>
-        /// 执行对数据的增删改操作,不带参数
-        /// </summary>
-        /// <param name="SQLstring"></param>
-        public static void UpdateNOparameters(SqlConnection conn, string SQLstring)
-        {
-
-
-            conn.Open();
-            using (SqlCommand cmd = new SqlCommand())
-            {
-                cmd.Connection = conn;
-                cmd.CommandText = SQLstring;
-
-                cmd.ExecuteNonQuery();
-            }
-            conn.Close();
-        }
+        
 
         ///<summary> 
         /// 执行对数据的增删改操作 
