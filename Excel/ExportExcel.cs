@@ -11,15 +11,15 @@ using System.Windows.Forms;
 
 namespace Excel
 {
-     public class  ExportExcel
+    public class ExportExcel
     {
-       
+
         /// <summary>
         /// 导出为Excel文件，使用NPOI.dll类
         /// </summary>
         /// <param name="dt"></param>
         /// <param name="reportName"></param>
-        public void ExportExcelWithNPOI(DataTable dt ,string reportName)
+        public void ExportExcelWithNPOI(DataTable dt, string reportName)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace Excel
                 }
 
                 //设置导出文件路径
-                string path = Environment.CurrentDirectory +"\\";
+                string path = Environment.CurrentDirectory + "\\";
 
                 //设置新建文件路径及名称
                 string savePath = path + reportName + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".xls";
@@ -117,7 +117,7 @@ namespace Excel
         /// </summary>
         /// <param name="dataGridView"></param>
         /// <param name="reportName"></param>
-        public void ExportExcelWithNPOI( DataGridView dataGridView, string reportName)
+        public void ExportExcelWithNPOI(DataGridView dataGridView, string reportName)
         {
             try
             {
@@ -147,7 +147,7 @@ namespace Excel
                 {
                     //创建单元格并设置单元格内容
                     rowH.CreateCell(col.Index).SetCellValue(col.HeaderText);
-                  
+
 
                     //设置单元格格式
                     rowH.Cells[col.Index].CellStyle = cellStyle;
@@ -207,7 +207,7 @@ namespace Excel
             }
             catch (Exception ex)
             {
-                MessageBox.Show("数据导出报错："+ ex.ToString()+ex.InnerException,"数据导出提示");
+                MessageBox.Show("数据导出报错：" + ex.ToString() + ex.InnerException, "数据导出提示");
             }
         }
     }

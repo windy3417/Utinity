@@ -10,8 +10,8 @@ using System.Threading;
 
 namespace Utility
 {
-    
-   
+
+
     public partial class Frm_progressMemtion : Form
     {
         public Frm_progressMemtion()
@@ -28,7 +28,7 @@ namespace Utility
             timer1.Tick += new EventHandler(Timer1_Tick);
             this.timer1.Start();
 
-            
+
         }
 
         private void Timer1_Tick(object sender, EventArgs e)

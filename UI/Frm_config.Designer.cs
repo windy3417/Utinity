@@ -65,9 +65,9 @@
             this.gb_status.Controls.Add(this.btn_deleteDateConfig);
             this.gb_status.Controls.Add(this.lbl_status);
             this.gb_status.Controls.Add(this.lbl_configStatus);
-            this.gb_status.Location = new System.Drawing.Point(615, 76);
+            this.gb_status.Location = new System.Drawing.Point(609, 54);
             this.gb_status.Name = "gb_status";
-            this.gb_status.Size = new System.Drawing.Size(224, 266);
+            this.gb_status.Size = new System.Drawing.Size(224, 174);
             this.gb_status.TabIndex = 19;
             this.gb_status.TabStop = false;
             this.gb_status.Text = "配置状态";
@@ -90,7 +90,7 @@
             this.btn_deleteDateConfig.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_deleteDateConfig.Image = ((System.Drawing.Image)(resources.GetObject("btn_deleteDateConfig.Image")));
             this.btn_deleteDateConfig.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_deleteDateConfig.Location = new System.Drawing.Point(18, 98);
+            this.btn_deleteDateConfig.Location = new System.Drawing.Point(18, 91);
             this.btn_deleteDateConfig.Name = "btn_deleteDateConfig";
             this.btn_deleteDateConfig.Size = new System.Drawing.Size(75, 23);
             this.btn_deleteDateConfig.TabIndex = 9;
@@ -104,7 +104,7 @@
             this.lbl_status.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_status.AutoSize = true;
             this.lbl_status.ForeColor = System.Drawing.Color.Red;
-            this.lbl_status.Location = new System.Drawing.Point(18, 74);
+            this.lbl_status.Location = new System.Drawing.Point(18, 63);
             this.lbl_status.Name = "lbl_status";
             this.lbl_status.Size = new System.Drawing.Size(41, 12);
             this.lbl_status.TabIndex = 8;
@@ -114,7 +114,7 @@
             // 
             this.lbl_configStatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_configStatus.AutoSize = true;
-            this.lbl_configStatus.Location = new System.Drawing.Point(18, 53);
+            this.lbl_configStatus.Location = new System.Drawing.Point(18, 33);
             this.lbl_configStatus.Name = "lbl_configStatus";
             this.lbl_configStatus.Size = new System.Drawing.Size(95, 12);
             this.lbl_configStatus.TabIndex = 8;
@@ -124,9 +124,9 @@
             // 
             this.gb_dateBaseConete.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gb_dateBaseConete.Controls.Add(this.tableLayoutPanel2);
-            this.gb_dateBaseConete.Location = new System.Drawing.Point(145, 76);
+            this.gb_dateBaseConete.Location = new System.Drawing.Point(139, 54);
             this.gb_dateBaseConete.Name = "gb_dateBaseConete";
-            this.gb_dateBaseConete.Size = new System.Drawing.Size(451, 266);
+            this.gb_dateBaseConete.Size = new System.Drawing.Size(451, 174);
             this.gb_dateBaseConete.TabIndex = 18;
             this.gb_dateBaseConete.TabStop = false;
             this.gb_dateBaseConete.Text = "数据库连接";
@@ -148,7 +148,7 @@
             this.tableLayoutPanel2.Controls.Add(this.label_user, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.button_testConect, 1, 4);
             this.tableLayoutPanel2.Controls.Add(this.button_confirm, 2, 4);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(63, 53);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(63, 19);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());

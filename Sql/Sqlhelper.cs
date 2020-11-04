@@ -8,7 +8,7 @@ using System.Configuration;
 
 namespace Utility.Sql
 {
-  public  class Sqlhelper
+    public class Sqlhelper
     {
 
 
@@ -20,7 +20,7 @@ namespace Utility.Sql
         {
 
             string conString = ConfigurationManager.ConnectionStrings["myConcetion"].ToString();
-            
+
             string deConString = Encrypt.Decode(conString);
             //ConnectionStringSettings conStrings = new ConnectionStringSettings("busynessDate", deConString);
             SqlConnection sqlConnection = new SqlConnection(deConString);
@@ -29,7 +29,7 @@ namespace Utility.Sql
 
         }
 
-        
+
 
         #region 查询
         /// <summary> 
@@ -69,7 +69,7 @@ namespace Utility.Sql
         /// </summary> 
         /// <param name="strSql">查询语句</param> 
         /// <returns>返回一张查询结果表</returns> 
-        
+
         public static DataTable GetDataTable(string strSql)
         {
 
@@ -154,7 +154,7 @@ namespace Utility.Sql
         /// 不带参数执行对数据的增删改操作
         /// </summary>
         /// <param name="SQLstring"></param>
-        public static int  UpdateWithparameters(string SQLstring ,SqlParameter[] sqlParameters)
+        public static int UpdateWithparameters(string SQLstring, SqlParameter[] sqlParameters)
         {
 
 
@@ -167,7 +167,7 @@ namespace Utility.Sql
             cmd.CommandText = SQLstring;
 
             cmd.Parameters.AddRange(sqlParameters);
-            int influnce= cmd.ExecuteNonQuery();
+            int influnce = cmd.ExecuteNonQuery();
 
             connection.Close();
             return influnce;
@@ -210,7 +210,7 @@ namespace Utility.Sql
 
         }
 
-        
+
 
         ///<summary> 
         /// 执行对数据的增删改操作 

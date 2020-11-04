@@ -48,7 +48,7 @@ namespace Utility.UI
         /// <param name="e"></param>
         private void button_testConect_Click(object sender, EventArgs e)
         {
-            
+
 
             //获取数据库连接字符串
             string con = "Data Source=" + textBox_server.Text + ";Initial Catalog=" + textBox_database.Text + ";User ID= " + textBox_user.Text + ";Password=" +
@@ -81,7 +81,7 @@ namespace Utility.UI
 
         }
 
-      
+
 
         /// <summary>
         /// 默认读取数据库连接信息中的数据库信息
@@ -89,7 +89,7 @@ namespace Utility.UI
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-           
+
         /// <summary>
         /// 读取数据库连接信息中的数据库信息
         /// </summary>
@@ -112,7 +112,7 @@ namespace Utility.UI
             else
             {
                 this.lbl_status.Text = "未配置";
-                this.lbl_status.ForeColor = Color.Red;   ;
+                this.lbl_status.ForeColor = Color.Red; ;
             }
         }
 
@@ -125,8 +125,8 @@ namespace Utility.UI
         {
             if (this.lbl_status.Text != "未配置")
             {
-                string conectionInformation= "myConcetion";
-              
+                string conectionInformation = "myConcetion";
+
                 Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 config.ConnectionStrings.ConnectionStrings.Remove(conectionInformation);
                 config.Save(ConfigurationSaveMode.Modified);
@@ -181,7 +181,7 @@ namespace Utility.UI
                 this.lbl_status.ForeColor = Color.Red;
 
 
-                
+
             }
             else
             {
@@ -211,7 +211,7 @@ namespace Utility.UI
             //加密码连接字符串
             string encryptConString = Utility.Encrypt.Encode(conString);
 
-            
+
             if (ConfigurationManager.ConnectionStrings["myConcetion"] != null)
             {
                 isModified = true;
@@ -219,7 +219,7 @@ namespace Utility.UI
             //新建一个连接字符串实例,三个参数的构造函数可以兼容EF的连接字符串
             //因为EF可以连接多种数据库，所以必须提供providerName
 
-            ConnectionStringSettings mySettings = new ConnectionStringSettings("myConcetion", encryptConString,provider);
+            ConnectionStringSettings mySettings = new ConnectionStringSettings("myConcetion", encryptConString, provider);
 
             // 打开可执行的配置文件*.exe.config 
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);

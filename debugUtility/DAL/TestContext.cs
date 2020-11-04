@@ -12,20 +12,30 @@ namespace DebugUtility.DAL
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
-    public partial class scrapSettleEntities : DbContext
+    using DebugUtility.Modle;
+
+    public partial class TestContext : DbContext
     {
-        public scrapSettleEntities()
-            : base("name=myConection")
+        //public TestContext() : base(Utility.Sql.Sqlhelper.sqlConnection(), true)
+        //{
+            
+        //}
+
+        public TestContext() : base("name=test")
         {
+
         }
-    
+
+
+
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            //throw new UnintentionalCodeFirstException();
         }
-    
-        public virtual DbSet<CustomerSet> CustomerSet { get; set; }
-        public virtual DbSet<WeighingSettlementSet> WeighingSettlementSet { get; set; }
+
+        public virtual DbSet<UserModle> Users { get; set; }
+
     }
 }

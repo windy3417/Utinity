@@ -23,7 +23,7 @@ namespace Utility.UControl
 
         }
 
-     
+
 
         private string _text;
 
@@ -59,11 +59,11 @@ namespace Utility.UControl
             }
             set
             {
-                if (_text==value)
+                if (_text == value)
                 {
                     return;
                 }
-                
+
                 _text = value;
                 onContinerTextChange(EventArgs.Empty);
 
@@ -71,7 +71,7 @@ namespace Utility.UControl
             }
         }
         #endregion
-        
+
 
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Utility.UControl
         /// < param name="e"></param>
         private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-           
+
             //赋值给checkBox,如果直接赋值给textBox,则一激活dateTimePicker控件
             //（即便不是手动选择日期，只要代码中涉及到对该控件的操作，比如遍历容器当中的控件或Enable控件）
             //就会赋值给textBox，这样不符合前端使用者的本意，故使用CheckBox控件过渡
@@ -90,7 +90,7 @@ namespace Utility.UControl
             //checkBox1.Text = dtp_inTextBox.Value.ToString().Substring(0, 10);
             checkBox1.Visible = true;
             checkBox1.Text = dtp_inTextBox.Text;
-            
+
             //_text = txt_withDate.Text;
             //dtp_inTextBox.Checked = false;
             //注意属性中rightToLeftLayout的值等于true,
@@ -107,7 +107,7 @@ namespace Utility.UControl
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             txt_withDate.Text = "";
-            if (checkBox1.Checked==true)
+            if (checkBox1.Checked == true)
             {
                 txt_withDate.Text = dtp_inTextBox.Text;
                 _text = dtp_inTextBox.Text;
@@ -117,15 +117,15 @@ namespace Utility.UControl
             else
             {
                 txt_withDate.Text = "";
-                _text ="";
+                _text = "";
             }
         }
 
         /// <summary>
-     /// 进入时，显示时间
-     /// </summary>
-     /// <param name="sender"></param>
-     /// <param name="e"></param>
+        /// 进入时，显示时间
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void TxtBoxWithDate_Enter(object sender, EventArgs e)
         {
@@ -143,16 +143,16 @@ namespace Utility.UControl
         /// <param name="e"></param>
         private void Txt_withDate_MouseDown(object sender, MouseEventArgs e)
         {
-            if (txt_withDate.Text=="")
+            if (txt_withDate.Text == "")
             {
                 checkBox1.Visible = true;
                 checkBox1.Text = dtp_inTextBox.Value.ToString().Substring(0, 10);
             }
-            
+
         }
 
-        private void 
-            
+        private void
+
             textHander()
         {
             txt_withDate.Text = _text;

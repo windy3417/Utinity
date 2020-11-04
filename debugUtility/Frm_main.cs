@@ -56,7 +56,7 @@ namespace DebugUtility
 
         private void 数据库配置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_config frm_Config = new Frm_config();
+            Frm_DoubleDataBaseConfig frm_Config = new Frm_DoubleDataBaseConfig();
             string tabPageText = frm_Config.Text;
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(frm_Config, tabPageText, tabControl1, panel1);

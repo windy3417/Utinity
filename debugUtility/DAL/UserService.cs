@@ -6,22 +6,23 @@ using System.Data;
 using System.Data.SqlClient;
 using Utility;
 using Utility.Sql;
+using DebugUtility.Modle;
 
 
 namespace DebugUtility.DAL
 {
-    class CustomerService
+    class UserService
     {
-        List<CustomerSet> customerSets = new List<CustomerSet>();
+        List<UserModle> customerSets = new List<UserModle>();
         //CustomerSet customerSet = new CustomerSet();
         //string sql="select * from "
         //SqlDataReader SqlDataReader =Sqlhelper.GetSqlDataReader()
 
-        public List<CustomerSet> getCustomerSets()
+        public List<UserModle> getCustomerSets()
         {
-            using (var db = new scrapSettleEntities())
+            using (var db = new TestContext())
             {
-                
+
                 //循环写法
 
                 //var query = from cus in db.CustomerSet
@@ -34,9 +35,9 @@ namespace DebugUtility.DAL
                 //return customerSets;
 
                 //简化写法
-                return db.CustomerSet.ToList<CustomerSet>();
-                
-                
+                return db.Users.ToList<UserModle>();
+
+
             }
         }
 

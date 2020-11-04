@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Utility.UI
 {
-   public class EmbedForm
+    public class EmbedForm
     {
         /// <summary>
         /// 实现嵌入式窗体
@@ -16,7 +16,7 @@ namespace Utility.UI
         /// <param name="tabPageText">窗体在TabPage上显示的名称</param>
         /// <param name="tabControl">窗体所在容器</param>
         /// <param name="panel">tabControl所在容器</param>
-       public  void openForm(Form formName, string tabPageText,TabControl tabControl,Panel panel)
+        public void openForm(Form formName, string tabPageText, TabControl tabControl, Panel panel)
         {
 
             TabPage tp = new TabPage();

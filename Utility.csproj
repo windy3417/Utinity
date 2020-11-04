@@ -104,9 +104,21 @@
     <Compile Include="UControl\txtBoxWithDate.Designer.cs">
       <DependentUpon>txtBoxWithDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="UControl\UtoolStrip.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UControl\UtoolStrip.Designer.cs">
+      <DependentUpon>UtoolStrip.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\EmbedForm.cs" />
     <Compile Include="UControl\VeticalLine.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_DoubleDataBaseconfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_DoubleDataBaseconfig.Designer.cs">
+      <DependentUpon>Frm_DoubleDataBaseconfig.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Frm_config.cs">
       <SubType>Form</SubType>
@@ -131,9 +143,16 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UControl\txtBoxWithDate.resx">
       <DependentUpon>txtBoxWithDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UControl\UtoolStrip.resx">
+      <DependentUpon>UtoolStrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_DoubleDataBaseconfig.resx">
+      <DependentUpon>Frm_DoubleDataBaseconfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_config.resx">
       <DependentUpon>Frm_config.cs</DependentUpon>
@@ -149,6 +168,20 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

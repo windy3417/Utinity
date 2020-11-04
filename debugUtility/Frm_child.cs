@@ -16,8 +16,11 @@ namespace DebugUtility
         public Frm_child()
         {
             InitializeComponent();
+            this.FormClosed += new FormClosedEventHandler(closeParent);
         }
 
+        private void closeParent(object sender, FormClosedEventArgs formClosedEventArgs)
+        { this.Parent.Dispose(); }
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -28,7 +31,7 @@ namespace DebugUtility
                 new SqlParameter("@updateString",txt_mendDate.Text.Trim() )
             };
 
-           int influnceRows= Sqlhelper.UpdateWithparameters(sql, sqlParameters);
+            int influnceRows = Sqlhelper.UpdateWithparameters(sql, sqlParameters);
             MessageBox.Show("更新" + influnceRows + "条记录", "数据修改提示");
 
         }

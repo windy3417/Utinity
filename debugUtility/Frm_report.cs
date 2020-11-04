@@ -18,10 +18,10 @@ namespace DebugUtility
             InitializeComponent();
         }
 
-        private  void bind_DG_datasource()
+        private void bind_DG_datasource()
         {
             this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.DataSource = new CustomerService().getCustomerSets();
+            this.dataGridView1.DataSource = new UserService().getCustomerSets();
         }
 
         private void Frm_report_Load(object sender, EventArgs e)
@@ -31,13 +31,13 @@ namespace DebugUtility
 
         private void Tsb_query_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = new CustomerService().getCustmer();
+            dataGridView1.DataSource = new UserService().getCustmer();
         }
 
         private void Tsb_export_Click(object sender, EventArgs e)
         {
             Excel.ExportExcel exportExcel = new Excel.ExportExcel();
-            exportExcel.ExportExcelWithNPOI(new CustomerService().getCustmer(), "test");
+            exportExcel.ExportExcelWithNPOI(new UserService().getCustmer(), "test");
         }
     }
 }

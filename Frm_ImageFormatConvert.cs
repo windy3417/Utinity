@@ -19,12 +19,12 @@ namespace Utility
         private void toolStripButton_openFile_Click(object sender, EventArgs e)
         {
             string stringFileName = this.opengImageFiles();
-          
+
             if (stringFileName != string.Empty)
             {
                 try
                 {
-                   this.pictureBox1.Load(stringFileName);
+                    this.pictureBox1.Load(stringFileName);
                 }
                 catch (Exception ex)
                 {
@@ -47,7 +47,7 @@ namespace Utility
 
         private void toolStripButton_convertFormat_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
