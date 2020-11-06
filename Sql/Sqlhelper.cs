@@ -11,6 +11,12 @@ namespace Utility.Sql
     public class Sqlhelper
     {
 
+       public enum dataSourceType
+        {
+            u8,
+            plug,
+            business
+        }
 
         /// <summary>
         /// 返回sqlConnection，默认连接字符串名称是“myConcetion”
@@ -176,7 +182,93 @@ namespace Utility.Sql
         #endregion
 
 
+        #region 动态数据源选择
 
+        /// <summary>
+        /// 返回sqlConnection，业务数据源连接字符串名称是“businessConcetion”,
+        /// 外挂数据源连接字符串名称是“plugConcetion",U8数据源连接字符串名称是“u8Concetion"
+        /// </summary>
+        /// <param name="dataSourceType" >
+        /// 数据源类型
+        /// </param>
+        /// <returns></returns>
+        public static SqlConnection sqlConnection(dataSourceType dataSourceType)
+        {
+            string conString;
+            string deConString;
+            SqlConnection sqlConnection;
+
+            if (dataSourceType==dataSourceType.u8)
+            {
+                conString = ConfigurationManager.ConnectionStrings["u8Conection"].ToString();
+                deConString = Encrypt.Decode(conString);
+
+                sqlConnection = new SqlConnection(deConString);
+
+                return sqlConnection;
+            }
+            else
+            {
+                if (dataSourceType == dataSourceType.plug)
+                {
+                    conString = ConfigurationManager.ConnectionStrings["plugConection"].ToString();
+                    deConString = Encrypt.Decode(conString);
+
+                    sqlConnection = new SqlConnection(deConString);
+
+                    return sqlConnection;
+                }
+                conString = ConfigurationManager.ConnectionStrings["businessConection"].ToString();
+                deConString = Encrypt.Decode(conString);
+
+                sqlConnection = new SqlConnection(deConString);
+
+                return sqlConnection;
+            }
+
+            
+
+          
+         
+             
+
+            
+
+        }
+
+        /// <summary> 
+        /// 返回sqlDataReader 
+        /// </summary> 
+        /// <param name="strSql">查询语句</param> 
+        /// <param name="dataSourceType">数据源类型</param>
+        /// <param name="parameters">可能带的参数</param> 
+        /// <returns>返回一张查询结果表</returns> 
+        public static SqlDataReader GetSqlDataReader(string strSql, dataSourceType dataSourceType, SqlParameter[] parameters)
+        {
+
+            SqlConnection connection = sqlConnection(dataSourceType);
+            connection.Open();
+
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = connection;
+            cmd.CommandText = strSql;
+
+            cmd.Parameters.AddRange(parameters);
+            //执行完后不能调用sqlconection.close方法去关闭连接，否则sqldatareader对象无法调用
+            //其read方法，采用commandBehavior.closeConection枚举可在关闭sqldatareader时自动
+            //关闭SqlConnection,同时也说明Command.ExecuteReader方法并未执行真正的查询，仅仅是
+            //构造SqlDataReader对象
+            SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+            return reader;
+
+
+
+
+
+
+        }
 
 
         /// <summary>
@@ -209,6 +301,10 @@ namespace Utility.Sql
             }
 
         }
+        #endregion
+
+
+
 
 
 
