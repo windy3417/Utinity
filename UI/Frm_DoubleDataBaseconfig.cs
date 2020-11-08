@@ -91,7 +91,7 @@ namespace Utility.UI
         /// <param name="e"></param>
         private void Button_confirm_Click(object sender, EventArgs e)
         {
-            bool isModified = false;    //记录该连接串是否已经存在
+            bool conectionStringExist = false;    //记录该连接串是否已经存在
 
             string provider = "System.Data.SqlClient;";
             string conString = "Data Source=" + textBox_server.Text + ";Initial Catalog=" + textBox_database.Text + ";" +
@@ -101,22 +101,22 @@ namespace Utility.UI
             string encryptConString = Utility.Encrypt.Encode(conString);
 
 
-            if (ConfigurationManager.ConnectionStrings["myConcetion"] != null)
+            if (ConfigurationManager.ConnectionStrings["myConection"] != null)
             {
-                isModified = true;
+                conectionStringExist = true;
             }
             //新建一个连接字符串实例,三个参数的构造函数可以兼容EF的连接字符串
             //因为EF可以连接多种数据库，所以必须提供providerName
 
-            ConnectionStringSettings mySettings = new ConnectionStringSettings("myConcetion", encryptConString, provider);
+            ConnectionStringSettings mySettings = new ConnectionStringSettings("myConection", encryptConString, provider);
 
             // 打开可执行的配置文件*.exe.config 
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
             // 如果连接串已存在，首先删除它 
-            if (isModified)
+            if (conectionStringExist)
             {
-                config.ConnectionStrings.ConnectionStrings.Remove("myConcetion");
+                config.ConnectionStrings.ConnectionStrings.Remove("myConection");
             }
             // 将新的连接串添加到配置文件中. 
             config.ConnectionStrings.ConnectionStrings.Add(mySettings);

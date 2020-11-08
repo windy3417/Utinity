@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Windows.Forms;
 
 namespace Utility.Sql
 {
@@ -24,14 +25,22 @@ namespace Utility.Sql
         /// <returns></returns>
         public static SqlConnection sqlConnection()
         {
+            try
+            {
+                string conString = ConfigurationManager.ConnectionStrings["myConection"].ToString();
 
-            string conString = ConfigurationManager.ConnectionStrings["myConection"].ToString();
+                string deConString = Encrypt.Decode(conString);
+                //ConnectionStringSettings conStrings = new ConnectionStringSettings("busynessDate", deConString);
+                SqlConnection sqlConnection = new SqlConnection(deConString);
 
-            string deConString = Encrypt.Decode(conString);
-            //ConnectionStringSettings conStrings = new ConnectionStringSettings("busynessDate", deConString);
-            SqlConnection sqlConnection = new SqlConnection(deConString);
-
-            return sqlConnection;
+                return sqlConnection;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("数据库连接出错"+ex.Message+ex.InnerException);
+                return null;
+            }
+            
 
         }
 
