@@ -25,7 +25,7 @@ namespace Utility.Sql
         public static SqlConnection sqlConnection()
         {
 
-            string conString = ConfigurationManager.ConnectionStrings["myConcetion"].ToString();
+            string conString = ConfigurationManager.ConnectionStrings["myConection"].ToString();
 
             string deConString = Encrypt.Decode(conString);
             //ConnectionStringSettings conStrings = new ConnectionStringSettings("busynessDate", deConString);

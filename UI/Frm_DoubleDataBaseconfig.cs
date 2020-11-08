@@ -174,8 +174,8 @@ namespace Utility.UI
 
         private void readDataBase()
         {
-            string conectDataBase = "myConcetion";
-            string conectPlugDataBase = "PlugConcetion";
+            string conectDataBase = "myConection";
+            string conectPlugDataBase = "plugConection";
 
             if (ConfigurationManager.ConnectionStrings[conectDataBase] != null)
             {
@@ -303,20 +303,20 @@ namespace Utility.UI
 
             string provider = "System.Data.SqlClient;";
             string conString = "Data Source=" + txt_plugServer.Text + ";Initial Catalog=" + txt_plugDataBase.Text + ";" +
-                "User ID=" + txt_plugServer.Text + ";Password="
+                "User ID=" + txt_plugUser.Text + ";Password="
                 + txt_plugPWD.Text + ";Pooling=False;";
             //加密码连接字符串
             string encryptConString = Utility.Encrypt.Encode(conString);
 
 
-            if (ConfigurationManager.ConnectionStrings["PlugConcetion"] != null)
+            if (ConfigurationManager.ConnectionStrings["plugConection"] != null)
             {
                 isModified = true;
             }
             //新建一个连接字符串实例,三个参数的构造函数可以兼容EF的连接字符串
             //因为EF可以连接多种数据库，所以必须提供providerName
 
-            ConnectionStringSettings mySettings = new ConnectionStringSettings("PlugConcetion", encryptConString, provider);
+            ConnectionStringSettings mySettings = new ConnectionStringSettings("plugConection", encryptConString, provider);
 
             // 打开可执行的配置文件*.exe.config 
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
@@ -324,7 +324,7 @@ namespace Utility.UI
             // 如果连接串已存在，首先删除它 
             if (isModified)
             {
-                config.ConnectionStrings.ConnectionStrings.Remove("PlugConcetion");
+                config.ConnectionStrings.ConnectionStrings.Remove("plugConection");
             }
             // 将新的连接串添加到配置文件中. 
             config.ConnectionStrings.ConnectionStrings.Add(mySettings);

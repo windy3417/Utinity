@@ -31,7 +31,8 @@ namespace Utility.UControl
         public event EventHandler ContainerTextChange;
 
         /// <summary>
-        /// 引发值更新事件
+        /// 事件处理方法，当调用端口实例化该事件委托，则执行该方法，
+        /// 该方法可被子类覆写
         /// </summary>
         /// <param name="e"></param>
         protected virtual void onContinerTextChange(EventArgs e)
@@ -65,6 +66,7 @@ namespace Utility.UControl
                 }
 
                 _text = value;
+                //_text值变化了，则引发事件
                 onContinerTextChange(EventArgs.Empty);
 
 
