@@ -13,20 +13,27 @@ using System.Configuration;
 
 namespace Utility.UI
 {
-    public partial class Frm_DoubleDataBaseConfig : Form
+    public partial class Frm_DoubleDB_loginConfig : Form
     {
 
-        public Frm_DoubleDataBaseConfig()
+        public Frm_DoubleDB_loginConfig()
         {
             InitializeComponent();
             this.btn_confirm.Enabled = false;
             btn_plugCertain.Enabled = false;
+           
         }
+
+        #region 事件处理
 
         private void Frm_DoubleDataBaseConfig_Load(object sender, EventArgs e)
         {
             this.readDataBase();
         }
+
+
+        #endregion
+
 
         /// <summary>
         /// 鼠标按键事件。
@@ -212,22 +219,8 @@ namespace Utility.UI
             }
         }
 
-       
 
-        /// <summary>
-        /// 关闭母窗体
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Frm_config_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.Parent.Dispose();
-        }
 
-        private void toolStripButtonQuit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
         /// <summary>
         /// 删除数据库配置信息
@@ -278,7 +271,7 @@ namespace Utility.UI
         {
             if (lbl_plugStatus.Text != "未配置")
             {
-                string conectionInformation = "plugConection";
+                string conectionInformation = "PlugConcetion";
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 config.ConnectionStrings.ConnectionStrings.Remove(conectionInformation);

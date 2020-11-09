@@ -120,6 +120,12 @@
     <Compile Include="UI\Frm_DoubleDataBaseconfig.Designer.cs">
       <DependentUpon>Frm_DoubleDataBaseconfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Frm_DoubleDB_loginConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_DoubleDB_loginConfig.Designer.cs">
+      <DependentUpon>Frm_DoubleDB_loginConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Frm_config.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_DoubleDataBaseconfig.resx">
       <DependentUpon>Frm_DoubleDataBaseconfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_DoubleDB_loginConfig.resx">
+      <DependentUpon>Frm_DoubleDB_loginConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_config.resx">
       <DependentUpon>Frm_config.cs</DependentUpon>

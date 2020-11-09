@@ -69,5 +69,13 @@ namespace DebugUtility
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(frm_Config, tabPageText, tabControl1, panel1);
         }
+
+        private void 登录数据库配置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_DoubleDB_loginConfig f  = new Frm_DoubleDB_loginConfig();
+            string tabPageText = f.Text;
+            Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            embed.openForm(f, tabPageText, tabControl1, panel1);
+        }
     }
 }
