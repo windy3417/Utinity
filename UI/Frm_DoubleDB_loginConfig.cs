@@ -19,10 +19,42 @@ namespace Utility.UI
         public Frm_DoubleDB_loginConfig()
         {
             InitializeComponent();
+            initializeControlState();
+            
+
+        }
+
+        /// <summary>
+        /// 初始化控件状态
+        /// </summary>
+         void initializeControlState()
+        {
             this.btn_confirm.Enabled = false;
             btn_plugCertain.Enabled = false;
-           
+            gb_admin.Visible = false;
+            plugConfigSuccess += displayAdminForm;
+        }          
+
+        
+
+        #region 自定义事件
+
+        event EventHandler plugConfigSuccess;
+
+        void onPlugConfigSuccess(EventArgs e )
+        {
+            plugConfigSuccess?.Invoke(this, e);
         }
+
+        void displayAdminForm(object sender,EventArgs e)
+        {
+            gb_admin.Visible = true;
+        }
+
+
+
+        #endregion
+
 
         #region 事件处理
 
@@ -219,8 +251,7 @@ namespace Utility.UI
             }
         }
 
-
-
+        
 
         /// <summary>
         /// 删除数据库配置信息
@@ -327,6 +358,9 @@ namespace Utility.UI
             ConfigurationManager.RefreshSection("connectionStrings");
 
             MessageBox.Show("数据库配置成功", "数据库配置");
+
+            //外挂数据库配置成功，则引发事件
+            onPlugConfigSuccess(EventArgs.Empty);
             lbl_plugStatus.Text = "已经配置";
             lbl_plugStatus.ForeColor = Color.Green;
         }
@@ -370,6 +404,16 @@ namespace Utility.UI
 
         #endregion
 
+
+        /// <summary>
+        /// 写入管理员信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected virtual void btn_adminCertain_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

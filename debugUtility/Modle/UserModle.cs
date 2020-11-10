@@ -12,7 +12,10 @@ namespace DebugUtility.Modle
  public   class UserModle
     {
         [Key]
-        public int id { get; set; }
+        public string userID { get; set; }
         public string name { get; set; }
+        public string pwd { get; set; }
+        public DateTime RegistrationDate { get; set; }
+        Nullable <DateTime> DateOfCancellation { get; set; }
     }
 }

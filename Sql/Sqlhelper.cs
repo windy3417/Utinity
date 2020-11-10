@@ -20,7 +20,7 @@ namespace Utility.Sql
         }
 
         /// <summary>
-        /// 返回sqlConnection，默认连接字符串名称是“myConcetion”
+        /// 返回sqlConnection，默认连接字符串名称是“myConection”
         /// </summary>
         /// <returns></returns>
         public static SqlConnection sqlConnection()

@@ -37,9 +37,10 @@
             this.图片转ICONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.登录数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.单表合一ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.登录数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -110,7 +111,8 @@
             // 
             this.配置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.数据库配置ToolStripMenuItem,
-            this.登录数据库配置ToolStripMenuItem});
+            this.登录数据库配置ToolStripMenuItem,
+            this.adminToolStripMenuItem});
             this.配置ToolStripMenuItem.Name = "配置ToolStripMenuItem";
             this.配置ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.配置ToolStripMenuItem.Text = "配置";
@@ -121,6 +123,13 @@
             this.数据库配置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.数据库配置ToolStripMenuItem.Text = "数据库配置";
             this.数据库配置ToolStripMenuItem.Click += new System.EventHandler(this.数据库配置ToolStripMenuItem_Click);
+            // 
+            // 登录数据库配置ToolStripMenuItem
+            // 
+            this.登录数据库配置ToolStripMenuItem.Name = "登录数据库配置ToolStripMenuItem";
+            this.登录数据库配置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.登录数据库配置ToolStripMenuItem.Text = "登录数据库配置";
+            this.登录数据库配置ToolStripMenuItem.Click += new System.EventHandler(this.登录数据库配置ToolStripMenuItem_Click);
             // 
             // 报表ToolStripMenuItem
             // 
@@ -137,12 +146,12 @@
             this.单表合一ToolStripMenuItem.Text = "单表合一";
             this.单表合一ToolStripMenuItem.Click += new System.EventHandler(this.单表合一ToolStripMenuItem_Click);
             // 
-            // 登录数据库配置ToolStripMenuItem
+            // adminToolStripMenuItem
             // 
-            this.登录数据库配置ToolStripMenuItem.Name = "登录数据库配置ToolStripMenuItem";
-            this.登录数据库配置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.登录数据库配置ToolStripMenuItem.Text = "登录数据库配置";
-            this.登录数据库配置ToolStripMenuItem.Click += new System.EventHandler(this.登录数据库配置ToolStripMenuItem_Click);
+            this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.adminToolStripMenuItem.Text = "admin";
+            this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
             // 
             // Frm_main
             // 
@@ -177,6 +186,7 @@
         private System.Windows.Forms.ToolStripMenuItem 报表ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 单表合一ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 登录数据库配置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adminToolStripMenuItem;
     }
 }
 

@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Windows.Forms;
 using Utility;
 using Utility.UI;
+using debugUtility.UI;
 
 namespace DebugUtility
 {
@@ -73,6 +74,14 @@ namespace DebugUtility
         private void 登录数据库配置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Frm_DoubleDB_loginConfig f  = new Frm_DoubleDB_loginConfig();
+            string tabPageText = f.Text;
+            Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            embed.openForm(f, tabPageText, tabControl1, panel1);
+        }
+
+        private void adminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+             Config  f = new Config();
             string tabPageText = f.Text;
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(f, tabPageText, tabControl1, panel1);
