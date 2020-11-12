@@ -31,6 +31,8 @@ namespace Utility.UI
         {
             this.btn_confirm.Enabled = false;
             btn_plugCertain.Enabled = false;
+            txt_adminCode.Enabled = false;
+            txt_adminName.Enabled = false;
             gb_admin.Visible = false;
             plugConfigSuccess += displayAdminForm;
         }          

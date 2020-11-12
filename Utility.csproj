@@ -38,6 +38,12 @@
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>packages\Portable.BouncyCastle.1.8.6\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -54,6 +60,7 @@
       <HintPath>packages\NPOI.2.5.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -132,6 +139,12 @@
     <Compile Include="UI\Frm_config.Designer.cs">
       <DependentUpon>Frm_config.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Frm_archiveList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_archiveList.designer.cs">
+      <DependentUpon>Frm_archiveList.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Frm_ImageFormatConvert.resx">
       <DependentUpon>Frm_ImageFormatConvert.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +179,10 @@
     <EmbeddedResource Include="UI\Frm_config.resx">
       <DependentUpon>Frm_config.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_archiveList.resx">
+      <DependentUpon>Frm_archiveList.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -191,6 +208,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\exit.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\export.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Search.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\打印.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -86,5 +86,13 @@ namespace DebugUtility
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(f, tabPageText, tabControl1, panel1);
         }
+
+        private void 档案列表ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_listTest f = new Frm_listTest();
+            string tabPageText = f.Text;
+            Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            embed.openForm(f, tabPageText, tabControl1, panel1);
+        }
     }
 }

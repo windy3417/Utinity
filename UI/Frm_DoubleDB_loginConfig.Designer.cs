@@ -37,7 +37,6 @@
             this.lbl_configStatus = new System.Windows.Forms.Label();
             this.gb_dateBaseConete = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox_password = new System.Windows.Forms.TextBox();
             this.textBox_user = new System.Windows.Forms.TextBox();
             this.textBox_database = new System.Windows.Forms.TextBox();
             this.textBox_server = new System.Windows.Forms.TextBox();
@@ -47,6 +46,7 @@
             this.lbl_user = new System.Windows.Forms.Label();
             this.btn_testConect = new System.Windows.Forms.Button();
             this.btn_confirm = new System.Windows.Forms.Button();
+            this.textBox_password = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_deletePlugConfig = new System.Windows.Forms.Button();
             this.lbl_plugStatus = new System.Windows.Forms.Label();
@@ -65,10 +65,10 @@
             this.btn_plugCertain = new System.Windows.Forms.Button();
             this.gb_admin = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.txt_adminCode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txt_adminCode = new System.Windows.Forms.TextBox();
             this.txt_adminName = new System.Windows.Forms.TextBox();
             this.txt_adminPwd = new System.Windows.Forms.TextBox();
             this.btn_adminCertain = new System.Windows.Forms.Button();
@@ -174,14 +174,6 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(240, 143);
             this.tableLayoutPanel2.TabIndex = 14;
             // 
-            // textBox_password
-            // 
-            this.textBox_password.Location = new System.Drawing.Point(62, 84);
-            this.textBox_password.Name = "textBox_password";
-            this.textBox_password.PasswordChar = '*';
-            this.textBox_password.Size = new System.Drawing.Size(175, 21);
-            this.textBox_password.TabIndex = 4;
-            // 
             // textBox_user
             // 
             this.tableLayoutPanel2.SetColumnSpan(this.textBox_user, 2);
@@ -267,6 +259,14 @@
             this.btn_confirm.Text = "确认";
             this.btn_confirm.UseVisualStyleBackColor = true;
             this.btn_confirm.Click += new System.EventHandler(this.Button_confirm_Click);
+            // 
+            // textBox_password
+            // 
+            this.textBox_password.Location = new System.Drawing.Point(62, 84);
+            this.textBox_password.Name = "textBox_password";
+            this.textBox_password.PasswordChar = '*';
+            this.textBox_password.Size = new System.Drawing.Size(84, 21);
+            this.textBox_password.TabIndex = 4;
             // 
             // groupBox1
             // 
@@ -484,6 +484,15 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(501, 33);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
+            // txt_adminCode
+            // 
+            this.txt_adminCode.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txt_adminCode.Location = new System.Drawing.Point(78, 6);
+            this.txt_adminCode.Name = "txt_adminCode";
+            this.txt_adminCode.Size = new System.Drawing.Size(83, 21);
+            this.txt_adminCode.TabIndex = 4;
+            this.txt_adminCode.Text = "admin";
+            // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -514,14 +523,6 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "密码：";
             // 
-            // txt_adminCode
-            // 
-            this.txt_adminCode.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txt_adminCode.Location = new System.Drawing.Point(78, 6);
-            this.txt_adminCode.Name = "txt_adminCode";
-            this.txt_adminCode.Size = new System.Drawing.Size(83, 21);
-            this.txt_adminCode.TabIndex = 4;
-            // 
             // txt_adminName
             // 
             this.txt_adminName.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -529,6 +530,7 @@
             this.txt_adminName.Name = "txt_adminName";
             this.txt_adminName.Size = new System.Drawing.Size(97, 21);
             this.txt_adminName.TabIndex = 4;
+            this.txt_adminName.Text = "admin";
             // 
             // txt_adminPwd
             // 
