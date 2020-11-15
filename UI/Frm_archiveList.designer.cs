@@ -34,17 +34,10 @@
             this.flp_foot = new System.Windows.Forms.FlowLayoutPanel();
             this.lbl_sum = new System.Windows.Forms.Label();
             this.lbl_amount = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gb_query = new System.Windows.Forms.GroupBox();
             this.btn_query = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dtp_incomeDateStart = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dtp_incomeDateEnd = new System.Windows.Forms.DateTimePicker();
-            this.cmb_custName = new System.Windows.Forms.ComboBox();
             this.dgv_templet = new System.Windows.Forms.DataGridView();
-            this.lbl_customer = new System.Windows.Forms.Label();
+            this.lbl_title = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
             this.tsb_delete = new System.Windows.Forms.ToolStripButton();
@@ -55,8 +48,7 @@
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.panel1.SuspendLayout();
             this.flp_foot.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.gb_query.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_templet)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -65,9 +57,9 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel1.Controls.Add(this.flp_foot);
-            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.gb_query);
             this.panel1.Controls.Add(this.dgv_templet);
-            this.panel1.Controls.Add(this.lbl_customer);
+            this.panel1.Controls.Add(this.lbl_title);
             this.panel1.Location = new System.Drawing.Point(39, 28);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(926, 410);
@@ -108,16 +100,15 @@
             this.lbl_amount.Tag = "";
             this.lbl_amount.Text = "记录数：";
             // 
-            // groupBox1
+            // gb_query
             // 
-            this.groupBox1.Controls.Add(this.btn_query);
-            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Location = new System.Drawing.Point(3, 57);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(920, 100);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "查询条件";
+            this.gb_query.Controls.Add(this.btn_query);
+            this.gb_query.Location = new System.Drawing.Point(3, 57);
+            this.gb_query.Name = "gb_query";
+            this.gb_query.Size = new System.Drawing.Size(920, 100);
+            this.gb_query.TabIndex = 3;
+            this.gb_query.TabStop = false;
+            this.gb_query.Text = "查询条件";
             // 
             // btn_query
             // 
@@ -128,85 +119,6 @@
             this.btn_query.Text = "查询";
             this.btn_query.UseVisualStyleBackColor = true;
             this.btn_query.Click += new System.EventHandler(this.Btn_query_Click);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.81651F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.54127F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.98398F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.65823F));
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dtp_incomeDateStart, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dtp_incomeDateEnd, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.cmb_custName, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(25, 20);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(518, 74);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 12);
-            this.label2.TabIndex = 0;
-            this.label2.Tag = "客户编码标签";
-            this.label2.Text = "客户编码：";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 49);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 12);
-            this.label3.TabIndex = 0;
-            this.label3.Tag = "过磅日期标签";
-            this.label3.Text = "过磅日期：";
-            // 
-            // dtp_incomeDateStart
-            // 
-            this.dtp_incomeDateStart.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.dtp_incomeDateStart.Location = new System.Drawing.Point(84, 45);
-            this.dtp_incomeDateStart.Name = "dtp_incomeDateStart";
-            this.dtp_incomeDateStart.Size = new System.Drawing.Size(198, 21);
-            this.dtp_incomeDateStart.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(288, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(17, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Tag = "";
-            this.label1.Text = "到";
-            // 
-            // dtp_incomeDateEnd
-            // 
-            this.dtp_incomeDateEnd.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.dtp_incomeDateEnd.Location = new System.Drawing.Point(313, 45);
-            this.dtp_incomeDateEnd.Name = "dtp_incomeDateEnd";
-            this.dtp_incomeDateEnd.Size = new System.Drawing.Size(198, 21);
-            this.dtp_incomeDateEnd.TabIndex = 2;
-            // 
-            // cmb_custName
-            // 
-            this.cmb_custName.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cmb_custName.FormattingEnabled = true;
-            this.cmb_custName.Location = new System.Drawing.Point(84, 8);
-            this.cmb_custName.Name = "cmb_custName";
-            this.cmb_custName.Size = new System.Drawing.Size(198, 20);
-            this.cmb_custName.TabIndex = 3;
             // 
             // dgv_templet
             // 
@@ -231,15 +143,15 @@
             this.dgv_templet.Size = new System.Drawing.Size(920, 182);
             this.dgv_templet.TabIndex = 2;
             // 
-            // lbl_customer
+            // lbl_title
             // 
-            this.lbl_customer.AutoSize = true;
-            this.lbl_customer.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_customer.Location = new System.Drawing.Point(414, 22);
-            this.lbl_customer.Name = "lbl_customer";
-            this.lbl_customer.Size = new System.Drawing.Size(164, 21);
-            this.lbl_customer.TabIndex = 1;
-            this.lbl_customer.Text = "过磅结算单列表";
+            this.lbl_title.AutoSize = true;
+            this.lbl_title.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_title.Location = new System.Drawing.Point(414, 22);
+            this.lbl_title.Name = "lbl_title";
+            this.lbl_title.Size = new System.Drawing.Size(98, 21);
+            this.lbl_title.TabIndex = 1;
+            this.lbl_title.Text = "档案列表";
             // 
             // toolStrip1
             // 
@@ -323,15 +235,13 @@
             this.Controls.Add(this.panel1);
             this.KeyPreview = true;
             this.Name = "Frm_archiveList";
-            this.Text = "过磅结算单列表";
+            this.Text = "档案列表";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Frm_weighingList_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.flp_foot.ResumeLayout(false);
             this.flp_foot.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.gb_query.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_templet)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -343,25 +253,18 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lbl_customer;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label2;
+
+        protected System.Windows.Forms.Label lbl_title;
+        protected System.Windows.Forms.GroupBox gb_query;
+        protected System.Windows.Forms.DataGridView dgv_templet;
+        protected System.Windows.Forms.Label lbl_sum;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsb_close;
-        private System.Windows.Forms.Label label3;
-
-        protected System.Windows.Forms.DataGridView dgv_templet;
 
         private System.Windows.Forms.ToolStripButton tsb_query;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btn_query;
-        private System.Windows.Forms.DateTimePicker dtp_incomeDateStart;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dtp_incomeDateEnd;
-        private System.Windows.Forms.ComboBox cmb_custName;
-        private System.Windows.Forms.ToolStripButton tsb_export;
 
-        protected System.Windows.Forms.Label lbl_sum;
+        private System.Windows.Forms.Button btn_query;
+        private System.Windows.Forms.ToolStripButton tsb_export;
 
         private System.Windows.Forms.Label lbl_amount;
         private System.Windows.Forms.FlowLayoutPanel flp_foot;

@@ -16,6 +16,7 @@ namespace debugUtility.UI
         {
             InitializeComponent();
             initialzeControlState();
+            
         }
 
         void initialzeControlState()
@@ -47,6 +48,7 @@ namespace debugUtility.UI
 
         }
 
+    
         protected override void query()
         {
             using (var db = new TestContext())

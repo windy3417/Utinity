@@ -188,10 +188,11 @@ namespace Utility.UI
         {
             if (dgv_templet.Rows.Count > 0)
             {
-                var selected = dgv_templet.SelectedRows[0].Cells[1].Value;
+                var selected = dgv_templet.SelectedRows[0].Cells[0].Value;
                 if (DialogResult.Yes == MessageBox.Show("是否确定删除", "删除提醒", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
                     deleteModle(selected);
+                    tsb_query.PerformClick();
 
                 }
             }
