@@ -126,7 +126,7 @@
             // 
             // toolStripButton1
             // 
-            this.toolStripButton1.Image = global::DebugUtility.Properties.Resources.export;
+        
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(52, 22);

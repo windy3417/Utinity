@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.horizonLine1 = new Utility.UControl.HorizonLine();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -43,18 +42,15 @@
             this.单表合一ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.列表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.档案列表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.功能测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.treeViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.it数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.horizonLine1 = new Utility.UControl.HorizonLine();
+            this.webBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // horizonLine1
-            // 
-            this.horizonLine1.LineColor = System.Drawing.SystemColors.ControlText;
-            this.horizonLine1.LineWidth = 1;
-            this.horizonLine1.Location = new System.Drawing.Point(254, 249);
-            this.horizonLine1.Name = "horizonLine1";
-            this.horizonLine1.Size = new System.Drawing.Size(288, 1);
-            this.horizonLine1.TabIndex = 0;
             // 
             // panel1
             // 
@@ -79,9 +75,10 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.子窗体ToolStripMenuItem,
             this.图形处理ToolStripMenuItem,
-            this.配置ToolStripMenuItem,
             this.报表ToolStripMenuItem,
-            this.列表ToolStripMenuItem});
+            this.列表ToolStripMenuItem,
+            this.功能测试ToolStripMenuItem,
+            this.配置ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 25);
@@ -115,7 +112,8 @@
             this.配置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.数据库配置ToolStripMenuItem,
             this.登录数据库配置ToolStripMenuItem,
-            this.adminToolStripMenuItem});
+            this.adminToolStripMenuItem,
+            this.it数据库配置ToolStripMenuItem});
             this.配置ToolStripMenuItem.Name = "配置ToolStripMenuItem";
             this.配置ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.配置ToolStripMenuItem.Text = "配置";
@@ -123,21 +121,21 @@
             // 数据库配置ToolStripMenuItem
             // 
             this.数据库配置ToolStripMenuItem.Name = "数据库配置ToolStripMenuItem";
-            this.数据库配置ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.数据库配置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.数据库配置ToolStripMenuItem.Text = "数据库配置";
             this.数据库配置ToolStripMenuItem.Click += new System.EventHandler(this.数据库配置ToolStripMenuItem_Click);
             // 
             // 登录数据库配置ToolStripMenuItem
             // 
             this.登录数据库配置ToolStripMenuItem.Name = "登录数据库配置ToolStripMenuItem";
-            this.登录数据库配置ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.登录数据库配置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.登录数据库配置ToolStripMenuItem.Text = "登录数据库配置";
             this.登录数据库配置ToolStripMenuItem.Click += new System.EventHandler(this.登录数据库配置ToolStripMenuItem_Click);
             // 
             // adminToolStripMenuItem
             // 
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.adminToolStripMenuItem.Text = "admin";
             this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
             // 
@@ -167,9 +165,56 @@
             // 档案列表ToolStripMenuItem
             // 
             this.档案列表ToolStripMenuItem.Name = "档案列表ToolStripMenuItem";
-            this.档案列表ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.档案列表ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.档案列表ToolStripMenuItem.Text = "档案列表";
             this.档案列表ToolStripMenuItem.Click += new System.EventHandler(this.档案列表ToolStripMenuItem_Click);
+            // 
+            // 功能测试ToolStripMenuItem
+            // 
+            this.功能测试ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.treeViewToolStripMenuItem,
+            this.webBrowserToolStripMenuItem,
+            this.editorToolStripMenuItem});
+            this.功能测试ToolStripMenuItem.Name = "功能测试ToolStripMenuItem";
+            this.功能测试ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.功能测试ToolStripMenuItem.Text = "功能测试";
+            // 
+            // treeViewToolStripMenuItem
+            // 
+            this.treeViewToolStripMenuItem.Name = "treeViewToolStripMenuItem";
+            this.treeViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.treeViewToolStripMenuItem.Text = "treeView";
+            this.treeViewToolStripMenuItem.Click += new System.EventHandler(this.treeViewToolStripMenuItem_Click);
+            // 
+            // it数据库配置ToolStripMenuItem
+            // 
+            this.it数据库配置ToolStripMenuItem.Name = "it数据库配置ToolStripMenuItem";
+            this.it数据库配置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.it数据库配置ToolStripMenuItem.Text = "it数据库配置";
+            this.it数据库配置ToolStripMenuItem.Click += new System.EventHandler(this.it数据库配置ToolStripMenuItem_Click);
+            // 
+            // horizonLine1
+            // 
+            this.horizonLine1.LineColor = System.Drawing.SystemColors.ControlText;
+            this.horizonLine1.LineWidth = 1;
+            this.horizonLine1.Location = new System.Drawing.Point(254, 249);
+            this.horizonLine1.Name = "horizonLine1";
+            this.horizonLine1.Size = new System.Drawing.Size(288, 1);
+            this.horizonLine1.TabIndex = 0;
+            // 
+            // webBrowserToolStripMenuItem
+            // 
+            this.webBrowserToolStripMenuItem.Name = "webBrowserToolStripMenuItem";
+            this.webBrowserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.webBrowserToolStripMenuItem.Text = "richBox";
+            this.webBrowserToolStripMenuItem.Click += new System.EventHandler(this.webBrowserToolStripMenuItem_Click);
+            // 
+            // editorToolStripMenuItem
+            // 
+            this.editorToolStripMenuItem.Name = "editorToolStripMenuItem";
+            this.editorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editorToolStripMenuItem.Text = "editor";
+            this.editorToolStripMenuItem.Click += new System.EventHandler(this.editorToolStripMenuItem_Click);
             // 
             // Frm_main
             // 
@@ -207,6 +252,11 @@
         private System.Windows.Forms.ToolStripMenuItem adminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 列表ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 档案列表ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 功能测试ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem treeViewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem it数据库配置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem webBrowserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editorToolStripMenuItem;
     }
 }
 

@@ -13,10 +13,10 @@ using System.Configuration;
 
 namespace Utility.UI
 {
-    public partial class Frm_config : Form
+    public partial class Frm_itConfig : Form
     {
 
-        public Frm_config()
+        public Frm_itConfig()
         {
             InitializeComponent();
             this.button_confirm.Enabled = false;
@@ -212,14 +212,14 @@ namespace Utility.UI
             string encryptConString = Utility.Encrypt.Encode(conString);
 
 
-            if (ConfigurationManager.ConnectionStrings["myConection"] != null)
+            if (ConfigurationManager.ConnectionStrings["itConection"] != null)
             {
                 isModified = true;
             }
             //新建一个连接字符串实例,三个参数的构造函数可以兼容EF的连接字符串
             //因为EF可以连接多种数据库，所以必须提供providerName
 
-            ConnectionStringSettings mySettings = new ConnectionStringSettings("myConection", encryptConString, provider);
+            ConnectionStringSettings mySettings = new ConnectionStringSettings("itConection", encryptConString, provider);
 
             // 打开可执行的配置文件*.exe.config 
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
@@ -227,7 +227,7 @@ namespace Utility.UI
             // 如果连接串已存在，首先删除它 
             if (isModified)
             {
-                config.ConnectionStrings.ConnectionStrings.Remove("myConection");
+                config.ConnectionStrings.ConnectionStrings.Remove("itConection");
             }
             // 将新的连接串添加到配置文件中. 
             config.ConnectionStrings.ConnectionStrings.Add(mySettings);

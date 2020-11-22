@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Excel\ExportExcel.cs" />
+    <Compile Include="Modle\CurrentUser.cs" />
     <Compile Include="Sql\Sqlhelper.cs" />
     <Compile Include="UControl\HorizonLine.cs">
       <SubType>UserControl</SubType>
@@ -120,6 +121,30 @@
     <Compile Include="UI\EmbedForm.cs" />
     <Compile Include="UControl\VeticalLine.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_login.Designer.cs">
+      <DependentUpon>Frm_login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Frm_loginConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_loginConfig.Designer.cs">
+      <DependentUpon>Frm_loginConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Frm_itDouble_DB_config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_itDouble_DB_config.Designer.cs">
+      <DependentUpon>Frm_itDouble_DB_config.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Frm_itConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_itConfig.Designer.cs">
+      <DependentUpon>Frm_itConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Frm_DoubleDataBaseconfig.cs">
       <SubType>Form</SubType>
@@ -169,6 +194,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UControl\UtoolStrip.resx">
       <DependentUpon>UtoolStrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_login.resx">
+      <DependentUpon>Frm_login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_loginConfig.resx">
+      <DependentUpon>Frm_loginConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_itDouble_DB_config.resx">
+      <DependentUpon>Frm_itDouble_DB_config.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_itConfig.resx">
+      <DependentUpon>Frm_itConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_DoubleDataBaseconfig.resx">
       <DependentUpon>Frm_DoubleDataBaseconfig.cs</DependentUpon>

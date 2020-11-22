@@ -12,12 +12,19 @@ namespace Utility.Sql
     public class Sqlhelper
     {
 
-       public enum dataSourceType
+        /// <summary>
+        /// 数据源类型枚举
+        /// </summary>
+       public  enum DataSourceType
         {
             u8,
             plug,
-            business
+            business,
+            it
         }
+
+
+        #region 数据库连接
 
         /// <summary>
         /// 返回sqlConnection，默认连接字符串名称是“myConection”
@@ -37,14 +44,180 @@ namespace Utility.Sql
             }
             catch (Exception ex)
             {
-                MessageBox.Show("数据库连接出错"+ex.Message+ex.InnerException);
+                MessageBox.Show("数据库连接出错" + ex.Message + ex.InnerException);
                 return null;
             }
-            
+
+
+        }
+
+        /// <summary>
+        /// 返回sqlConnection，
+        /// 业务数据源连接字符串名称是“businessConcetion”,
+        /// 外挂数据源连接字符串名称是“plugConcetion",
+        /// U8数据源连接字符串名称是“u8Concetion"
+        /// 运维数据源连接字符串名称是“itConcetion"
+        /// </summary>
+        /// <param name="dataSourceType" >
+        /// 数据源类型
+        /// </param>
+        /// <returns></returns>
+        public static SqlConnection sqlConnection(DataSourceType dataSourceType)
+        {
+            string conString;
+            string deConString;
+            SqlConnection sqlConnection;
+
+            if (dataSourceType == DataSourceType.u8)
+            {
+                conString = ConfigurationManager.ConnectionStrings["u8Conection"].ToString();
+                deConString = Encrypt.Decode(conString);
+
+                sqlConnection = new SqlConnection(deConString);
+
+                return sqlConnection;
+            }
+
+            if (dataSourceType == DataSourceType.it)
+            {
+                conString = ConfigurationManager.ConnectionStrings["itConection"].ToString();
+                deConString = Encrypt.Decode(conString);
+
+                sqlConnection = new SqlConnection(deConString);
+
+                return sqlConnection;
+            }
+            else
+            {
+                if (dataSourceType == DataSourceType.plug)
+                {
+                    conString = ConfigurationManager.ConnectionStrings["plugConection"].ToString();
+                    deConString = Encrypt.Decode(conString);
+
+                    sqlConnection = new SqlConnection(deConString);
+
+                    return sqlConnection;
+                }
+                conString = ConfigurationManager.ConnectionStrings["businessConection"].ToString();
+                deConString = Encrypt.Decode(conString);
+
+                sqlConnection = new SqlConnection(deConString);
+
+                return sqlConnection;
+            }
+
+
+
+
+
+
+
+
+
+        }
+
+        #endregion
+
+
+        #region 动态数据源增删改查
+
+        /// <summary>
+        /// 动态数据源，返回查询结果
+        /// </summary>
+        /// <param name="strSql"></param>
+        /// <param name="dataSourceType"></param>
+        /// <returns></returns>
+        public static DataTable GetDataTable(string strSql, DataSourceType dst)
+        {
+
+            using (SqlConnection conn = sqlConnection(dst))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = strSql;
+
+                    DataSet ds = new DataSet();
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(ds);
+                        conn.Close();
+                        return ds.Tables[0];
+                    }
+                }
+
+            }
+        }
+
+        /// <summary> 
+        /// 返回sqlDataReader 
+        /// </summary> 
+        /// <param name="strSql">查询语句</param> 
+        /// <param name="dataSourceType">数据源类型</param>
+        /// <param name="parameters">可能带的参数</param> 
+        /// <returns>返回一张查询结果表</returns> 
+        public static SqlDataReader GetSqlDataReader(string strSql, DataSourceType dataSourceType, SqlParameter[] parameters)
+        {
+
+            SqlConnection connection = sqlConnection(dataSourceType);
+            connection.Open();
+
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = connection;
+            cmd.CommandText = strSql;
+
+            cmd.Parameters.AddRange(parameters);
+            //执行完后不能调用sqlconection.close方法去关闭连接，否则sqldatareader对象无法调用
+            //其read方法，采用commandBehavior.closeConection枚举可在关闭sqldatareader时自动
+            //关闭SqlConnection,同时也说明Command.ExecuteReader方法并未执行真正的查询，仅仅是
+            //构造SqlDataReader对象
+            SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+            return reader;
+
+
+
+
+
 
         }
 
 
+        /// <summary>
+        /// 执行外挂数据库的存储过程
+        /// </summary>
+        /// <param name="conn">数据库连接对象</param>
+        /// <param name="StoredProcedureName">存储过程名称</param>
+        /// <param name="parameters">存储过程参数</param>
+        public DataTable ExecuteProc(SqlConnection conn, string StoredProcedureName, SqlParameter[] parameters)
+        {
+
+
+            conn.Open();
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = conn;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = StoredProcedureName;
+                foreach (SqlParameter p in parameters)
+                {
+                    cmd.Parameters.Add(p);
+                }
+                DataSet ds = new DataSet();
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(ds);
+                    conn.Close();
+                    return ds.Tables[0];
+                }
+            }
+
+        }
+        #endregion
+
+        #region 单一数据源增删改查询
 
         #region 查询
         /// <summary> 
@@ -108,6 +281,9 @@ namespace Utility.Sql
             }
         }
 
+
+
+
         /// <summary> 
         /// 返回sqlDataReader 
         /// </summary> 
@@ -141,7 +317,6 @@ namespace Utility.Sql
 
         }
         #endregion
-
 
         #region 增删改
 
@@ -190,132 +365,9 @@ namespace Utility.Sql
 
         #endregion
 
-
-        #region 动态数据源选择
-
-        /// <summary>
-        /// 返回sqlConnection，业务数据源连接字符串名称是“businessConcetion”,
-        /// 外挂数据源连接字符串名称是“plugConcetion",U8数据源连接字符串名称是“u8Concetion"
-        /// </summary>
-        /// <param name="dataSourceType" >
-        /// 数据源类型
-        /// </param>
-        /// <returns></returns>
-        public static SqlConnection sqlConnection(dataSourceType dataSourceType)
-        {
-            string conString;
-            string deConString;
-            SqlConnection sqlConnection;
-
-            if (dataSourceType==dataSourceType.u8)
-            {
-                conString = ConfigurationManager.ConnectionStrings["u8Conection"].ToString();
-                deConString = Encrypt.Decode(conString);
-
-                sqlConnection = new SqlConnection(deConString);
-
-                return sqlConnection;
-            }
-            else
-            {
-                if (dataSourceType == dataSourceType.plug)
-                {
-                    conString = ConfigurationManager.ConnectionStrings["plugConection"].ToString();
-                    deConString = Encrypt.Decode(conString);
-
-                    sqlConnection = new SqlConnection(deConString);
-
-                    return sqlConnection;
-                }
-                conString = ConfigurationManager.ConnectionStrings["businessConection"].ToString();
-                deConString = Encrypt.Decode(conString);
-
-                sqlConnection = new SqlConnection(deConString);
-
-                return sqlConnection;
-            }
-
-            
-
-          
-         
-             
-
-            
-
-        }
-
-        /// <summary> 
-        /// 返回sqlDataReader 
-        /// </summary> 
-        /// <param name="strSql">查询语句</param> 
-        /// <param name="dataSourceType">数据源类型</param>
-        /// <param name="parameters">可能带的参数</param> 
-        /// <returns>返回一张查询结果表</returns> 
-        public static SqlDataReader GetSqlDataReader(string strSql, dataSourceType dataSourceType, SqlParameter[] parameters)
-        {
-
-            SqlConnection connection = sqlConnection(dataSourceType);
-            connection.Open();
-
-            SqlCommand cmd = new SqlCommand();
-
-            cmd.Connection = connection;
-            cmd.CommandText = strSql;
-
-            cmd.Parameters.AddRange(parameters);
-            //执行完后不能调用sqlconection.close方法去关闭连接，否则sqldatareader对象无法调用
-            //其read方法，采用commandBehavior.closeConection枚举可在关闭sqldatareader时自动
-            //关闭SqlConnection,同时也说明Command.ExecuteReader方法并未执行真正的查询，仅仅是
-            //构造SqlDataReader对象
-            SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-
-            return reader;
-
-
-
-
-
-
-        }
-
-
-        /// <summary>
-        /// 执行外挂数据库的存储过程
-        /// </summary>
-        /// <param name="conn">数据库连接对象</param>
-        /// <param name="StoredProcedureName">存储过程名称</param>
-        /// <param name="parameters">存储过程参数</param>
-        public DataTable ExecuteProc(SqlConnection conn, string StoredProcedureName, SqlParameter[] parameters)
-        {
-
-
-            conn.Open();
-            using (SqlCommand cmd = new SqlCommand())
-            {
-                cmd.Connection = conn;
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = StoredProcedureName;
-                foreach (SqlParameter p in parameters)
-                {
-                    cmd.Parameters.Add(p);
-                }
-                DataSet ds = new DataSet();
-                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                {
-                    adapter.Fill(ds);
-                    conn.Close();
-                    return ds.Tables[0];
-                }
-            }
-
-        }
         #endregion
 
-
-
-
-
+                                                               
 
         ///<summary> 
         /// 执行对数据的增删改操作 

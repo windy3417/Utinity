@@ -18,7 +18,7 @@ namespace debugUtility.UI
             InitializeComponent();
         }
 
-        protected override void btn_adminCertain_Click(object sender, EventArgs e)
+        protected override void adminSetUp()
         {
             using (var db=new TestContext())
             {

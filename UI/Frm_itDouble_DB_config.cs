@@ -13,65 +13,75 @@ using System.Configuration;
 
 namespace Utility.UI
 {
-    public partial class Frm_DoubleDB_loginConfig : Form
+    public partial class Frm_itDouble_DB_config : Form
     {
 
-        public Frm_DoubleDB_loginConfig()
+        public Frm_itDouble_DB_config()
         {
             InitializeComponent();
-            initializeControlState();
-            
-
+         
         }
 
-        /// <summary>
-        /// 初始化控件状态
-        /// </summary>
-         void initializeControlState()
-        {
-            this.btn_confirm.Enabled = false;
-            btn_plugCertain.Enabled = false;
-            txt_adminCode.Enabled = false;
-            txt_adminName.Enabled = false;
-            gb_admin.Visible = false;
-            plugConfigSuccess += displayAdminForm;
-        }          
-
-        
-
-        #region 自定义事件
-
-        event EventHandler plugConfigSuccess;
-
-        void onPlugConfigSuccess(EventArgs e )
-        {
-            plugConfigSuccess?.Invoke(this, e);
-        }
-
-        void displayAdminForm(object sender,EventArgs e)
-        {
-            gb_admin.Visible = true;
-        }
-
-
-
-        #endregion
-
-
-        #region 事件处理
+        #region 初始化控件
 
         private void Frm_DoubleDataBaseConfig_Load(object sender, EventArgs e)
         {
+            this.btn_confirm.Enabled = false;
+            btn_plugCertain.Enabled = false;
             this.readDataBase();
         }
 
+        /// <summary>
+        /// 读取控件数据源
+        /// </summary>
+        private void readDataBase()
+        {
+            string conectDataBase = "itConection";
+            string conectPlugDataBase = "businessConection";
+
+            if (ConfigurationManager.ConnectionStrings[conectDataBase] != null)
+            {
+                string conString = ConfigurationManager.ConnectionStrings[conectDataBase].ToString();
+                string deConString = Encrypt.Decode(conString);
+                int dataBaseIndex = deConString.IndexOf("Catalog=");
+                int UserIndex = deConString.IndexOf(";User");
+
+                this.lbl_status.Text = deConString.Substring(dataBaseIndex + 8, UserIndex - (dataBaseIndex + 8));
+                this.lbl_status.ForeColor = Color.Green;
+
+            }
+            else
+            {
+                this.lbl_status.Text = "未配置";
+                this.lbl_status.ForeColor = Color.Red; ;
+            }
+
+            if (ConfigurationManager.ConnectionStrings[conectPlugDataBase] != null)
+            {
+                string conString = ConfigurationManager.ConnectionStrings[conectPlugDataBase].ToString();
+                string deConString = Encrypt.Decode(conString);
+                int dataBaseIndex = deConString.IndexOf("Catalog=");
+                int UserIndex = deConString.IndexOf(";User");
+
+                this.lbl_plugStatus.Text = deConString.Substring(dataBaseIndex + 8, UserIndex - (dataBaseIndex + 8));
+                this.lbl_plugStatus.ForeColor = Color.Green;
+
+            }
+            else
+            {
+                this.lbl_plugStatus.Text = "未配置";
+                this.lbl_plugStatus.ForeColor = Color.Red; ;
+            }
+        }
 
         #endregion
 
+                              
 
         /// <summary>
-        /// 鼠标按键事件。
-        /// 如果检查到按下的是回车键，则发一个消息，模拟键盘按以下Tab键，以使输入焦点转移到下一个文本框（或其他焦点可停留的控件）
+        /// 键盘按键事件
+        /// 如果检查到按下的是回车键，则发一个消息，模拟键盘按以下Tab键，
+        /// 以使输入焦点转移到下一个文本框（或其他焦点可停留的控件）
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -123,7 +133,7 @@ namespace Utility.UI
 
         }
 
-        #region U8数据库配置
+        #region it数据库配置
 
         /// <summary>
         /// 新增或更改数据库连接
@@ -142,14 +152,14 @@ namespace Utility.UI
             string encryptConString = Utility.Encrypt.Encode(conString);
 
 
-            if (ConfigurationManager.ConnectionStrings["myConection"] != null)
+            if (ConfigurationManager.ConnectionStrings["itConection"] != null)
             {
                 conectionStringExist = true;
             }
             //新建一个连接字符串实例,三个参数的构造函数可以兼容EF的连接字符串
             //因为EF可以连接多种数据库，所以必须提供providerName
 
-            ConnectionStringSettings mySettings = new ConnectionStringSettings("myConection", encryptConString, provider);
+            ConnectionStringSettings mySettings = new ConnectionStringSettings("itConection", encryptConString, provider);
 
             // 打开可执行的配置文件*.exe.config 
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
@@ -157,7 +167,7 @@ namespace Utility.UI
             // 如果连接串已存在，首先删除它 
             if (conectionStringExist)
             {
-                config.ConnectionStrings.ConnectionStrings.Remove("myConection");
+                config.ConnectionStrings.ConnectionStrings.Remove("itConection");
             }
             // 将新的连接串添加到配置文件中. 
             config.ConnectionStrings.ConnectionStrings.Add(mySettings);
@@ -177,11 +187,11 @@ namespace Utility.UI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_deleteConfig_Click(object sender, EventArgs e)
+        private void button_deleteItConfig_Click(object sender, EventArgs e)
         {
             if (this.lbl_status.Text != "未配置")
             {
-                string conectionInformation = "myConcetion";
+                string conectionInformation = "itConcetion";
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 config.ConnectionStrings.ConnectionStrings.Remove(conectionInformation);
@@ -202,101 +212,13 @@ namespace Utility.UI
         }
         #endregion
 
-        /// <summary>
-        /// 默认读取数据库连接信息中的数据库信息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+    
+                             
+        #region 业务数据库配置
 
 
         /// <summary>
-        /// 读取数据库连接信息中的数据库信息
-        /// </summary>
-
-        private void readDataBase()
-        {
-            string conectDataBase = "myConection";
-            string conectPlugDataBase = "plugConection";
-
-            if (ConfigurationManager.ConnectionStrings[conectDataBase] != null)
-            {
-                string conString = ConfigurationManager.ConnectionStrings[conectDataBase].ToString();
-                string deConString = Encrypt.Decode(conString);
-                int dataBaseIndex = deConString.IndexOf("Catalog=");
-                int UserIndex = deConString.IndexOf(";User");
-
-                this.lbl_status.Text = deConString.Substring(dataBaseIndex + 8, UserIndex - (dataBaseIndex + 8));
-                this.lbl_status.ForeColor = Color.Green;
-
-            }
-            else
-            {
-                this.lbl_status.Text = "未配置";
-                this.lbl_status.ForeColor = Color.Red; ;
-            }
-
-            if (ConfigurationManager.ConnectionStrings[conectPlugDataBase] != null)
-            {
-                string conString = ConfigurationManager.ConnectionStrings[conectPlugDataBase].ToString();
-                string deConString = Encrypt.Decode(conString);
-                int dataBaseIndex = deConString.IndexOf("Catalog=");
-                int UserIndex = deConString.IndexOf(";User");
-
-                this.lbl_plugStatus.Text = deConString.Substring(dataBaseIndex + 8, UserIndex - (dataBaseIndex + 8));
-                this.lbl_plugStatus.ForeColor = Color.Green;
-
-            }
-            else
-            {
-                this.lbl_plugStatus.Text = "未配置";
-                this.lbl_plugStatus.ForeColor = Color.Red; ;
-            }
-        }
-
-        
-
-        /// <summary>
-        /// 删除数据库配置信息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Btn_deleteDateConfig_Click(object sender, EventArgs e)
-        {
-
-            if (this.lbl_status.Text != "未配置")
-            {
-                string conectionInformation = "myConcetion";
-
-                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                config.ConnectionStrings.ConnectionStrings.Remove(conectionInformation);
-                config.Save(ConfigurationSaveMode.Modified);
-                MessageBox.Show("数据库配置删除成功", "删除提示");
-                ConfigurationManager.RefreshSection("connectionStrings");
-                this.lbl_status.Text = "未配置";
-                this.lbl_status.ForeColor = Color.Red;
-
-
-
-            }
-            else
-            {
-                MessageBox.Show("没有可删除的数据库连接", "删除提示");
-            }
-
-        }
-
-        private void Btn_close_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-
-
-        #region 外挂数据库配置
-
-
-        /// <summary>
-        /// 删除外挂数据库配置
+        /// 删除业务数据库配置
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -304,7 +226,7 @@ namespace Utility.UI
         {
             if (lbl_plugStatus.Text != "未配置")
             {
-                string conectionInformation = "PlugConcetion";
+                string conectionInformation = "businessConection";
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 config.ConnectionStrings.ConnectionStrings.Remove(conectionInformation);
@@ -335,14 +257,14 @@ namespace Utility.UI
             string encryptConString = Utility.Encrypt.Encode(conString);
 
 
-            if (ConfigurationManager.ConnectionStrings["plugConection"] != null)
+            if (ConfigurationManager.ConnectionStrings["businessConection"] != null)
             {
                 isModified = true;
             }
             //新建一个连接字符串实例,三个参数的构造函数可以兼容EF的连接字符串
             //因为EF可以连接多种数据库，所以必须提供providerName
 
-            ConnectionStringSettings mySettings = new ConnectionStringSettings("plugConection", encryptConString, provider);
+            ConnectionStringSettings mySettings = new ConnectionStringSettings("businessConection", encryptConString, provider);
 
             // 打开可执行的配置文件*.exe.config 
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
@@ -350,7 +272,7 @@ namespace Utility.UI
             // 如果连接串已存在，首先删除它 
             if (isModified)
             {
-                config.ConnectionStrings.ConnectionStrings.Remove("plugConection");
+                config.ConnectionStrings.ConnectionStrings.Remove("businessConection");
             }
             // 将新的连接串添加到配置文件中. 
             config.ConnectionStrings.ConnectionStrings.Add(mySettings);
@@ -360,9 +282,6 @@ namespace Utility.UI
             ConfigurationManager.RefreshSection("connectionStrings");
 
             MessageBox.Show("数据库配置成功", "数据库配置");
-
-            //外挂数据库配置成功，则引发事件
-            onPlugConfigSuccess(EventArgs.Empty);
             lbl_plugStatus.Text = "已经配置";
             lbl_plugStatus.ForeColor = Color.Green;
         }
@@ -406,21 +325,27 @@ namespace Utility.UI
 
         #endregion
 
+        #region 窗体操作
 
         /// <summary>
-        /// 写入管理员信息
+        /// 关闭母窗体
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-         void btn_adminCertain_Click(object sender, EventArgs e)
+        private void Frm_config_FormClosed(object sender, FormClosedEventArgs e)
         {
-            adminSetUp();
+            this.Parent.Dispose();
         }
 
-        protected virtual void adminSetUp()
-        {
 
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
+
+        #endregion
+
+
     }
 
 }

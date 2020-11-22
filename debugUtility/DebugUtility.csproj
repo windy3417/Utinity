@@ -11,6 +11,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -37,6 +40,9 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="kse">
+      <HintPath>F:\packages\kse.dll</HintPath>
     </Reference>
     <Reference Include="NPOI, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -94,11 +100,29 @@
     <Compile Include="UI\Config.Designer.cs">
       <DependentUpon>Config.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Frm_listTest.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Frm_listTest.Designer.cs">
       <DependentUpon>Frm_listTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Frm_treeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_treeView.Designer.cs">
+      <DependentUpon>Frm_treeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\richBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\richBox.Designer.cs">
+      <DependentUpon>richBox.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Frm_child.resx">
       <DependentUpon>Frm_child.cs</DependentUpon>
@@ -122,8 +146,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_listTest.resx">
       <DependentUpon>Frm_listTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_treeView.resx">
+      <DependentUpon>Frm_treeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\richBox.resx">
+      <DependentUpon>richBox.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
