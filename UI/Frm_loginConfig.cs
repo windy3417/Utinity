@@ -260,6 +260,7 @@ namespace Utility.UI
             CurrentUser.userID = txt_adminCode.Text;
             CurrentUser.userName = txt_adminName.Text;
             CurrentUser.pwd = txt_adminPwd.Text;
+            MessageBox.Show("管理员信息设置成功");
         }
 
       

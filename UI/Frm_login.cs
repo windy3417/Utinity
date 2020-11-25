@@ -32,6 +32,9 @@ namespace Utility.UI
 
         #region 初始化
 
+        /// <summary>
+        /// 初始化控件状态
+        /// </summary>
         void intializeControlState()
         {
             lbl_information.Visible = false;
@@ -76,7 +79,7 @@ namespace Utility.UI
                     if (checkPwd(txt_userID.Text,pwd))
                     {
                         //记录登录信息
-                        CurrentUser.userID = txt_userID.Text;
+                        //CurrentUser.userID = txt_userID.Text;
                         DialogResult = DialogResult.OK;
                     }
                     else
@@ -197,11 +200,13 @@ namespace Utility.UI
 
 
         /// <summary>
-        /// 检测数据库是否连接
+        /// 检测数据库是否连接字符串是否配置
         /// </summary>
         void checkDatabaseConect()
         {
-            if (ConfigurationManager.ConnectionStrings["plugConection"] != null & ConfigurationManager.ConnectionStrings["myConection"] != null)
+            if (ConfigurationManager.ConnectionStrings["plugConection"] != null
+                || ConfigurationManager.ConnectionStrings["myConection"] != null
+                || ConfigurationManager.ConnectionStrings["businessConection"] != null)
             {
                 btn_conect.Visible = false;
             }

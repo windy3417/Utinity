@@ -207,13 +207,15 @@
         #endregion
         private System.Windows.Forms.Label lbl_authorizer;
         private System.Windows.Forms.Label lbl_pwd;
+        protected System.Windows.Forms.TextBox txt_userID;
+
         private System.Windows.Forms.TextBox txt_pwd;
         private System.Windows.Forms.Button btn_certain;
         private System.Windows.Forms.Label lbl_information;
         private System.Windows.Forms.Button btn_conect;
         private Utility.UControl.HorizonLine horizonLine1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.TextBox txt_userID;
+        
         private System.Windows.Forms.CheckBox ch_changePWD;
         private System.Windows.Forms.Panel p_login;
         private System.Windows.Forms.Button btn_cancel;

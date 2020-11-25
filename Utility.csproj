@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\SaveArchivesService.cs" />
     <Compile Include="Excel\ExportExcel.cs" />
     <Compile Include="Modle\CurrentUser.cs" />
     <Compile Include="Sql\Sqlhelper.cs" />
@@ -170,6 +171,18 @@
     <Compile Include="UI\Frm_archiveList.designer.cs">
       <DependentUpon>Frm_archiveList.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Frm_baseUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_baseUser.designer.cs">
+      <DependentUpon>Frm_baseUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Frm_voucherList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_voucherList.Designer.cs">
+      <DependentUpon>Frm_voucherList.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Frm_ImageFormatConvert.resx">
       <DependentUpon>Frm_ImageFormatConvert.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,6 +232,12 @@
     <EmbeddedResource Include="UI\Frm_archiveList.resx">
       <DependentUpon>Frm_archiveList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_baseUser.resx">
+      <DependentUpon>Frm_baseUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_voucherList.resx">
+      <DependentUpon>Frm_voucherList.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -254,6 +273,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\打印.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteRow.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

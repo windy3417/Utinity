@@ -14,7 +14,7 @@ namespace Utility.UControl
         public UtoolStrip()
         {
             InitializeComponent();
-            //this.ParentForm.FormClosed += new FormClosedEventHandler(closeParent);
+            this.ParentForm.FormClosed += new FormClosedEventHandler(closeParent);
         }
 
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -31,7 +31,7 @@ namespace Utility.UControl
 
         private void closeParent(object sender, FormClosedEventArgs formClosedEventArgs)
         {
-            this.Parent.Parent.Dispose();
+            this.ParentForm.Parent.Dispose();
         }
 
         #region button事件
