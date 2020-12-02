@@ -1,4 +1,4 @@
-﻿namespace ScrapSettlement.UI
+﻿namespace Utility.UI
 {
     partial class Frm_voucherList
     {

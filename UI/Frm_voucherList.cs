@@ -13,7 +13,7 @@ using System.Drawing;
 using Utility;
 using System.Runtime.Remoting;
 
-namespace ScrapSettlement.UI
+namespace Utility.UI
 {
     public partial class Frm_voucherList : Form
     {
@@ -45,11 +45,7 @@ namespace ScrapSettlement.UI
             tsb_delete.Enabled = false;
 
 
-
-
-
-
-        }
+                                                  }
 
         /// <summary>
         /// 初始化控件数据源
@@ -105,7 +101,7 @@ namespace ScrapSettlement.UI
         /// </summary>
         /// <param name="e"></param>
         /// <param name="f">窗体</param>
-        protected void queryVoucher(string voucherNo)
+        protected virtual void queryVoucher(string voucherNo)
         {
 
         }
@@ -114,7 +110,7 @@ namespace ScrapSettlement.UI
         /// 删除选定行
         /// </summary>
         /// <param name="voucherNO"></param>
-        protected void deleteVoucher(string voucherNO)
+        protected virtual void deleteVoucher(string voucherNO)
         {
 
         }
@@ -122,7 +118,7 @@ namespace ScrapSettlement.UI
         /// <summary>
         /// 查询单据列表
         /// </summary>
-        protected void qeuryVoucherList()
+        protected virtual void qeuryVoucherList()
         {
 
         }
@@ -683,14 +679,13 @@ namespace ScrapSettlement.UI
 
         #region 查询功能
         /// <summary>
-        /// 查询称重单列表
+        /// 查询单据列表
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void tsb_query_Click(object sender, EventArgs e)
         {
-
-
+            
 
             try
             {
