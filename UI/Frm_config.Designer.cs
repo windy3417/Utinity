@@ -129,7 +129,7 @@
             this.gb_dateBaseConete.Size = new System.Drawing.Size(451, 174);
             this.gb_dateBaseConete.TabIndex = 18;
             this.gb_dateBaseConete.TabStop = false;
-            this.gb_dateBaseConete.Text = "数据库连接";
+            this.gb_dateBaseConete.Text = "业务数据库连接";
             // 
             // tableLayoutPanel2
             // 
