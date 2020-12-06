@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="DAL\SaveArchivesService.cs" />
     <Compile Include="Excel\ExportExcel.cs" />
+    <Compile Include="Log\Logs.cs" />
     <Compile Include="Modle\CurrentUser.cs" />
     <Compile Include="Sql\Sqlhelper.cs" />
     <Compile Include="Style\StyleDataGridView.cs" />
