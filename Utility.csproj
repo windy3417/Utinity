@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="DAL\SaveArchivesService.cs" />
     <Compile Include="Excel\ExportExcel.cs" />
+    <Compile Include="Files\FilesOperate.cs" />
     <Compile Include="Modle\CurrentUser.cs" />
     <Compile Include="Sql\Sqlhelper.cs" />
     <Compile Include="Style\StyleDataGridView.cs" />
@@ -83,10 +84,10 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Encryption.cs" />
-    <Compile Include="FilesUpAndDown\DownLoadHelper.cs" />
-    <Compile Include="FilesUpAndDown\FileDown.cs" />
-    <Compile Include="FilesUpAndDown\FileUp.cs" />
-    <Compile Include="FilesUpAndDown\UpLoadFiles.cs">
+    <Compile Include="Files\DownLoadHelper.cs" />
+    <Compile Include="Files\FileDown.cs" />
+    <Compile Include="Files\FileUp.cs" />
+    <Compile Include="Files\UpLoadFiles.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Frm_ImageFormatConvert.cs">
