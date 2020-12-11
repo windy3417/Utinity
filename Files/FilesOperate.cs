@@ -35,7 +35,7 @@ namespace Utility.Files
                         {
                             string extension = System.IO.Path.GetExtension(file);
                             //if (extension == ".tmp" || extension == ".lib" || extension == ".dll")
-                            if (extension == ".tmp" || extension == ".lnk")
+                            if (extension == ".tmp" || extension == ".lnk" || extension == ".txt" || extension == ".log")
                             {
                                 File.Delete(file);
                                 deleteFilesAmount++;
@@ -50,7 +50,7 @@ namespace Utility.Files
             }
             catch (Exception ex)
             {
-                throw ex;
+                MessageBox.Show("文件删除错误：" + ex.Message + ex.InnerException, "文件删除提示");
             }
 
             return deleteFilesAmount;  
@@ -103,7 +103,7 @@ namespace Utility.Files
             }
             catch (Exception ex)
             {
-                throw ex;
+                MessageBox.Show("文件删除错误：" + ex.Message + ex.InnerException, "文件删除提示");
             }
 
             return deleteFilesAmount;
