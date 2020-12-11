@@ -11,11 +11,13 @@ namespace Utility.Sql
 {
     public class Sqlhelper
     {
+                       
+        #region 动态数据源增删改查
 
         /// <summary>
         /// 数据源类型枚举
         /// </summary>
-       public  enum DataSourceType
+        public enum DataSourceType
         {
             u8,
             plug,
@@ -23,33 +25,9 @@ namespace Utility.Sql
             it
         }
 
-
         #region 数据库连接
 
-        /// <summary>
-        /// 返回sqlConnection，默认连接字符串名称是“myConection”
-        /// </summary>
-        /// <returns></returns>
-        public static SqlConnection sqlConnection()
-        {
-            try
-            {
-                string conString = ConfigurationManager.ConnectionStrings["myConection"].ToString();
 
-                string deConString = Encrypt.Decode(conString);
-                //ConnectionStringSettings conStrings = new ConnectionStringSettings("busynessDate", deConString);
-                SqlConnection sqlConnection = new SqlConnection(deConString);
-
-                return sqlConnection;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("数据库连接出错" + ex.Message + ex.InnerException);
-                return null;
-            }
-
-
-        }
 
         /// <summary>
         /// 返回sqlConnection，
@@ -117,9 +95,6 @@ namespace Utility.Sql
         }
 
         #endregion
-
-
-        #region 动态数据源增删改查
 
         /// <summary>
         /// 动态数据源，返回查询结果
@@ -218,7 +193,31 @@ namespace Utility.Sql
         #endregion
 
         #region 单一数据源增删改查询
+        /// <summary>
+        /// 返回sqlConnection，默认连接字符串名称是“businessConection”
+        /// </summary>
+        /// <returns></returns>
+        
+        public static SqlConnection sqlConnection()
+        {
+            try
+            {
+                string conString = ConfigurationManager.ConnectionStrings["businessConection"].ToString();
 
+                string deConString = Encrypt.Decode(conString);
+                //ConnectionStringSettings conStrings = new ConnectionStringSettings("busynessDate", deConString);
+                SqlConnection sqlConnection = new SqlConnection(deConString);
+
+                return sqlConnection;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("数据库连接出错" + ex.Message + ex.InnerException);
+                return null;
+            }
+
+
+        }
         #region 查询
         /// <summary> 
         /// 带参数执行查询并将结果返回至DataTable中 

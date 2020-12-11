@@ -43,7 +43,8 @@ namespace DebugUtility.DAL
 
         public DataTable getCustmer()
         {
-            String sql = "select * from customerset";
+            //String sql = "select * from [WeighingSettlements]";
+            String sql = "select * from [Customers]";
             return Sqlhelper.GetDataTable(sql);
 
         }

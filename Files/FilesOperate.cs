@@ -15,6 +15,7 @@ namespace Utility.Files
         /// <param name="file_path">文件路径</param>
         public void DeleteUserFile(string file_path)
         {
+            bool deleteFlag = false;
             try
             {
                 foreach (string file in Directory.GetFileSystemEntries(file_path))
@@ -32,9 +33,10 @@ namespace Utility.Files
                             if (extension == ".tmp")
                             {
                                 File.Delete(file);
+                                deleteFlag = true;
                                
                             }
-                            MessageBox.Show("文件删除成功", "删除提示");
+                            
                         }
                     }
                 }
@@ -42,6 +44,14 @@ namespace Utility.Files
             catch (Exception ex)
             {
                 throw ex;
+            }
+            if (deleteFlag)
+            {
+                MessageBox.Show("文件删除成功", "删除提示");
+            }
+            else
+            {
+                MessageBox.Show("所删除的文件不存在", "删除提示");
             }
         }
 

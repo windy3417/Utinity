@@ -39,5 +39,11 @@ namespace DebugUtility
             Excel.ExportExcel exportExcel = new Excel.ExportExcel();
             exportExcel.ExportExcelWithNPOI(new UserService().getCustmer(), "test");
         }
+
+        private void tsb_exportDgv_Click(object sender, EventArgs e)
+        {
+            Excel.ExportExcel exportExcel = new Excel.ExportExcel();
+            exportExcel.ExportExcelWithNPOI(dataGridView1,"测试导出dataGridVies中的数据");
+        }
     }
 }

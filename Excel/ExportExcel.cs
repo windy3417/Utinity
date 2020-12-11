@@ -121,7 +121,11 @@ namespace Excel
         {
             try
             {
+                //非数据列不导出，设置可导出例数
+
+                List<int> exportColumn = new List<int>();
                 //创建一个工作簿
+                
                 IWorkbook workbook = new HSSFWorkbook();
 
                 //创建一个 sheet 表
@@ -143,15 +147,31 @@ namespace Excel
                 cellStyle.DataFormat = dataFormat.GetFormat("@");
 
                 //设置列名
-                foreach (DataGridViewTextBoxColumn col in dataGridView.Columns)
+                foreach (dynamic col in dataGridView.Columns)
                 {
                     //创建单元格并设置单元格内容
-                    rowH.CreateCell(col.Index).SetCellValue(col.HeaderText);
+
+                    //只导出文本例的值
+                    if (col.Name != "choose")
+                    {
+                        DataGridViewTextBoxColumn tbc = (DataGridViewTextBoxColumn)col;
+                        rowH.CreateCell(col.Index).SetCellValue(tbc.HeaderText);
+                        exportColumn.Add(col.Index);
+                        //设置单元格格式，但报索引不在范围内，待查原因？
+                        //rowH.Cells[col.Index].CellStyle = cellStyle;
+                    }
 
 
+                    //导出列表中所有存在值的单元格数据，如无值则报错
+
+                    //DataGridViewTextBoxColumn tbc = (DataGridViewTextBoxColumn)col;
+                    //rowH.CreateCell(col.Index).SetCellValue(col.HeaderText);
+                    //exportColumn.Add(col.Index);
                     //设置单元格格式
-                    rowH.Cells[col.Index].CellStyle = cellStyle;
-                }
+                    //    rowH.Cells[col.Index].CellStyle = cellStyle;
+
+
+                                                             }
 
                 //写入数据
                 for (int i = 0; i < dataGridView.Rows.Count; i++)
@@ -159,12 +179,15 @@ namespace Excel
                     //跳过第一行，第一行为列名
                     IRow row = sheet.CreateRow(i + 1);
 
-                    for (int j = 0; j < dataGridView.Columns.Count; j++)
+                                       
+                    foreach (int j in exportColumn)
                     {
+                        //此cell不能创造excel表中的cell,仅仅是对excel工作表中的cell进行操作
                         cell = row.CreateCell(j);
                         cell.SetCellValue(dataGridView.Rows[i].Cells[j].Value.ToString());
                         cell.CellStyle = cellStyle;
                     }
+
                 }
 
                 //设置导出文件路径
@@ -210,5 +233,6 @@ namespace Excel
                 MessageBox.Show("数据导出报错：" + ex.ToString() + ex.InnerException, "数据导出提示");
             }
         }
+
     }
 }
