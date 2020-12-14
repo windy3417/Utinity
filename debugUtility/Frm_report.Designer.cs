@@ -34,6 +34,7 @@
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
             this.tsb_export = new System.Windows.Forms.ToolStripButton();
             this.tsb_exportDgv = new System.Windows.Forms.ToolStripButton();
+            this.navigate = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -43,11 +44,13 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(94, 144);
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.navigate});
+            this.dataGridView1.Location = new System.Drawing.Point(63, 55);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(529, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(682, 150);
             this.dataGridView1.TabIndex = 0;
             // 
             // toolStrip1
@@ -91,6 +94,12 @@
             this.tsb_exportDgv.Text = "导出表格";
             this.tsb_exportDgv.Click += new System.EventHandler(this.tsb_exportDgv_Click);
             // 
+            // navigate
+            // 
+            this.navigate.HeaderText = "reader";
+            this.navigate.Name = "navigate";
+            this.navigate.ReadOnly = true;
+            // 
             // Frm_report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -115,5 +124,6 @@
         private System.Windows.Forms.ToolStripButton tsb_export;
         private System.Windows.Forms.ToolStripButton tsb_query;
         private System.Windows.Forms.ToolStripButton tsb_exportDgv;
+        private System.Windows.Forms.DataGridViewButtonColumn navigate;
     }
 }

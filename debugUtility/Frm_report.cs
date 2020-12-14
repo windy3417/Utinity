@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DebugUtility.DAL;
-using Utility;
+using Utility.Excel;
 
 namespace DebugUtility
 {
@@ -36,13 +36,13 @@ namespace DebugUtility
 
         private void Tsb_export_Click(object sender, EventArgs e)
         {
-            Excel.ExportExcel exportExcel = new Excel.ExportExcel();
+            ExportExcel exportExcel = new ExportExcel();
             exportExcel.ExportExcelWithNPOI(new UserService().getCustmer(), "test");
         }
 
         private void tsb_exportDgv_Click(object sender, EventArgs e)
         {
-            Excel.ExportExcel exportExcel = new Excel.ExportExcel();
+            ExportExcel exportExcel = new ExportExcel();
             exportExcel.ExportExcelWithNPOI(dataGridView1,"测试导出dataGridVies中的数据");
         }
     }

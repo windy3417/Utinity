@@ -9,7 +9,7 @@ using NPOI.SS.UserModel;
 using NPOI.HSSF.UserModel;
 using System.Windows.Forms;
 
-namespace Excel
+namespace Utility.Excel
 {
     public class ExportExcel
     {
@@ -152,7 +152,7 @@ namespace Excel
                     //创建单元格并设置单元格内容
 
                     //只导出文本例的值
-                    if (col.Name != "choose")
+                    if (col.Name != "choose" & col.Name !="navigate")
                     {
                         DataGridViewTextBoxColumn tbc = (DataGridViewTextBoxColumn)col;
                         rowH.CreateCell(col.Index).SetCellValue(tbc.HeaderText);
