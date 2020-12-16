@@ -34,7 +34,7 @@
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
             this.tsb_export = new System.Windows.Forms.ToolStripButton();
             this.tsb_exportDgv = new System.Windows.Forms.ToolStripButton();
-            this.navigate = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tsb_exportCsv = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -44,8 +44,6 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.navigate});
             this.dataGridView1.Location = new System.Drawing.Point(63, 55);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -58,7 +56,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsb_query,
             this.tsb_export,
-            this.tsb_exportDgv});
+            this.tsb_exportDgv,
+            this.tsb_exportCsv});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 25);
@@ -94,11 +93,14 @@
             this.tsb_exportDgv.Text = "导出表格";
             this.tsb_exportDgv.Click += new System.EventHandler(this.tsb_exportDgv_Click);
             // 
-            // navigate
+            // tsb_exportCsv
             // 
-            this.navigate.HeaderText = "reader";
-            this.navigate.Name = "navigate";
-            this.navigate.ReadOnly = true;
+            this.tsb_exportCsv.Image = global::debugUtility.Properties.Resources.export;
+            this.tsb_exportCsv.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_exportCsv.Name = "tsb_exportCsv";
+            this.tsb_exportCsv.Size = new System.Drawing.Size(75, 22);
+            this.tsb_exportCsv.Text = "导出CSV";
+            this.tsb_exportCsv.Click += new System.EventHandler(this.tsb_exportCsv_Click);
             // 
             // Frm_report
             // 
@@ -124,6 +126,6 @@
         private System.Windows.Forms.ToolStripButton tsb_export;
         private System.Windows.Forms.ToolStripButton tsb_query;
         private System.Windows.Forms.ToolStripButton tsb_exportDgv;
-        private System.Windows.Forms.DataGridViewButtonColumn navigate;
+        private System.Windows.Forms.ToolStripButton tsb_exportCsv;
     }
 }

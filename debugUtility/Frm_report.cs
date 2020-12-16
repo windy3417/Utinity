@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using DebugUtility.DAL;
 using Utility.Excel;
+using Utility.Files;
 
 namespace DebugUtility
 {
@@ -44,6 +45,23 @@ namespace DebugUtility
         {
             ExportExcel exportExcel = new ExportExcel();
             exportExcel.ExportExcelWithNPOI(dataGridView1,"测试导出dataGridVies中的数据");
+        }
+
+        private void tsb_exportCsv_Click(object sender, EventArgs e)
+        {
+            var myExport = new CsvExport();
+
+            myExport.AddRow();
+            myExport["Region"] = "Los Angeles, USA";
+            myExport["Sales"] = 100000;
+            myExport["Date Opened"] = new DateTime(2003, 12, 31);
+
+            myExport.AddRow();
+            myExport["Region"] = "Canberra \"in\" Australia";
+            myExport["Sales"] = 50000;
+            myExport["Date Opened"] = new DateTime(2005, 1, 1, 9, 30, 0);
+
+            myExport.ExportToFile("Somefile.csv");
         }
     }
 }

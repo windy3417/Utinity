@@ -88,6 +88,7 @@
   <ItemGroup>
     <Compile Include="DAL\SaveArchivesService.cs" />
     <Compile Include="Excel\ExportExcel.cs" />
+    <Compile Include="Files\ExportCsv.cs" />
     <Compile Include="Files\FilesOperate.cs" />
     <Compile Include="Modle\CurrentUser.cs" />
     <Compile Include="Sql\Sqlhelper.cs" />
