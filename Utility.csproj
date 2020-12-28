@@ -202,6 +202,7 @@
     <Compile Include="UI\Frm_voucherList.Designer.cs">
       <DependentUpon>Frm_voucherList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Validate\Validate.cs" />
     <EmbeddedResource Include="Frm_ImageFormatConvert.resx">
       <DependentUpon>Frm_ImageFormatConvert.cs</DependentUpon>
     </EmbeddedResource>
@@ -295,6 +296,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DeleteRow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Net\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

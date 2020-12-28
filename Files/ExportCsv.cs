@@ -211,6 +211,7 @@ namespace Utility.Files
 
 		/// <summary>
 		/// Exports to a file
+		/// 用EXCLE打开.csv文件时，中文为乱码
 		/// </summary>
 		public void ExportToFile(string path)
 		{

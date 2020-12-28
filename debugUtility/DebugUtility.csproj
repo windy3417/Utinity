@@ -80,10 +80,10 @@
     <Compile Include="Frm_child.Designer.cs">
       <DependentUpon>Frm_child.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_report.cs">
+    <Compile Include="UI\Frm_report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_report.Designer.cs">
+    <Compile Include="UI\Frm_report.Designer.cs">
       <DependentUpon>Frm_report.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202011040215178_addTable.cs" />
@@ -130,7 +130,7 @@
     <EmbeddedResource Include="Frm_main.resx">
       <DependentUpon>Frm_main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm_report.resx">
+    <EmbeddedResource Include="UI\Frm_report.resx">
       <DependentUpon>Frm_report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011040215178_addTable.resx">

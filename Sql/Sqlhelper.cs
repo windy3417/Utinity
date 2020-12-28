@@ -160,6 +160,37 @@ namespace Utility.Sql
         }
 
 
+        /// <summary> 
+        /// 返回sqlDataReader 
+        /// </summary> 
+        /// <param name="strSql">查询语句</param> 
+        /// <param name="dataSourceType">数据源类型</param>
+        /// <param name="parameters">可能带的参数</param> 
+        /// <returns>返回一张查询结果表</returns> 
+        public static SqlDataReader GetSqlDataReader(string strSql, DataSourceType dataSourceType)
+        {
+
+            SqlConnection connection = sqlConnection(dataSourceType);
+            connection.Open();
+
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = connection;
+            cmd.CommandText = strSql;
+
+                      
+            SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+            return reader;
+
+
+
+
+
+
+        }
+
+
         /// <summary>
         /// 执行外挂数据库的存储过程
         /// </summary>
@@ -190,6 +221,42 @@ namespace Utility.Sql
             }
 
         }
+
+
+        /// <summary>
+        /// 数据库及表结构的创建
+        /// </summary>
+        /// <param name="SQLstring"></param>
+        /// <param name="dataSourceType" >数据源类型</param>
+        /// <returns>执行结果成功标志</returns>
+        public static bool  ExecuteWithNoneParameter(string SQLstring,DataSourceType dataSourceType)
+        {
+            try
+            {
+                SqlConnection connection = sqlConnection(dataSourceType);
+                connection.Open();
+
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.Connection = connection;
+                cmd.CommandText = SQLstring;
+
+                cmd.ExecuteNonQuery();
+
+                connection.Close();
+                return true;
+               
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.Message + e.InnerException, "数据库执行出错");
+                return false;
+                
+            }
+
+           
+        }
         #endregion
 
         #region 单一数据源增删改查询
@@ -197,7 +264,7 @@ namespace Utility.Sql
         /// 返回sqlConnection，默认连接字符串名称是“businessConection”
         /// </summary>
         /// <returns></returns>
-        
+
         public static SqlConnection sqlConnection()
         {
             try
@@ -218,7 +285,7 @@ namespace Utility.Sql
 
 
         }
-        #region 查询
+              #region 查询
         /// <summary> 
         /// 带参数执行查询并将结果返回至DataTable中 
         /// </summary> 
@@ -316,7 +383,7 @@ namespace Utility.Sql
         }
         #endregion
 
-        #region 增删改
+              #region 增删改
 
         /// <summary>
         /// 不带参数执行对数据的增删改操作
@@ -361,11 +428,6 @@ namespace Utility.Sql
             return influnce;
         }
 
-        #endregion
-
-        #endregion
-
-                                                               
 
         ///<summary> 
         /// 执行对数据的增删改操作 
@@ -389,6 +451,13 @@ namespace Utility.Sql
             }
             conn.Close();
         }
+
+        #endregion
+
+        #endregion
+
+
+
 
 
     }
