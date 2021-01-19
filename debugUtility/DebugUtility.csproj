@@ -80,6 +80,17 @@
     <Compile Include="Frm_child.Designer.cs">
       <DependentUpon>Frm_child.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Frm_dataGridViewButtonColumn.cs" />
+    <Compile Include="UI\Frm_dataGridViewCalarderColumn.cs" />
+    <Compile Include="UI\Frm_dataGridViewCalarderColumn.Designer.cs">
+      <DependentUpon>Frm_dataGridViewCalarderColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Frm_report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,17 +111,23 @@
     <Compile Include="UI\Config.Designer.cs">
       <DependentUpon>Config.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Form1.cs">
+    <Compile Include="UI\Frm_tabPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="UI\Frm_tabPage.Designer.cs">
+      <DependentUpon>Frm_tabPage.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Frm_listTest.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Frm_listTest.Designer.cs">
       <DependentUpon>Frm_listTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Frm_sheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_sheet.Designer.cs">
+      <DependentUpon>Frm_sheet.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Frm_treeView.cs">
       <SubType>Form</SubType>
@@ -130,6 +147,9 @@
     <EmbeddedResource Include="Frm_main.resx">
       <DependentUpon>Frm_main.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_report.resx">
       <DependentUpon>Frm_report.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,11 +166,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UI\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Frm_tabPage.resx">
+      <DependentUpon>Frm_tabPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_listTest.resx">
       <DependentUpon>Frm_listTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Frm_sheet.resx">
+      <DependentUpon>Frm_sheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_treeView.resx">
       <DependentUpon>Frm_treeView.cs</DependentUpon>

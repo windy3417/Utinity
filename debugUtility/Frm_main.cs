@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Windows.Forms;
 using Utility;
 using Utility.UI;
+using DebugUtility.UI;
 using debugUtility.UI;
 
 namespace DebugUtility

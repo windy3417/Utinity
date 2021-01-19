@@ -126,6 +126,12 @@
       <DependentUpon>ImageToIcon.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UControl\TextBoxWithButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UControl\TextBoxWithButton.Designer.cs">
+      <DependentUpon>TextBoxWithButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="UControl\txtBoxWithDate.cs">
       <SubType>UserControl</SubType>
     </Compile>
