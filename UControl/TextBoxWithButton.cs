@@ -18,6 +18,7 @@ namespace Utility.UControl
             InitializeComponent();
             this.txtCode = new TextBox();
             this.Controls.Add(this.txtCode);
+
             this.btnCode = new Button();
             this.Controls.Add(this.btnCode);
             this.renderControl();
@@ -28,9 +29,13 @@ namespace Utility.UControl
         {
             this.txtCode.Location = new Point(0, 0);
             //this.txtCode.Width = 2 * this.Width / 3 - 17;
-            this.txtCode.Width = this.Width + 115;
+            //this.txtCode.Width = this.Width + 50;
+            this.txtCode.Width = this.Width - 32;
             this.txtCode.Height = this.Height;
-            this.btnCode.Location = new Point(this.Width + 115, 0);
+
+            //this.btnCode.Location = new Point(this.Width + 50, 0);
+
+            this.btnCode.Location = new Point(this.Width -32, 0);
             this.btnCode.Width = 32;
             this.btnCode.Height = 21;
         }

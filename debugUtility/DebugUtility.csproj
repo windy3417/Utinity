@@ -86,7 +86,12 @@
     <Compile Include="UI\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Frm_dataGridViewButtonColumn.cs" />
+    <Compile Include="UI\Frm_combox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Frm_dataGridViewButtonColumn.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\Frm_dataGridViewCalarderColumn.cs" />
     <Compile Include="UI\Frm_dataGridViewCalarderColumn.Designer.cs">
       <DependentUpon>Frm_dataGridViewCalarderColumn.cs</DependentUpon>

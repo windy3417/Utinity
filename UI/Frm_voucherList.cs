@@ -12,6 +12,7 @@ using System.Drawing.Printing;
 using System.Drawing;
 using Utility;
 using System.Runtime.Remoting;
+using Utility.Style;
 
 namespace Utility.UI
 {
@@ -750,9 +751,15 @@ namespace Utility.UI
             Excel.ExportExcel exportExcel = new Excel.ExportExcel();
             exportExcel.ExportExcelWithNPOI(dgv_content, "过磅结算单列表");
         }
+
+
         #endregion
 
-
-
+        //显示行标
+        private void dgv_content_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            StyleDataGridView styleDataGridView = new StyleDataGridView();
+            styleDataGridView.DisplayRowHeader(e, dgv_content);
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace DebugUtility.UI
 
             this.Code = new DataGridViewTextBoxColumn();
             this.Code.Name = "FilePath";
-            this.Code.Width = 300;
+            this.Code.Width = 200;
             this.Code.Resizable = DataGridViewTriState.False;
             this.dataGridView1.Columns.Add(Code);
 
@@ -32,14 +32,12 @@ namespace DebugUtility.UI
             this.Description.Width = 150;
             this.dataGridView1.Columns.Add(Description);
 
-            //adding textboxbutton control at code column...
-            this.txtbtnControl = new TextBoxButtonControl();
-            this.txtbtnControl.Visible = false;
-            this.dataGridView1.Controls.Add(this.txtbtnControl);
+          
+                              
 
-            this.txtbtnControl.btnCode.Click += new EventHandler(btnCode_Click);
-            this.txtbtnControl.Leave += new EventHandler(txtbtnControl_Leave);
-            this.txtbtnControl.txtCode.TextChanged += new EventHandler(txtCode_TextChanged);
+           
+
+          
 
             this.dataGridView1.CellClick += new DataGridViewCellEventHandler(dataGridView1_CellClick);
             this.dataGridView1.ColumnHeaderMouseClick += new DataGridViewCellMouseEventHandler(dataGridView1_ColumnHeaderMouseClick);
@@ -57,7 +55,19 @@ namespace DebugUtility.UI
             {
                 try
                 {
+
+                    //adding textboxbutton control at code column...
+
                     Rectangle rect = this.dataGridView1.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+
+                    this.txtbtnControl = new TextBoxButtonControl(rect.Size.Width);
+                    this.txtbtnControl.Visible = false;
+                    this.dataGridView1.Controls.Add(this.txtbtnControl);
+                    this.txtbtnControl.btnCode.Click += new EventHandler(btnCode_Click);
+
+                    this.txtbtnControl.Leave += new EventHandler(txtbtnControl_Leave);
+                    this.txtbtnControl.txtCode.TextChanged += new EventHandler(txtCode_TextChanged);
+
                     this.txtbtnControl.Location = rect.Location;
                     this.txtbtnControl.Size = rect.Size;
                     this.txtbtnControl.btnCode.Text = "...";
@@ -120,8 +130,10 @@ namespace DebugUtility.UI
         public TextBox txtCode;
         public Button btnCode;
 
-        public TextBoxButtonControl()
+        public TextBoxButtonControl(int width)
+
         {
+            this.Width = width;
             this.txtCode = new TextBox();
             this.Controls.Add(this.txtCode);
             this.btnCode = new Button();
@@ -132,9 +144,12 @@ namespace DebugUtility.UI
         {
             this.txtCode.Location = new Point(0, 0);
             //this.txtCode.Width = 2 * this.Width / 3 - 17;
-            this.txtCode.Width = this.Width + 115;
+            //this.txtCode.Width = this.Width + 115;
+
+            this.txtCode.Width = this.Width -32;
             this.txtCode.Height = this.Height;
-            this.btnCode.Location = new Point(this.Width + 115, 0);
+
+            this.btnCode.Location = new Point(this.Width -32, 0);
             this.btnCode.Width = 32;
             this.btnCode.Height = 21;
         }

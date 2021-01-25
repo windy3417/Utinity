@@ -153,9 +153,7 @@ namespace Utility.Sql
             return reader;
 
 
-
-
-
+                       
 
         }
 
@@ -184,8 +182,7 @@ namespace Utility.Sql
             return reader;
 
 
-
-
+            
 
 
         }
