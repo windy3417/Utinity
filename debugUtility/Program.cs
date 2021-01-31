@@ -16,7 +16,7 @@ namespace DebugUtility
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_combox());
+            Application.Run(new Frm_main());
         }
     }
 }

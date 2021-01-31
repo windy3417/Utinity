@@ -37,7 +37,7 @@
             this.gb_query = new System.Windows.Forms.GroupBox();
             this.btn_query = new System.Windows.Forms.Button();
             this.dgv_content = new System.Windows.Forms.DataGridView();
-            this.lbl_customer = new System.Windows.Forms.Label();
+            this.lbl_titel = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
             this.tsb_delete = new System.Windows.Forms.ToolStripButton();
@@ -61,7 +61,7 @@
             this.pnl_content.Controls.Add(this.flp_foot);
             this.pnl_content.Controls.Add(this.gb_query);
             this.pnl_content.Controls.Add(this.dgv_content);
-            this.pnl_content.Controls.Add(this.lbl_customer);
+            this.pnl_content.Controls.Add(this.lbl_titel);
             this.pnl_content.Location = new System.Drawing.Point(39, 28);
             this.pnl_content.Name = "pnl_content";
             this.pnl_content.Size = new System.Drawing.Size(926, 410);
@@ -152,15 +152,15 @@
             this.dgv_content.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             this.dgv_content.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_content_RowPostPaint);
             // 
-            // lbl_customer
+            // lbl_titel
             // 
-            this.lbl_customer.AutoSize = true;
-            this.lbl_customer.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_customer.Location = new System.Drawing.Point(414, 22);
-            this.lbl_customer.Name = "lbl_customer";
-            this.lbl_customer.Size = new System.Drawing.Size(98, 21);
-            this.lbl_customer.TabIndex = 1;
-            this.lbl_customer.Text = "单据列表";
+            this.lbl_titel.AutoSize = true;
+            this.lbl_titel.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_titel.Location = new System.Drawing.Point(414, 22);
+            this.lbl_titel.Name = "lbl_titel";
+            this.lbl_titel.Size = new System.Drawing.Size(98, 21);
+            this.lbl_titel.TabIndex = 1;
+            this.lbl_titel.Text = "单据列表";
             // 
             // toolStrip1
             // 
@@ -263,7 +263,7 @@
         #endregion
 
         private System.Windows.Forms.Panel pnl_content;
-        private System.Windows.Forms.Label lbl_customer;
+        protected System.Windows.Forms.Label lbl_titel;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsb_close;
 

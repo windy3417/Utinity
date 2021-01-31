@@ -14,15 +14,41 @@ namespace DebugUtility
 {
     public partial class Frm_report : Form
     {
+        Dictionary<string, string> kvName = new Dictionary<string, string>();
+        Dictionary<string, string> kvAddress = new Dictionary<string, string>();
         public Frm_report()
         {
             InitializeComponent();
+            InitializeDataSource();
+        }
+
+        void InitializeDataSource()
+        {
+            bind_DG_datasource();
+
+
+
         }
 
         private void bind_DG_datasource()
         {
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.DataSource = new UserService().getCustomerSets();
+            this.dataGridView1.AutoGenerateColumns = true;
+            //this.dataGridView1.DataSource = new UserService().getCustomerSets();
+
+            kvName.Add("01", "susan");
+            kvName.Add("02", "windy");
+
+
+            kvAddress.Add("01", "changSha");
+            kvAddress.Add("02", "zhuZou");
+
+            var query = from n in kvName
+                        join a in kvAddress
+                          on n.Key equals a.Key
+                        select new { userID = n.Key, userNaem = n.Value, address = a.Value };
+            this.dataGridView1.DataSource = query.ToList();
+
+
         }
 
         private void Frm_report_Load(object sender, EventArgs e)
@@ -63,5 +89,7 @@ namespace DebugUtility
 
             myExport.ExportToFile("Somefile.csv");
         }
+
+
     }
 }

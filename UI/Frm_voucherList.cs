@@ -707,8 +707,7 @@ namespace Utility.UI
 
         }
 
-     
-                     
+                          
 
         /// <summary>
         /// 查询框快捷按钮
