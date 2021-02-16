@@ -106,6 +106,12 @@ namespace DebugUtility.UI
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = @"\\192.168.10.66";
+            openFileDialog1.ShowDialog();
+        }
+
         private void btnCode_Click(object sender, EventArgs e)
         {
             //Form2 form2 = new Form2();

@@ -48,7 +48,7 @@ namespace Utility.Sql
 
             if (dataSourceType == DataSourceType.u8)
             {
-                conString = ConfigurationManager.ConnectionStrings["u8Conection"].ToString();
+                conString = ConfigurationManager.ConnectionStrings["u8Connection"].ToString();
                 deConString = Encrypt.Decode(conString);
 
                 sqlConnection = new SqlConnection(deConString);
@@ -58,7 +58,7 @@ namespace Utility.Sql
 
             if (dataSourceType == DataSourceType.it)
             {
-                conString = ConfigurationManager.ConnectionStrings["itConection"].ToString();
+                conString = ConfigurationManager.ConnectionStrings["itConnection"].ToString();
                 deConString = Encrypt.Decode(conString);
 
                 sqlConnection = new SqlConnection(deConString);
@@ -69,14 +69,14 @@ namespace Utility.Sql
             {
                 if (dataSourceType == DataSourceType.plug)
                 {
-                    conString = ConfigurationManager.ConnectionStrings["plugConection"].ToString();
+                    conString = ConfigurationManager.ConnectionStrings["plugConnection"].ToString();
                     deConString = Encrypt.Decode(conString);
 
                     sqlConnection = new SqlConnection(deConString);
 
                     return sqlConnection;
                 }
-                conString = ConfigurationManager.ConnectionStrings["businessConection"].ToString();
+                conString = ConfigurationManager.ConnectionStrings["businessConnection"].ToString();
                 deConString = Encrypt.Decode(conString);
 
                 sqlConnection = new SqlConnection(deConString);
