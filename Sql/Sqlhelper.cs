@@ -28,13 +28,13 @@ namespace Utility.Sql
         #region 数据库连接
 
 
-
         /// <summary>
         /// 返回sqlConnection，
-        /// 业务数据源连接字符串名称是“businessConcetion”,
-        /// 外挂数据源连接字符串名称是“plugConcetion",
-        /// U8数据源连接字符串名称是“u8Concetion"
-        /// 运维数据源连接字符串名称是“itConcetion"
+        /// 业务数据源连接字符串名称是“business”,
+        /// 外挂数据源连接字符串名称是“plug",
+        /// U8数据源连接字符串名称是“u8"
+        /// 运维数据源连接字符串名称是“it"
+        /// 与数据源枚举一致
         /// </summary>
         /// <param name="dataSourceType" >
         /// 数据源类型
@@ -42,13 +42,15 @@ namespace Utility.Sql
         /// <returns></returns>
         public static SqlConnection sqlConnection(DataSourceType dataSourceType)
         {
+            
             string conString;
             string deConString;
             SqlConnection sqlConnection;
 
             if (dataSourceType == DataSourceType.u8)
             {
-                conString = ConfigurationManager.ConnectionStrings["u8Connection"].ToString();
+                string connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.u8);
+                conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
                 deConString = Encrypt.Decode(conString);
 
                 sqlConnection = new SqlConnection(deConString);
@@ -58,7 +60,8 @@ namespace Utility.Sql
 
             if (dataSourceType == DataSourceType.it)
             {
-                conString = ConfigurationManager.ConnectionStrings["itConnection"].ToString();
+                string connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.it);
+                conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
                 deConString = Encrypt.Decode(conString);
 
                 sqlConnection = new SqlConnection(deConString);
@@ -69,14 +72,16 @@ namespace Utility.Sql
             {
                 if (dataSourceType == DataSourceType.plug)
                 {
-                    conString = ConfigurationManager.ConnectionStrings["plugConnection"].ToString();
+                    string connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.plug);
+                    conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
                     deConString = Encrypt.Decode(conString);
 
                     sqlConnection = new SqlConnection(deConString);
 
                     return sqlConnection;
                 }
-                conString = ConfigurationManager.ConnectionStrings["businessConnection"].ToString();
+                
+                conString = ConfigurationManager.ConnectionStrings[Enum.GetName(typeof(DataSourceType), DataSourceType.business)].ToString();
                 deConString = Encrypt.Decode(conString);
 
                 sqlConnection = new SqlConnection(deConString);
@@ -152,8 +157,7 @@ namespace Utility.Sql
 
             return reader;
 
-
-                       
+                                   
 
         }
 

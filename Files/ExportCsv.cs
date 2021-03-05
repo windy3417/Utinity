@@ -36,6 +36,34 @@ namespace Utility.Files
 {
 	public class CsvExport
 	{
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Jitbit.Utils.CsvExport"/> class.
+		/// </summary>
+		/// <param name="columnSeparator">
+		/// The string used to separate columns in the output.
+		/// By default this is a comma so that the generated output is a CSV file.
+		/// </param>
+		/// <param name="includeColumnSeparatorDefinitionPreamble">
+		/// Whether to include the preamble that declares which column separator is used in the output.
+		/// By default this is <c>true</c> so that Excel can open the generated CSV
+		/// without asking the user to specify the delimiter used in the file.
+		/// </param>
+		/// <param name="includeHeaderRow">
+		/// Whether to include the header row with the columns names in the export
+		/// </param>
+		public CsvExport(string columnSeparator = ",",
+			bool includeColumnSeparatorDefinitionPreamble = true,
+			bool includeHeaderRow = true)
+		{
+			_columnSeparator = columnSeparator;
+			_includeColumnSeparatorDefinitionPreamble = includeColumnSeparatorDefinitionPreamble;
+			_includeHeaderRow = includeHeaderRow;
+		}
+
+		#region 变量
+
+
 		/// <summary>
 		/// To keep the ordered list of column names
 		/// </summary>
@@ -66,30 +94,10 @@ namespace Utility.Files
 		/// </summary>
 		private readonly bool _includeHeaderRow;
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Jitbit.Utils.CsvExport"/> class.
-		/// </summary>
-		/// <param name="columnSeparator">
-		/// The string used to separate columns in the output.
-		/// By default this is a comma so that the generated output is a CSV file.
-		/// </param>
-		/// <param name="includeColumnSeparatorDefinitionPreamble">
-		/// Whether to include the preamble that declares which column separator is used in the output.
-		/// By default this is <c>true</c> so that Excel can open the generated CSV
-		/// without asking the user to specify the delimiter used in the file.
-		/// </param>
-		/// <param name="includeHeaderRow">
-		/// Whether to include the header row with the columns names in the export
-		/// </param>
-		public CsvExport(string columnSeparator = ",",
-			bool includeColumnSeparatorDefinitionPreamble = true,
-			bool includeHeaderRow = true)
-		{
-			_columnSeparator = columnSeparator;
-			_includeColumnSeparatorDefinitionPreamble = includeColumnSeparatorDefinitionPreamble;
-			_includeHeaderRow = includeHeaderRow;
-		}
+		#endregion
 
+
+	
 		/// <summary>
 		/// Set a value on this column
 		/// </summary>
@@ -194,6 +202,11 @@ namespace Utility.Files
 			}
 		}
 
+		#region 导出模式选择
+
+	
+
+
 		/// <summary>
 		/// Output all rows as a CSV returning a string
 		/// </summary>
@@ -226,5 +239,8 @@ namespace Utility.Files
 			var data = Encoding.UTF8.GetBytes(Export());
 			return Encoding.UTF8.GetPreamble().Concat(data).ToArray();
 		}
+		#endregion
+
+
 	}
 }
