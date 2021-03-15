@@ -53,5 +53,27 @@ namespace Utility.Style
 
             }
         }
+
+
+        /// <summary>
+        /// 表头样式
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        public void DataGridViewColumnHeaderStyle(DataGridView dataGridView)
+        {
+            //表头样式
+            DataGridViewCellStyle style = new DataGridViewCellStyle();
+            style.Alignment =
+                DataGridViewContentAlignment.MiddleCenter;
+            style.ForeColor = Color.IndianRed;
+            style.BackColor = Color.Ivory;
+            style.Font = new Font(dataGridView.Font, FontStyle.Bold);
+
+            dataGridView.ColumnHeadersDefaultCellStyle = style;
+            
+            dataGridView.AutoResizeColumns();
+
+
+        }
     }
 }

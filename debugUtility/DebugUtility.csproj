@@ -35,6 +35,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.4.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=5.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Windsor.5.1.1\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
@@ -49,6 +55,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web" />
@@ -67,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\TestContext.cs" />
+    <Compile Include="DAL\U8Context.cs" />
     <Compile Include="DAL\UserService.cs" />
     <Compile Include="Frm_main.cs">
       <SubType>Form</SubType>
@@ -74,6 +82,7 @@
     <Compile Include="Frm_main.Designer.cs">
       <DependentUpon>Frm_main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modle\gl_accsum.cs" />
     <Compile Include="UI\Frm_child.cs">
       <SubType>Form</SubType>
     </Compile>
