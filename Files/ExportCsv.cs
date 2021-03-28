@@ -62,7 +62,15 @@ namespace Utility.Files
 		}
 
 		#region 变量
+		/// <summary>
+		/// The string used to separate columns in the output
+		/// </summary>
+		private readonly string _columnSeparator;
 
+		/// <summary>
+		/// Whether to include the preamble that declares which column separator is used in the output
+		/// </summary>
+		private readonly bool _includeColumnSeparatorDefinitionPreamble;
 
 		/// <summary>
 		/// To keep the ordered list of column names
@@ -75,29 +83,19 @@ namespace Utility.Files
 		List<Dictionary<string, object>> _rows = new List<Dictionary<string, object>>();
 
 		/// <summary>
-		/// The current row
-		/// </summary>
-		Dictionary<string, object> _currentRow { get { return _rows[_rows.Count - 1]; } }
-
-		/// <summary>
-		/// The string used to separate columns in the output
-		/// </summary>
-		private readonly string _columnSeparator;
-
-		/// <summary>
-		/// Whether to include the preamble that declares which column separator is used in the output
-		/// </summary>
-		private readonly bool _includeColumnSeparatorDefinitionPreamble;
-
-		/// <summary>
 		/// Whether to include the header row with column names
 		/// </summary>
 		private readonly bool _includeHeaderRow;
 
-		#endregion
+        #endregion
 
+        #region 属性
 
-	
+        /// <summary>
+        /// The current row
+        /// </summary>
+        Dictionary<string, object> _currentRow { get { return _rows[_rows.Count - 1]; } }
+
 		/// <summary>
 		/// Set a value on this column
 		/// </summary>
@@ -111,6 +109,38 @@ namespace Utility.Files
 			}
 		}
 
+		#endregion
+
+		
+		#region 内部方法
+
+		/// <summary>
+		/// Outputs all rows as a CSV, returning one string at a time
+		/// </summary>
+		private IEnumerable<string> ExportToLines()
+		{
+			if (_includeColumnSeparatorDefinitionPreamble) yield return "sep=" + _columnSeparator;
+
+			// The header，_fields在addrow()方法法实现了赋值
+			if (_includeHeaderRow)
+				yield return string.Join(_columnSeparator, _fields.Select(f => MakeValueCsvFriendly(f, _columnSeparator)));
+
+			// The rows
+			foreach (Dictionary<string, object> row in _rows)
+			{
+				//不包含表头的数据行
+				foreach (string k in _fields.Where(f => !row.ContainsKey(f)))
+				{
+					row[k] = null;
+				}
+				yield return string.Join(_columnSeparator, _fields.Select(field => MakeValueCsvFriendly(row[field], _columnSeparator)));
+			}
+		}
+
+
+		#endregion
+
+		
 		/// <summary>
 		/// Call this before setting any fields on a row
 		/// </summary>
@@ -180,33 +210,10 @@ namespace Utility.Files
 			return output;
 		}
 
-		/// <summary>
-		/// Outputs all rows as a CSV, returning one string at a time
-		/// </summary>
-		private IEnumerable<string> ExportToLines()
-		{
-			if (_includeColumnSeparatorDefinitionPreamble) yield return "sep=" + _columnSeparator;
-
-			// The header
-			if (_includeHeaderRow)
-				yield return string.Join(_columnSeparator, _fields.Select(f => MakeValueCsvFriendly(f, _columnSeparator)));
-
-			// The rows
-			foreach (Dictionary<string, object> row in _rows)
-			{
-				foreach (string k in _fields.Where(f => !row.ContainsKey(f)))
-				{
-					row[k] = null;
-				}
-				yield return string.Join(_columnSeparator, _fields.Select(field => MakeValueCsvFriendly(row[field], _columnSeparator)));
-			}
-		}
-
+	
 		#region 导出模式选择
 
 	
-
-
 		/// <summary>
 		/// Output all rows as a CSV returning a string
 		/// </summary>
@@ -224,6 +231,7 @@ namespace Utility.Files
 
 		/// <summary>
 		/// Exports to a file
+		/// 使用时先调用addrow()或addrows()方法，赋值_rows变量
 		/// 用EXCLE打开.csv文件时，中文为乱码
 		/// </summary>
 		public void ExportToFile(string path)

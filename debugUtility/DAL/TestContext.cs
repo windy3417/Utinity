@@ -8,10 +8,10 @@
 //------------------------------------------------------------------------------
 
 namespace DebugUtility.DAL
-{
+{extern alias EF;
     using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
+    using EF::System.Data.Entity;
+    using EF::System.Data.Entity.Infrastructure;
     using DebugUtility.Modle;
 
     public partial class TestContext : DbContext

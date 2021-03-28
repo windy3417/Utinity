@@ -1,4 +1,5 @@
-﻿using System;
+﻿using debugUtility.UserControls;
+using System;
 using System.Windows.Forms;
 
 public class CalendarColumn : DataGridViewColumn
@@ -243,7 +244,7 @@ class CalendarEditingControl : DateTimePicker, IDataGridViewEditingControl
     }
 }
 
-public class Form2 : Form
+public class FrmCalarderColumn : Form
 {
     private DataGridView dataGridView1 = new DataGridView();
 
@@ -253,7 +254,7 @@ public class Form2 : Form
     //    Application.Run(new Form1());
     //}
 
-    public Form2()
+    public FrmCalarderColumn()
     {
         this.dataGridView1.Dock = DockStyle.Fill;
         this.Controls.Add(this.dataGridView1);
@@ -263,12 +264,18 @@ public class Form2 : Form
 
     private void Form1_Load(object sender, EventArgs e)
     {
-        CalendarColumn col = new CalendarColumn();
-        this.dataGridView1.Columns.Add(col);
-        this.dataGridView1.RowCount = 5;
-        foreach (DataGridViewRow row in this.dataGridView1.Rows)
-        {
-            row.Cells[0].Value = DateTime.Now;
-        }
+      
+        DataGridViewTextBoxColumn t = new DataGridViewTextBoxColumn();
+        t.HeaderText = "test";
+        DataGridViewComboBoxColumn c = new DataGridViewComboBoxColumn();
+        c.HeaderText = "formula";
+        ButtonColumn col = new ButtonColumn();
+        CalendarColumn col2 = new CalendarColumn();
+        this.dataGridView1.Columns.AddRange(t,col,c,col2);
+        //this.dataGridView1.RowCount = 5;
+        //foreach (DataGridViewRow row in this.dataGridView1.Rows)
+        //{
+        //    row.Cells[0].Value = DateTime.Now;
+        //}
     }
 }

@@ -107,7 +107,7 @@ namespace DebugUtility
 
         private void it数据库配置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_itDouble_DB_config f = new Frm_itDouble_DB_config();
+            FrmItDoubleDbConfig f = new FrmItDoubleDbConfig();
             string tabPageText = f.Text;
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(f, tabPageText, tabControl1, panel1);
@@ -128,5 +128,23 @@ namespace DebugUtility
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(f, tabPageText, tabControl1, panel1);
         }
+
+        private void TsmCalarderColumn_Click(object sender, EventArgs e)
+        {
+            FrmCalarderColumn f = new FrmCalarderColumn();
+            string tabPageText = f.Text;
+            Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            embed.openForm(f, tabPageText, tabControl1, panel1);
+        }
+
+        private void TsmButtonColumn_Click(object sender, EventArgs e)
+        {
+            FrmButtonColumn f = new FrmButtonColumn();
+            string tabPageText = f.Text;
+            Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            embed.openForm(f, tabPageText, tabControl1, panel1);
+        }
     }
 }
+
+

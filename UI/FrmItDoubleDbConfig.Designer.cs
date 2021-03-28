@@ -1,6 +1,6 @@
 ﻿namespace Utility.UI
 {
-    partial class Frm_itDouble_DB_config
+    partial class FrmItDoubleDbConfig
 
     {
         /// <summary>
@@ -30,7 +30,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_itDouble_DB_config));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmItDoubleDbConfig));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.gb_status = new System.Windows.Forms.GroupBox();
             this.btn_close = new System.Windows.Forms.Button();
@@ -86,9 +86,9 @@
             this.gb_status.Controls.Add(this.btn_deleteItDateConfig);
             this.gb_status.Controls.Add(this.lbl_status);
             this.gb_status.Controls.Add(this.lbl_configStatus);
-            this.gb_status.Location = new System.Drawing.Point(609, 54);
+            this.gb_status.Location = new System.Drawing.Point(441, 19);
             this.gb_status.Name = "gb_status";
-            this.gb_status.Size = new System.Drawing.Size(225, 174);
+            this.gb_status.Size = new System.Drawing.Size(150, 174);
             this.gb_status.TabIndex = 19;
             this.gb_status.TabStop = false;
             this.gb_status.Text = "配置状态";
@@ -97,7 +97,7 @@
             // 
             this.btn_close.Image = ((System.Drawing.Image)(resources.GetObject("btn_close.Image")));
             this.btn_close.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btn_close.Location = new System.Drawing.Point(18, 141);
+            this.btn_close.Location = new System.Drawing.Point(29, 133);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(75, 23);
             this.btn_close.TabIndex = 10;
@@ -111,7 +111,7 @@
             this.btn_deleteItDateConfig.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_deleteItDateConfig.Image = ((System.Drawing.Image)(resources.GetObject("btn_deleteItDateConfig.Image")));
             this.btn_deleteItDateConfig.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_deleteItDateConfig.Location = new System.Drawing.Point(18, 91);
+            this.btn_deleteItDateConfig.Location = new System.Drawing.Point(29, 91);
             this.btn_deleteItDateConfig.Name = "btn_deleteItDateConfig";
             this.btn_deleteItDateConfig.Size = new System.Drawing.Size(75, 23);
             this.btn_deleteItDateConfig.TabIndex = 9;
@@ -125,7 +125,7 @@
             this.lbl_status.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_status.AutoSize = true;
             this.lbl_status.ForeColor = System.Drawing.Color.Red;
-            this.lbl_status.Location = new System.Drawing.Point(18, 63);
+            this.lbl_status.Location = new System.Drawing.Point(29, 63);
             this.lbl_status.Name = "lbl_status";
             this.lbl_status.Size = new System.Drawing.Size(41, 12);
             this.lbl_status.TabIndex = 8;
@@ -135,7 +135,7 @@
             // 
             this.lbl_configStatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_configStatus.AutoSize = true;
-            this.lbl_configStatus.Location = new System.Drawing.Point(18, 33);
+            this.lbl_configStatus.Location = new System.Drawing.Point(29, 31);
             this.lbl_configStatus.Name = "lbl_configStatus";
             this.lbl_configStatus.Size = new System.Drawing.Size(95, 12);
             this.lbl_configStatus.TabIndex = 8;
@@ -145,9 +145,9 @@
             // 
             this.gb_dateBaseConete.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gb_dateBaseConete.Controls.Add(this.tableLayoutPanel2);
-            this.gb_dateBaseConete.Location = new System.Drawing.Point(139, 54);
+            this.gb_dateBaseConete.Location = new System.Drawing.Point(28, 19);
             this.gb_dateBaseConete.Name = "gb_dateBaseConete";
-            this.gb_dateBaseConete.Size = new System.Drawing.Size(451, 174);
+            this.gb_dateBaseConete.Size = new System.Drawing.Size(382, 174);
             this.gb_dateBaseConete.TabIndex = 18;
             this.gb_dateBaseConete.TabStop = false;
             this.gb_dateBaseConete.Text = "运维数据库连接";
@@ -169,7 +169,7 @@
             this.tableLayoutPanel2.Controls.Add(this.lbl_user, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.btn_testConect, 1, 4);
             this.tableLayoutPanel2.Controls.Add(this.btn_confirm, 2, 4);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(63, 19);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(29, 19);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -282,9 +282,9 @@
             this.groupBox1.Controls.Add(this.btn_deleteBusinessConfig);
             this.groupBox1.Controls.Add(this.lbl_plugStatus);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(603, 257);
+            this.groupBox1.Location = new System.Drawing.Point(435, 208);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(225, 174);
+            this.groupBox1.Size = new System.Drawing.Size(156, 174);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "配置状态";
@@ -293,7 +293,7 @@
             // 
             this.btn_closePlug.Image = ((System.Drawing.Image)(resources.GetObject("btn_closePlug.Image")));
             this.btn_closePlug.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btn_closePlug.Location = new System.Drawing.Point(18, 141);
+            this.btn_closePlug.Location = new System.Drawing.Point(29, 133);
             this.btn_closePlug.Name = "btn_closePlug";
             this.btn_closePlug.Size = new System.Drawing.Size(75, 23);
             this.btn_closePlug.TabIndex = 10;
@@ -307,7 +307,7 @@
             this.btn_deleteBusinessConfig.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_deleteBusinessConfig.Image = ((System.Drawing.Image)(resources.GetObject("btn_deleteBusinessConfig.Image")));
             this.btn_deleteBusinessConfig.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_deleteBusinessConfig.Location = new System.Drawing.Point(18, 91);
+            this.btn_deleteBusinessConfig.Location = new System.Drawing.Point(29, 96);
             this.btn_deleteBusinessConfig.Name = "btn_deleteBusinessConfig";
             this.btn_deleteBusinessConfig.Size = new System.Drawing.Size(75, 23);
             this.btn_deleteBusinessConfig.TabIndex = 9;
@@ -321,7 +321,7 @@
             this.lbl_plugStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_plugStatus.AutoSize = true;
             this.lbl_plugStatus.ForeColor = System.Drawing.Color.Red;
-            this.lbl_plugStatus.Location = new System.Drawing.Point(18, 63);
+            this.lbl_plugStatus.Location = new System.Drawing.Point(29, 58);
             this.lbl_plugStatus.Name = "lbl_plugStatus";
             this.lbl_plugStatus.Size = new System.Drawing.Size(41, 12);
             this.lbl_plugStatus.TabIndex = 8;
@@ -331,7 +331,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 33);
+            this.label2.Location = new System.Drawing.Point(29, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 12);
             this.label2.TabIndex = 8;
@@ -341,9 +341,9 @@
             // 
             this.gb_plugDataBase.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gb_plugDataBase.Controls.Add(this.tableLayoutPanel1);
-            this.gb_plugDataBase.Location = new System.Drawing.Point(133, 257);
+            this.gb_plugDataBase.Location = new System.Drawing.Point(28, 208);
             this.gb_plugDataBase.Name = "gb_plugDataBase";
-            this.gb_plugDataBase.Size = new System.Drawing.Size(451, 174);
+            this.gb_plugDataBase.Size = new System.Drawing.Size(388, 174);
             this.gb_plugDataBase.TabIndex = 20;
             this.gb_plugDataBase.TabStop = false;
             this.gb_plugDataBase.Text = "业务数据库连接";
@@ -365,7 +365,7 @@
             this.tableLayoutPanel1.Controls.Add(this.lbl_plugUser, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.btn_plugConcet, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.btn_plugCertain, 2, 4);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(63, 19);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(29, 20);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -469,18 +469,18 @@
             this.btn_plugCertain.TabIndex = 6;
             this.btn_plugCertain.Text = "确认";
             this.btn_plugCertain.UseVisualStyleBackColor = true;
-            this.btn_plugCertain.Click += new System.EventHandler(this.btn_plugCertain_Click);
+            this.btn_plugCertain.Click += new System.EventHandler(this.btnSaveBusinessConnetiongString_Click);
             // 
-            // Frm_itDouble_DB_config
+            // FrmItDoubleDbConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 466);
+            this.ClientSize = new System.Drawing.Size(624, 397);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_plugDataBase);
             this.Controls.Add(this.gb_status);
             this.Controls.Add(this.gb_dateBaseConete);
-            this.Name = "Frm_itDouble_DB_config";
+            this.Name = "FrmItDoubleDbConfig";
             this.Text = "双数据库配置";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Frm_config_FormClosed);
             this.Load += new System.EventHandler(this.Frm_DoubleDataBaseConfig_Load);

@@ -34,6 +34,18 @@ namespace DebugUtility.UI
                 row.Cells[0].Value = "";
             }
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // Frm_dataGridViewButtonColumn
+            // 
+            this.ClientSize = new System.Drawing.Size(639, 325);
+            this.Name = "Frm_dataGridViewButtonColumn";
+            this.ResumeLayout(false);
+
+        }
     }
 
     public class TextBoxWithButtonColumn : DataGridViewColumn

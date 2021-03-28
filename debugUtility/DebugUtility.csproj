@@ -43,9 +43,11 @@
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll</HintPath>
+      <Aliases>EF</Aliases>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+      <Aliases>global</Aliases>
     </Reference>
     <Reference Include="NPOI, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL" />
     <Reference Include="ReflectionMagic, Version=4.1.0.0, Culture=neutral, PublicKeyToken=c4c75393d7e08e8e, processorArchitecture=MSIL">
@@ -76,13 +78,26 @@
     <Compile Include="DAL\TestContext.cs" />
     <Compile Include="DAL\U8Context.cs" />
     <Compile Include="DAL\UserService.cs" />
-    <Compile Include="Frm_main.cs">
+    <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_main.Designer.cs">
-      <DependentUpon>Frm_main.cs</DependentUpon>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modle\AccInformation_Year.cs" />
+    <Compile Include="Modle\code.cs" />
     <Compile Include="Modle\gl_accsum.cs" />
+    <Compile Include="Modle\GradeDef_Base.cs" />
+    <Compile Include="UI\FrmButtonColumn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmButtonColumn.Designer.cs">
+      <DependentUpon>FrmButtonColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmTreeViewColumn.cs" />
+    <Compile Include="UI\FrmTreeViewColumn.Designer.cs">
+      <DependentUpon>FrmTreeViewColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Frm_child.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,12 +113,12 @@
     <Compile Include="UI\Frm_combox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Frm_dataGridViewButtonColumn.cs">
+    <Compile Include="UI\FrmDataGridViewButtonColumn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Frm_dataGridViewCalarderColumn.cs" />
-    <Compile Include="UI\Frm_dataGridViewCalarderColumn.Designer.cs">
-      <DependentUpon>Frm_dataGridViewCalarderColumn.cs</DependentUpon>
+    <Compile Include="UI\FrmDataGridViewCalarderColumn.cs" />
+    <Compile Include="UI\FrmDataGridViewCalarderColumn.Designer.cs">
+      <DependentUpon>FrmDataGridViewCalarderColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Frm_report.cs">
       <SubType>Form</SubType>
@@ -155,11 +170,24 @@
     <Compile Include="UI\richBox.Designer.cs">
       <DependentUpon>richBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ButtonColumn.cs" />
+    <Compile Include="UserControls\TextBoxWithButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TextBoxWithButton.Designer.cs">
+      <DependentUpon>TextBoxWithButton.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\FrmButtonColumn.resx">
+      <DependentUpon>FrmButtonColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmDataGridViewButtonColumn.resx">
+      <DependentUpon>FrmDataGridViewButtonColumn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_child.resx">
       <DependentUpon>Frm_child.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm_main.resx">
-      <DependentUpon>Frm_main.cs</DependentUpon>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -194,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\richBox.resx">
       <DependentUpon>richBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TextBoxWithButton.resx">
+      <DependentUpon>TextBoxWithButton.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />

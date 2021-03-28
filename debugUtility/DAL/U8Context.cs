@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using ReportTransfer.DAL.Model;
+﻿extern alias EF;
+using EF::System.Data.Entity;
+using debugUtility.Modle;
 using ReportTransfer.DAL.Model.U8;
+
+
+
+
 
 
 namespace ReportTransfer.DAL
@@ -23,7 +24,7 @@ namespace ReportTransfer.DAL
         }
 
         public virtual DbSet<GL_accsum> GL_accsum { get; set; }
-        public virtual DbSet<Code> Code { get; set; }
+        public virtual DbSet<code> Code { get; set; }
         public virtual DbSet<GradeDef_Base> GradeDef_Bases { get; set; }
 
         public virtual DbSet<AccInformation_Year> AccInformation { get; set; }

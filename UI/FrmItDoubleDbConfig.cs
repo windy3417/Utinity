@@ -12,10 +12,10 @@ using static Utility.Sql.Sqlhelper;
 
 namespace Utility.UI
 {
-    public partial class Frm_itDouble_DB_config : Form
+    public partial class FrmItDoubleDbConfig : Form
     {
 
-        public Frm_itDouble_DB_config()
+        public FrmItDoubleDbConfig()
         {
             InitializeComponent();
          
@@ -30,53 +30,10 @@ namespace Utility.UI
             this.readDataBase();
         }
 
-        /// <summary>
-        /// 读取控件数据源
-        /// </summary>
-        private void readDataBase()
-        {
-            string conectDataBase = "itConection";
-            string conectPlugDataBase = "businessConection";
-
-            if (ConfigurationManager.ConnectionStrings[conectDataBase] != null)
-            {
-                string conString = ConfigurationManager.ConnectionStrings[conectDataBase].ToString();
-                string deConString = Encrypt.Decode(conString);
-                int dataBaseIndex = deConString.IndexOf("Catalog=");
-                int UserIndex = deConString.IndexOf(";User");
-
-                this.lbl_status.Text = deConString.Substring(dataBaseIndex + 8, UserIndex - (dataBaseIndex + 8));
-                this.lbl_status.ForeColor = Color.Green;
-
-            }
-            else
-            {
-                this.lbl_status.Text = "未配置";
-                this.lbl_status.ForeColor = Color.Red; ;
-            }
-
-            if (ConfigurationManager.ConnectionStrings[conectPlugDataBase] != null)
-            {
-                string conString = ConfigurationManager.ConnectionStrings[conectPlugDataBase].ToString();
-                string deConString = Encrypt.Decode(conString);
-                int dataBaseIndex = deConString.IndexOf("Catalog=");
-                int UserIndex = deConString.IndexOf(";User");
-
-                this.lbl_plugStatus.Text = deConString.Substring(dataBaseIndex + 8, UserIndex - (dataBaseIndex + 8));
-                this.lbl_plugStatus.ForeColor = Color.Green;
-
-            }
-            else
-            {
-                this.lbl_plugStatus.Text = "未配置";
-                this.lbl_plugStatus.ForeColor = Color.Red; ;
-            }
-        }
-
+    
         #endregion
 
-                             
-
+        #region 事件处理
         /// <summary>
         /// 键盘按键事件
         /// 如果检查到按下的是回车键，则发一个消息，模拟键盘按以下Tab键，
@@ -91,6 +48,11 @@ namespace Utility.UI
                 SendKeys.Send("{tab}");
             }
         }
+
+        #endregion
+
+        #region Btn事件处理
+
 
         /// <summary>
         /// 测试数据库连接
@@ -132,7 +94,7 @@ namespace Utility.UI
 
         }
 
-        #region it数据库配置
+        #region 运维数据库配置
 
         /// <summary>
         /// 新增或更改数据库连接
@@ -211,11 +173,9 @@ namespace Utility.UI
         }
         #endregion
 
-    
-                             
+
         #region 业务数据库配置
-
-
+        
         /// <summary>
         /// 删除业务数据库配置
         /// </summary>
@@ -246,11 +206,11 @@ namespace Utility.UI
         }
 
         /// <summary>
-        /// 业务数据库连接
+        /// 新增或更改业务数据库连接
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_plugCertain_Click(object sender, EventArgs e)
+        private void btnSaveBusinessConnetiongString_Click(object sender, EventArgs e)
         {
             bool isModified = false;    //记录该连接串是否已经存在
 
@@ -329,6 +289,57 @@ namespace Utility.UI
         }
 
         #endregion
+
+        #endregion
+
+
+        #region 内部方法
+        /// <summary>
+        /// 读取控件数据源
+        /// </summary>
+        private void readDataBase()
+        {
+            string conectDataBase = "it";
+            string conectPlugDataBase = "business";
+
+            if (ConfigurationManager.ConnectionStrings[conectDataBase] != null)
+            {
+                string conString = ConfigurationManager.ConnectionStrings[conectDataBase].ToString();
+                string deConString = Encrypt.Decode(conString);
+                int dataBaseIndex = deConString.IndexOf("Catalog=");
+                int UserIndex = deConString.IndexOf(";User");
+
+                this.lbl_status.Text = deConString.Substring(dataBaseIndex + 8, UserIndex - (dataBaseIndex + 8));
+                this.lbl_status.ForeColor = Color.Green;
+
+            }
+            else
+            {
+                this.lbl_status.Text = "未配置";
+                this.lbl_status.ForeColor = Color.Red; ;
+            }
+
+            if (ConfigurationManager.ConnectionStrings[conectPlugDataBase] != null)
+            {
+                string conString = ConfigurationManager.ConnectionStrings[conectPlugDataBase].ToString();
+                string deConString = Encrypt.Decode(conString);
+                int dataBaseIndex = deConString.IndexOf("Catalog=");
+                int UserIndex = deConString.IndexOf(";User");
+
+                this.lbl_plugStatus.Text = deConString.Substring(dataBaseIndex + 8, UserIndex - (dataBaseIndex + 8));
+                this.lbl_plugStatus.ForeColor = Color.Green;
+
+            }
+            else
+            {
+                this.lbl_plugStatus.Text = "未配置";
+                this.lbl_plugStatus.ForeColor = Color.Red; ;
+            }
+        }
+
+        #endregion
+
+      
 
         #region 窗体操作
 
