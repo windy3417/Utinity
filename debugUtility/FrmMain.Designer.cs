@@ -43,13 +43,14 @@
             this.webBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TsmCalarderColumn = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmButtonColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.登录数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.it数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.horizonLine1 = new Utility.UControl.HorizonLine();
-            this.TsmButtonColumn = new System.Windows.Forms.ToolStripMenuItem();
+            this.treeViewColumnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -146,7 +147,8 @@
             this.webBrowserToolStripMenuItem,
             this.editorToolStripMenuItem,
             this.TsmCalarderColumn,
-            this.TsmButtonColumn});
+            this.TsmButtonColumn,
+            this.treeViewColumnToolStripMenuItem});
             this.功能测试ToolStripMenuItem.Name = "功能测试ToolStripMenuItem";
             this.功能测试ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.功能测试ToolStripMenuItem.Text = "功能测试";
@@ -178,6 +180,13 @@
             this.TsmCalarderColumn.Size = new System.Drawing.Size(248, 22);
             this.TsmCalarderColumn.Text = "dataGridViewCalarderColunm";
             this.TsmCalarderColumn.Click += new System.EventHandler(this.TsmCalarderColumn_Click);
+            // 
+            // TsmButtonColumn
+            // 
+            this.TsmButtonColumn.Name = "TsmButtonColumn";
+            this.TsmButtonColumn.Size = new System.Drawing.Size(248, 22);
+            this.TsmButtonColumn.Text = "buttonColumn";
+            this.TsmButtonColumn.Click += new System.EventHandler(this.TsmButtonColumn_Click);
             // 
             // 配置ToolStripMenuItem
             // 
@@ -227,12 +236,12 @@
             this.horizonLine1.Size = new System.Drawing.Size(288, 1);
             this.horizonLine1.TabIndex = 0;
             // 
-            // TsmButtonColumn
+            // treeViewColumnToolStripMenuItem
             // 
-            this.TsmButtonColumn.Name = "TsmButtonColumn";
-            this.TsmButtonColumn.Size = new System.Drawing.Size(248, 22);
-            this.TsmButtonColumn.Text = "buttonColumn";
-            this.TsmButtonColumn.Click += new System.EventHandler(this.TsmButtonColumn_Click);
+            this.treeViewColumnToolStripMenuItem.Name = "treeViewColumnToolStripMenuItem";
+            this.treeViewColumnToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.treeViewColumnToolStripMenuItem.Text = "treeViewColumn";
+            this.treeViewColumnToolStripMenuItem.Click += new System.EventHandler(this.treeViewColumnToolStripMenuItem_Click);
             // 
             // Frm_main
             // 
@@ -277,6 +286,7 @@
         private System.Windows.Forms.ToolStripMenuItem editorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem TsmCalarderColumn;
         private System.Windows.Forms.ToolStripMenuItem TsmButtonColumn;
+        private System.Windows.Forms.ToolStripMenuItem treeViewColumnToolStripMenuItem;
     }
 }
 

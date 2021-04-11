@@ -144,6 +144,14 @@ namespace DebugUtility
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(f, tabPageText, tabControl1, panel1);
         }
+
+        private void treeViewColumnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmTreeViewColumn f = new FrmTreeViewColumn();
+            string tabPageText = f.Text;
+            Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            embed.openForm(f, tabPageText, tabControl1, panel1);
+        }
     }
 }
 

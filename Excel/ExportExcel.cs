@@ -121,11 +121,12 @@ namespace Utility.Excel
         {
             try
             {
+                #region 创建Excel表
                 //非数据列不导出，设置可导出例数
 
                 List<int> exportColumn = new List<int>();
                 //创建一个工作簿
-                
+
                 IWorkbook workbook = new HSSFWorkbook();
 
                 //创建一个 sheet 表
@@ -146,13 +147,15 @@ namespace Utility.Excel
                 //设置为文本格式，也可以为 text，即 dataFormat.GetFormat("text");
                 cellStyle.DataFormat = dataFormat.GetFormat("@");
 
-                //设置列名
+                #endregion
+
+                #region 设置列名(表头)
                 foreach (dynamic col in dataGridView.Columns)
                 {
                     //创建单元格并设置单元格内容
 
                     //只导出文本例的值
-                    if (col.Name != "choose" & col.Name !="navigate")
+                    if (col.Name != "choose" & col.Name != "navigate")
                     {
                         DataGridViewTextBoxColumn tbc = (DataGridViewTextBoxColumn)col;
                         rowH.CreateCell(col.Index).SetCellValue(tbc.HeaderText);
@@ -171,24 +174,38 @@ namespace Utility.Excel
                     //    rowH.Cells[col.Index].CellStyle = cellStyle;
 
 
-                                                             }
+                }
+                #endregion
 
-                //写入数据
+                
+                #region 写入数据
                 for (int i = 0; i < dataGridView.Rows.Count; i++)
                 {
                     //跳过第一行，第一行为列名
                     IRow row = sheet.CreateRow(i + 1);
 
-                                       
+
                     foreach (int j in exportColumn)
                     {
                         //此cell不能创造excel表中的cell,仅仅是对excel工作表中的cell进行操作
                         cell = row.CreateCell(j);
-                        cell.SetCellValue(dataGridView.Rows[i].Cells[j].Value.ToString());
+                       //处理dataGridView中的值为null的问题
+                        if (dataGridView.Rows[i].Cells[j].Value is null)
+                        {
+                            cell.SetCellValue("");
+                        }
+                        else
+                        {
+                            cell.SetCellValue(dataGridView.Rows[i].Cells[j].Value.ToString());
+                        }
+                        
                         cell.CellStyle = cellStyle;
                     }
 
                 }
+                #endregion
+
+                #region 导出操作
 
                 //设置导出文件路径
                 string path = Environment.CurrentDirectory + "\\";
@@ -227,6 +244,9 @@ namespace Utility.Excel
                 sheet = null;
                 workbook = null;
                 System.Diagnostics.Process.Start(savePath);
+                #endregion
+
+
             }
             catch (Exception ex)
             {

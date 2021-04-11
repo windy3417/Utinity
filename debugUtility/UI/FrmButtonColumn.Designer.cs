@@ -42,7 +42,7 @@
             this.dgvButton.RowTemplate.Height = 23;
             this.dgvButton.Size = new System.Drawing.Size(776, 225);
             this.dgvButton.TabIndex = 0;
-            this.dgvButton.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvButton_CellContentDoubleClick);
+         
             this.dgvButton.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvButton_CellDoubleClick);
             // 
             // textBox1

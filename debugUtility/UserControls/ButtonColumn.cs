@@ -14,9 +14,13 @@ namespace debugUtility.UserControls
 
     public class ButtonColumn : DataGridViewColumn
     {
+        void test()
+        {
+            TextBoxWithButton textBoxWithButton = new TextBoxWithButton();
+            
+        }
         
-        
-        public ButtonColumn() : base(new ButtonCell())
+        public ButtonColumn() : base(new ButtonWithTextBoxCell())
         {
             
         }
@@ -31,7 +35,7 @@ namespace debugUtility.UserControls
             {
                 // Ensure that the cell used for the template is a CalendarCell.
                 if (value != null &&
-                    !value.GetType().IsAssignableFrom(typeof(ButtonCell)))
+                    !value.GetType().IsAssignableFrom(typeof(ButtonWithTextBoxCell)))
                 {
                     throw new InvalidCastException("Must be a CalendarCell");
                 }
@@ -40,17 +44,18 @@ namespace debugUtility.UserControls
         }
     }
 
-    public class ButtonCell : DataGridViewTextBoxCell
+    public class ButtonWithTextBoxCell : DataGridViewTextBoxCell
     {
 
-        public ButtonCell()
+        public ButtonWithTextBoxCell()
             : base()
         {
 
         }
 
         /// <summary>
-        /// 改变编辑控件的大小
+        /// 改变编辑控件的大小,
+        /// 待使用
         /// </summary>
         /// <param name="cellBounds"></param>
         /// <param name="cellClip"></param>
@@ -96,17 +101,19 @@ namespace debugUtility.UserControls
                 dataGridViewCellStyle);
             ButtonEditingControl ctl =
                 DataGridView.EditingControl as ButtonEditingControl;
-            
-            
-            // Use the default row value when Value property is null.
-            //if (this.Value == null)
-            //{
-            //    ctl.Value = (DateTime)this.DefaultNewRowValue;
-            //}
-            //else
-            //{
-            //    ctl.Value = (DateTime)this.Value;
-            //}
+
+
+            //Use the default row value when Value property is null.
+            if (this.Value == null)
+            {
+                ctl.Value = this.DefaultNewRowValue;
+            }
+            else
+            {
+                //ctl.Value = this.Value;
+                //this.Value = ctl.Text;
+                ctl.Text = this.Value.ToString();
+            }
         }
 
         public override Type EditType
@@ -134,7 +141,7 @@ namespace debugUtility.UserControls
             {
                 // Use the current date and time as the default value.
                 //return DateTime.Now;
-              return  "";
+              return  "test";
             }
         }
     }
@@ -144,14 +151,21 @@ namespace debugUtility.UserControls
     /// </summary>
     class ButtonEditingControl : TextBox, IDataGridViewEditingControl
     {
+
+        #region 变量
+
         DataGridView dataGridView;
         private bool valueChanged = false;
         int rowIndex;
         Button button = new Button();
+        #endregion
+
+                        
 
         #region 属性
         public object Value { get; set; }
 
+        public Button buttonRef { get; set; }
         #endregion
 
         /// <summary>
@@ -162,7 +176,7 @@ namespace debugUtility.UserControls
 
             InitializeControlsState();
             bindEvent();
-
+            buttonRef = button;
             //Point  p= this.Location;
 
             //button.Location = new Point(p.X + this.Width-button.Width-4, p.Y);
@@ -225,7 +239,8 @@ namespace debugUtility.UserControls
         {
             get
             {
-                return this.Value;
+                return this.Text;
+                //return base.Text;
             }
             set
             {

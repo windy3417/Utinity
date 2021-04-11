@@ -40,6 +40,16 @@ namespace debugUtility.UI
 
         #region 内部方法
 
+        private void DgvButonColumn_EditingControlShowing
+         (object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            int columnIndex = dgvButonColumn.CurrentCell.ColumnIndex;
+            //e.Control.Width = dgvButonColumn.Columns[columnIndex].Width;
+            //()e.Control;
+        }
+
+        private DataGridView dgvButonColumn = new DataGridView();
+
         void CreateColumn()
         {
             DataGridViewTextBoxColumn t = new DataGridViewTextBoxColumn();
@@ -61,15 +71,7 @@ namespace debugUtility.UI
         }
         #endregion
 
-        private void DgvButonColumn_EditingControlShowing
-            (object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            int columnIndex = dgvButonColumn.CurrentCell.ColumnIndex;
-            //e.Control.Width = dgvButonColumn.Columns[columnIndex].Width;
-            e.Control.Controls.Add(new Button());
-        }
-
-        private DataGridView dgvButonColumn = new DataGridView();
+     
 
          
         private void Form1_Load(object sender, EventArgs e)
@@ -78,27 +80,21 @@ namespace debugUtility.UI
             CreateColumn();
         }
 
-        private void dgvButton_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex ==
-          dgvButton.Columns[ColumnNames.buttonColumn.ToString()].Index)
-            {
-                dgvButonColumn.EditingControlShowing += DgvButonColumn_EditingControlShowing;
-            } 
-        }
 
         private void dgvButton_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex ==
         dgvButton.Columns[ColumnNames.accountCode.ToString()].Index)
             {
-                dgvButonColumn.EditingControlShowing += DgvButonColumn_EditingControlShowing;
+                //dgvButonColumn.EditingControlShowing += DgvButonColumn_EditingControlShowing;
                 //int columnIndex = dgvButonColumn.CurrentCell.ColumnIndex;
                 //int rowIndex = dgvButonColumn.CurrentRow.Index;
                 //DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
-                //dgvButonColumn.CurrentRow.Cells[ColumnNames.buttonColumn.ToString()].InitializeEditingControl(
-                //   rowIndex, "", cellStyle);
-                    
+                //Type type = dgvButonColumn.CurrentRow.Cells[ColumnNames.buttonColumn.ToString()].EditType;
+
+                //type.GetProperty("ButtonRef").
+                //DataGridViewButtonColumn
+
             }
         }
 
