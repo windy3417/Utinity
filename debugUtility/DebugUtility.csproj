@@ -75,6 +75,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\DataGridViewCalendarColumn.cs" />
+    <Compile Include="Common\DataGridViewExtensions.cs" />
+    <Compile Include="Common\UIHintMappings.cs" />
     <Compile Include="DAL\TestContext.cs" />
     <Compile Include="DAL\U8Context.cs" />
     <Compile Include="DAL\UserService.cs" />
@@ -88,13 +91,22 @@
     <Compile Include="Modle\code.cs" />
     <Compile Include="Modle\gl_accsum.cs" />
     <Compile Include="Modle\GradeDef_Base.cs" />
+    <Compile Include="Modle\Person.cs" />
     <Compile Include="UI\FrmButtonColumn.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\FrmButtonColumn.Designer.cs">
       <DependentUpon>FrmButtonColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\FrmTreeViewColumn.cs" />
+    <Compile Include="UI\FrmDataGridViewExtention.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmDataGridViewExtention.Designer.cs">
+      <DependentUpon>FrmDataGridViewExtention.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmTreeViewColumn.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\FrmTreeViewColumn.Designer.cs">
       <DependentUpon>FrmTreeViewColumn.cs</DependentUpon>
     </Compile>
@@ -183,6 +195,9 @@
     <EmbeddedResource Include="UI\FrmDataGridViewButtonColumn.resx">
       <DependentUpon>FrmDataGridViewButtonColumn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmDataGridViewExtention.resx">
+      <DependentUpon>FrmDataGridViewExtention.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_child.resx">
       <DependentUpon>Frm_child.cs</DependentUpon>
     </EmbeddedResource>
@@ -244,5 +259,6 @@
   <ItemGroup>
     <None Include="Resources\export.gif" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -96,6 +96,7 @@
     <Compile Include="Excel\ExportExcel.cs" />
     <Compile Include="Files\ExportCsv.cs" />
     <Compile Include="Files\FilesOperate.cs" />
+    <Compile Include="Files\ImportFromExcel.cs" />
     <Compile Include="Modle\CurrentUser.cs" />
     <Compile Include="Sql\Sqlhelper.cs" />
     <Compile Include="Sql\SQLiteColumn.cs" />
