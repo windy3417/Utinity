@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
-using Utility.Modle;
+using Utility.Model;
 
 namespace Utility.UI
 {

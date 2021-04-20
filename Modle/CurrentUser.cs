@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Utility.Modle
+namespace Utility.Model
 {
     public class CurrentUser
     {

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 using Utility;
 using System.Configuration;
-using Utility.Modle;
+using Utility.Model;
 
 namespace Utility.UI
 {

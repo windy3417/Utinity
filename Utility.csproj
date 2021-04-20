@@ -92,11 +92,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\DbConnect.cs" />
     <Compile Include="DAL\SaveArchivesService.cs" />
     <Compile Include="Excel\ExportExcel.cs" />
     <Compile Include="Files\ExportCsv.cs" />
     <Compile Include="Files\FilesOperate.cs" />
     <Compile Include="Files\ImportFromExcel.cs" />
+    <Compile Include="Files\JsonOperate.cs" />
+    <Compile Include="Modle\ConnectStringModel.cs" />
     <Compile Include="Modle\CurrentUser.cs" />
     <Compile Include="Sql\Sqlhelper.cs" />
     <Compile Include="Sql\SQLiteColumn.cs" />
@@ -104,6 +107,12 @@
     <Compile Include="Sql\SQLiteHelper.cs" />
     <Compile Include="Sql\SQLiteTable.cs" />
     <Compile Include="Style\StyleDataGridView.cs" />
+    <Compile Include="UControl\DbConnectControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UControl\DbConnectControl.Designer.cs">
+      <DependentUpon>DbConnectControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UControl\HorizonLine.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -235,6 +244,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UControl\DbConnectControl.resx">
+      <DependentUpon>DbConnectControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UControl\TextBoxWithButton.resx">
       <DependentUpon>TextBoxWithButton.cs</DependentUpon>
     </EmbeddedResource>

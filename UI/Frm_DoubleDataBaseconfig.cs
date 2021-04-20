@@ -52,7 +52,8 @@ namespace Utility.UI
 
 
             //获取数据库连接字符串
-            string con = "Data Source=" + textBox_server.Text + ";Initial Catalog=" + textBox_database.Text + ";User ID= " + textBox_user.Text + ";Password=" +
+            string con = "Data Source=" + textBox_server.Text + ";Initial Catalog=" + 
+                textBox_database.Text + ";User ID= " + textBox_user.Text + ";Password=" +
                 textBox_password.Text + ";Pooling=False";
 
             //创建连接对象
