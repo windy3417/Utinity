@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Utility.Model;
+using Utility.Files;
+using System.IO;
 
 namespace Utility.DAL
 {
@@ -94,6 +97,37 @@ namespace Utility.DAL
             MessageBox.Show("数据库配置成功", "数据库配置");
            
            
+        }
+
+
+        public void ReadConfig(string fileName, Label status)
+        {
+
+            //读取数据库配置
+            if (File.Exists(fileName))
+            {
+               
+                JsonOperate jsonOperate = new JsonOperate();
+                ConnectStringModel m = new ConnectStringModel();
+
+                ConnectStringModel connectModel = jsonOperate.JsonToModel<ConnectStringModel>(fileName, m);
+                
+                status.Text = connectModel.DataSource + "-" +connectModel.DataBase;
+                    
+                status.ForeColor = Color.Green;
+
+            }
+            else
+            {
+                status.Text = "未配置";
+                status.ForeColor = Color.Red;
+            }
+
+          
+                
+
+               
+            
         }
     }
 }

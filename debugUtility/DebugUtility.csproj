@@ -104,6 +104,12 @@
     <Compile Include="UI\FrmDataGridViewExtention.Designer.cs">
       <DependentUpon>FrmDataGridViewExtention.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\FrmImportExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmImportExcel.Designer.cs">
+      <DependentUpon>FrmImportExcel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FrmTreeViewColumn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +204,9 @@
     <EmbeddedResource Include="UI\FrmDataGridViewExtention.resx">
       <DependentUpon>FrmDataGridViewExtention.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmImportExcel.resx">
+      <DependentUpon>FrmImportExcel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_child.resx">
       <DependentUpon>Frm_child.cs</DependentUpon>
     </EmbeddedResource>
@@ -259,6 +268,8 @@
   <ItemGroup>
     <None Include="Resources\export.gif" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\importdir_wiz.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

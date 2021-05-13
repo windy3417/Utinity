@@ -30,7 +30,26 @@ namespace Utility.Files
 
             }
         }
-        
-      
+
+        public T JsonToModel<T>(string fileName,T m)
+        {
+            
+            if (File.Exists(fileName))
+            {
+                //读取本地json文件，为初始化外挂数据库提供信息
+
+                JsonSerializer serializer = new JsonSerializer();
+                // deserialize JSON directly from a file
+                using (StreamReader sr = new StreamReader(fileName))
+                {
+                    return m= (T)serializer.Deserialize(sr, typeof(T));
+                }
+
+
+            }
+            return m;
+        }
+
+
     }
 }
