@@ -318,6 +318,32 @@ namespace Utility.Sql
             }
         }
 
+        /// <summary>
+        /// 带参数执行对数据的增删改操作
+        /// </summary>
+        /// <param name="SQLstring"></param>
+        public static int UpdateWithparameters(string SQLstring, DataSourceType dataSourceType, SqlParameter[] sqlParameters)
+        {
+
+            using (SqlConnection connection = sqlConnection(dataSourceType))
+            {
+                connection.Open();
+
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.Connection = connection;
+                cmd.CommandText = SQLstring;
+
+                cmd.Parameters.AddRange(sqlParameters);
+                int influnce = cmd.ExecuteNonQuery();
+
+                connection.Close();
+                return influnce;
+            }
+           
+            
+        }
+
         #endregion
 
         #region 单一数据源增删改查询
