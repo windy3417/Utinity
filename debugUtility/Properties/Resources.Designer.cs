@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace debugUtility.Properties {
+namespace DebugUtility.Properties {
     using System;
     
     

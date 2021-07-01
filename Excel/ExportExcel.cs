@@ -17,8 +17,8 @@ namespace Utility.Excel
         /// <summary>
         /// 导出为Excel文件，使用NPOI.dll类
         /// </summary>
-        /// <param name="dt"></param>
-        /// <param name="reportName"></param>
+        /// <param name="dt">数据承载类为TataTable</param>
+        /// <param name="reportName">导出文件名</param>
         public void ExportExcelWithNPOI(DataTable dt, string reportName)
         {
             try

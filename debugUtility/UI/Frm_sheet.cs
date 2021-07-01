@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace debugUtility.UI
+namespace DebugUtility.UI
 {
     public partial class Frm_sheet : Form
     {

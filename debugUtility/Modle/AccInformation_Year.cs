@@ -1,8 +1,8 @@
-namespace debugUtility.Modle
+namespace DebugUtility.Modle
 {
     extern alias EF;
 
-    using debugUtility.UI;
+    using DebugUtility.UI;
     using System.ComponentModel.DataAnnotations;
 
 using System.ComponentModel.DataAnnotations.Schema;

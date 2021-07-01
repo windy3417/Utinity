@@ -86,7 +86,7 @@
             // 
             // tsb_exportDgv
             // 
-            this.tsb_exportDgv.Image = global::debugUtility.Properties.Resources.export;
+            this.tsb_exportDgv.Image = global::DebugUtility.Properties.Resources.export;
             this.tsb_exportDgv.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_exportDgv.Name = "tsb_exportDgv";
             this.tsb_exportDgv.Size = new System.Drawing.Size(76, 22);
@@ -95,7 +95,7 @@
             // 
             // tsb_exportCsv
             // 
-            this.tsb_exportCsv.Image = global::debugUtility.Properties.Resources.export;
+            this.tsb_exportCsv.Image = global::DebugUtility.Properties.Resources.export;
             this.tsb_exportCsv.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_exportCsv.Name = "tsb_exportCsv";
             this.tsb_exportCsv.Size = new System.Drawing.Size(75, 22);

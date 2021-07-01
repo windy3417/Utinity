@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace debugUtility.Modle
+namespace DebugUtility.Modle
 {
    public class Person
     {

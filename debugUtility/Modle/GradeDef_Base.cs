@@ -1,4 +1,4 @@
-namespace debugUtility.Modle
+namespace DebugUtility.Modle
 {
     extern alias EF;
     using System;

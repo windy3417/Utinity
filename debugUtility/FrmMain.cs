@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Utility;
 using Utility.UI;
 using DebugUtility.UI;
+using debugUtility.UI.Print;
 using debugUtility.UI;
 
 namespace DebugUtility
@@ -90,7 +91,7 @@ namespace DebugUtility
 
         private void 档案列表ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_listTest f = new Frm_listTest();
+            UI.Frm_listTest f = new UI.Frm_listTest();
             string tabPageText = f.Text;
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(f, tabPageText, tabControl1, panel1);
@@ -164,6 +165,14 @@ namespace DebugUtility
         private void importFromExcelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmImportExcel f = new FrmImportExcel();
+            string tabPageText = f.Text;
+            Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            embed.openForm(f, tabPageText, tabControl1, panel1);
+        }
+
+        private void mutiPagePrintingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmMutiplePagePrinting f = new FrmMutiplePagePrinting();
             string tabPageText = f.Text;
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(f, tabPageText, tabControl1, panel1);

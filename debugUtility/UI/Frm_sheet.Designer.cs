@@ -1,4 +1,4 @@
-﻿namespace debugUtility.UI
+﻿namespace DebugUtility.UI
 {
     partial class Frm_sheet
     {

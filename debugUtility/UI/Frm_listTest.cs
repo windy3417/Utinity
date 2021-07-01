@@ -8,7 +8,7 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DebugUtility.Modle;
-namespace debugUtility.UI
+namespace DebugUtility.UI
 {
     public partial class Frm_listTest : Utility.UI.Frm_archiveList
     {

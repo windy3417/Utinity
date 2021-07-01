@@ -92,16 +92,16 @@
     <Compile Include="Modle\gl_accsum.cs" />
     <Compile Include="Modle\GradeDef_Base.cs" />
     <Compile Include="Modle\Person.cs" />
-    <Compile Include="UI\FrmButtonColumn.cs">
+    <Compile Include="UI\DataGridView\FrmButtonColumn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\FrmButtonColumn.Designer.cs">
+    <Compile Include="UI\DataGridView\FrmButtonColumn.Designer.cs">
       <DependentUpon>FrmButtonColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\FrmDataGridViewExtention.cs">
+    <Compile Include="UI\DataGridView\FrmDataGridViewExtention.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\FrmDataGridViewExtention.Designer.cs">
+    <Compile Include="UI\DataGridView\FrmDataGridViewExtention.Designer.cs">
       <DependentUpon>FrmDataGridViewExtention.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\FrmImportExcel.cs">
@@ -110,10 +110,10 @@
     <Compile Include="UI\FrmImportExcel.Designer.cs">
       <DependentUpon>FrmImportExcel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\FrmTreeViewColumn.cs">
+    <Compile Include="UI\DataGridView\FrmTreeViewColumn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\FrmTreeViewColumn.Designer.cs">
+    <Compile Include="UI\DataGridView\FrmTreeViewColumn.Designer.cs">
       <DependentUpon>FrmTreeViewColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Frm_child.cs">
@@ -131,11 +131,11 @@
     <Compile Include="UI\Frm_combox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\FrmDataGridViewButtonColumn.cs">
+    <Compile Include="UI\DataGridView\FrmDataGridViewButtonColumn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\FrmDataGridViewCalarderColumn.cs" />
-    <Compile Include="UI\FrmDataGridViewCalarderColumn.Designer.cs">
+    <Compile Include="UI\DataGridView\FrmDataGridViewCalarderColumn.cs" />
+    <Compile Include="UI\DataGridView\FrmDataGridViewCalarderColumn.Designer.cs">
       <DependentUpon>FrmDataGridViewCalarderColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Frm_report.cs">
@@ -182,6 +182,12 @@
     <Compile Include="UI\Frm_treeView.Designer.cs">
       <DependentUpon>Frm_treeView.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Print\FrmMutiplePagePrinting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Print\FrmMutiplePagePrinting.Designer.cs">
+      <DependentUpon>FrmMutiplePagePrinting.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\richBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,13 +201,13 @@
     <Compile Include="UserControls\TextBoxWithButton.Designer.cs">
       <DependentUpon>TextBoxWithButton.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UI\FrmButtonColumn.resx">
+    <EmbeddedResource Include="UI\DataGridView\FrmButtonColumn.resx">
       <DependentUpon>FrmButtonColumn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\FrmDataGridViewButtonColumn.resx">
+    <EmbeddedResource Include="UI\DataGridView\FrmDataGridViewButtonColumn.resx">
       <DependentUpon>FrmDataGridViewButtonColumn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\FrmDataGridViewExtention.resx">
+    <EmbeddedResource Include="UI\DataGridView\FrmDataGridViewExtention.resx">
       <DependentUpon>FrmDataGridViewExtention.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmImportExcel.resx">
@@ -243,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_treeView.resx">
       <DependentUpon>Frm_treeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Print\FrmMutiplePagePrinting.resx">
+      <DependentUpon>FrmMutiplePagePrinting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\richBox.resx">
       <DependentUpon>richBox.cs</DependentUpon>

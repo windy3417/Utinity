@@ -1,6 +1,6 @@
 ﻿extern alias EF;
 using EF::System.Data.Entity;
-using debugUtility.Modle;
+using DebugUtility.Modle;
 using ReportTransfer.DAL.Model.U8;
 
 

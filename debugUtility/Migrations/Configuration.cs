@@ -1,4 +1,4 @@
-namespace debugUtility.Migrations
+namespace DebugUtility.Migrations
 {
     extern alias EF;
     using System;

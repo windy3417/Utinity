@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace debugUtility.Common
+namespace DebugUtility.Common
 {
  public static  class DataGridViewExtensions
     {

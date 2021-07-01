@@ -56,7 +56,7 @@
             // 
             // tspImport
             // 
-            this.tspImport.Image = global::debugUtility.Properties.Resources.importdir_wiz;
+            this.tspImport.Image = global::DebugUtility.Properties.Resources.importdir_wiz;
             this.tspImport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tspImport.Name = "tspImport";
             this.tspImport.Size = new System.Drawing.Size(52, 22);
