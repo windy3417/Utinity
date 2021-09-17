@@ -11,7 +11,7 @@ namespace Utility.Sql
 {
     public class Sqlhelper
     {
-                       
+
         #region 动态数据源增删改查
 
         /// <summary>
@@ -22,7 +22,8 @@ namespace Utility.Sql
             u8,
             plug,
             business,
-            it
+            it,
+            ufsystem
         }
 
         #region 数据库连接
@@ -42,7 +43,7 @@ namespace Utility.Sql
         /// <returns></returns>
         public static SqlConnection sqlConnection(DataSourceType dataSourceType)
         {
-            
+
             string conString;
             string deConString;
             SqlConnection sqlConnection;
@@ -50,6 +51,17 @@ namespace Utility.Sql
             if (dataSourceType == DataSourceType.u8)
             {
                 string connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.u8);
+                conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
+                deConString = Encrypt.Decode(conString);
+
+                sqlConnection = new SqlConnection(deConString);
+
+                return sqlConnection;
+            }
+
+            if (dataSourceType == DataSourceType.ufsystem)
+            {
+                string connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.ufsystem);
                 conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
                 deConString = Encrypt.Decode(conString);
 
@@ -80,9 +92,13 @@ namespace Utility.Sql
 
                     return sqlConnection;
                 }
-                
+
                 conString = ConfigurationManager.ConnectionStrings[Enum.GetName(typeof(DataSourceType), DataSourceType.business)].ToString();
+                //conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
                 deConString = Encrypt.Decode(conString);
+
+
+
 
                 sqlConnection = new SqlConnection(deConString);
 
@@ -157,7 +173,7 @@ namespace Utility.Sql
 
             return reader;
 
-                                   
+
 
         }
 
@@ -180,12 +196,12 @@ namespace Utility.Sql
             cmd.Connection = connection;
             cmd.CommandText = strSql;
 
-                      
+
             SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
 
             return reader;
 
-                      
+
 
 
         }
@@ -229,7 +245,7 @@ namespace Utility.Sql
         /// <param name="SQLstring"></param>
         /// <param name="dataSourceType" >数据源类型</param>
         /// <returns>执行结果成功标志</returns>
-        public static bool  ExecuteWithNoneParameter(string SQLstring,DataSourceType dataSourceType)
+        public static bool ExecuteWithNoneParameter(string SQLstring, DataSourceType dataSourceType)
         {
             try
             {
@@ -245,20 +261,20 @@ namespace Utility.Sql
 
                 connection.Close();
                 return true;
-               
+
             }
             catch (Exception e)
             {
 
                 MessageBox.Show(e.Message + e.InnerException, "数据库执行出错");
                 return false;
-                
+
             }
 
-           
+
         }
 
-       
+
 
         //暂用于创建数据表的事务
         /// <summary>
@@ -287,20 +303,20 @@ namespace Utility.Sql
                 try
                 {
                     command.CommandText = SQLstring;
-                       
+
                     command.ExecuteNonQuery();
-                   
+
 
                     // Attempt to commit the transaction.
                     transaction.Commit();
                     return true;
-                   
+
                 }
                 catch (Exception ex)
                 {
                     return false;
-                    MessageBox.Show("事务执行失败" +ex.Message+ex.InnerException, "事务执行提示");
-                   
+                    MessageBox.Show("事务执行失败" + ex.Message + ex.InnerException, "事务执行提示");
+
 
                     // Attempt to roll back the transaction.
                     try
@@ -340,8 +356,8 @@ namespace Utility.Sql
                 connection.Close();
                 return influnce;
             }
-           
-            
+
+
         }
 
         #endregion
@@ -372,7 +388,7 @@ namespace Utility.Sql
 
 
         }
-              #region 查询
+        #region 查询
         /// <summary> 
         /// 带参数执行查询并将结果返回至DataTable中 
         /// </summary> 
@@ -434,7 +450,7 @@ namespace Utility.Sql
             }
         }
 
-        
+
 
         /// <summary> 
         /// 返回sqlDataReader 
@@ -470,7 +486,7 @@ namespace Utility.Sql
         }
         #endregion
 
-              #region 增删改
+        #region 增删改
 
         /// <summary>
         /// 不带参数执行对数据的增删改操作

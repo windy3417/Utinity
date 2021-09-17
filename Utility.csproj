@@ -99,8 +99,8 @@
     <Compile Include="Files\FilesOperate.cs" />
     <Compile Include="Files\ImportFromExcel.cs" />
     <Compile Include="Files\JsonOperate.cs" />
-    <Compile Include="Modle\ConnectStringModel.cs" />
-    <Compile Include="Modle\CurrentUser.cs" />
+    <Compile Include="Model\ConnectStringModel.cs" />
+    <Compile Include="Model\CurrentUser.cs" />
     <Compile Include="Sql\Sqlhelper.cs" />
     <Compile Include="Sql\SQLiteColumn.cs" />
     <Compile Include="Sql\SQLiteColumnList.cs" />
@@ -164,17 +164,23 @@
     <Compile Include="UControl\VeticalLine.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Frm_login.cs">
+    <Compile Include="UI\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Frm_login.Designer.cs">
-      <DependentUpon>Frm_login.cs</DependentUpon>
+    <Compile Include="UI\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Frm_loginConfig.cs">
+    <Compile Include="UI\FrmLoginConfigDB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Frm_loginConfig.Designer.cs">
-      <DependentUpon>Frm_loginConfig.cs</DependentUpon>
+    <Compile Include="UI\FrmLoginConfigDB.Designer.cs">
+      <DependentUpon>FrmLoginConfigDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmLoginConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmLoginConfig.Designer.cs">
+      <DependentUpon>FrmLoginConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\FrmItDoubleDbConfig.cs">
       <SubType>Form</SubType>
@@ -256,11 +262,14 @@
     <EmbeddedResource Include="UControl\UtoolStrip.resx">
       <DependentUpon>UtoolStrip.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Frm_login.resx">
-      <DependentUpon>Frm_login.cs</DependentUpon>
+    <EmbeddedResource Include="UI\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Frm_loginConfig.resx">
-      <DependentUpon>Frm_loginConfig.cs</DependentUpon>
+    <EmbeddedResource Include="UI\FrmLoginConfigDB.resx">
+      <DependentUpon>FrmLoginConfigDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmLoginConfig.resx">
+      <DependentUpon>FrmLoginConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmItDoubleDbConfig.resx">
       <DependentUpon>FrmItDoubleDbConfig.cs</DependentUpon>

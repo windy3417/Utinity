@@ -16,9 +16,9 @@ namespace Utility.UI
     /// <summary>
     /// 重注册时要调用该窗体，故设定访问域为public
     /// </summary>
-    public partial class Frm_login : Form
+    public partial class FrmLogin : Form
     {
-        public Frm_login()
+        public FrmLogin()
         {
             InitializeComponent();
             intializeControlState();
@@ -154,7 +154,7 @@ namespace Utility.UI
         /// <param name="e"></param>
         private void btn_conect_Click(object sender, EventArgs e)
         {
-            Utility.UI.Frm_loginConfig f = new Utility.UI.Frm_loginConfig();
+            Utility.UI.FrmLoginConfig f = new Utility.UI.FrmLoginConfig();
             f.btn_adminCertain.Click += adminSetup;
             
             //以模式窗体显示

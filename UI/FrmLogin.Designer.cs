@@ -1,6 +1,6 @@
 ﻿namespace Utility.UI
 {
-    partial class Frm_login
+    partial class FrmLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_login));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.lbl_authorizer = new System.Windows.Forms.Label();
             this.lbl_pwd = new System.Windows.Forms.Label();
             this.txt_pwd = new System.Windows.Forms.TextBox();

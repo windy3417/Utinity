@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7B9E3396-F827-4287-956D-0D071EBA9F42}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>debugUtility</RootNamespace>
+    <RootNamespace>DebugUtility</RootNamespace>
     <AssemblyName>debugUtility</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -53,6 +53,9 @@
     <Reference Include="ReflectionMagic, Version=4.1.0.0, Culture=neutral, PublicKeyToken=c4c75393d7e08e8e, processorArchitecture=MSIL">
       <HintPath>..\packages\ReflectionMagic.4.1.0\lib\net45\ReflectionMagic.dll</HintPath>
     </Reference>
+    <Reference Include="SMBLibrary, Version=1.4.6.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SMBLibrary.1.4.6.1\lib\net40\SMBLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -77,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Common\DataGridViewCalendarColumn.cs" />
     <Compile Include="Common\DataGridViewExtensions.cs" />
+    <Compile Include="Common\SMBclient.cs" />
     <Compile Include="Common\UIHintMappings.cs" />
     <Compile Include="DAL\TestContext.cs" />
     <Compile Include="DAL\U8Context.cs" />
@@ -92,6 +96,12 @@
     <Compile Include="Modle\gl_accsum.cs" />
     <Compile Include="Modle\GradeDef_Base.cs" />
     <Compile Include="Modle\Person.cs" />
+    <Compile Include="UI\ClassTest\FrmSMB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ClassTest\FrmSMB.Designer.cs">
+      <DependentUpon>FrmSMB.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\DataGridView\FrmButtonColumn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,7 +138,7 @@
     <Compile Include="UI\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Frm_combox.cs">
+    <Compile Include="UI\DataGridView\FrmComboxColumn.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\DataGridView\FrmDataGridViewButtonColumn.cs">
@@ -201,6 +211,9 @@
     <Compile Include="UserControls\TextBoxWithButton.Designer.cs">
       <DependentUpon>TextBoxWithButton.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\ClassTest\FrmSMB.resx">
+      <DependentUpon>FrmSMB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\DataGridView\FrmButtonColumn.resx">
       <DependentUpon>FrmButtonColumn.cs</DependentUpon>
     </EmbeddedResource>
@@ -221,6 +234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DataGridView\FrmComboxColumn.resx">
+      <DependentUpon>FrmComboxColumn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_report.resx">
       <DependentUpon>Frm_report.cs</DependentUpon>
@@ -280,5 +296,6 @@
   <ItemGroup>
     <None Include="Resources\importdir_wiz.gif" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

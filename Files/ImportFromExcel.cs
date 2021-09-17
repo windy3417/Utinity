@@ -18,12 +18,15 @@ namespace Utility.Files
         /// 返回Excel文件名
         /// </summary>
         /// <returns></returns>
-        public string OpenExcelFile()
+        public string OpenExcelFile(out string ext)
         {
             OpenFileDialog openFileDialogExcel = new OpenFileDialog();
 
+            
             openFileDialogExcel.Filter = "excel files (*.xls;*xlsx)|*.xls;*.xlsx";
             openFileDialogExcel.ShowDialog();
+
+            ext = openFileDialogExcel.DefaultExt;
             return openFileDialogExcel.FileName;
         }
 
@@ -43,7 +46,8 @@ namespace Utility.Files
 
 
             //获取excel文件名
-            string excelFileName = this.OpenExcelFile();
+            string ext;
+            string excelFileName = this.OpenExcelFile(out ext);
             if (excelFileName.Length > 0)
             {
                 string stringConectExcel = "Provider=Microsoft.ace.OLEDB.12.0;"
@@ -69,13 +73,30 @@ namespace Utility.Files
             }
         }
 
+        /// <summary>
+        /// 暂未使用
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        /// <param name="dataTable"></param>
         public void ImportFileFromExcelWithNPOI(DataGridView dataGridView, DataTable dataTable)
         {
+            string ext;
+            XSSFWorkbook xSSF;
             HSSFWorkbook hssfwb;
-            string excelFileName = this.OpenExcelFile();
+            string excelFileName = this.OpenExcelFile(out ext);
             using (FileStream file = new FileStream(excelFileName, FileMode.Open, FileAccess.Read))
             {
+                if (ext=="xls")
+                {
+                    xSSF = new XSSFWorkbook(file);
+                }
+                if (ext=="xlsx")
+                {
+                    hssfwb = new HSSFWorkbook(file);
+                }
+
                 hssfwb = new HSSFWorkbook(file);
+
             }
 
             ISheet sheet = hssfwb.GetSheet("Arkusz1");
@@ -88,13 +109,14 @@ namespace Utility.Files
             }
         }
 
+
         public void ReadExcelWithNPOI(DataGridView dataGridView,DataTable dataTable)
         {
             try
             {
-
+                string ext;
                 //获取excel文件名
-                string excelFileName = this.OpenExcelFile();
+                string excelFileName = this.OpenExcelFile(out ext);
 
                 if (System.IO.File.Exists(excelFileName))
                 {

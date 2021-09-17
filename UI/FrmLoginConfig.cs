@@ -12,10 +12,10 @@ using Utility.Model;
 
 namespace Utility.UI
 {
-    public partial class Frm_loginConfig : Form
+    public partial class FrmLoginConfig : Form
     {
 
-        public Frm_loginConfig()
+        public FrmLoginConfig()
         {
             InitializeComponent();
             initializeControlState();
@@ -178,14 +178,14 @@ namespace Utility.UI
             string encryptConString = Utility.Encrypt.Encode(conString);
 
 
-            if (ConfigurationManager.ConnectionStrings["businessConection"] != null)
+            if (ConfigurationManager.ConnectionStrings["business"] != null)
             {
                 isModified = true;
             }
             //新建一个连接字符串实例,三个参数的构造函数可以兼容EF的连接字符串
             //因为EF可以连接多种数据库，所以必须提供providerName
 
-            ConnectionStringSettings mySettings = new ConnectionStringSettings("businessConection", encryptConString, provider);
+            ConnectionStringSettings mySettings = new ConnectionStringSettings("business", encryptConString, provider);
 
             // 打开可执行的配置文件*.exe.config 
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
@@ -193,7 +193,7 @@ namespace Utility.UI
             // 如果连接串已存在，首先删除它 
             if (isModified)
             {
-                config.ConnectionStrings.ConnectionStrings.Remove("businessConection");
+                config.ConnectionStrings.ConnectionStrings.Remove("business");
             }
             // 将新的连接串添加到配置文件中. 
             config.ConnectionStrings.ConnectionStrings.Add(mySettings);
@@ -218,7 +218,8 @@ namespace Utility.UI
         private void btn_plugConcet_Click(object sender, EventArgs e)
         {
             //获取数据库连接字符串
-            string con = "Data Source=" + txt_plugServer.Text + ";Initial Catalog=" + txt_plugDataBase.Text + ";User ID= " + txt_plugUser.Text + ";Password=" +
+            string con = "Data Source=" + txt_plugServer.Text + ";Initial Catalog=" + txt_plugDataBase.Text + ";" +
+                "User ID= " + txt_plugUser.Text + ";Password=" +
                 txt_plugPWD.Text + ";Pooling=False";
 
             //创建连接对象

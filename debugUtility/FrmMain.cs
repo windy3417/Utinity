@@ -12,6 +12,7 @@ using Utility.UI;
 using DebugUtility.UI;
 using debugUtility.UI.Print;
 using debugUtility.UI;
+using debugUtility.UI.ClassTest;
 
 namespace DebugUtility
 {
@@ -173,6 +174,30 @@ namespace DebugUtility
         private void mutiPagePrintingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmMutiplePagePrinting f = new FrmMutiplePagePrinting();
+            string tabPageText = f.Text;
+            Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            embed.openForm(f, tabPageText, tabControl1, panel1);
+        }
+
+        private void 业务及外挂数据库配置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmLoginConfigDB f = new FrmLoginConfigDB();
+            string tabPageText = f.Text;
+            Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            embed.openForm(f, tabPageText, tabControl1, panel1);
+        }
+
+        private void classTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmComboxColumn f = new FrmComboxColumn();
+            string tabPageText = f.Text;
+            Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            embed.openForm(f, tabPageText, tabControl1, panel1);
+        }
+
+        private void smbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmSMB f = new FrmSMB();
             string tabPageText = f.Text;
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(f, tabPageText, tabControl1, panel1);

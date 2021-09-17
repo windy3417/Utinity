@@ -5,17 +5,18 @@ using System.Windows.Forms;
 
 namespace DebugUtility.UI
 {
-    public class Frm_combox : Form
+    public class FrmComboxColumn : Form
     {
         private List<Employee> employees = new List<Employee>();
         private List<Task> tasks = new List<Task>();
         private Button reportButton = new Button();
+        private ToolStripButton toolStripButton1;
         private DataGridView dataGridView1 = new DataGridView();
 
      
 
 
-        public  Frm_combox()
+        public  FrmComboxColumn()
         {
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.AutoSizeColumnsMode =
@@ -134,6 +135,19 @@ namespace DebugUtility.UI
                 MessageBox.Show(String.Format(
                     "Task {0} is unassigned.", taskID), "Status Request");
             }
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // FrmComboxColumn
+            // 
+            this.ClientSize = new System.Drawing.Size(730, 424);
+            this.Name = "FrmComboxColumn";
+            this.Text = "类库测试";
+            this.ResumeLayout(false);
+
         }
     }
 

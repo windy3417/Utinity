@@ -47,13 +47,16 @@
             this.treeViewColumnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewExtentionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importFromExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mutiPagePrintingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.classTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.登录数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.it数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.业务及外挂数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.horizonLine1 = new Utility.UControl.HorizonLine();
-            this.mutiPagePrintingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.smbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -154,7 +157,9 @@
             this.treeViewColumnToolStripMenuItem,
             this.dataGridViewExtentionToolStripMenuItem,
             this.importFromExcelToolStripMenuItem,
-            this.mutiPagePrintingToolStripMenuItem});
+            this.mutiPagePrintingToolStripMenuItem,
+            this.classTestToolStripMenuItem,
+            this.smbToolStripMenuItem});
             this.功能测试ToolStripMenuItem.Name = "功能测试ToolStripMenuItem";
             this.功能测试ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.功能测试ToolStripMenuItem.Text = "功能测试";
@@ -215,13 +220,28 @@
             this.importFromExcelToolStripMenuItem.Text = "importFromExcel";
             this.importFromExcelToolStripMenuItem.Click += new System.EventHandler(this.importFromExcelToolStripMenuItem_Click);
             // 
+            // mutiPagePrintingToolStripMenuItem
+            // 
+            this.mutiPagePrintingToolStripMenuItem.Name = "mutiPagePrintingToolStripMenuItem";
+            this.mutiPagePrintingToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.mutiPagePrintingToolStripMenuItem.Text = "MutiPagePrinting";
+            this.mutiPagePrintingToolStripMenuItem.Click += new System.EventHandler(this.mutiPagePrintingToolStripMenuItem_Click);
+            // 
+            // classTestToolStripMenuItem
+            // 
+            this.classTestToolStripMenuItem.Name = "classTestToolStripMenuItem";
+            this.classTestToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.classTestToolStripMenuItem.Text = "comboxColumn";
+            this.classTestToolStripMenuItem.Click += new System.EventHandler(this.classTestToolStripMenuItem_Click);
+            // 
             // 配置ToolStripMenuItem
             // 
             this.配置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.数据库配置ToolStripMenuItem,
             this.登录数据库配置ToolStripMenuItem,
             this.adminToolStripMenuItem,
-            this.it数据库配置ToolStripMenuItem});
+            this.it数据库配置ToolStripMenuItem,
+            this.业务及外挂数据库配置ToolStripMenuItem});
             this.配置ToolStripMenuItem.Name = "配置ToolStripMenuItem";
             this.配置ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.配置ToolStripMenuItem.Text = "配置";
@@ -229,30 +249,37 @@
             // 数据库配置ToolStripMenuItem
             // 
             this.数据库配置ToolStripMenuItem.Name = "数据库配置ToolStripMenuItem";
-            this.数据库配置ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.数据库配置ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.数据库配置ToolStripMenuItem.Text = "数据库配置";
             this.数据库配置ToolStripMenuItem.Click += new System.EventHandler(this.数据库配置ToolStripMenuItem_Click);
             // 
             // 登录数据库配置ToolStripMenuItem
             // 
             this.登录数据库配置ToolStripMenuItem.Name = "登录数据库配置ToolStripMenuItem";
-            this.登录数据库配置ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.登录数据库配置ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.登录数据库配置ToolStripMenuItem.Text = "登录数据库配置";
             this.登录数据库配置ToolStripMenuItem.Click += new System.EventHandler(this.登录数据库配置ToolStripMenuItem_Click);
             // 
             // adminToolStripMenuItem
             // 
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.adminToolStripMenuItem.Text = "admin";
             this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
             // 
             // it数据库配置ToolStripMenuItem
             // 
             this.it数据库配置ToolStripMenuItem.Name = "it数据库配置ToolStripMenuItem";
-            this.it数据库配置ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.it数据库配置ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.it数据库配置ToolStripMenuItem.Text = "it数据库配置";
             this.it数据库配置ToolStripMenuItem.Click += new System.EventHandler(this.it数据库配置ToolStripMenuItem_Click);
+            // 
+            // 业务及外挂数据库配置ToolStripMenuItem
+            // 
+            this.业务及外挂数据库配置ToolStripMenuItem.Name = "业务及外挂数据库配置ToolStripMenuItem";
+            this.业务及外挂数据库配置ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.业务及外挂数据库配置ToolStripMenuItem.Text = "业务及外挂数据库配置";
+            this.业务及外挂数据库配置ToolStripMenuItem.Click += new System.EventHandler(this.业务及外挂数据库配置ToolStripMenuItem_Click);
             // 
             // horizonLine1
             // 
@@ -263,12 +290,12 @@
             this.horizonLine1.Size = new System.Drawing.Size(288, 1);
             this.horizonLine1.TabIndex = 0;
             // 
-            // mutiPagePrintingToolStripMenuItem
+            // smbToolStripMenuItem
             // 
-            this.mutiPagePrintingToolStripMenuItem.Name = "mutiPagePrintingToolStripMenuItem";
-            this.mutiPagePrintingToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
-            this.mutiPagePrintingToolStripMenuItem.Text = "MutiPagePrinting";
-            this.mutiPagePrintingToolStripMenuItem.Click += new System.EventHandler(this.mutiPagePrintingToolStripMenuItem_Click);
+            this.smbToolStripMenuItem.Name = "smbToolStripMenuItem";
+            this.smbToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.smbToolStripMenuItem.Text = "smb";
+            this.smbToolStripMenuItem.Click += new System.EventHandler(this.smbToolStripMenuItem_Click);
             // 
             // Frm_main
             // 
@@ -317,6 +344,9 @@
         private System.Windows.Forms.ToolStripMenuItem dataGridViewExtentionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importFromExcelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mutiPagePrintingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 业务及外挂数据库配置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem classTestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem smbToolStripMenuItem;
     }
 }
 
