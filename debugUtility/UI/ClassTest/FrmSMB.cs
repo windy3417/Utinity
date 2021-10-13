@@ -198,5 +198,18 @@ namespace debugUtility.UI.ClassTest
                 MessageBox.Show(ex.Message + ex.InnerException);
             }
         }
+
+        private void tsbFileList_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.ShowDialog();
+            string directory = folderBrowserDialog.SelectedPath;
+            Utility.Files.FileList fileList = new Utility.Files.FileList();
+            ;
+            foreach (var item in fileList.fileList(directory))
+            {
+                richTextBox1.Text += "  " + item;
+            }
+        }
     }
 }

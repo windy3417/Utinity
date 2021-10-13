@@ -97,6 +97,7 @@
     <Compile Include="Excel\ExportExcel.cs" />
     <Compile Include="Excel\ReadCellsValue.cs" />
     <Compile Include="Files\ExportCsv.cs" />
+    <Compile Include="Files\FileList.cs" />
     <Compile Include="Files\FilesOperate.cs" />
     <Compile Include="Files\ImportFromExcel.cs" />
     <Compile Include="Files\JsonOperate.cs" />

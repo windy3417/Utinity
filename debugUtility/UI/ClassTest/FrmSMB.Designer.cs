@@ -36,6 +36,7 @@
             this.tsbUpload = new System.Windows.Forms.ToolStripButton();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tsbReadExcel = new System.Windows.Forms.ToolStripButton();
+            this.tsbFileList = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +47,8 @@
             this.tsbDownload,
             this.tsbRead,
             this.tsbUpload,
-            this.tsbReadExcel});
+            this.tsbReadExcel,
+            this.tsbFileList});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 25);
@@ -108,6 +110,16 @@
             this.tsbReadExcel.Text = "excel";
             this.tsbReadExcel.Click += new System.EventHandler(this.tsbReadExcel_Click);
             // 
+            // tsbFileList
+            // 
+            this.tsbFileList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbFileList.Image = ((System.Drawing.Image)(resources.GetObject("tsbFileList.Image")));
+            this.tsbFileList.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFileList.Name = "tsbFileList";
+            this.tsbFileList.Size = new System.Drawing.Size(60, 22);
+            this.tsbFileList.Text = "文件清单";
+            this.tsbFileList.Click += new System.EventHandler(this.tsbFileList_Click);
+            // 
             // FrmSMB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -133,5 +145,6 @@
         private System.Windows.Forms.ToolStripButton tsbRead;
         private System.Windows.Forms.ToolStripButton tsbUpload;
         private System.Windows.Forms.ToolStripButton tsbReadExcel;
+        private System.Windows.Forms.ToolStripButton tsbFileList;
     }
 }
