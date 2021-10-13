@@ -95,6 +95,7 @@
     <Compile Include="DAL\DbConnect.cs" />
     <Compile Include="DAL\SaveArchivesService.cs" />
     <Compile Include="Excel\ExportExcel.cs" />
+    <Compile Include="Excel\ReadCellsValue.cs" />
     <Compile Include="Files\ExportCsv.cs" />
     <Compile Include="Files\FilesOperate.cs" />
     <Compile Include="Files\ImportFromExcel.cs" />
@@ -116,7 +117,7 @@
     <Compile Include="UControl\HorizonLine.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Encryption.cs" />
+    <Compile Include="Encrypt\Encryption.cs" />
     <Compile Include="Files\DownLoadHelper.cs" />
     <Compile Include="Files\FileDown.cs" />
     <Compile Include="Files\FileUp.cs" />

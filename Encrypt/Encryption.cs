@@ -2,6 +2,8 @@
 using System.Security.Cryptography;
 using System.IO;
 
+using System.Text;
+
 namespace Utility
 {
     /// <summary>
@@ -54,6 +56,24 @@ namespace Utility
             return objStreamReader.ReadToEnd();
         }
 
+        /// <summary>
+        /// SHA1 Encryption
+        /// </summary>
+        /// <param name="str">The string to be encrypted</param>
+        /// <returns></returns>
+        public static string Sha1(string str)
+        {
+          
+
+            using (SHA1 sha1 = SHA1.Create())
+            {
+                byte[] bytes_sha1_in = Encoding.UTF8.GetBytes(str);
+                byte[] bytes_sha1_out = sha1.ComputeHash(bytes_sha1_in);
+                string str_sha1_out = BitConverter.ToString(bytes_sha1_out);
+                str_sha1_out = str_sha1_out.Replace("-", "");
+                return str_sha1_out;
+            }
+        }
 
 
         /// <summary>

@@ -146,6 +146,8 @@ namespace Utility.Sql
             }
         }
 
+        #region 返回SqlDataReader
+
         /// <summary> 
         /// 返回sqlDataReader 
         /// </summary> 
@@ -205,6 +207,9 @@ namespace Utility.Sql
 
 
         }
+
+        #endregion
+
 
 
         /// <summary>

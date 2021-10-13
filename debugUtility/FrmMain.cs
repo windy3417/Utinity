@@ -13,6 +13,7 @@ using DebugUtility.UI;
 using debugUtility.UI.Print;
 using debugUtility.UI;
 using debugUtility.UI.ClassTest;
+using DebugUtility.UI.ClassTest;
 
 namespace DebugUtility
 {
@@ -198,6 +199,14 @@ namespace DebugUtility
         private void smbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmSMB f = new FrmSMB();
+            string tabPageText = f.Text;
+            Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            embed.openForm(f, tabPageText, tabControl1, panel1);
+        }
+
+        private void sha1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmEncrypt f = new FrmEncrypt();
             string tabPageText = f.Text;
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(f, tabPageText, tabControl1, panel1);

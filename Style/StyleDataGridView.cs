@@ -56,7 +56,7 @@ namespace Utility.Style
 
 
         /// <summary>
-        /// 表头样式
+        /// 表头样式，局中、加粗
         /// </summary>
         /// <param name="dataGridView"></param>
         public void DataGridViewColumnHeaderStyle(DataGridView dataGridView)
