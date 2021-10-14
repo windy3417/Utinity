@@ -103,6 +103,7 @@
     <Compile Include="Files\JsonOperate.cs" />
     <Compile Include="Model\ConnectStringModel.cs" />
     <Compile Include="Model\CurrentUser.cs" />
+    <Compile Include="Model\FileInfoModel.cs" />
     <Compile Include="Sql\Sqlhelper.cs" />
     <Compile Include="Sql\SQLiteColumn.cs" />
     <Compile Include="Sql\SQLiteColumnList.cs" />

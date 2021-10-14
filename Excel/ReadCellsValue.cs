@@ -12,7 +12,7 @@ namespace Utility.Excel
   public  class ReadCellsValue
     {
         /// <summary>
-        /// 
+        /// 获取多个单元格数据
         /// </summary>
         /// <param name="bookName"></param>
         /// <param name="sheetName"></param>
@@ -22,13 +22,15 @@ namespace Utility.Excel
         public List<string> readExcelWithNPOI(string bookName, string sheetName, string ext ,int[,] cells )
         {
           
-            XSSFWorkbook xSSF;
-            HSSFWorkbook hssfwb;
-            ISheet sheet;
+       
            
             using (FileStream file = new FileStream(bookName, FileMode.Open, FileAccess.Read))
             {
-                if (ext == "xlsx")
+                XSSFWorkbook xSSF;
+                HSSFWorkbook hssfwb;
+                ISheet sheet;
+
+                if (ext == ".xlsx")
                 {
                     xSSF = new XSSFWorkbook(file);
                     sheet = xSSF.GetSheet(sheetName);
@@ -54,7 +56,7 @@ namespace Utility.Excel
 
                     return cellsValue;
                 }
-                if (ext == "xls")
+                if (ext == ".xls")
                 {
                     hssfwb = new HSSFWorkbook(file);
                     sheet = hssfwb.GetSheet(sheetName);
@@ -64,15 +66,12 @@ namespace Utility.Excel
                     {
 
 
-
-
                         //全部转换成字符串，否则遇到date或numric类型的数据需要更换取数方法
                         //注意是把二维数据中的值作为EXCEL单据格的索引号，而非二维数组中的索引等同于EXCEL单据格的索引号
                         sheet.GetRow(cells[i, 0]).GetCell(cells[i, 1]).SetCellType(CellType.String);
 
                         string cellValue = sheet.GetRow(cells[i, 0]).GetCell(cells[i, 1]).StringCellValue;
                         cellsValue.Add(cellValue);
-
 
 
 
@@ -94,6 +93,144 @@ namespace Utility.Excel
             
                 
             }
+
+        /// <summary>
+        /// 获取一个单元格数据
+        /// </summary>
+        /// <param name="bookName"></param>
+        /// <param name="sheetName"></param>
+        /// <param name="ext"></param>
+        /// <param name="cells"></param>
+        /// <returns></returns>
+        public string readExcelNPOI(string bookName, string sheetName, string ext, int[,] cells)
+        {
+
+
+
+            using (FileStream file = new FileStream(bookName, FileMode.Open, FileAccess.Read))
+            {
+                XSSFWorkbook xSSF;
+                HSSFWorkbook hssfwb;
+                ISheet sheet;
+
+                if (ext == ".xlsx")
+                {
+                    xSSF = new XSSFWorkbook(file);
+                    sheet = xSSF.GetSheet(sheetName);
+                 
+
+
+
+                        //全部转换成字符串，否则遇到date或numric类型的数据需要更换取数方法
+                        //注意是把二维数据中的值作为EXCEL单据格的索引号，而非二维数组中的索引等同于EXCEL单据格的索引号
+                        sheet.GetRow(cells[0, 0]).GetCell(cells[0, 1]).SetCellType(CellType.String);
+
+                        string cellValue = sheet.GetRow(cells[0, 0]).GetCell(cells[0, 1]).StringCellValue;
+                    return cellValue;
+
+
+
+
+                }
+
+                    
+                
+                if (ext == ".xls")
+                {
+                    hssfwb = new HSSFWorkbook(file);
+                    sheet = hssfwb.GetSheet(sheetName);
+                    List<string> cellsValue = new List<string>();
+
+                 
+                        //全部转换成字符串，否则遇到date或numric类型的数据需要更换取数方法
+                        //注意是把二维数据中的值作为EXCEL单据格的索引号，而非二维数组中的索引等同于EXCEL单据格的索引号
+                        sheet.GetRow(cells[0, 0]).GetCell(cells[0, 1]).SetCellType(CellType.String);
+
+                        string cellValue = sheet.GetRow(cells[0, 0]).GetCell(cells[0, 1]).StringCellValue;
+                      
+
+
+
+
+                    
+
+                    return cellValue;
+                }
+
+                return null;
+
+
+            }
+
+
+
+
+
+
+
+
+        }
+
+        /// <summary>
+        /// 获取一个单元格数据
+        /// </summary>
+        /// <param name="bookName"></param>
+        /// <param name="sheetName"></param>
+        /// <param name="ext"></param>
+        /// <param name="rowNo"></param>
+        /// <param name="columnNo"></param>
+        /// <returns></returns>
+        public string readExcelWithNPOI(string bookName, string sheetName, string ext, int rowNo,int columnNo)
+        {
+                     
+
+            using (FileStream file = new FileStream(bookName, FileMode.Open, FileAccess.Read))
+            {
+                XSSFWorkbook xSSF;
+                HSSFWorkbook hssfwb;
+                ISheet sheet;
+                string cellValue;
+
+                if (ext == ".xlsx")
+                {
+                    xSSF = new XSSFWorkbook(file);
+                    sheet = xSSF.GetSheet(sheetName);
+
+
+                    sheet.GetRow(rowNo).GetCell(columnNo).SetCellType(CellType.String);
+                    cellValue  = sheet.GetRow(rowNo).GetCell(columnNo).StringCellValue;
+                    return cellValue;
+
+                }
+
+                               
+                if (ext == ".xls")
+                {
+                    hssfwb = new HSSFWorkbook(file);
+                    sheet = hssfwb.GetSheet(sheetName);
+
+                    sheet.GetRow(rowNo).GetCell(columnNo).SetCellType(CellType.String);
+                    cellValue = sheet.GetRow(rowNo).GetCell(columnNo).StringCellValue;
+                        
+                                                          
+
+                    return cellValue;
+                }
+
+                return null;
+
+
+            }
+
+
+
+
+
+
+
+
         }
     }
+}
+    
 
