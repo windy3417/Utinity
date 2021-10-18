@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+
 
 namespace Utility.Validate
 {
-  public  class Validate
+  public static class Validate
     {
         /// <summary>
         /// 文本框不能为空校验
         /// </summary>
-        public bool inputVlidate(TableLayoutPanel recordeContainer)
+        public static bool inputVlidate(TableLayoutPanel recordeContainer)
         {
 
             for (int i = 0; i < recordeContainer.Controls.Count;)
@@ -32,6 +34,21 @@ namespace Utility.Validate
             return true;
 
 
+        }
+
+        /// <summary>
+        /// 验证是否为数字
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public static bool validateNumber(string number)
+        {
+            if (Regex.Match(number, "^\\d+$").Success)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
