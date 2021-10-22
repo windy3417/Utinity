@@ -132,6 +132,9 @@
     <Compile Include="UI\DataGridView\FrmDataGridViewExtention.Designer.cs">
       <DependentUpon>FrmDataGridViewExtention.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ErrorProvider.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\FrmImportExcel.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -50,6 +50,7 @@
             this.mutiPagePrintingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.classTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.smbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sha1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.登录数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,7 +58,7 @@
             this.it数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.业务及外挂数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.horizonLine1 = new Utility.UControl.HorizonLine();
-            this.sha1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.erroProviderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -161,7 +162,8 @@
             this.mutiPagePrintingToolStripMenuItem,
             this.classTestToolStripMenuItem,
             this.smbToolStripMenuItem,
-            this.sha1ToolStripMenuItem});
+            this.sha1ToolStripMenuItem,
+            this.erroProviderToolStripMenuItem});
             this.功能测试ToolStripMenuItem.Name = "功能测试ToolStripMenuItem";
             this.功能测试ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.功能测试ToolStripMenuItem.Text = "功能测试";
@@ -243,6 +245,13 @@
             this.smbToolStripMenuItem.Text = "smb";
             this.smbToolStripMenuItem.Click += new System.EventHandler(this.smbToolStripMenuItem_Click);
             // 
+            // sha1ToolStripMenuItem
+            // 
+            this.sha1ToolStripMenuItem.Name = "sha1ToolStripMenuItem";
+            this.sha1ToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.sha1ToolStripMenuItem.Text = "sha1";
+            this.sha1ToolStripMenuItem.Click += new System.EventHandler(this.sha1ToolStripMenuItem_Click);
+            // 
             // 配置ToolStripMenuItem
             // 
             this.配置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -299,12 +308,12 @@
             this.horizonLine1.Size = new System.Drawing.Size(288, 1);
             this.horizonLine1.TabIndex = 0;
             // 
-            // sha1ToolStripMenuItem
+            // erroProviderToolStripMenuItem
             // 
-            this.sha1ToolStripMenuItem.Name = "sha1ToolStripMenuItem";
-            this.sha1ToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
-            this.sha1ToolStripMenuItem.Text = "sha1";
-            this.sha1ToolStripMenuItem.Click += new System.EventHandler(this.sha1ToolStripMenuItem_Click);
+            this.erroProviderToolStripMenuItem.Name = "erroProviderToolStripMenuItem";
+            this.erroProviderToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.erroProviderToolStripMenuItem.Text = "erroProvider";
+            this.erroProviderToolStripMenuItem.Click += new System.EventHandler(this.erroProviderToolStripMenuItem_Click);
             // 
             // Frm_main
             // 
@@ -357,6 +366,7 @@
         private System.Windows.Forms.ToolStripMenuItem classTestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem smbToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sha1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem erroProviderToolStripMenuItem;
     }
 }
 

@@ -21,9 +21,7 @@ namespace Utility.Excel
         /// <returns></returns>
         public List<string> readExcelWithNPOI(string bookName, string sheetName, string ext ,int[,] cells )
         {
-          
-       
-           
+                          
             using (FileStream file = new FileStream(bookName, FileMode.Open, FileAccess.Read))
             {
                 XSSFWorkbook xSSF;
@@ -49,8 +47,6 @@ namespace Utility.Excel
                             string cellValue = sheet.GetRow(cells[i, 0]).GetCell(cells[i, 1]).StringCellValue;
                             cellsValue.Add(cellValue);
                         
-
-
 
                     }
 
@@ -102,10 +98,8 @@ namespace Utility.Excel
         /// <param name="ext"></param>
         /// <param name="cells"></param>
         /// <returns></returns>
-        public string readExcelNPOI(string bookName, string sheetName, string ext, int[,] cells)
+        public string readExcelNPOI(string bookName, string sheetName, string ext, string[] cells)
         {
-
-
 
             using (FileStream file = new FileStream(bookName, FileMode.Open, FileAccess.Read))
             {
@@ -120,12 +114,11 @@ namespace Utility.Excel
                  
 
 
-
                         //全部转换成字符串，否则遇到date或numric类型的数据需要更换取数方法
                         //注意是把二维数据中的值作为EXCEL单据格的索引号，而非二维数组中的索引等同于EXCEL单据格的索引号
-                        sheet.GetRow(cells[0, 0]).GetCell(cells[0, 1]).SetCellType(CellType.String);
+                        sheet.GetRow(Convert.ToInt32(cells[0])-1).GetCell(Convert.ToInt32(cells[1])-1).SetCellType(CellType.String);
 
-                        string cellValue = sheet.GetRow(cells[0, 0]).GetCell(cells[0, 1]).StringCellValue;
+                        string cellValue = sheet.GetRow(Convert.ToInt32(cells[0])-1).GetCell(Convert.ToInt32(cells[1])-1).StringCellValue;
                     return cellValue;
 
 
@@ -144,15 +137,12 @@ namespace Utility.Excel
                  
                         //全部转换成字符串，否则遇到date或numric类型的数据需要更换取数方法
                         //注意是把二维数据中的值作为EXCEL单据格的索引号，而非二维数组中的索引等同于EXCEL单据格的索引号
-                        sheet.GetRow(cells[0, 0]).GetCell(cells[0, 1]).SetCellType(CellType.String);
+                        sheet.GetRow(Convert.ToInt32(cells[0])-1).GetCell(Convert.ToInt32(cells[1])-1).SetCellType(CellType.String);
 
-                        string cellValue = sheet.GetRow(cells[0, 0]).GetCell(cells[0, 1]).StringCellValue;
+                        string cellValue = sheet.GetRow(Convert.ToInt32(cells[0])-1).GetCell(Convert.ToInt32(cells[1])-1).StringCellValue;
                       
 
-
-
-
-                    
+                                       
 
                     return cellValue;
                 }
@@ -164,25 +154,20 @@ namespace Utility.Excel
 
 
 
-
-
-
-
-
         }
 
         /// <summary>
-        /// 获取一个单元格数据
+        /// 获取一个单元格数据,并以此单元格数据循环读取中的起始单元格
         /// </summary>
         /// <param name="bookName"></param>
         /// <param name="sheetName"></param>
         /// <param name="ext"></param>
-        /// <param name="rowNo"></param>
-        /// <param name="columnNo"></param>
+        /// <param name="rowNo">行索引号从零开始</param>
+        /// <param name="columnNo">列索引号从零开始</param>
         /// <returns></returns>
         public string readExcelWithNPOI(string bookName, string sheetName, string ext, int rowNo,int columnNo)
         {
-                     
+                    
 
             using (FileStream file = new FileStream(bookName, FileMode.Open, FileAccess.Read))
             {
@@ -196,9 +181,8 @@ namespace Utility.Excel
                     xSSF = new XSSFWorkbook(file);
                     sheet = xSSF.GetSheet(sheetName);
 
-
-                    sheet.GetRow(rowNo).GetCell(columnNo).SetCellType(CellType.String);
-                    cellValue  = sheet.GetRow(rowNo).GetCell(columnNo).StringCellValue;
+                    sheet.GetRow(rowNo-1).GetCell(columnNo-1).SetCellType(CellType.String);
+                    cellValue  = sheet.GetRow(rowNo-1).GetCell(columnNo-1).StringCellValue;
                     return cellValue;
 
                 }
@@ -209,10 +193,10 @@ namespace Utility.Excel
                     hssfwb = new HSSFWorkbook(file);
                     sheet = hssfwb.GetSheet(sheetName);
 
-                    sheet.GetRow(rowNo).GetCell(columnNo).SetCellType(CellType.String);
-                    cellValue = sheet.GetRow(rowNo).GetCell(columnNo).StringCellValue;
+                    sheet.GetRow(rowNo-1).GetCell(columnNo-1).SetCellType(CellType.String);
+                    cellValue = sheet.GetRow(rowNo-1).GetCell(columnNo-1).StringCellValue;
                         
-                                                          
+                                                        
 
                     return cellValue;
                 }
