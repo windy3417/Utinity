@@ -8,7 +8,7 @@ using System.Reflection.Emit;
 using ReflectionMagic;
 using System.Reflection;
 
-namespace DebugUtility.Modle
+namespace DebugUtility.Model
 {
 
 

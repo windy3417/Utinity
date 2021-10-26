@@ -1,10 +1,8 @@
 namespace DebugUtility.Migrations
 {
-    extern alias EF;
-    using System;
-    using EF::System.Data.Entity;
-    using EF::System.Data.Entity.Migrations;
+
     using System.Linq;
+    using System.Data.Entity.Migrations;
 
     internal sealed class Configuration : DbMigrationsConfiguration<DebugUtility.DAL.TestContext>
     {

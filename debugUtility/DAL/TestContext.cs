@@ -7,12 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DebugUtility.DAL
-{extern alias EF;
-    using System;
-    using EF::System.Data.Entity;
-    using EF::System.Data.Entity.Infrastructure;
-    using DebugUtility.Modle;
+namespace DebugUtility.DAL { 
+
+    using DebugUtility.Model.Authority;
+    using DebugUtility.Model;
+    
+    using System.Data.Entity;
 
     public partial class TestContext : DbContext
     {
@@ -28,12 +28,12 @@ namespace DebugUtility.DAL
 
 
 
-
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //throw new UnintentionalCodeFirstException();
         }
+
+        public virtual DbSet<PersonModel> person { get; set; }
 
         public virtual DbSet<UserModle> Users { get; set; }
 

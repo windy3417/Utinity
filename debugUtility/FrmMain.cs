@@ -14,6 +14,7 @@ using debugUtility.UI.Print;
 using debugUtility.UI;
 using debugUtility.UI.ClassTest;
 using DebugUtility.UI.ClassTest;
+using Utility.UI.Authority;
 
 namespace DebugUtility
 {
@@ -215,6 +216,14 @@ namespace DebugUtility
         private void erroProviderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form2 f = new Form2();
+            string tabPageText = f.Text;
+            Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            embed.openForm(f, tabPageText, tabControl1, panel1);
+        }
+
+        private void personToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utility.UI.Authority.FrmPerson f = new FrmPerson();
             string tabPageText = f.Text;
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(f, tabPageText, tabControl1, panel1);

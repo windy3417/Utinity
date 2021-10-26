@@ -1,8 +1,9 @@
 namespace DebugUtility.Migrations
 {
-    extern alias EF;
+
     using System;
-    using EF::System.Data.Entity.Migrations;
+    using System.Data.Entity.Migrations;
+
     
     public partial class addTable : DbMigration
     {

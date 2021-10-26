@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using Utility;
 using Utility.Sql;
-using DebugUtility.Modle;
+using DebugUtility.Model;
 
 
 namespace DebugUtility.DAL

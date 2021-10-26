@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -42,12 +45,10 @@
       <HintPath>..\packages\Castle.Windsor.5.1.1\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll</HintPath>
-      <Aliases>EF</Aliases>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
-      <Aliases>global</Aliases>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.7.11\lib\net45\NLog.dll</HintPath>
@@ -97,11 +98,20 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modle\AccInformation_Year.cs" />
-    <Compile Include="Modle\code.cs" />
-    <Compile Include="Modle\gl_accsum.cs" />
-    <Compile Include="Modle\GradeDef_Base.cs" />
-    <Compile Include="Modle\Person.cs" />
+    <Compile Include="Migrations\202110260321067_m1.cs" />
+    <Compile Include="Migrations\202110260321067_m1.designer.cs">
+      <DependentUpon>202110260321067_m1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110260623323_m2.cs" />
+    <Compile Include="Migrations\202110260623323_m2.designer.cs">
+      <DependentUpon>202110260623323_m2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AccInformation_Year.cs" />
+    <Compile Include="Model\Authority\PersonModel.cs" />
+    <Compile Include="Model\code.cs" />
+    <Compile Include="Model\gl_accsum.cs" />
+    <Compile Include="Model\GradeDef_Base.cs" />
+    <Compile Include="Model\Person.cs" />
     <Compile Include="UI\ClassTest\FrmEncrypt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,10 +145,10 @@
     <Compile Include="UI\ErrorProvider.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\FrmImportExcel.cs">
+    <Compile Include="UI\ClassTest\FrmImportExcel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\FrmImportExcel.Designer.cs">
+    <Compile Include="UI\ClassTest\FrmImportExcel.Designer.cs">
       <DependentUpon>FrmImportExcel.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\DataGridView\FrmTreeViewColumn.cs">
@@ -180,7 +190,7 @@
       <DependentUpon>202011040215178_addTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Modle\UserModle.cs" />
+    <Compile Include="Model\UserModle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\Config.cs">
@@ -189,16 +199,16 @@
     <Compile Include="UI\Config.Designer.cs">
       <DependentUpon>Config.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Frm_tabPage.cs">
+    <Compile Include="UI\Controls\Frm_tabPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Frm_tabPage.Designer.cs">
+    <Compile Include="UI\Controls\Frm_tabPage.Designer.cs">
       <DependentUpon>Frm_tabPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Frm_listTest.cs">
+    <Compile Include="UI\Controls\Frm_listTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Frm_listTest.Designer.cs">
+    <Compile Include="UI\Controls\Frm_listTest.Designer.cs">
       <DependentUpon>Frm_listTest.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Frm_sheet.cs">
@@ -207,10 +217,10 @@
     <Compile Include="UI\Frm_sheet.Designer.cs">
       <DependentUpon>Frm_sheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Frm_treeView.cs">
+    <Compile Include="UI\Controls\Frm_treeView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Frm_treeView.Designer.cs">
+    <Compile Include="UI\Controls\Frm_treeView.Designer.cs">
       <DependentUpon>Frm_treeView.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Print\FrmMutiplePagePrinting.cs">
@@ -219,10 +229,10 @@
     <Compile Include="UI\Print\FrmMutiplePagePrinting.Designer.cs">
       <DependentUpon>FrmMutiplePagePrinting.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\richBox.cs">
+    <Compile Include="UI\Controls\richBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\richBox.Designer.cs">
+    <Compile Include="UI\Controls\richBox.Designer.cs">
       <DependentUpon>richBox.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ButtonColumn.cs" />
@@ -232,6 +242,12 @@
     <Compile Include="UserControls\TextBoxWithButton.Designer.cs">
       <DependentUpon>TextBoxWithButton.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Migrations\202110260321067_m1.resx">
+      <DependentUpon>202110260321067_m1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110260623323_m2.resx">
+      <DependentUpon>202110260623323_m2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\ClassTest\FrmEncrypt.resx">
       <DependentUpon>FrmEncrypt.cs</DependentUpon>
     </EmbeddedResource>
@@ -250,7 +266,7 @@
     <EmbeddedResource Include="UI\DataGridView\FrmDataGridViewExtention.resx">
       <DependentUpon>FrmDataGridViewExtention.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\FrmImportExcel.resx">
+    <EmbeddedResource Include="UI\ClassTest\FrmImportExcel.resx">
       <DependentUpon>FrmImportExcel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_child.resx">
@@ -281,22 +297,22 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UI\Frm_tabPage.resx">
+    <EmbeddedResource Include="UI\Controls\Frm_tabPage.resx">
       <DependentUpon>Frm_tabPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Frm_listTest.resx">
+    <EmbeddedResource Include="UI\Controls\Frm_listTest.resx">
       <DependentUpon>Frm_listTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_sheet.resx">
       <DependentUpon>Frm_sheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Frm_treeView.resx">
+    <EmbeddedResource Include="UI\Controls\Frm_treeView.resx">
       <DependentUpon>Frm_treeView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Print\FrmMutiplePagePrinting.resx">
       <DependentUpon>FrmMutiplePagePrinting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\richBox.resx">
+    <EmbeddedResource Include="UI\Controls\richBox.resx">
       <DependentUpon>richBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TextBoxWithButton.resx">
@@ -329,5 +345,14 @@
       <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

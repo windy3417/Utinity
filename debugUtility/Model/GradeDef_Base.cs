@@ -1,11 +1,10 @@
-namespace DebugUtility.Modle
+namespace DebugUtility.Model
 {
-    extern alias EF;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using EF::System.Data.Entity.Spatial;
+    
 
     public partial class GradeDef_Base
     {

@@ -1,5 +1,5 @@
 ﻿using DebugUtility.DAL;
-using DebugUtility.Modle;
+using DebugUtility.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

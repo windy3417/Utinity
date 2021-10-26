@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace DebugUtility.Modle
+namespace DebugUtility.Model
 {
-   public class Person
+    public class Person
     {
         [Display(Name = "Id")]
         [Browsable(false)]
