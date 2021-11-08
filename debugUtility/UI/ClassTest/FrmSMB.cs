@@ -156,6 +156,26 @@ namespace debugUtility.UI.ClassTest
 
         private void tsbUpload_Click(object sender, EventArgs e)
         {
+            //using System.Text;
+            //using SharpCifs.Smb;
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            //Get the SmbFile specifying the file name to be created.
+            var file = new SmbFile("smb://jing.luo:ximai_2016@192.168.10.200/software/NewFileName.txt");
+
+            //Create file.
+            file.CreateNewFile();
+
+            //Get writable stream.
+            var writeStream = file.GetOutputStream();
+
+            //Write bytes.
+            writeStream.Write(Encoding.UTF8.GetBytes("Hello!"));
+
+            //Dispose writable stream.
+            writeStream.Dispose();
+            MessageBox.Show("文件上传成功");
 
         }
 

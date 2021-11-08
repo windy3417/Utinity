@@ -178,6 +178,12 @@
     <Compile Include="UI\Authority\FrmModifyPwd.Designer.cs">
       <DependentUpon>FrmModifyPwd.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Authority\FrmAuthorization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Authority\FrmAuthorization.Designer.cs">
+      <DependentUpon>FrmAuthorization.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\EmbedForm.cs" />
     <Compile Include="UControl\VeticalLine.cs">
       <SubType>UserControl</SubType>
@@ -282,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Authority\FrmPerson.resx">
       <DependentUpon>FrmPerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Authority\FrmAuthorization.resx">
+      <DependentUpon>FrmAuthorization.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
