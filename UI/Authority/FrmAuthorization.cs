@@ -68,7 +68,7 @@ namespace Utility.UI.Authority
                 string pwd = Encrypt.Encode(txt_pwd.Text);
               
 
-                if (new PersonService().loginCheckWithSqlparameters(cmb_user.SelectedValue.ToString(), pwd))
+                if (new PersonService().LoginValidate(cmb_user.SelectedValue.ToString(), pwd))
                 {
                     //引发事件并传递事件包含的数据，该事件检验用户名密码是否正确
                     AuthorizationEventArgs authorizationEventArgs = new AuthorizationEventArgs();

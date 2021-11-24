@@ -28,7 +28,7 @@ namespace Utility.DAL.Services
         /// </summary>
         /// <param name="pwd"></param>
         /// <returns></returns>
-        public bool loginCheckWithSqlparameters(string userID, string pwd)
+        public bool loginCheck(string userID, string pwd)
         {
             
             string sql = "select  *  from  [people] where code=@userID and pwd=@pwd  ";
@@ -45,6 +45,19 @@ namespace Utility.DAL.Services
 
                             }
             return false;
+        }
+
+        public bool LoginValidate(string userID, string pwd)
+        {
+            using (var db =new AuthorityContext())
+            {
+                if (db.Person.Where(s =>s.Code==userID & s.pwd==pwd).FirstOrDefault() !=null)
+                {
+                    return true;
+                }
+
+                return false;
+            }
         }
     }
 }

@@ -98,6 +98,7 @@
     <Compile Include="DAL\Services\PersonService.cs" />
     <Compile Include="Excel\ExportExcel.cs" />
     <Compile Include="Excel\ReadCellsValue.cs" />
+    <Compile Include="Excel\SetCellsValue.cs" />
     <Compile Include="Files\ExportCsv.cs" />
     <Compile Include="Files\FileList.cs" />
     <Compile Include="Files\FilesOperate.cs" />
@@ -206,10 +207,10 @@
     <Compile Include="UI\FrmLoginConfig.Designer.cs">
       <DependentUpon>FrmLoginConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\FrmItDoubleDbConfig.cs">
+    <Compile Include="UI\DbConfig\FrmItDoubleDbConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\FrmItDoubleDbConfig.Designer.cs">
+    <Compile Include="UI\DbConfig\FrmItDoubleDbConfig.Designer.cs">
       <DependentUpon>FrmItDoubleDbConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Frm_itConfig.cs">
@@ -218,22 +219,22 @@
     <Compile Include="UI\Frm_itConfig.Designer.cs">
       <DependentUpon>Frm_itConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Frm_DoubleDataBaseconfig.cs">
+    <Compile Include="UI\DbConfig\Frm_DoubleDataBaseconfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Frm_DoubleDataBaseconfig.Designer.cs">
+    <Compile Include="UI\DbConfig\Frm_DoubleDataBaseconfig.Designer.cs">
       <DependentUpon>Frm_DoubleDataBaseconfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Frm_DoubleDB_loginConfig.cs">
+    <Compile Include="UI\DbConfig\Frm_DoubleDB_loginConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Frm_DoubleDB_loginConfig.Designer.cs">
+    <Compile Include="UI\DbConfig\Frm_DoubleDB_loginConfig.Designer.cs">
       <DependentUpon>Frm_DoubleDB_loginConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Frm_config.cs">
+    <Compile Include="UI\DbConfig\Frm_config.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Frm_config.Designer.cs">
+    <Compile Include="UI\DbConfig\Frm_config.Designer.cs">
       <DependentUpon>Frm_config.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Frm_archiveList.cs">
@@ -301,19 +302,19 @@
     <EmbeddedResource Include="UI\FrmLoginConfig.resx">
       <DependentUpon>FrmLoginConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\FrmItDoubleDbConfig.resx">
+    <EmbeddedResource Include="UI\DbConfig\FrmItDoubleDbConfig.resx">
       <DependentUpon>FrmItDoubleDbConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_itConfig.resx">
       <DependentUpon>Frm_itConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Frm_DoubleDataBaseconfig.resx">
+    <EmbeddedResource Include="UI\DbConfig\Frm_DoubleDataBaseconfig.resx">
       <DependentUpon>Frm_DoubleDataBaseconfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Frm_DoubleDB_loginConfig.resx">
+    <EmbeddedResource Include="UI\DbConfig\Frm_DoubleDB_loginConfig.resx">
       <DependentUpon>Frm_DoubleDB_loginConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Frm_config.resx">
+    <EmbeddedResource Include="UI\DbConfig\Frm_config.resx">
       <DependentUpon>Frm_config.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_archiveList.resx">
