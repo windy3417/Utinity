@@ -52,6 +52,7 @@
             this.smbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sha1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.erroProviderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.personToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.登录数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +60,7 @@
             this.it数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.业务及外挂数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.horizonLine1 = new Utility.UControl.HorizonLine();
-            this.personToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.readPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -165,7 +166,8 @@
             this.smbToolStripMenuItem,
             this.sha1ToolStripMenuItem,
             this.erroProviderToolStripMenuItem,
-            this.personToolStripMenuItem});
+            this.personToolStripMenuItem,
+            this.readPdfToolStripMenuItem});
             this.功能测试ToolStripMenuItem.Name = "功能测试ToolStripMenuItem";
             this.功能测试ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.功能测试ToolStripMenuItem.Text = "功能测试";
@@ -261,6 +263,13 @@
             this.erroProviderToolStripMenuItem.Text = "erroProvider";
             this.erroProviderToolStripMenuItem.Click += new System.EventHandler(this.erroProviderToolStripMenuItem_Click);
             // 
+            // personToolStripMenuItem
+            // 
+            this.personToolStripMenuItem.Name = "personToolStripMenuItem";
+            this.personToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.personToolStripMenuItem.Text = "person";
+            this.personToolStripMenuItem.Click += new System.EventHandler(this.personToolStripMenuItem_Click);
+            // 
             // 配置ToolStripMenuItem
             // 
             this.配置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -317,12 +326,12 @@
             this.horizonLine1.Size = new System.Drawing.Size(288, 1);
             this.horizonLine1.TabIndex = 0;
             // 
-            // personToolStripMenuItem
+            // readPdfToolStripMenuItem
             // 
-            this.personToolStripMenuItem.Name = "personToolStripMenuItem";
-            this.personToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
-            this.personToolStripMenuItem.Text = "person";
-            this.personToolStripMenuItem.Click += new System.EventHandler(this.personToolStripMenuItem_Click);
+            this.readPdfToolStripMenuItem.Name = "readPdfToolStripMenuItem";
+            this.readPdfToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.readPdfToolStripMenuItem.Text = "ReadPdf";
+            this.readPdfToolStripMenuItem.Click += new System.EventHandler(this.readPdfToolStripMenuItem_Click);
             // 
             // Frm_main
             // 
@@ -377,6 +386,7 @@
         private System.Windows.Forms.ToolStripMenuItem sha1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem erroProviderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem personToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem readPdfToolStripMenuItem;
     }
 }
 

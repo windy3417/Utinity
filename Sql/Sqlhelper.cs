@@ -117,16 +117,18 @@ namespace Utility.Sql
 
         #endregion
 
+        #region 返回DataTable
         /// <summary>
         /// 动态数据源，返回查询结果
         /// </summary>
         /// <param name="strSql"></param>
         /// <param name="dataSourceType"></param>
         /// <returns></returns>
-        public static DataTable GetDataTable(string strSql, DataSourceType dst)
+
+        public static DataTable GetDataTable(string strSql, DataSourceType dataSource)
         {
 
-            using (SqlConnection conn = sqlConnection(dst))
+            using (SqlConnection conn = sqlConnection(dataSource))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand())
@@ -146,6 +148,39 @@ namespace Utility.Sql
             }
         }
 
+        public static DataTable GetDataTable(string strSql, SqlParameter[] sqlParameters, DataSourceType dataSource)
+        {
+
+            using (SqlConnection conn = sqlConnection(dataSource))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = strSql;
+                    foreach (SqlParameter p in sqlParameters)
+                    {
+                        cmd.Parameters.Add(p);
+                    }
+
+                    DataSet ds = new DataSet();
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(ds);
+                        conn.Close();
+                        return ds.Tables[0];
+                    }
+                }
+
+            }
+        }
+
+
+
+        #endregion
+
+
+
         #region 返回SqlDataReader
 
         /// <summary> 
@@ -155,7 +190,7 @@ namespace Utility.Sql
         /// <param name="dataSourceType">数据源类型</param>
         /// <param name="parameters">可能带的参数</param> 
         /// <returns>返回一张查询结果表</returns> 
-        public static SqlDataReader GetSqlDataReader(string strSql, DataSourceType dataSourceType, SqlParameter[] parameters)
+        public static SqlDataReader GetSqlDataReader(string strSql, SqlParameter[] parameters, DataSourceType dataSourceType)
         {
 
             SqlConnection connection = sqlConnection(dataSourceType);

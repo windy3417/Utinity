@@ -228,6 +228,14 @@ namespace DebugUtility
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(f, tabPageText, tabControl1, panel1);
         }
+
+        private void readPdfToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmPDF f = new FrmPDF();
+            string tabPageText = f.Text;
+            Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            embed.openForm(f, tabPageText, tabControl1, panel1);
+        }
     }
 }
 

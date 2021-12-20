@@ -95,6 +95,7 @@
     <Compile Include="DAL\AuthorityContext.cs" />
     <Compile Include="DAL\DbConnect.cs" />
     <Compile Include="DAL\SaveArchivesService.cs" />
+    <Compile Include="DAL\SaveService.cs" />
     <Compile Include="DAL\Services\PersonService.cs" />
     <Compile Include="Excel\ExportExcel.cs" />
     <Compile Include="Excel\ReadCellsValue.cs" />

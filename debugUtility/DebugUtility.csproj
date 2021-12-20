@@ -54,6 +54,11 @@
       <HintPath>..\packages\NLog.4.7.11\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="NPOI, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="QRCoder, Version=1.4.3.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.4.3\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
     <Reference Include="ReflectionMagic, Version=4.1.0.0, Culture=neutral, PublicKeyToken=c4c75393d7e08e8e, processorArchitecture=MSIL">
       <HintPath>..\packages\ReflectionMagic.4.1.0\lib\net45\ReflectionMagic.dll</HintPath>
     </Reference>
@@ -62,6 +67,12 @@
     </Reference>
     <Reference Include="SMBLibrary, Version=1.4.6.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SMBLibrary.1.4.6.2\lib\net40\SMBLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.License, Version=1.4.0.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FreeSpire.PDF.7.8.9\lib\net40\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf, Version=7.8.9.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\FreeSpire.PDF.7.8.9\lib\net40\Spire.Pdf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -82,6 +93,16 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Tesseract, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tesseract.4.1.1\lib\net45\Tesseract.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="zxing, Version=0.16.6.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.6\lib\net45\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.6.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.6\lib\net45\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\DataGridViewCalendarColumn.cs" />
@@ -123,6 +144,12 @@
     </Compile>
     <Compile Include="UI\ClassTest\FrmNlog.Designer.cs">
       <DependentUpon>FrmNlog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ClassTest\FrmPDF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ClassTest\FrmPDF.Designer.cs">
+      <DependentUpon>FrmPDF.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ClassTest\FrmSMB.cs">
       <SubType>Form</SubType>
@@ -254,6 +281,9 @@
     <EmbeddedResource Include="UI\ClassTest\FrmNlog.resx">
       <DependentUpon>FrmNlog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ClassTest\FrmPDF.resx">
+      <DependentUpon>FrmPDF.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\ClassTest\FrmSMB.resx">
       <DependentUpon>FrmSMB.cs</DependentUpon>
     </EmbeddedResource>
@@ -353,6 +383,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Tesseract.4.1.1\build\Tesseract.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Tesseract.4.1.1\build\Tesseract.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Tesseract.4.1.1\build\Tesseract.targets" Condition="Exists('..\packages\Tesseract.4.1.1\build\Tesseract.targets')" />
 </Project>

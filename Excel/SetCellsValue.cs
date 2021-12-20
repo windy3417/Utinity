@@ -155,14 +155,21 @@ namespace Utility.Excel
                         sheet.GetRow(rowNo - 1).GetCell(columnNo - 1).SetCellValue(content.ToString());
                     }
 
-                    if (content.GetType().Equals(typeof(System.Int32)))
+                    if (content.GetType().Equals(typeof(System.Double)))
                     {
                         sheet.GetRow(rowNo - 1).GetCell(columnNo - 1).SetCellType(CellType.Numeric);
-                        sheet.GetRow(rowNo - 1).GetCell(columnNo - 1).SetCellValue(Convert.ToInt32(content));
+                        sheet.GetRow(rowNo - 1).GetCell(columnNo - 1).SetCellValue(Convert.ToDouble(content));
 
-                    }                    
+                    }
 
-                                                        
+                    if (content.GetType().Equals(typeof(System.DateTime)))
+                    {
+
+                        sheet.GetRow(rowNo - 1).GetCell(columnNo - 1).SetCellValue(Convert.ToDateTime(content));
+
+                    }
+
+
                 }
 
                 using (FileStream file = new FileStream(bookName, FileMode.Open, FileAccess.Write))
@@ -189,10 +196,17 @@ namespace Utility.Excel
                         sheet.GetRow(rowNo - 1).GetCell(columnNo - 1).SetCellValue(content.ToString());
                     }
 
-                    if (content.GetType().Equals(typeof(System.Int32)))
+                    if (content.GetType().Equals(typeof(System.Double)))
                     {
                         sheet.GetRow(rowNo - 1).GetCell(columnNo - 1).SetCellType(CellType.Numeric);
-                        sheet.GetRow(rowNo - 1).GetCell(columnNo - 1).SetCellValue(Convert.ToInt32(content));
+                        sheet.GetRow(rowNo - 1).GetCell(columnNo - 1).SetCellValue(Convert.ToDouble(content));
+
+                    }
+
+                    if (content.GetType().Equals(typeof(System.DateTime)))
+                    {
+                       
+                        sheet.GetRow(rowNo - 1).GetCell(columnNo - 1).SetCellValue(Convert.ToDateTime(content));
 
                     }
                 }

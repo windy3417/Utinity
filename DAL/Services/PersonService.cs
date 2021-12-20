@@ -38,7 +38,7 @@ namespace Utility.DAL.Services
                 new SqlParameter("@pwd",pwd ),
             };
 
-            SqlDataReader sqlDataReader = Utility.Sql.Sqlhelper.GetSqlDataReader(sql, DataSourceType.business, sqlParameters);
+            SqlDataReader sqlDataReader = Utility.Sql.Sqlhelper.GetSqlDataReader(sql, sqlParameters,DataSourceType.business);
             if (sqlDataReader.HasRows)
             {
                 return true;
