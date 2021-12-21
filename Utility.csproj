@@ -14,6 +14,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -24,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +35,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -94,9 +97,9 @@
   <ItemGroup>
     <Compile Include="DAL\AuthorityContext.cs" />
     <Compile Include="DAL\DbConnect.cs" />
-    <Compile Include="DAL\SaveArchivesService.cs" />
     <Compile Include="DAL\SaveService.cs" />
     <Compile Include="DAL\Services\PersonService.cs" />
+    <Compile Include="DAL\UpdateService.cs" />
     <Compile Include="Excel\ExportExcel.cs" />
     <Compile Include="Excel\ReadCellsValue.cs" />
     <Compile Include="Excel\SetCellsValue.cs" />
