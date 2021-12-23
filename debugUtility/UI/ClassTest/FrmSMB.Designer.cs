@@ -34,9 +34,10 @@
             this.tsbDownload = new System.Windows.Forms.ToolStripButton();
             this.tsbRead = new System.Windows.Forms.ToolStripButton();
             this.tsbUpload = new System.Windows.Forms.ToolStripButton();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tsbReadExcel = new System.Windows.Forms.ToolStripButton();
             this.tsbFileList = new System.Windows.Forms.ToolStripButton();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +49,8 @@
             this.tsbRead,
             this.tsbUpload,
             this.tsbReadExcel,
-            this.tsbFileList});
+            this.tsbFileList,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 25);
@@ -92,14 +94,6 @@
             this.tsbUpload.Text = "上传";
             this.tsbUpload.Click += new System.EventHandler(this.tsbUpload_Click);
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 85);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(776, 96);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
-            // 
             // tsbReadExcel
             // 
             this.tsbReadExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -119,6 +113,23 @@
             this.tsbFileList.Size = new System.Drawing.Size(60, 22);
             this.tsbFileList.Text = "文件清单";
             this.tsbFileList.Click += new System.EventHandler(this.tsbFileList_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(12, 85);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(776, 96);
+            this.richTextBox1.TabIndex = 1;
+            this.richTextBox1.Text = "";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(91, 22);
+            this.toolStripButton1.Text = "expression";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // FrmSMB
             // 
@@ -146,5 +157,6 @@
         private System.Windows.Forms.ToolStripButton tsbUpload;
         private System.Windows.Forms.ToolStripButton tsbReadExcel;
         private System.Windows.Forms.ToolStripButton tsbFileList;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

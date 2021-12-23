@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SharpCifs.Smb;
 using System.IO;
+using System.Linq.Expressions;
+using DebugUtility.Model;
 
 namespace debugUtility.UI.ClassTest
 {
@@ -230,6 +232,17 @@ namespace debugUtility.UI.ClassTest
             {
                 richTextBox1.Text += "  " + item;
             }
+        }
+
+        void ExpressionToString()
+        {
+            Expression<Func<Person, bool>> expression = s => s.FirstName == "windy";
+            this.richTextBox1.Text = expression.ToString();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            this.ExpressionToString();
         }
     }
 }

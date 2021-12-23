@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="DAL\AuthorityContext.cs" />
     <Compile Include="DAL\DbConnect.cs" />
+    <Compile Include="DAL\QueryService.cs" />
     <Compile Include="DAL\SaveService.cs" />
     <Compile Include="DAL\Services\PersonService.cs" />
     <Compile Include="DAL\UpdateService.cs" />
