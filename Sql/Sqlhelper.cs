@@ -201,13 +201,18 @@ namespace Utility.Sql
             cmd.Connection = connection;
             cmd.CommandText = strSql;
 
+         
             cmd.Parameters.AddRange(parameters);
             //执行完后不能调用sqlconection.close方法去关闭连接，否则sqldatareader对象无法调用
             //其read方法，采用commandBehavior.closeConection枚举可在关闭sqldatareader时自动
             //关闭SqlConnection,同时也说明Command.ExecuteReader方法并未执行真正的查询，仅仅是
             //构造SqlDataReader对象
+
+           
             SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
 
+
+            cmd.Parameters.Clear();//多了这一句，就解决了问题; 不然，当连续调用该方法时，则报另一个SqlParameterCollection中已包含SqlParameter的错误。
             return reader;
 
 
@@ -234,6 +239,7 @@ namespace Utility.Sql
             cmd.CommandText = strSql;
 
 
+            
             SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
 
             return reader;

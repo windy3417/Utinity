@@ -12,24 +12,29 @@ using static Utility.Sql.Sqlhelper;
 
 namespace Utility.DAL
 {
-    public class QueryService<TEntity> where TEntity : class, new()
+    public static class QueryService 
     {
         /// <summary>
         /// 单表全数据查询
         /// </summary>
         /// <param name="dataSource"></param>
         /// <returns></returns>
-        public List<TEntity> GetDataList(DataSourceType dataSource)
+        public static List<TEntity> GetDataList<TEntity>(SqlParameter[] sqlParameters, DataSourceType dataSource) where TEntity : class, new()
         {
             TEntity model = new TEntity();
             List<TEntity> entityList = new List<TEntity>();
             Type modelType = model.GetType();
-            string tableName = modelType.Name;
-            string sql = "select * from " + tableName;
+            string tableName = modelType.Name.Replace("Model","");
+            StringBuilder sql = new StringBuilder($"select * from {tableName} where 1=1");
+            foreach (var para in sqlParameters)
+            {
+                sql.Append($"  and {para.ParameterName.Replace("@", "")}={para.ParameterName}");
+            }
+
             PropertyInfo[] proInfo = modelType.GetProperties();
 
 
-            SqlDataReader sqlDataReader = Sqlhelper.GetSqlDataReader(sql, dataSource);
+            SqlDataReader sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(),sqlParameters, dataSource);
             while (sqlDataReader.Read())
             {
                 #region 赋值给单一实体
@@ -37,7 +42,11 @@ namespace Utility.DAL
                 foreach (var item in proInfo)
                 {
                     var propertyName = item.Name;
-                    item.SetValue(m, sqlDataReader[propertyName], null);
+                    if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface)
+                    {
+                        item.SetValue(m, sqlDataReader[propertyName], null);
+                    }
+                   
                 }
 
                 entityList.Add(m);
@@ -55,29 +64,40 @@ namespace Utility.DAL
         }
 
         /// <summary>
-        /// 参数化查询
+        /// 单表参数化查询
         /// </summary>
         /// <param name="sqlParameters"></param>
         /// <returns></returns>
-        public TEntity GetEntity(SqlParameter[] sqlParameters)
+        public static TEntity GetEntity<TEntity>(SqlParameter[] sqlParameters,DataSourceType dataSourceType) where TEntity : class, new()
         {
             TEntity model = new TEntity();
 
             Type modelType = model.GetType();
-            string tableName = modelType.Name;
-            StringBuilder sql = new StringBuilder("select * from " + tableName + "where 1=1");
+            string tableName = modelType.Name.Replace("Model", "");
+            StringBuilder sql = new StringBuilder($"select * from {tableName} where 1=1");
+            foreach (var para in sqlParameters)
+            {
+                sql.Append($"  and {para.ParameterName.Replace("@", "")}={para.ParameterName}");
+            }
+
             PropertyInfo[] proInfo = modelType.GetProperties();
 
+                     
+          
 
-            SqlDataReader sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), Sqlhelper.DataSourceType.plug);
+            SqlDataReader sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(),sqlParameters, dataSourceType);
 
             while (sqlDataReader.Read())
             {
-                TEntity m = new TEntity();
+                //TEntity m = new TEntity();
                 foreach (var item in proInfo)
                 {
                     var propertyName = item.Name;
-                    item.SetValue(m, sqlDataReader[propertyName], null);
+                    if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface )
+                    {
+                        item.SetValue(model, sqlDataReader[propertyName], null);
+                    }
+                    
                 }
 
 
