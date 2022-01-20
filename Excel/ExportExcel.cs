@@ -153,9 +153,9 @@ namespace Utility.Excel
                 foreach (dynamic col in dataGridView.Columns)
                 {
                     //创建单元格并设置单元格内容
-
+                    //string s = col.GetType().Name;
                     //只导出文本例的值
-                    if (col.GetType().Name != "DataGridViewCheckBox"  & col.GetType().Name != "DataGridViewButtonColumn")
+                    if (col.GetType().Name != "DataGridViewCheckBoxColumn" & col.GetType().Name != "DataGridViewButtonColumn")
                     {
                         DataGridViewTextBoxColumn tbc = (DataGridViewTextBoxColumn)col;
                         rowH.CreateCell(col.Index).SetCellValue(tbc.HeaderText);

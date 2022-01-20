@@ -48,9 +48,8 @@ namespace Utility.DAL
                             }
                         }
                     }
+
                     m = entity;
-
-
 
 
                     db.SaveChanges();
@@ -65,5 +64,93 @@ namespace Utility.DAL
                 MessageBox.Show(ex.Message + ex.InnerException);
             }
         }
+
+
+        public void UpdateInBatche<TEntity, Context>(List<TEntity> listEntityes,List<Expression<Func<TEntity, bool>>> updateFilter,List<Expression<Func<TEntity, bool>>>  deleteFilter=null) where TEntity : class
+             where Context : DbContext, new()
+        {
+            try
+            {
+                using (var db = new Context())
+                {
+                    using (var transction=db.Database.BeginTransaction())
+                    {
+
+                        if (deleteFilter!=null)
+                        {
+                            foreach (var item in deleteFilter)
+                            {
+                                TEntity m = db.Set<TEntity>().Where(item.Compile()).FirstOrDefault();
+                                db.Set<TEntity>().Remove(m);
+                            }
+                        }
+
+                        #region 更新数据
+                        if (updateFilter != null)
+                        {
+                            foreach (var item in updateFilter)
+                            {
+
+                                TEntity m = db.Set<TEntity>().Where(item.Compile()).FirstOrDefault<TEntity>();
+
+                                var entity1 = listEntityes.Where(item.Compile()).GetType();
+                                
+                                var entity2 = m.GetType();
+
+                                var prop = entity1.GetProperties();
+                                var prop2 = entity2.GetProperties();
+
+
+                                foreach (var property in prop)
+                                {
+                                    if (property.GetValue(entity1, null) != null)
+                                    {
+                                        foreach (var item2 in prop2)
+                                        {
+                                            if (item2.Name == property.Name)
+                                            {
+                                                item2.SetValue(m, property.GetValue(entity1, null), null);
+                                            }
+                                        }
+                                    }
+                                }
+                                //m = entity1;
+                            }
+                        }
+                        #endregion
+
+
+
+
+                        db.SaveChanges();
+                        transction.Commit();
+                    }
+                   
+
+                        
+
+
+                       
+                        db.SaveChanges();
+
+                        MessageBox.Show("数据修改成功");
+
+                       
+                    
+                  
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message + ex.InnerException);
+            }
+        }
+
+
     }
+
+
 }

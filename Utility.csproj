@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="DAL\AuthorityContext.cs" />
     <Compile Include="DAL\DbConnect.cs" />
+    <Compile Include="DAL\DeleteService.cs" />
     <Compile Include="DAL\QueryService.cs" />
     <Compile Include="DAL\SaveService.cs" />
     <Compile Include="DAL\Services\PersonService.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Files\JsonOperate.cs" />
     <Compile Include="Model\ConnectStringModel.cs" />
     <Compile Include="Model\CurrentUser.cs" />
+    <Compile Include="Model\EnumCommon.cs" />
     <Compile Include="Model\FileInfoModel.cs" />
     <Compile Include="Model\PersonModel.cs" />
     <Compile Include="Sql\Sqlhelper.cs" />

@@ -320,8 +320,7 @@ namespace Utility.Sql
 
         }
 
-
-
+        #region transation
         //暂用于创建数据表的事务
         /// <summary>
         /// 数据库及表结构的创建
@@ -358,10 +357,14 @@ namespace Utility.Sql
                     return true;
 
                 }
+
+
                 catch (Exception ex)
                 {
-                    return false;
+
                     MessageBox.Show("事务执行失败" + ex.Message + ex.InnerException, "事务执行提示");
+                    return false;
+
 
 
                     // Attempt to roll back the transaction.
@@ -379,6 +382,66 @@ namespace Utility.Sql
                 }
             }
         }
+
+        public static bool ExecuteSqlTransaction(string SQLstring, SqlParameter[] sqlParameters, DataSourceType dataSourceType)
+        {
+            using (SqlConnection connection = sqlConnection(dataSourceType))
+            {
+                connection.Open();
+
+                SqlCommand command = connection.CreateCommand();
+                SqlTransaction transaction;
+
+                // Start a local transaction.
+                transaction = connection.BeginTransaction("SampleTransaction");
+
+                // Must assign both transaction object and connection
+                // to Command object for a pending local transaction
+                command.Connection = connection;
+                command.Transaction = transaction;
+
+                try
+                {
+                    command.CommandText = SQLstring;
+                    command.Parameters.AddRange(sqlParameters);
+                    command.ExecuteNonQuery();
+
+
+                    // Attempt to commit the transaction.
+                    transaction.Commit();
+                    return true;
+
+                }
+
+
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("事务执行失败" + ex.Message + ex.InnerException, "事务执行提示");
+                    return false;
+
+
+
+                    // Attempt to roll back the transaction.
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        // This catch block will handle any errors that may have occurred
+                        // on the server that would cause the rollback to fail, such as
+                        // a closed connection.
+                        MessageBox.Show("事务回滚失败" + ex.Message + ex.InnerException, "事务执行提示");
+                    }
+                }
+            }
+        }
+
+
+        #endregion
+
+
 
         /// <summary>
         /// 带参数执行对数据的增删改操作
