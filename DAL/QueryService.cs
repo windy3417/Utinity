@@ -42,7 +42,17 @@ namespace Utility.DAL
                     var propertyName = item.Name;
                     if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface)
                     {
-                        item.SetValue(m, sqlDataReader[propertyName], null);
+
+                        //处理空值
+                        if (sqlDataReader[propertyName] is DBNull)
+                        {
+                            item.SetValue(m, null, null);
+                        }
+                        else
+                        {
+                            item.SetValue(m, sqlDataReader[propertyName], null);
+                        }
+                      
                     }
 
                 }
@@ -91,7 +101,7 @@ namespace Utility.DAL
                     var propertyName = item.Name;
                     if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface)
                     {
-                        item.SetValue(m, sqlDataReader[propertyName], null);
+                        item.SetValue(m, sqlDataReader[propertyName] , null);
                     }
                    
                 }
@@ -156,6 +166,7 @@ namespace Utility.DAL
 
         /// <summary>
         /// 双表联接数据查询
+        /// 档案+主表
         /// </summary>
         /// <param name="dataSource"></param>
         /// <returns></returns>
@@ -192,9 +203,11 @@ namespace Utility.DAL
             StringBuilder sql = new StringBuilder($"select * from {tableNameArchive}  as a  ");
             foreach (var item in fkMain)
             {
+                
 
                 if (item.Name == pkArchive.Name)
                 {
+                 
                     sql.Append($" inner join  {tableNameMain} as b  on   a.{pkArchive.Name}=b.{item.Name}");
                 }
 
@@ -218,12 +231,96 @@ namespace Utility.DAL
 
         }
 
+
+        /// <summary>
+        /// 双表联接数据查询
+        /// 档案1+档案2+主表
+        /// </summary>
+        /// <param name="dataSource"></param>
+        /// <returns></returns>
+        public static DataTable GetDataList<TArchive1, TArchive2, TMainWithArchive>(DataSourceType dataSourceType)
+            where TArchive1 : class, new() where TArchive2 : class, new() where TMainWithArchive : class, new()
+        {
+
+
+            Type modelTypeArchive1 = new TArchive1().GetType();
+            Type modelTypeArchive2 = new TArchive2().GetType();
+            Type modelTypeMain = new TMainWithArchive().GetType();
+
+
+            string tableNameArchive1 = modelTypeArchive1.Name.Replace("Model", "");
+
+            string tableNameArchive2 = modelTypeArchive2.Name.Replace("Model", "");
+            string tableNameMain = modelTypeMain.Name.Replace("Model", "");
+
+
+
+
+            #region get primary key and foreign key 
+
+            PropertyInfo pkArchive1 = modelTypeArchive1.GetProperties().Where
+              (p => p.GetCustomAttributes(typeof(KeyAttribute), false).Length > 0).FirstOrDefault();
+
+
+            PropertyInfo pkArchive2 = modelTypeArchive2.GetProperties().Where
+              (p => p.GetCustomAttributes(typeof(KeyAttribute), false).Length > 0).FirstOrDefault();
+
+            PropertyInfo pkMain = modelTypeMain.GetProperties().Where
+                (p => p.GetCustomAttributes(typeof(KeyAttribute), false).Length > 0).FirstOrDefault();
+
+            var fkMain = modelTypeMain.GetProperties().Where
+                (p => p.GetCustomAttributes(typeof(ForeignKeyAttribute), false).Length > 0);
+
+
+            #endregion
+
+            #region build sql string
+
+            StringBuilder sql = new StringBuilder($"select * from {tableNameMain}  as a   ");
+            foreach (var item in fkMain)
+            {
+
+
+                if (item.Name == pkArchive1.Name)
+
+                {    sql.Append($" inner join  {tableNameArchive1} as b  on   a.{item.Name}=b.{pkArchive1.Name}");
+                                     
+                }
+
+                if (item.Name == pkArchive2.Name)
+                {
+                   
+                    sql.Append($" inner join  {tableNameArchive2} as c on   a.{item.Name}=c.{pkArchive2.Name}");
+                   
+                                        
+                }
+
+            }
+
+
+            #endregion
+
+
+            return Sqlhelper.GetDataTable(sql.ToString(), dataSourceType);
+
+
+
+
+
+
+
+
+
+
+
+        }
+
         /// <summary>
         /// 三表联接数据查询
         /// </summary>
         /// <param name="dataSource"></param>
         /// <returns></returns>
-        public static DataTable GetDataList<TArchive, TMainWithArchive, TDetails>(DataSourceType dataSourceType)
+        public static DataTable GetDataListAAM<TArchive, TMainWithArchive, TDetails>(DataSourceType dataSourceType)
             where TArchive : class, new() where TMainWithArchive : class, new() where TDetails : class, new()
         {
            

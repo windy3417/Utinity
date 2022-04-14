@@ -105,9 +105,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\ColSpanRowSpan.cs" />
     <Compile Include="Common\DataGridViewCalendarColumn.cs" />
     <Compile Include="Common\DataGridViewExtensions.cs" />
     <Compile Include="Common\Encrypt.cs" />
+    <Compile Include="Common\RowSpan.cs" />
     <Compile Include="Common\SMBclient.cs" />
     <Compile Include="Common\UIHintMappings.cs" />
     <Compile Include="DAL\TestContext.cs" />

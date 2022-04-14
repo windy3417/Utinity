@@ -45,7 +45,7 @@ namespace Utility.DAL
         /// <typeparam name="TEntity"></typeparam>
         /// <typeparam name="Context"></typeparam>
         /// <param name="entityList"></param>
-        public void SaveBatch<TEntity, Context>(List<TEntity> entityList) where TEntity : class where Context : DbContext, new()
+        public bool SaveRows<TEntity, Context>(List<TEntity> entityList) where TEntity : class where Context : DbContext, new()
         {
 
             try
@@ -53,12 +53,12 @@ namespace Utility.DAL
                 using (var db = new Context())
                 {
 
-
                     db.Set<TEntity>().AddRange(entityList);
 
                     db.SaveChanges();
 
                     MessageBox.Show("数据保存成功");
+                    return true;
 
                 }
             }
@@ -66,6 +66,7 @@ namespace Utility.DAL
             {
 
                 MessageBox.Show(ex.Message + ex.InnerException);
+                return false;
             }
         }
 

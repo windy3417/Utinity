@@ -30,13 +30,13 @@ namespace DebugUtility
 
         private void initialize()
         {
-            if (ConfigurationManager.ConnectionStrings["myConcetion"] == null)
-            {
-                Frm_config frm_Config = new Frm_config();
-                string tabPageText = frm_Config.Text;
-                Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
-                embed.openForm(frm_Config, tabPageText, tabControl1, panel1);
-            }
+            //if (ConfigurationManager.ConnectionStrings["myConcetion"] == null)
+            //{
+            //    Frm_config frm_Config = new Frm_config();
+            //    string tabPageText = frm_Config.Text;
+            //    Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            //    embed.openForm(frm_Config, tabPageText, tabControl1, panel1);
+            //}
         }
 
         private void 子窗体ToolStripMenuItem_Click(object sender, EventArgs e)
