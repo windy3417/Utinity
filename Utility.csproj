@@ -120,6 +120,7 @@
     <Compile Include="Sql\SQLiteColumnList.cs" />
     <Compile Include="Sql\SQLiteHelper.cs" />
     <Compile Include="Sql\SQLiteTable.cs" />
+    <Compile Include="Style\DataGridViewDoubleBuffer.cs" />
     <Compile Include="Style\StyleDataGridView.cs" />
     <Compile Include="UControl\DbConnectControl.cs">
       <SubType>UserControl</SubType>

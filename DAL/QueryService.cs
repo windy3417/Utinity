@@ -87,13 +87,62 @@ namespace Utility.DAL
             StringBuilder sql = new StringBuilder($"select * from {tableName} where 1=1");
             foreach (var para in sqlParameters)
             {
-                sql.Append($"  and {para.ParameterName.Replace("@", "")}={para.Value}");
+                sql.Append($"  and {para.ParameterName.Replace("@", "")}='{para.Value}'");
             }
 
             PropertyInfo[] proInfo = modelType.GetProperties();
 
 
             SqlDataReader sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), sqlParameters, dataSource);
+            while (sqlDataReader.Read())
+            {
+                #region 赋值给单一实体
+                TEntity m = new TEntity();
+                foreach (var item in proInfo)
+                {
+                    var propertyName = item.Name;
+                    if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface)
+                    {
+                        item.SetValue(m, sqlDataReader[propertyName], null);
+                    }
+
+                }
+
+                entityList.Add(m);
+
+
+
+                #endregion
+
+            }
+
+            return entityList;
+
+
+
+        }
+
+        /// <summary>
+        /// 单表全数参数化查询
+        /// </summary>
+        /// <param name="dataSource"></param>
+        /// <returns></returns>
+        public static List<TEntity> GetDataList<TEntity>(List<SqlParameter> sqlParameters, DataSourceType dataSource) where TEntity : class, new()
+        {
+            TEntity model = new TEntity();
+            List<TEntity> entityList = new List<TEntity>();
+            Type modelType = model.GetType();
+            string tableName = modelType.Name.Replace("Model", "");
+            StringBuilder sql = new StringBuilder($"select * from {tableName} where 1=1");
+            foreach (var para in sqlParameters)
+            {
+                sql.Append($"  and {para.ParameterName.Replace("@", "")}='{para.Value}'");
+            }
+
+            PropertyInfo[] proInfo = modelType.GetProperties();
+
+
+            SqlDataReader sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), sqlParameters.ToArray(), dataSource);
             while (sqlDataReader.Read())
             {
                 #region 赋值给单一实体
