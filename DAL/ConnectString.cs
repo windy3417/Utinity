@@ -10,16 +10,20 @@ using System.Windows.Forms;
 using Utility.Model;
 using Utility.Files;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Utility.DAL
 {
- public   class DbConnect
+ public   class ConnectString
     {
+        #region DB connection string handle
+
         /// <summary>
         /// 数据库连接测试
         /// </summary>
         /// <param name="m">连接字符串实体</param>
-        public void DbConnectTest(ConnectStringModel  m)
+        public void DbConnectTest(ConnectStringModel m)
         {
             //获取数据库连接字符串
             string con = "Data Source=" + m.DataSource + ";Initial Catalog=" + m.DataBase
@@ -34,7 +38,7 @@ namespace Utility.DAL
                 if (mySqlConnection.State == ConnectionState.Open)
                 {
                     MessageBox.Show("连接成功！", "连接提示");
-                                       
+
                 }
                 else
                 {
@@ -95,8 +99,8 @@ namespace Utility.DAL
             ConfigurationManager.RefreshSection("connectionStrings");
 
             MessageBox.Show("数据库配置成功", "数据库配置");
-           
-           
+
+
         }
 
 
@@ -106,14 +110,14 @@ namespace Utility.DAL
             //读取数据库配置
             if (File.Exists(fileName))
             {
-               
+
                 JsonOperate jsonOperate = new JsonOperate();
                 ConnectStringModel m = new ConnectStringModel();
 
                 ConnectStringModel connectModel = jsonOperate.JsonToModel<ConnectStringModel>(fileName, m);
-                
-                status.Text = connectModel.DataSource + "-" +connectModel.DataBase;
-                    
+
+                status.Text = connectModel.DataSource + "-" + connectModel.DataBase;
+
                 status.ForeColor = Color.Green;
 
             }
@@ -123,11 +127,75 @@ namespace Utility.DAL
                 status.ForeColor = Color.Red;
             }
 
-          
-                
 
-               
-            
+
+
+
+
         }
+        #endregion
+
+
+        #region SMB connection string handle
+
+        /// <summary>
+        /// 保存SMB连接字符串
+        /// </summary>
+        /// <param name="m">连接字符串实体</param>
+        /// <param name="connectKey">配置文件中的数据库连接字符串键</param>
+        public void PutSmbConnectionString(ConnectStringModel m,string directory)
+        {
+         
+
+          
+            //加密码连接字符串
+            m.DataSource = Utility.Encrypt.Encode(m.DataSource);
+            m.DataBase = Utility.Encrypt.Encode(m.DataBase);
+            m.UserName= Utility.Encrypt.Encode(m.UserName);
+            m.Pwd = Utility.Encrypt.Encode(m.Pwd);
+
+            using (FileStream s = File.Create(directory)) 
+            {
+                IFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(s, m);
+            }
+          
+                      
+
+            MessageBox.Show("配置成功", "连接配置");
+
+
+        }
+
+        public ConnectStringModel GetSmbConnectionString(string directory)
+        {
+            ConnectStringModel m = new ConnectStringModel();
+
+            using (FileStream s = File.OpenRead(directory))
+            {
+                IFormatter formatter = new BinaryFormatter();
+               m = (ConnectStringModel) formatter.Deserialize(s);
+            }
+
+            
+
+            //加密码连接字符串
+            m.DataSource = Utility.Encrypt.Decode(m.DataSource);
+            m.DataBase = Utility.Encrypt.Decode(m.DataBase);
+            m.UserName = Utility.Encrypt.Decode(m.UserName);
+            m.Pwd = Utility.Encrypt.Decode(m.Pwd);
+
+            return m;
+
+           
+
+
+        }
+
+
+
+        #endregion
+
+
     }
 }

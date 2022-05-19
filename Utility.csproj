@@ -71,6 +71,12 @@
     <Reference Include="NPOI.OpenXmlFormats, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>packages\NPOI.2.5.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
+    <Reference Include="SharpCifs.Core, Version=0.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\SharpCifs.Core.0.2.3\lib\net40\SharpCifs.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SMBLibrary, Version=1.4.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\SMBLibrary.1.4.8\lib\net40\SMBLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -96,7 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\AuthorityContext.cs" />
-    <Compile Include="DAL\DbConnect.cs" />
+    <Compile Include="DAL\ConnectString.cs" />
     <Compile Include="DAL\DeleteService.cs" />
     <Compile Include="DAL\QueryService.cs" />
     <Compile Include="DAL\SaveService.cs" />
@@ -105,11 +111,13 @@
     <Compile Include="Excel\ExportExcel.cs" />
     <Compile Include="Excel\ReadCellsValue.cs" />
     <Compile Include="Excel\SetCellsValue.cs" />
+    <Compile Include="Files\CifsFiles.cs" />
     <Compile Include="Files\ExportCsv.cs" />
     <Compile Include="Files\FileList.cs" />
     <Compile Include="Files\FilesOperate.cs" />
-    <Compile Include="Files\ImportFromExcel.cs" />
+    <Compile Include="Excel\ImportFromExcel.cs" />
     <Compile Include="Files\JsonOperate.cs" />
+    <Compile Include="Files\SmbFiels.cs" />
     <Compile Include="Model\ConnectStringModel.cs" />
     <Compile Include="Model\CurrentUser.cs" />
     <Compile Include="Model\EnumCommon.cs" />

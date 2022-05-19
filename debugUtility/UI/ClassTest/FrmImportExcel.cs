@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Utility.Excel;
 
 namespace debugUtility.UI
 {
@@ -20,7 +21,7 @@ namespace debugUtility.UI
         private void tspImport_Click(object sender, EventArgs e)
         {
             DataTable dataTable = new DataTable();
-            Utility.Files.ImportFromExcel importFromExcel = new Utility.Files.ImportFromExcel();
+            ImportFromExcel importFromExcel = new ImportFromExcel();
             importFromExcel.ReadExcelWithNPOI(this.dataGridView1, dataTable);
         }
     }

@@ -19,12 +19,12 @@ namespace DebugUtility.Common
             SMB1Client client = new SMB1Client(); // SMB2Client can be used as well
          
 
-        bool isConnected = client.Connect(IPAddress.Parse("192.168.10.200"), SMBTransportType.DirectTCPTransport);
+        bool isConnected = client.Connect(IPAddress.Parse("192.168.10.201"), SMBTransportType.DirectTCPTransport);
             if (isConnected)
             {
-                NTStatus status = client.Login(String.Empty, "jing.luo", "ximai_2016");
+                NTStatus status = client.Login(String.Empty, "it@csximai.com", "ximai_2016");
 
-                ISMBFileStore fileStore = client.TreeConnect("software", out status);
+                ISMBFileStore fileStore = client.TreeConnect("/DBBac/NetBakData/Administrator@CAIWU66/Disk D/U8SOFT/FileManager/UFFileManagerServices/Accessories", out status);
                 object fileHandle;
                 FileStatus fileStatus;
                 string filePath = "EXCEL在财务管理中的高级应用.pdf";
@@ -67,6 +67,22 @@ namespace DebugUtility.Common
             //    client.Logoff();
             //}
             //client.Disconnect();
+        }
+
+        public void ListShares()
+        {
+            SMB1Client client = new SMB1Client(); // SMB2Client can be used as well
+            bool isConnected = client.Connect(IPAddress.Parse("192.168.10.201"), SMBTransportType.DirectTCPTransport);
+            if (isConnected)
+            {
+                NTStatus status = client.Login(String.Empty, "it@csximai.com", "ximai_2016");
+                if (status == NTStatus.STATUS_SUCCESS)
+                {
+                    List<string> shares = client.ListShares(out status);
+                    client.Logoff();
+                }
+                client.Disconnect();
+            }
         }
 
            

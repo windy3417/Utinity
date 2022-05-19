@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Utility.Model
 {
+    [Serializable]
  public   class ConnectStringModel
     {
       public  string DataSource { get; set; }

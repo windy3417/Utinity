@@ -30,8 +30,8 @@ namespace debugUtility.UI.ClassTest
            
             
             SMB1Client client = new SMB1Client(); // SMB2Client can be used as well
-            bool isConnected = client.Connect(IPAddress.Parse("192.168.10.200"), SMBTransportType.DirectTCPTransport);
-            NTStatus status = client.Login(String.Empty, "jing.luo", "ximai_2016");
+            bool isConnected = client.Connect(IPAddress.Parse("192.168.10.201"), SMBTransportType.DirectTCPTransport);
+            NTStatus status = client.Login(String.Empty, "jing.luo@csximai.com", "ximai_2016");
 
             if (isConnected)
             {
@@ -76,25 +76,25 @@ namespace debugUtility.UI.ClassTest
 
         private void tsbDownload_Click(object sender, EventArgs e)
         {
-            SMB1Client client = new SMB1Client(); // SMB2Client can be used as well
+            SMB2Client client = new SMB2Client(); // SMB2Client can be used as well
 
-
-            bool isConnected = client.Connect(IPAddress.Parse("192.168.10.200"), SMBTransportType.DirectTCPTransport);
+                        bool isConnected = client.Connect(IPAddress.Parse("192.168.10.201"), SMBTransportType.DirectTCPTransport);
             if (isConnected)
             {
-                NTStatus status = client.Login(String.Empty, "jing.luo", "ximai_2016");
+                NTStatus status = client.Login(String.Empty, "jing.luo@csximai.com", "ximai_2016");
 
                 ISMBFileStore fileStore = client.TreeConnect("software", out status);
                 object fileHandle;
                 FileStatus fileStatus;
-                string filePath = "EXCEL在财务管理中的高级应用.pdf";
+                string filePath = "外发需返出厂单.pdf";
                 if (fileStore is SMB1FileStore)
                 {
                     filePath = @"\\" + filePath;
                 }
-                status = fileStore.CreateFile(out fileHandle, out fileStatus, filePath, AccessMask.GENERIC_READ | AccessMask.SYNCHRONIZE,
-                    (SMBLibrary.FileAttributes)System.IO.FileAttributes.Normal, ShareAccess.Read, CreateDisposition.FILE_OPEN,
-                    CreateOptions.FILE_NON_DIRECTORY_FILE | CreateOptions.FILE_SYNCHRONOUS_IO_ALERT, null);
+
+                status = fileStore.CreateFile(out fileHandle, out fileStatus, filePath, AccessMask.GENERIC_READ | AccessMask.SYNCHRONIZE, SMBLibrary.FileAttributes.Normal,
+                    ShareAccess.Read, CreateDisposition.FILE_OPEN, CreateOptions.FILE_NON_DIRECTORY_FILE | CreateOptions.FILE_SYNCHRONOUS_IO_ALERT, null);
+                
 
                 if (status == NTStatus.STATUS_SUCCESS)
                 {
@@ -115,8 +115,16 @@ namespace debugUtility.UI.ClassTest
                         }
                         bytesRead += data.Length;
                         stream.Write(data, 0, data.Length);
+                        FileStream fs = new FileStream(Environment.CurrentDirectory + filePath, FileMode.Create);
+                        fs.Write(data, 0, data.Length);
                     }
+
+                  
+
+                  
                 }
+
+                MessageBox.Show("文件下载成功！");
                 status = fileStore.CloseFile(fileHandle);
                 status = fileStore.Disconnect();
             }

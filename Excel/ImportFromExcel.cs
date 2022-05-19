@@ -10,7 +10,7 @@ using System.IO;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
-namespace Utility.Files
+namespace Utility.Excel
 {
     public class ImportFromExcel
     {
