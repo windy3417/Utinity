@@ -81,12 +81,20 @@ namespace debugUtility.UI.ClassTest
                         bool isConnected = client.Connect(IPAddress.Parse("192.168.10.201"), SMBTransportType.DirectTCPTransport);
             if (isConnected)
             {
-                NTStatus status = client.Login(String.Empty, "jing.luo@csximai.com", "ximai_2016");
+                NTStatus status = client.Login(String.Empty, "it@csximai.com", "ximai_2016");
 
                 ISMBFileStore fileStore = client.TreeConnect("software", out status);
                 object fileHandle;
                 FileStatus fileStatus;
-                string filePath = "外发需返出厂单.pdf";
+                //pay attention the specification of writing 
+                //right writing : subFold1\\subFould2\\test.txt
+                // false writing : \\subFold1\\subFould2\\test.txt
+
+                string filePath = "Attachment\\weakCurrent\\下载链接.docx";
+                    //"U8attachment\\存货档案.xls";
+                //string filePath = "NetBakData\\Administrator@CAIWU66\\Disk D\\U8SOFT\\FileManager\\UFFileManagerServices\\Accessories\\7b5dfbcb-2f25-49ea-a5b8-0080702d8835.txt";
+                //SMB1FileStore not been modify to SMB2FielStore,or it occur error of invalid parametier,
+                // so we can infer the fllowing statement is not necessary to be consistent with  the type of smbClient 
                 if (fileStore is SMB1FileStore)
                 {
                     filePath = @"\\" + filePath;
@@ -115,7 +123,7 @@ namespace debugUtility.UI.ClassTest
                         }
                         bytesRead += data.Length;
                         stream.Write(data, 0, data.Length);
-                        FileStream fs = new FileStream(Environment.CurrentDirectory + filePath, FileMode.Create);
+                        FileStream fs = new FileStream(Environment.CurrentDirectory + "库存条码来料入库系统可行性分析.pdf", FileMode.Create);
                         fs.Write(data, 0, data.Length);
                     }
 

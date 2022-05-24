@@ -66,7 +66,8 @@
       <HintPath>..\packages\SharpCifs.Core.0.2.3\lib\net40\SharpCifs.Core.dll</HintPath>
     </Reference>
     <Reference Include="SMBLibrary, Version=1.4.6.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SMBLibrary.1.4.6.2\lib\net40\SMBLibrary.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\libraries\SMBLibrary\SMBLibrary\bin\Debug\net40\SMBLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Spire.License, Version=1.4.0.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
       <HintPath>..\packages\FreeSpire.PDF.7.8.9\lib\net40\Spire.License.dll</HintPath>
@@ -79,6 +80,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -111,6 +113,7 @@
     <Compile Include="Common\Encrypt.cs" />
     <Compile Include="Common\RowSpan.cs" />
     <Compile Include="Common\SMBclient.cs" />
+    <Compile Include="Common\SmbRead.cs" />
     <Compile Include="Common\UIHintMappings.cs" />
     <Compile Include="DAL\TestContext.cs" />
     <Compile Include="DAL\U8Context.cs" />

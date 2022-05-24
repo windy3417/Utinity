@@ -146,13 +146,15 @@ namespace Utility.DAL
         public void PutSmbConnectionString(ConnectStringModel m,string directory)
         {
          
-
-          
+                      
             //加密码连接字符串
             m.DataSource = Utility.Encrypt.Encode(m.DataSource);
             m.DataBase = Utility.Encrypt.Encode(m.DataBase);
+            m.FileDirectory = Utility.Encrypt.Encode(m.FileDirectory);
             m.UserName= Utility.Encrypt.Encode(m.UserName);
             m.Pwd = Utility.Encrypt.Encode(m.Pwd);
+
+         
 
             using (FileStream s = File.Create(directory)) 
             {
@@ -167,25 +169,37 @@ namespace Utility.DAL
 
         }
 
-        public ConnectStringModel GetSmbConnectionString(string directory)
+        public  ConnectStringModel GetSmbConnectionString(string directory)
         {
-            ConnectStringModel m = new ConnectStringModel();
 
-            using (FileStream s = File.OpenRead(directory))
+
+
+            try
             {
-                IFormatter formatter = new BinaryFormatter();
-               m = (ConnectStringModel) formatter.Deserialize(s);
+                ConnectStringModel m = new ConnectStringModel();
+
+                using (FileStream s = File.OpenRead(directory))
+                {
+                    IFormatter formatter = new BinaryFormatter();
+                    m = (ConnectStringModel)formatter.Deserialize(s);
+                }
+
+
+
+                //加密码连接字符串
+                m.DataSource = Utility.Encrypt.Decode(m.DataSource);
+                m.DataBase = Utility.Encrypt.Decode(m.DataBase);
+                m.FileDirectory = Encrypt.Decode(m.FileDirectory);
+                m.UserName = Utility.Encrypt.Decode(m.UserName);
+                m.Pwd = Utility.Encrypt.Decode(m.Pwd);
+
+                return m;
             }
+            catch (Exception ex )
+            {
 
-            
-
-            //加密码连接字符串
-            m.DataSource = Utility.Encrypt.Decode(m.DataSource);
-            m.DataBase = Utility.Encrypt.Decode(m.DataBase);
-            m.UserName = Utility.Encrypt.Decode(m.UserName);
-            m.Pwd = Utility.Encrypt.Decode(m.Pwd);
-
-            return m;
+                return null;
+            }  
 
            
 

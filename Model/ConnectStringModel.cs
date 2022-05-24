@@ -10,6 +10,7 @@ namespace Utility.Model
     {
       public  string DataSource { get; set; }
         public string DataBase { get; set; }
+        public string FileDirectory { get; set; }
 
         public string UserName { get; set; }
         public string Pwd { get; set; }
