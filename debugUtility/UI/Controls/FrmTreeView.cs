@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DebugUtility.UI
 {
-    public partial class Frm_treeView : Form
+    public partial class FrmTreeView : Form
     {
-        public Frm_treeView()
+        public FrmTreeView()
         {
             InitializeComponent();
             FillMyTreeView();

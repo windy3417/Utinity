@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Windows.Forms;
+using System.ComponentModel.DataAnnotations;
 
 namespace Utility.DAL
 {
@@ -27,29 +28,36 @@ namespace Utility.DAL
                 using (var db = new TContext())
                 {
 
-                    TEntity m = db.Set<TEntity>().Where(expression.Compile()).FirstOrDefault<TEntity>();
+                    TEntity dataOfDB = db.Set<TEntity>().Where(expression.Compile()).FirstOrDefault<TEntity>();
 
-                    var entity1 = entity.GetType();
-                    var entity2 = m.GetType();
+                    //data after change
+                    var currentDataType = entity.GetType();
 
-                    var prop = entity1.GetProperties();
-                    var prop2 = entity2.GetProperties();
+                    //data from database
+                   
+                    var dataTypeOfDB = dataOfDB.GetType();
 
-                    foreach (var item in prop)
+                    var prop = currentDataType.GetProperties();
+                    var prop2 = dataTypeOfDB.GetProperties();
+
+                    foreach (var cp in prop)
                     {
-                        if (item.GetValue(entity,null) != null)
+                        if (cp.GetValue(entity,null) != null)
                         {
-                            foreach (var item2 in prop2)
+                            foreach (var p2 in prop2)
                             {
-                                if (item2.Name == item.Name)
+                                //is it primaryKey?
+                                if (p2.Name == cp.Name & cp.GetCustomAttributes(typeof(KeyAttribute), false).Length == 0)
                                 {
-                                    item2.SetValue(m, item.GetValue(entity,null),null);
+                              
+                                    //set value to property
+                                    p2.SetValue(dataOfDB, cp.GetValue(entity,null),null);
                                 }
                             }
                         }
                     }
 
-                    m = entity;
+                    //dataOfDB = entity;
 
 
                     db.SaveChanges();

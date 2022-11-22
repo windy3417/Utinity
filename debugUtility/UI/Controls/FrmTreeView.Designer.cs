@@ -1,6 +1,6 @@
 ﻿namespace DebugUtility.UI
 {
-    partial class Frm_treeView
+    partial class FrmTreeView
     {
         /// <summary>
         /// Required designer variable.
@@ -37,16 +37,16 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Left;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(173, 450);
+            this.treeView1.Size = new System.Drawing.Size(342, 450);
             this.treeView1.TabIndex = 0;
             // 
-            // Frm_treeView
+            // FrmTreeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.treeView1);
-            this.Name = "Frm_treeView";
+            this.Name = "FrmTreeView";
             this.Text = "Frm_treeView";
             this.ResumeLayout(false);
 

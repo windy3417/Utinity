@@ -14,7 +14,7 @@ namespace Utility.DAL
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="entity"></param>
-        public void SaveSingleDate<TEntity, Context>(TEntity entity) where TEntity : class where Context : DbContext, new()
+        public void SaveSingleRowDate<TEntity, Context>(TEntity entity) where TEntity : class where Context : DbContext, new()
         {
 
             try

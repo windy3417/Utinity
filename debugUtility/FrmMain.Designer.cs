@@ -39,7 +39,6 @@
             this.列表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.档案列表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.功能测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.webBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TsmCalarderColumn = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,8 +59,9 @@
             this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.it数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.业务及外挂数据库配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.horizonLine1 = new Utility.UControl.HorizonLine();
             this.控件测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.horizonLine1 = new Utility.UControl.HorizonLine();
+            this.treeViewToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -91,9 +91,9 @@
             this.图形处理ToolStripMenuItem,
             this.报表ToolStripMenuItem,
             this.列表ToolStripMenuItem,
-            this.功能测试ToolStripMenuItem,
             this.配置ToolStripMenuItem,
-            this.控件测试ToolStripMenuItem});
+            this.控件测试ToolStripMenuItem,
+            this.功能测试ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -155,7 +155,6 @@
             // 功能测试ToolStripMenuItem
             // 
             this.功能测试ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.treeViewToolStripMenuItem,
             this.webBrowserToolStripMenuItem,
             this.editorToolStripMenuItem,
             this.TsmCalarderColumn,
@@ -173,13 +172,6 @@
             this.功能测试ToolStripMenuItem.Name = "功能测试ToolStripMenuItem";
             this.功能测试ToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.功能测试ToolStripMenuItem.Text = "类库测试";
-            // 
-            // treeViewToolStripMenuItem
-            // 
-            this.treeViewToolStripMenuItem.Name = "treeViewToolStripMenuItem";
-            this.treeViewToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.treeViewToolStripMenuItem.Text = "treeView";
-            this.treeViewToolStripMenuItem.Click += new System.EventHandler(this.treeViewToolStripMenuItem_Click);
             // 
             // webBrowserToolStripMenuItem
             // 
@@ -326,6 +318,14 @@
             this.业务及外挂数据库配置ToolStripMenuItem.Text = "业务及外挂数据库配置";
             this.业务及外挂数据库配置ToolStripMenuItem.Click += new System.EventHandler(this.业务及外挂数据库配置ToolStripMenuItem_Click);
             // 
+            // 控件测试ToolStripMenuItem
+            // 
+            this.控件测试ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.treeViewToolStripMenuItem1});
+            this.控件测试ToolStripMenuItem.Name = "控件测试ToolStripMenuItem";
+            this.控件测试ToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.控件测试ToolStripMenuItem.Text = "控件测试";
+            // 
             // horizonLine1
             // 
             this.horizonLine1.LineColor = System.Drawing.SystemColors.ControlText;
@@ -335,11 +335,12 @@
             this.horizonLine1.Size = new System.Drawing.Size(288, 1);
             this.horizonLine1.TabIndex = 0;
             // 
-            // 控件测试ToolStripMenuItem
+            // treeViewToolStripMenuItem1
             // 
-            this.控件测试ToolStripMenuItem.Name = "控件测试ToolStripMenuItem";
-            this.控件测试ToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
-            this.控件测试ToolStripMenuItem.Text = "控件测试";
+            this.treeViewToolStripMenuItem1.Name = "treeViewToolStripMenuItem1";
+            this.treeViewToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.treeViewToolStripMenuItem1.Text = "TreeView";
+            this.treeViewToolStripMenuItem1.Click += new System.EventHandler(this.treeViewToolStripMenuItem1_Click);
             // 
             // Frm_main
             // 
@@ -378,7 +379,6 @@
         private System.Windows.Forms.ToolStripMenuItem 列表ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 档案列表ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 功能测试ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem treeViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem it数据库配置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem webBrowserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editorToolStripMenuItem;
@@ -396,6 +396,7 @@
         private System.Windows.Forms.ToolStripMenuItem personToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem readPdfToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 控件测试ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem treeViewToolStripMenuItem1;
     }
 }
 

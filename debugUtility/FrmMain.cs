@@ -103,7 +103,7 @@ namespace DebugUtility
         private void treeViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            Frm_treeView f = new Frm_treeView();
+            FrmTreeView f = new FrmTreeView();
             string tabPageText = f.Text;
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(f, tabPageText, tabControl1, panel1);
@@ -197,6 +197,9 @@ namespace DebugUtility
             embed.openForm(f, tabPageText, tabControl1, panel1);
         }
 
+
+        #region library test
+
         private void smbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmSMB f = new FrmSMB();
@@ -236,6 +239,21 @@ namespace DebugUtility
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(f, tabPageText, tabControl1, panel1);
         }
+
+        #endregion
+
+        #region 控件测试
+        private void treeViewToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+            FrmTreeView f = new FrmTreeView();
+            string tabPageText = f.Text;
+            Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            embed.openForm(f, tabPageText, tabControl1, panel1);
+        }
+
+        #endregion
+
     }
 }
 

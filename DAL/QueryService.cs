@@ -172,7 +172,7 @@ namespace Utility.DAL
         }
 
         /// <summary>
-        /// 单表单行参数化查询
+        /// Get single row with parameters
         /// </summary>
         /// <param name="sqlParameters"></param>
         /// <returns></returns>
@@ -203,7 +203,9 @@ namespace Utility.DAL
                     var propertyName = item.Name;
                     if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface)
                     {
-                        item.SetValue(model, sqlDataReader[propertyName], null);
+                        //Sets the property value for a specified model.
+                        var val= sqlDataReader[propertyName] is DBNull ? "" : sqlDataReader[propertyName];
+                        item.SetValue(model, val, null);
                     }
 
                 }
@@ -243,6 +245,7 @@ namespace Utility.DAL
 
             PropertyInfo pkArchive = modelTypeArchive.GetProperties().Where
               (p => p.GetCustomAttributes(typeof(KeyAttribute), false).Length > 0).FirstOrDefault();
+
             PropertyInfo pkMain = modelTypeMain.GetProperties().Where
                 (p => p.GetCustomAttributes(typeof(KeyAttribute), false).Length > 0).FirstOrDefault();
 
@@ -272,13 +275,6 @@ namespace Utility.DAL
 
 
             return Sqlhelper.GetDataTable(sql.ToString(), dataSourceType);
-
-
-
-
-
-
-
 
 
 

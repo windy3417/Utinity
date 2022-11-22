@@ -112,6 +112,7 @@
     <Compile Include="Common\DataGridViewExtensions.cs" />
     <Compile Include="Common\Encrypt.cs" />
     <Compile Include="Common\RowSpan.cs" />
+    <Compile Include="Common\RowSpanWay2.cs" />
     <Compile Include="Common\SMBclient.cs" />
     <Compile Include="Common\SmbRead.cs" />
     <Compile Include="Common\UIHintMappings.cs" />
@@ -161,6 +162,12 @@
     </Compile>
     <Compile Include="UI\ClassTest\FrmSMB.Designer.cs">
       <DependentUpon>FrmSMB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\FrmTreeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\FrmTreeView.Designer.cs">
+      <DependentUpon>FrmTreeView.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\DataGridView\FrmButtonColumn.cs">
       <SubType>Form</SubType>
@@ -249,12 +256,6 @@
     <Compile Include="UI\Frm_sheet.Designer.cs">
       <DependentUpon>Frm_sheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Controls\Frm_treeView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Controls\Frm_treeView.Designer.cs">
-      <DependentUpon>Frm_treeView.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\Print\FrmMutiplePagePrinting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -291,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ClassTest\FrmSMB.resx">
       <DependentUpon>FrmSMB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\FrmTreeView.resx">
+      <DependentUpon>FrmTreeView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\DataGridView\FrmButtonColumn.resx">
       <DependentUpon>FrmButtonColumn.cs</DependentUpon>
@@ -340,9 +344,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Frm_sheet.resx">
       <DependentUpon>Frm_sheet.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Controls\Frm_treeView.resx">
-      <DependentUpon>Frm_treeView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Print\FrmMutiplePagePrinting.resx">
       <DependentUpon>FrmMutiplePagePrinting.cs</DependentUpon>

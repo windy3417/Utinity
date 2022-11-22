@@ -34,7 +34,9 @@ namespace DebugUtility.Common
             set { m_nRightColumn = value; }
         }
 
-        protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle,
+        protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle cellBounds,
+            int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, 
+            string errorText, DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle,
         DataGridViewPaintParts paintParts)
         {
             try
@@ -51,12 +53,14 @@ namespace DebugUtility.Common
                 graphics.FillRectangle(new SolidBrush(SystemColors.Control), cellBounds);
 
                 // Draw the separator for rows
-                graphics.DrawLine(new Pen(new SolidBrush(SystemColors.ControlDark)), cellBounds.Left, cellBounds.Bottom - 1, cellBounds.Right, cellBounds.Bottom - 1);
+                graphics.DrawLine(new Pen(new SolidBrush(SystemColors.ControlDark)), cellBounds.Left, 
+                    cellBounds.Bottom - 1, cellBounds.Right, cellBounds.Bottom - 1);
 
                 // Draw the right vertical line for the cell
                 if (ColumnIndex == m_nRightColumn)
                 {
-                    graphics.DrawLine(new Pen(new SolidBrush(SystemColors.ControlDark)), cellBounds.Right - 1, cellBounds.Top, cellBounds.Right - 1, cellBounds.Bottom);
+                    graphics.DrawLine(new Pen(new SolidBrush(SystemColors.ControlDark)),
+                        cellBounds.Right - 1, cellBounds.Top, cellBounds.Right - 1, cellBounds.Bottom);
                 }
 
                 // Draw the text
