@@ -10,17 +10,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Utility.DAL
 {
-   public  class UpdateService
+    public static class UpdateService
     {
         /// <summary>
-        /// 单表修改
+        /// 单表单行修改
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <typeparam name="TContext"></typeparam>
         /// <param name="expression"></param>
         /// <param name="entity"></param>
-        public void Upadate<TEntity,TContext>(Expression<Func<TEntity, bool>> expression, TEntity entity) where TEntity : class 
-                where TContext : DbContext, new ()
+        public static void Update<TEntity, TContext>(Expression<Func<TEntity, bool>> expression, TEntity entity) where TEntity : class
+                where TContext : DbContext, new()
         {
 
             try
@@ -34,7 +34,7 @@ namespace Utility.DAL
                     var currentDataType = entity.GetType();
 
                     //data from database
-                   
+
                     var dataTypeOfDB = dataOfDB.GetType();
 
                     var prop = currentDataType.GetProperties();
@@ -42,16 +42,16 @@ namespace Utility.DAL
 
                     foreach (var cp in prop)
                     {
-                        if (cp.GetValue(entity,null) != null)
+                        if (cp.GetValue(entity, null) != null)
                         {
                             foreach (var p2 in prop2)
                             {
                                 //is it primaryKey?
                                 if (p2.Name == cp.Name & cp.GetCustomAttributes(typeof(KeyAttribute), false).Length == 0)
                                 {
-                              
+
                                     //set value to property
-                                    p2.SetValue(dataOfDB, cp.GetValue(entity,null),null);
+                                    p2.SetValue(dataOfDB, cp.GetValue(entity, null), null);
                                 }
                             }
                         }
@@ -61,6 +61,7 @@ namespace Utility.DAL
 
 
                     db.SaveChanges();
+
 
                     MessageBox.Show("数据修改成功");
 
@@ -74,17 +75,82 @@ namespace Utility.DAL
         }
 
 
-        public void UpdateInBatche<TEntity, Context>(List<TEntity> listEntityes,List<Expression<Func<TEntity, bool>>> updateFilter,List<Expression<Func<TEntity, bool>>>  deleteFilter=null) where TEntity : class
-             where Context : DbContext, new()
+        /// <summary>
+        /// delete data first,then insert data
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="Context"></typeparam>
+        /// <param name="listEntityes">data to be inserted</param>
+        /// <param name="deleteFilter">filter to delete data </param>
+        public static void Update<TEntity, Context>(List<TEntity> listEntityes, List<Expression<Func<TEntity, bool>>> deleteFilter = null) where TEntity : class
+           where Context : DbContext, new()
         {
-            try
+
+            using (var db = new Context())
             {
-                using (var db = new Context())
+                using (var transction = db.Database.BeginTransaction())
                 {
-                    using (var transction=db.Database.BeginTransaction())
+
+                    try
+                    {
+                        //delete data
+                        if (deleteFilter != null)
+                        {
+                            foreach (var item in deleteFilter)
+                            {
+                                TEntity m = db.Set<TEntity>().Where(item.Compile()).FirstOrDefault();
+                                db.Set<TEntity>().Remove(m);
+                            }
+                        }
+
+                        #region insert data
+                        db.Set<TEntity>().AddRange(listEntityes);
+
+
+                        #endregion
+
+
+                        db.SaveChanges();
+                        transction.Commit();
+                        MessageBox.Show("数据修改成功");
+                    }
+                    catch (Exception ex)
                     {
 
-                        if (deleteFilter!=null)
+                        transction.Rollback();
+                        MessageBox.Show(ex.Message + ex.InnerException);
+                    }
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+        }
+
+
+        public static void UpdateInBatche<TEntity, Context>(List<TEntity> listEntityes, List<Expression<Func<TEntity, bool>>> updateFilter, List<Expression<Func<TEntity, bool>>> deleteFilter = null) where TEntity : class
+             where Context : DbContext, new()
+        {
+
+            using (var db = new Context())
+            {
+                using (var transction = db.Database.BeginTransaction())
+                {
+
+                    try
+                    {
+                        //delete data
+                        if (deleteFilter != null)
                         {
                             foreach (var item in deleteFilter)
                             {
@@ -102,7 +168,7 @@ namespace Utility.DAL
                                 TEntity m = db.Set<TEntity>().Where(item.Compile()).FirstOrDefault<TEntity>();
 
                                 var entity1 = listEntityes.Where(item.Compile()).GetType();
-                                
+
                                 var entity2 = m.GetType();
 
                                 var prop = entity1.GetProperties();
@@ -128,37 +194,38 @@ namespace Utility.DAL
                         #endregion
 
 
-
-
                         db.SaveChanges();
                         transction.Commit();
-                    }
-                   
-
-                        
-
-
-                       
-                        db.SaveChanges();
-
                         MessageBox.Show("数据修改成功");
+                    }
+                    catch (Exception ex)
+                    {
 
-                       
-                    
-                  
-
+                        transction.Rollback();
+                        MessageBox.Show(ex.Message + ex.InnerException);
+                    }
 
                 }
-            }
-            catch (Exception ex)
-            {
 
-                MessageBox.Show(ex.Message + ex.InnerException);
+
+
+
+
+
+
+
+
+
+
+
             }
         }
 
 
     }
+
+
+
 
 
 }

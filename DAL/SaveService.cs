@@ -14,7 +14,7 @@ namespace Utility.DAL
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="entity"></param>
-        public void SaveSingleRowDate<TEntity, Context>(TEntity entity) where TEntity : class where Context : DbContext, new()
+        public void SaveRow<TEntity, Context>(TEntity entity,bool backgroundTask=false) where TEntity : class where Context : DbContext, new()
         {
 
             try
@@ -27,7 +27,11 @@ namespace Utility.DAL
 
                     db.SaveChanges();
 
-                    MessageBox.Show("数据保存成功");
+                    if (!backgroundTask)
+                    {
+                        MessageBox.Show("数据保存成功");
+                    }
+                   
 
                 }
             }
@@ -58,6 +62,7 @@ namespace Utility.DAL
                     db.SaveChanges();
 
                     MessageBox.Show("数据保存成功");
+                    
                     return true;
 
                 }
@@ -117,7 +122,7 @@ namespace Utility.DAL
         /// <typeparam name="TEntiry2">ditails</typeparam>
         /// <param name="entityMain"></param>
         /// <param name="entityDetail"></param>
-        public void Save<TEntity1, TEntiry2, Context>(TEntity1 entityMain, List<TEntiry2> entityDetail) where TEntity1 : class where TEntiry2 : class
+        public void SaveMChild<TEntity1, TEntiry2, Context>(TEntity1 entityMain, List<TEntiry2> entityDetail) where TEntity1 : class where TEntiry2 : class
             where Context : DbContext, new()
         {
 
@@ -169,6 +174,53 @@ namespace Utility.DAL
                     {
                         db.Set<TEntity1>().AddRange(entityMain);
                         db.Set<TEntiry2>().AddRange(entityDetail);
+
+                        db.SaveChanges();
+
+                        trasction.Commit();
+
+                    }
+
+
+                    MessageBox.Show("数据保存成功");
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message + ex.InnerException);
+            }
+        }
+
+
+        /// <summary>
+        /// Save main table,child table,sub-child table.
+        /// </summary>
+        /// <typeparam name="TEntity1"></typeparam>
+        /// <typeparam name="TEntity2"></typeparam>
+        /// <typeparam name="TEntity3"></typeparam>
+        /// <typeparam name="Context"></typeparam>
+        /// <param name="entityMain"></param>
+        /// <param name="entityDetail"></param>
+        /// <param name="subChild"></param>
+        public void SaveHeaderDetailsSub<TEntity1, TEntity2, TEntity3, Context>(TEntity1 entityMain, List<TEntity2> entityDetail, List<TEntity3> subChild)
+            where TEntity1 : class where TEntity2 : class where TEntity3 : class
+            where Context : DbContext, new()
+        {
+
+            try
+            {
+
+                using (var db = new Context())
+
+                {
+
+                    using (var trasction = db.Database.BeginTransaction())
+                    {
+                        db.Set<TEntity1>().Add(entityMain);
+                        db.Set<TEntity2>().AddRange(entityDetail);
+                        db.Set<TEntity3>().AddRange(subChild);
 
                         db.SaveChanges();
 

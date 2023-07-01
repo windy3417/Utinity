@@ -1,4 +1,4 @@
-﻿namespace Utility
+﻿namespace DebugUtility.UI
 
 {
     partial class Frm_imageFormatConvert

@@ -15,6 +15,7 @@ using debugUtility.UI;
 using debugUtility.UI.ClassTest;
 using DebugUtility.UI.ClassTest;
 using Utility.UI.Authority;
+using DebugUtility.UI.Controls;
 
 namespace DebugUtility
 {
@@ -23,21 +24,35 @@ namespace DebugUtility
         public Frm_main()
         {
             InitializeComponent();
-            tabControl1.Visible = false;
+
             this.WindowState = FormWindowState.Maximized;
             this.initialize();
+            // Allows access to the DrawItem event. 
+
+
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
+            //tabControl1.SizeMode = TabSizeMode.Fixed;
+            tabControl1.SizeMode = TabSizeMode.Fixed;
+            
+
+            tabControl1.ItemSize = new Size(80, 19);
+
+            // Binds the event handler DrawOnTab to the DrawItem event 
+            // through the DrawItemEventHandler delegate.
+            tabControl1.DrawItem += tabControl1_DrawItem;
         }
 
-        private void initialize()
-        {
-            //if (ConfigurationManager.ConnectionStrings["myConcetion"] == null)
-            //{
-            //    Frm_config frm_Config = new Frm_config();
-            //    string tabPageText = frm_Config.Text;
-            //    Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
-            //    embed.openForm(frm_Config, tabPageText, tabControl1, panel1);
-            //}
-        }
+        #region vary
+        int i = 0;
+
+        TabControl tabControl1 = new TabControl();
+        private Rectangle tabArea;
+        private RectangleF tabTextArea;
+        private RectangleF buttonBounds;
+        #endregion
+
+        #region 打开子窗体
 
         private void 子窗体ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -52,13 +67,15 @@ namespace DebugUtility
 
         }
 
-        private void 图片转ICONToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void tabPagesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.Frm_imageFormatConvert frm_Child = new Frm_imageFormatConvert();
-            string tabPageText = frm_Child.Text;
+            FrmTabControl f = new FrmTabControl();
+            string tabPageText = f.Text;
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
-            embed.openForm(frm_Child, tabPageText, tabControl1, panel1);
+            embed.openForm(f, tabPageText, tabControl1, panel1);
         }
+
 
         private void 数据库配置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -70,7 +87,7 @@ namespace DebugUtility
 
         private void 单表合一ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_report frm_Config = new Frm_report();
+            FrmReport frm_Config = new FrmReport();
             string tabPageText = frm_Config.Text;
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(frm_Config, tabPageText, tabControl1, panel1);
@@ -78,7 +95,7 @@ namespace DebugUtility
 
         private void 登录数据库配置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_DoubleDB_loginConfig f  = new Frm_DoubleDB_loginConfig();
+            Frm_DoubleDB_loginConfig f = new Frm_DoubleDB_loginConfig();
             string tabPageText = f.Text;
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(f, tabPageText, tabControl1, panel1);
@@ -86,7 +103,7 @@ namespace DebugUtility
 
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-             Config  f = new Config();
+            Config f = new Config();
             string tabPageText = f.Text;
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(f, tabPageText, tabControl1, panel1);
@@ -198,6 +215,73 @@ namespace DebugUtility
         }
 
 
+
+        #endregion
+
+        // Declares the event handler DrawOnTab which is a method that
+        // draws a string and Rectangle on the tabPage1 tab.
+        private void DrawOnTab(object sender, DrawItemEventArgs e)
+        {
+            tabArea = tabControl1.GetTabRect(e.Index);
+
+            tabTextArea = new Rectangle(tabArea.Location, new Size(tabArea.Width - 16, tabArea.Height));
+            buttonBounds = new Rectangle(tabArea.Right - 16, tabArea.Top, 16, 16);
+
+
+
+            TabPage tabPage = tabControl1.TabPages[e.Index];
+            string tabText = tabPage.Text;
+
+            // Use a Graphics object to measure the text width
+            using (Graphics g = e.Graphics)
+            {
+
+                SizeF textSize = g.MeasureString(tabText, tabPage.Font);
+
+                // If the text overflows, replace the excess characters with an ellipsis
+                if (textSize.Width > e.Bounds.Width)
+                {
+                    int ellipsisWidth = TextRenderer.MeasureText("...", tabPage.Font).Width;
+                    int cutoff = 0;
+                    for (int i = tabText.Length - 1; i >= 0; i--)
+                    {
+                        textSize = g.MeasureString(tabText.Substring(0, i) + "...", tabPage.Font);
+                        if (textSize.Width + ellipsisWidth <= e.Bounds.Width)
+                        {
+                            cutoff = i;
+                            break;
+                        }
+                    }
+                    tabText = tabText.Substring(0, cutoff) + "...";
+                }
+            }
+
+            // Draw the modified tab text
+
+
+            Pen p = new Pen(Color.Blue);
+            Font font = new Font("Arial", 10.0f);
+            SolidBrush brush = new SolidBrush(Color.Red);
+
+            //e.Graphics.DrawString(tabText, tabPage.Font, SystemBrushes.ControlText, e.Bounds.X + 3, e.Bounds.Y + 3);
+            //e.Graphics.DrawRectangle(p, tabArea);
+            e.Graphics.DrawString(tabText, font, brush, tabTextArea);
+            e.Graphics.DrawString("X", font, Brushes.Black, buttonBounds);
+        }
+    
+        private void initialize()
+        {
+            //if (ConfigurationManager.ConnectionStrings["myConcetion"] == null)
+            //{
+            //    Frm_config frm_Config = new Frm_config();
+            //    string tabPageText = frm_Config.Text;
+            //    Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            //    embed.openForm(frm_Config, tabPageText, tabControl1, panel1);
+            //}
+        }
+
+       
+
         #region library test
 
         private void smbToolStripMenuItem_Click(object sender, EventArgs e)
@@ -253,6 +337,128 @@ namespace DebugUtility
         }
 
         #endregion
+
+        private void 普通单据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmSheet f = new FrmSheet();
+            string tabPageText = f.Text;
+            Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            embed.openForm(f, tabPageText, tabControl1, panel1);
+        }
+
+        /// <summary>
+        /// custom header of tabpage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabControl tabControl = (TabControl)sender;
+            TabPage tabPage = tabControl.TabPages[e.Index];
+         
+            string tabText = tabPage.Text;
+            // Create a font for drawing the close button
+            var closeButtonFont = new Font("Segoe UI", 8, FontStyle.Regular);
+
+            // Calculate the bounds of the tab header text and the button
+            Rectangle tabBounds = tabControl.GetTabRect(e.Index);
+           
+            Rectangle textBounds = new Rectangle(tabBounds.Location, new Size(tabBounds.Width - 16, tabBounds.Height));
+          
+            Rectangle buttonBounds = new Rectangle(tabBounds.Right - 16, tabBounds.Top, 16, 16);
+
+
+            // Use a Graphics object to measure the text width
+           
+
+                SizeF textSize = e.Graphics.MeasureString(tabText, tabPage.Font);
+
+                // If the text overflows, replace the excess characters with an ellipsis
+                if (textSize.Width > e.Bounds.Width)
+                {
+                    int ellipsisWidth = TextRenderer.MeasureText("...", tabPage.Font).Width;
+                    int cutoff = 0;
+                    for (int i = tabText.Length - 1; i >= 0; i--)
+                    {
+                        textSize = e.Graphics.MeasureString(tabText.Substring(0, i) + "...", tabPage.Font);
+                        if (textSize.Width + ellipsisWidth <= e.Bounds.Width)
+                        {
+                            cutoff = i;
+                            break;
+                        }
+                    }
+                    tabText = tabText.Substring(0, cutoff) + "...";
+                }
+            
+
+            // Draw the tab header text
+            TextRenderer.DrawText(e.Graphics, tabText, tabPage.Font, textBounds, tabPage.ForeColor, TextFormatFlags.Left);
+
+            // Draw the button
+        
+            e.Graphics.DrawString("X", closeButtonFont, Brushes.Black, buttonBounds);
+
+            // Store the button bounds in the Tag property of the tabPage
+            tabPage.Tag = buttonBounds;
+            
+        }
+
+        /// <summary>
+        /// colse the child form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tabControl1_MouseClick(object sender, MouseEventArgs e)
+        {
+            TabControl tabControl = (TabControl)sender;
+
+            for (int i = 0; i < tabControl.TabPages.Count; i++)
+            {
+                TabPage tabPage = tabControl.TabPages[i];
+                Rectangle buttonBounds = (Rectangle)tabPage.Tag;
+
+                if (buttonBounds.Contains(e.Location))
+                {
+                    // Close the child form of the tabPage
+                    Form childForm = tabPage.Controls[0] as Form;
+                    childForm.Close();
+
+                    // Remove the tabPage from the tabControl
+                    tabControl.TabPages.RemoveAt(i);
+                    break;
+                }
+            }
+
+           
+        }
+
+
+        /// <summary>
+        /// open form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuItemClick(object sender, EventArgs e)
+        {
+
+
+            ToolStripItem toolStripItem = (ToolStripItem)sender;
+                // Instantiate the form using reflection
+                Type formType = Type.GetType("DebugUtility.UI."+toolStripItem.Name);
+                Form form = (Form)Activator.CreateInstance(formType);
+
+                       
+            string tabPageText = form.Text;
+            Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
+            embed.openForm(form, tabPageText, tabControl1, panel1);
+
+
+
+
+
+        }
+
+
 
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
 
-namespace Utility
+namespace DebugUtility.UI
 
 {
     public partial class Frm_imageFormatConvert : Form

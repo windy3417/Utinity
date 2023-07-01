@@ -22,7 +22,7 @@ namespace Utility.DAL
         /// </summary>
         /// <param name="dataSource"></param>
         /// <returns></returns>
-        public static List<TEntity> GetDataList<TEntity>(DataSourceType dataSource) where TEntity : class, new()
+        public static List<TEntity> GetSingleTable<TEntity>(DataSourceType dataSource) where TEntity : class, new()
         {
             TEntity model = new TEntity();
             List<TEntity> entityList = new List<TEntity>();
@@ -73,8 +73,67 @@ namespace Utility.DAL
 
         }
 
+        public static List<TEntity> GetSingleTable<TEntity>(string[] columns, string fullTextSearchString,DataSourceType dataSource) where TEntity : class, new()
+        {
+            TEntity model = new TEntity();
+            List<TEntity> entityList = new List<TEntity>();
+            Type modelType = model.GetType();
+            string tableName = modelType.Name.Replace("Model", "");
+            StringBuilder sqlColumns = new StringBuilder("(");
+            foreach (var item in columns)
+            {
+                sqlColumns.Append(item+",");
+            }
+            int i = sqlColumns.ToString().Count();
+            sqlColumns.Remove(i,1);
+            sqlColumns.Append(")");
+            StringBuilder sql = new StringBuilder($"select * from {tableName} where contains({columns},'{fullTextSearchString}')");
+
+
+            PropertyInfo[] proInfo = modelType.GetProperties();
+
+
+            SqlDataReader sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), dataSource);
+            while (sqlDataReader.Read())
+            {
+                #region 赋值给单一实体
+                TEntity m = new TEntity();
+                foreach (var item in proInfo)
+                {
+                    var propertyName = item.Name;
+                    if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface)
+                    {
+
+                        //处理空值
+                        if (sqlDataReader[propertyName] is DBNull)
+                        {
+                            item.SetValue(m, null, null);
+                        }
+                        else
+                        {
+                            item.SetValue(m, sqlDataReader[propertyName], null);
+                        }
+
+                    }
+
+                }
+
+                entityList.Add(m);
+
+
+
+                #endregion
+
+            }
+
+            return entityList;
+
+
+
+        }
+
         /// <summary>
-        /// 单表全数参数化查询
+        /// select single table with parameter
         /// </summary>
         /// <param name="dataSource"></param>
         /// <returns></returns>
@@ -101,9 +160,142 @@ namespace Utility.DAL
                 foreach (var item in proInfo)
                 {
                     var propertyName = item.Name;
+                    if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface & 
+                        !propertyName.EndsWith("Header") & !item.PropertyType.Name.EndsWith("Header"))
+                    {
+
+
+
+                        //处理空值
+                        if (sqlDataReader[propertyName] is DBNull)
+                        {
+                            item.SetValue(m, null, null);
+                        }
+                        else
+                        {
+                            item.SetValue(m, sqlDataReader[propertyName], null);
+                        }
+                    }
+
+                }
+
+                entityList.Add(m);
+
+
+
+                #endregion
+
+            }
+
+            return entityList;
+
+
+
+        }
+
+        /// <summary>
+        /// select single table with parameter
+        /// </summary>
+        /// <param name="dataSource"></param>
+        /// <returns></returns>
+        public static List<TEntity> GetDataList<TEntity>( DataSourceType dataSource) where TEntity : class, new()
+        {
+
+           
+            TEntity model = new TEntity();
+            List<TEntity> entityList = new List<TEntity>();
+            Type modelType = model.GetType();
+            string tableName = modelType.Name.Replace("Model", "");
+            StringBuilder sql = new StringBuilder($"select * from {tableName} where 1=1");
+
+          
+           
+
+            PropertyInfo[] proInfo = modelType.GetProperties();
+
+
+            SqlDataReader sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), dataSource);
+            while (sqlDataReader.Read())
+            {
+                #region 赋值给单一实体
+                TEntity m = new TEntity();
+                foreach (var item in proInfo)
+                {
+                    var propertyName = item.Name;
+                    if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface
+                         & !propertyName.EndsWith("Detail") & !item.PropertyType.Name.EndsWith("Detail") &
+                         !propertyName.EndsWith("Header") & !item.PropertyType.Name.EndsWith("Header"))
+                    {
+
+                        //处理空值
+                        if (sqlDataReader[propertyName] is DBNull)
+                        {
+                            item.SetValue(m, null, null);
+                        }
+                        else
+                        {
+                            item.SetValue(m, sqlDataReader[propertyName], null);
+                        }
+                    }
+
+                }
+
+                entityList.Add(m);
+
+
+
+                #endregion
+
+            }
+
+            return entityList;
+
+
+
+        }
+
+        /// <summary>
+        /// select single table with parameter
+        /// </summary>
+        /// <param name="dataSource"></param>
+        /// <returns></returns>
+        public static List<TEntity> GetView<TEntity>(string tableName , DataSourceType dataSource,SqlParameter[] sqlParameters = null) where TEntity : class, new()
+        {
+
+
+            TEntity model = new TEntity();
+            List<TEntity> entityList = new List<TEntity>();
+            Type modelType = model.GetType();
+        
+            StringBuilder sql = new StringBuilder($"select * from {tableName} where 1=1");
+            foreach (var para in sqlParameters)
+            {
+                sql.Append($"  and {para.ParameterName.Replace("@", "")}='{para.Value}'");
+            }
+
+            PropertyInfo[] proInfo = modelType.GetProperties();
+
+
+            SqlDataReader sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), sqlParameters, dataSource);
+            while (sqlDataReader.Read())
+            {
+                #region 赋值给单一实体
+                TEntity m = new TEntity();
+                foreach (var item in proInfo)
+                {
+                    var propertyName = item.Name;
                     if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface)
                     {
-                        item.SetValue(m, sqlDataReader[propertyName], null);
+
+                        //处理空值
+                        if (sqlDataReader[propertyName] is DBNull)
+                        {
+                            item.SetValue(m, null, null);
+                        }
+                        else
+                        {
+                            item.SetValue(m, sqlDataReader[propertyName], null);
+                        }
                     }
 
                 }
@@ -150,9 +342,36 @@ namespace Utility.DAL
                 foreach (var item in proInfo)
                 {
                     var propertyName = item.Name;
+                    var typeName = item.PropertyType.Name;
                     if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface)
                     {
-                        item.SetValue(m, sqlDataReader[propertyName], null);
+
+
+                        try
+                        {
+                            if (sqlDataReader[propertyName] is null)
+                            {
+                                item.SetValue(m, null, null);
+                            }
+                            else
+                            {
+                                item.SetValue(m, sqlDataReader[propertyName], null);
+                            }
+                          
+                        }
+                        catch (Exception)
+                        {
+                            if (item.PropertyType.Name== "Nullable`1")
+                            {
+                                item.SetValue(m, null, null);
+                                
+                            }
+                            else
+                            {
+                                item.SetValue(m, "", null);
+                            }
+                           
+                        } 
                     }
 
                 }
@@ -185,7 +404,7 @@ namespace Utility.DAL
             StringBuilder sql = new StringBuilder($"select * from {tableName} where 1=1");
             foreach (var para in sqlParameters)
             {
-                sql.Append($"  and {para.ParameterName.Replace("@", "")}={para.Value}");
+                sql.Append($"  and {para.ParameterName.Replace("@", "")}='{para.Value}'");
             }
 
             PropertyInfo[] proInfo = modelType.GetProperties();
@@ -204,8 +423,21 @@ namespace Utility.DAL
                     if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface)
                     {
                         //Sets the property value for a specified model.
-                        var val= sqlDataReader[propertyName] is DBNull ? "" : sqlDataReader[propertyName];
-                        item.SetValue(model, val, null);
+
+
+                        //处理空值
+                        if (sqlDataReader[propertyName] is DBNull)
+                        {
+                            item.SetValue(model, null, null);
+                        }
+                        else
+                        {
+                            item.SetValue(model, sqlDataReader[propertyName], null);
+                        }
+                        //}
+                        //var val= sqlDataReader[propertyName] is DBNull ? "" : sqlDataReader[propertyName];
+                        //    item.SetValue(model, val, null);
+                        //}
                     }
 
                 }
@@ -217,8 +449,46 @@ namespace Utility.DAL
 
         }
 
+        /// <summary>
+        /// select data from physic table
+        /// </summary>
+        /// <param name="tableName">physic table except view</param>
+        /// <param name="sqlParameters"></param>
+        /// <param name="dataSourceType"></param>
+        /// <returns></returns>
+        public static DataTable GetDataTable(string tableName,SqlParameter[] sqlParameters,DataSourceType dataSourceType)
+        {
+
+            StringBuilder sql = new StringBuilder($"select * from {tableName} where 1=1");
+
+            if (sqlParameters == null)
+            {
+
+                return Sqlhelper.GetDataTable(sql.ToString(), Sqlhelper.DataSourceType.it);
+            }
+
+            else
+            {
+                foreach (var item in sqlParameters)
+                {
+
+                    sql.Append($" and {item.ParameterName.Replace("@", "")}= {item.ParameterName}");
+
+                }
+                return Sqlhelper.GetDataTable(sql.ToString(), sqlParameters, dataSourceType);
+            }
+
+
+
+
+
+
+        }
+
         #endregion
 
+
+        #region double table query
 
         /// <summary>
         /// 双表联接数据查询
@@ -230,15 +500,13 @@ namespace Utility.DAL
             where TArchive : class, new() where TMainWithArchive : class, new()
         {
 
-
             Type modelTypeArchive = new TArchive().GetType();
             Type modelTypeMain = new TMainWithArchive().GetType();
-           
+
 
             string tableNameArchive = modelTypeArchive.Name.Replace("Model", "");
             string tableNameMain = modelTypeMain.Name.Replace("Model", "");
-          
-        
+
 
 
             #region get primary key and foreign key 
@@ -260,22 +528,21 @@ namespace Utility.DAL
             StringBuilder sql = new StringBuilder($"select * from {tableNameArchive}  as a  ");
             foreach (var item in fkMain)
             {
-                
+
 
                 if (item.Name == pkArchive.Name)
                 {
-                 
+
                     sql.Append($" inner join  {tableNameMain} as b  on   a.{pkArchive.Name}=b.{item.Name}");
                 }
 
             }
 
-         
+
             #endregion
 
 
             return Sqlhelper.GetDataTable(sql.ToString(), dataSourceType);
-
 
 
 
@@ -333,16 +600,17 @@ namespace Utility.DAL
 
                 if (item.Name == pkArchive1.Name)
 
-                {    sql.Append($" inner join  {tableNameArchive1} as b  on   a.{item.Name}=b.{pkArchive1.Name}");
-                                     
+                {
+                    sql.Append($" inner join  {tableNameArchive1} as b  on   a.{item.Name}=b.{pkArchive1.Name}");
+
                 }
 
                 if (item.Name == pkArchive2.Name)
                 {
-                   
+
                     sql.Append($" inner join  {tableNameArchive2} as c on   a.{item.Name}=c.{pkArchive2.Name}");
-                   
-                                        
+
+
                 }
 
             }
@@ -364,6 +632,11 @@ namespace Utility.DAL
 
 
         }
+
+
+
+        #endregion
+
 
         /// <summary>
         /// 三表联接数据查询

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Utility.DAL
 {
-  public   class DeleteService
+  public  static class DeleteService
     {
         /// <summary>
         /// delete single row data
@@ -16,7 +16,7 @@ namespace Utility.DAL
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="dataGridView"></param>
         /// <param name="expression">conditon for del</param>
-        public void DeletSingleRow<TEntity, Context>(DataGridView dataGridView, Expression<Func<TEntity, bool>> expression) where TEntity : class 
+        public static void DeletSingleRow<TEntity, Context>(DataGridView dataGridView, Expression<Func<TEntity, bool>> expression) where TEntity : class 
           where  Context : DbContext, new()
         {
             try
@@ -52,6 +52,35 @@ namespace Utility.DAL
             }
         }
 
+        public static void DeleteCascaded<TEntity, Context>(Expression<Func<TEntity, bool>> expression) where TEntity : class
+    where Context : DbContext, new()
+        {
+            try
+            {
+                using (var db = new Context())
+                {
+                                      
+                        TEntity m = db.Set<TEntity>().Where(expression.Compile()).FirstOrDefault();
+
+
+                        db.Set<TEntity>().Remove(m);
+                        db.SaveChanges();
+
+                        MessageBox.Show("数据删除成功");
+
+                     
+                   
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message + ex.InnerException);
+            }
+        }
+
 
 
         /// <summary>
@@ -61,7 +90,8 @@ namespace Utility.DAL
         /// <typeparam name="TEntityDetail"></typeparam>
         /// <param name="exp1"></param>
         /// <param name="exp2"></param>
-        public void Delete<TEntityMain, TEntityDetail,Context>(Expression<Func<TEntityMain, bool>> exp1, Expression<Func<TEntityDetail, bool>> exp2) where TEntityMain : class
+        public static void DeleteHeaderDetails<TEntityMain, TEntityDetail,Context>(Expression<Func<TEntityMain, bool>> exp1, 
+            Expression<Func<TEntityDetail, bool>> exp2) where TEntityMain : class
             where TEntityDetail : class where Context :DbContext ,new ()
         {
 

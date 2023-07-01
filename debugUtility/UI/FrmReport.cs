@@ -11,13 +11,13 @@ using ReportTransfer.DAL;
 using Utility.Excel;
 using Utility.Files;
 
-namespace DebugUtility
+namespace DebugUtility.UI
 {
-    public partial class Frm_report : Form
+    public partial class FrmReport : Form
     {
         Dictionary<string, string> kvName = new Dictionary<string, string>();
         Dictionary<string, string> kvAddress = new Dictionary<string, string>();
-        public Frm_report()
+        public FrmReport()
         {
             InitializeComponent();
             InitializeDataSource();

@@ -117,6 +117,7 @@
     <Compile Include="Files\FilesOperate.cs" />
     <Compile Include="Excel\ImportFromExcel.cs" />
     <Compile Include="Files\JsonOperate.cs" />
+    <Compile Include="Files\Log.cs" />
     <Compile Include="Files\SmbFiels.cs" />
     <Compile Include="Model\ConnectStringModel.cs" />
     <Compile Include="Model\CurrentUser.cs" />
@@ -128,9 +129,11 @@
     <Compile Include="Sql\SQLiteColumnList.cs" />
     <Compile Include="Sql\SQLiteHelper.cs" />
     <Compile Include="Sql\SQLiteTable.cs" />
+    <Compile Include="Style\ButtonColumnsTest.cs" />
     <Compile Include="Style\CalendarColumn.cs" />
+    <Compile Include="Style\DataGridViewCheckBoxHeaderCell.cs" />
     <Compile Include="Style\DataGridViewDoubleBuffer.cs" />
-    <Compile Include="Style\StyleDataGridView.cs" />
+    <Compile Include="Style\DataGridViewStyle.cs" />
     <Compile Include="UControl\DbConnectControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -146,12 +149,6 @@
     <Compile Include="Files\FileUp.cs" />
     <Compile Include="Files\UpLoadFiles.cs">
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Frm_ImageFormatConvert.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frm_ImageFormatConvert.Designer.cs">
-      <DependentUpon>Frm_ImageFormatConvert.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_progressMemtion.cs">
       <SubType>Form</SubType>
@@ -273,9 +270,6 @@
       <DependentUpon>Frm_voucherList.cs</DependentUpon>
     </Compile>
     <Compile Include="Validate\Validate.cs" />
-    <EmbeddedResource Include="Frm_ImageFormatConvert.resx">
-      <DependentUpon>Frm_ImageFormatConvert.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Frm_progressMemtion.resx">
       <DependentUpon>Frm_progressMemtion.cs</DependentUpon>
     </EmbeddedResource>

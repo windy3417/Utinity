@@ -1,6 +1,6 @@
-﻿namespace DebugUtility
+﻿namespace DebugUtility.UI
 {
-    partial class Frm_report
+    partial class FrmReport
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_report));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmReport));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.test1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.test2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.test3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_query = new System.Windows.Forms.ToolStripButton();
             this.tsb_export = new System.Windows.Forms.ToolStripButton();
             this.tsb_exportDgv = new System.Windows.Forms.ToolStripButton();
             this.tsb_exportCsv = new System.Windows.Forms.ToolStripButton();
             this.tsbRowSpan = new System.Windows.Forms.ToolStripButton();
-            this.test1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.test2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.test3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -58,6 +58,24 @@
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(760, 150);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // test1
+            // 
+            this.test1.HeaderText = "test1";
+            this.test1.Name = "test1";
+            this.test1.ReadOnly = true;
+            // 
+            // test2
+            // 
+            this.test2.HeaderText = "test2";
+            this.test2.Name = "test2";
+            this.test2.ReadOnly = true;
+            // 
+            // test3
+            // 
+            this.test3.HeaderText = "test3";
+            this.test3.Name = "test3";
+            this.test3.ReadOnly = true;
             // 
             // toolStrip1
             // 
@@ -120,32 +138,14 @@
             this.tsbRowSpan.Text = "多层表头";
             this.tsbRowSpan.Click += new System.EventHandler(this.tsbRowSpan_Click);
             // 
-            // test1
-            // 
-            this.test1.HeaderText = "test1";
-            this.test1.Name = "test1";
-            this.test1.ReadOnly = true;
-            // 
-            // test2
-            // 
-            this.test2.HeaderText = "test2";
-            this.test2.Name = "test2";
-            this.test2.ReadOnly = true;
-            // 
-            // test3
-            // 
-            this.test3.HeaderText = "test3";
-            this.test3.Name = "test3";
-            this.test3.ReadOnly = true;
-            // 
-            // Frm_report
+            // FrmReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "Frm_report";
+            this.Name = "FrmReport";
             this.Text = "测试报表";
             this.Load += new System.EventHandler(this.Frm_report_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

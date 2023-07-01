@@ -21,27 +21,6 @@ namespace DebugUtility.UI
         {
             InitializeComponent();
 
-            this.Code = new DataGridViewTextBoxColumn();
-            this.Code.Name = "FilePath";
-            this.Code.Width = 200;
-            this.Code.Resizable = DataGridViewTriState.False;
-            this.dataGridView1.Columns.Add(Code);
-
-            this.Description = new DataGridViewTextBoxColumn();
-            this.Description.Name = "Description";
-            this.Description.Width = 150;
-            this.dataGridView1.Columns.Add(Description);
-
-          
-                              
-
-           
-
-          
-
-            this.dataGridView1.CellClick += new DataGridViewCellEventHandler(dataGridView1_CellClick);
-            this.dataGridView1.ColumnHeaderMouseClick += new DataGridViewCellMouseEventHandler(dataGridView1_ColumnHeaderMouseClick);
-            this.dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
         }
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -49,50 +28,7 @@ namespace DebugUtility.UI
             this.txtbtnControl.Visible = false;
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == Code.Index)
-            {
-                try
-                {
 
-                    //adding textboxbutton control at code column...
-
-                    Rectangle rect = this.dataGridView1.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
-
-                    this.txtbtnControl = new TextBoxButtonControl(rect.Size.Width);
-                    this.txtbtnControl.Visible = false;
-                    this.dataGridView1.Controls.Add(this.txtbtnControl);
-                    this.txtbtnControl.btnCode.Click += new EventHandler(btnCode_Click);
-
-                    this.txtbtnControl.Leave += new EventHandler(txtbtnControl_Leave);
-                    this.txtbtnControl.txtCode.TextChanged += new EventHandler(txtCode_TextChanged);
-
-                    this.txtbtnControl.Location = rect.Location;
-                    this.txtbtnControl.Size = rect.Size;
-                    this.txtbtnControl.btnCode.Text = "...";
-                    this.txtbtnControl.Visible = true;
-                    this.txtbtnControl.Focus();
-                    if (!string.IsNullOrEmpty(this.dataGridView1.CurrentRow.Cells[Code.Name].Value.ToString()))
-                    {
-                        this.txtbtnControl.txtCode.Text = this.dataGridView1.CurrentRow.Cells[Code.Name].Value.ToString();
-                    }
-                    else
-                    {
-                        this.txtbtnControl.txtCode.Text = "";
-                    }
-                }
-                catch (Exception) { }
-            }
-        }
-
-        private void txtCode_TextChanged(object sender, EventArgs e)
-        {
-            if (this.txtbtnControl.txtCode.Modified)
-            {
-                this.dataGridView1.CurrentRow.Cells[Code.Name].Value = this.txtbtnControl.txtCode.Text;
-            }
-        }
 
         private void txtbtnControl_Leave(object sender, EventArgs e)
         {
@@ -112,23 +48,11 @@ namespace DebugUtility.UI
             openFileDialog1.ShowDialog();
         }
 
-        private void btnCode_Click(object sender, EventArgs e)
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
-            //Form2 form2 = new Form2();
-            //form2.ShowDialog();
-            OpenFileDialog dialog = new OpenFileDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value = dialog.FileName.ToString();
-                    txtbtnControl.txtCode.Text = dialog.FileName.ToString();
-                }
-                catch (Exception)
-                {
-                }
-            }
+
         }
+
     }
 
     class TextBoxButtonControl : UserControl

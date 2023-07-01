@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -163,6 +164,17 @@ namespace Utility.Files
 
             }
             return null;
+        }
+
+        public string ByteToChar(string bytes)
+        {
+
+          byte[] b=  Encoding.Default.GetBytes(bytes);
+               
+                                    
+          return System.Text.Encoding.UTF8.GetString(b);
+            
+
         }
 
     }

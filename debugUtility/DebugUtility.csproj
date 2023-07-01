@@ -163,6 +163,12 @@
     <Compile Include="UI\ClassTest\FrmSMB.Designer.cs">
       <DependentUpon>FrmSMB.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Controls\FrmTabControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\FrmTabControl.Designer.cs">
+      <DependentUpon>FrmTabControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\FrmTreeView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,11 +224,17 @@
     <Compile Include="UI\DataGridView\FrmDataGridViewCalarderColumn.Designer.cs">
       <DependentUpon>FrmDataGridViewCalarderColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Frm_report.cs">
+    <Compile Include="UI\Frm_ImageFormatConvert.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Frm_report.Designer.cs">
-      <DependentUpon>Frm_report.cs</DependentUpon>
+    <Compile Include="UI\Frm_ImageFormatConvert.Designer.cs">
+      <DependentUpon>Frm_ImageFormatConvert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmReport.Designer.cs">
+      <DependentUpon>FrmReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202011040215178_addTable.cs" />
     <Compile Include="Migrations\202011040215178_addTable.Designer.cs">
@@ -238,23 +250,17 @@
     <Compile Include="UI\Config.Designer.cs">
       <DependentUpon>Config.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Controls\Frm_tabPage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Controls\Frm_tabPage.Designer.cs">
-      <DependentUpon>Frm_tabPage.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\Controls\Frm_listTest.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Controls\Frm_listTest.Designer.cs">
       <DependentUpon>Frm_listTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Frm_sheet.cs">
+    <Compile Include="UI\FrmSheet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Frm_sheet.Designer.cs">
-      <DependentUpon>Frm_sheet.cs</DependentUpon>
+    <Compile Include="UI\FrmSheet.Designer.cs">
+      <DependentUpon>FrmSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Print\FrmMutiplePagePrinting.cs">
       <SubType>Form</SubType>
@@ -293,6 +299,9 @@
     <EmbeddedResource Include="UI\ClassTest\FrmSMB.resx">
       <DependentUpon>FrmSMB.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\FrmTabControl.resx">
+      <DependentUpon>FrmTabControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\FrmTreeView.resx">
       <DependentUpon>FrmTreeView.cs</DependentUpon>
     </EmbeddedResource>
@@ -320,8 +329,11 @@
     <EmbeddedResource Include="UI\DataGridView\FrmComboxColumn.resx">
       <DependentUpon>FrmComboxColumn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Frm_report.resx">
-      <DependentUpon>Frm_report.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Frm_ImageFormatConvert.resx">
+      <DependentUpon>Frm_ImageFormatConvert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmReport.resx">
+      <DependentUpon>FrmReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011040215178_addTable.resx">
       <DependentUpon>202011040215178_addTable.cs</DependentUpon>
@@ -336,14 +348,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UI\Controls\Frm_tabPage.resx">
-      <DependentUpon>Frm_tabPage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\Frm_listTest.resx">
       <DependentUpon>Frm_listTest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Frm_sheet.resx">
-      <DependentUpon>Frm_sheet.cs</DependentUpon>
+    <EmbeddedResource Include="UI\FrmSheet.resx">
+      <DependentUpon>FrmSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Print\FrmMutiplePagePrinting.resx">
       <DependentUpon>FrmMutiplePagePrinting.cs</DependentUpon>

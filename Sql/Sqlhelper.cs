@@ -134,19 +134,20 @@ namespace Utility.Sql
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = strSql;
+                    cmd.CommandText = @strSql;
 
-                    DataSet ds = new DataSet();
+                  
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {
-                        adapter.Fill(ds);
-                        conn.Close();
-                        return ds.Tables[0];
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        return dataTable;
                     }
                 }
 
             }
         }
+
 
         public static DataTable GetDataTable(string strSql, SqlParameter[] sqlParameters, DataSourceType dataSource)
         {
@@ -197,6 +198,7 @@ namespace Utility.Sql
             connection.Open();
 
             SqlCommand cmd = new SqlCommand();
+
 
             cmd.Connection = connection;
             cmd.CommandText = strSql;
@@ -559,7 +561,35 @@ namespace Utility.Sql
             }
         }
 
+        public DataTable GetAddresBookAsDataTable(SqlParameter[] sqlParameters)
+        {
 
+            StringBuilder sql = new StringBuilder();
+            sql.Append("select * from addressBook where  1=1 ");
+
+            if (sqlParameters == null)
+            {
+
+                return Sqlhelper.GetDataTable(sql.ToString(), Sqlhelper.DataSourceType.it);
+            }
+
+            else
+            {
+                foreach (var item in sqlParameters)
+                {
+
+                    sql.Append($" and {item.ParameterName.Replace("@", "")}= {item.ParameterName}");
+
+                }
+                return Sqlhelper.GetDataTable(sql.ToString(), sqlParameters, Sqlhelper.DataSourceType.it);
+            }
+
+
+
+
+
+
+        }
 
         /// <summary> 
         /// 返回sqlDataReader 
