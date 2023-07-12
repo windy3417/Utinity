@@ -19,6 +19,7 @@ namespace Utility.Style
         int callEditingCotrolAmount = 0;
         Button _button = new Button();
         #endregion
+
         #region property
 
         public Button RefButton { get; set; }

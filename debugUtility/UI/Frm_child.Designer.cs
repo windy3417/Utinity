@@ -37,7 +37,7 @@
             this.userControl11 = new Utility.UControl.txtBoxWithDate();
             this.txtBoxWithDatePicker2 = new Utility.UControl.txtBoxWithDate();
             this.txtBoxWithDatePicker1 = new Utility.UControl.txtBoxWithDate();
-            this.utoolStrip1 = new Utility.UControl.UtoolStrip();
+      
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -107,10 +107,7 @@
             // 
             // utoolStrip1
             // 
-            this.utoolStrip1.Location = new System.Drawing.Point(5, 2);
-            this.utoolStrip1.Name = "utoolStrip1";
-            this.utoolStrip1.Size = new System.Drawing.Size(277, 21);
-            this.utoolStrip1.TabIndex = 8;
+         
             // 
             // toolStrip1
             // 
@@ -147,7 +144,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.utoolStrip1);
+       
             this.Controls.Add(this.txt_mendDate);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.userControl11);
@@ -175,7 +172,7 @@
         private Utility.UControl.txtBoxWithDate userControl11;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txt_mendDate;
-        private Utility.UControl.UtoolStrip utoolStrip1;
+     
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;

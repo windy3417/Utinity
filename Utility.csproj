@@ -129,7 +129,7 @@
     <Compile Include="Sql\SQLiteColumnList.cs" />
     <Compile Include="Sql\SQLiteHelper.cs" />
     <Compile Include="Sql\SQLiteTable.cs" />
-    <Compile Include="Style\ButtonColumnsTest.cs" />
+    <Compile Include="Style\ButtonColumns.cs" />
     <Compile Include="Style\CalendarColumn.cs" />
     <Compile Include="Style\DataGridViewCheckBoxHeaderCell.cs" />
     <Compile Include="Style\DataGridViewDoubleBuffer.cs" />
@@ -163,6 +163,12 @@
       <DependentUpon>ImageToIcon.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UControl\PagingReader.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UControl\PagingReader.Designer.cs">
+      <DependentUpon>PagingReader.cs</DependentUpon>
+    </Compile>
     <Compile Include="UControl\TextBoxWithButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -175,11 +181,11 @@
     <Compile Include="UControl\txtBoxWithDate.Designer.cs">
       <DependentUpon>txtBoxWithDate.cs</DependentUpon>
     </Compile>
-    <Compile Include="UControl\UtoolStrip.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="UControl\XmToolStrip.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UControl\UtoolStrip.Designer.cs">
-      <DependentUpon>UtoolStrip.cs</DependentUpon>
+    <Compile Include="UControl\XmToolStrip.Designer.cs">
+      <DependentUpon>XmToolStrip.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Authority\FrmPerson.cs">
       <SubType>Form</SubType>
@@ -289,14 +295,14 @@
     <EmbeddedResource Include="UControl\DbConnectControl.resx">
       <DependentUpon>DbConnectControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UControl\PagingReader.resx">
+      <DependentUpon>PagingReader.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UControl\TextBoxWithButton.resx">
       <DependentUpon>TextBoxWithButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UControl\txtBoxWithDate.resx">
       <DependentUpon>txtBoxWithDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UControl\UtoolStrip.resx">
-      <DependentUpon>UtoolStrip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Authority\FrmPerson.resx">
       <DependentUpon>FrmPerson.cs</DependentUpon>
@@ -393,6 +399,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\enable.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Approve.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\giveUpAudit.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\first page.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Last page.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Next page.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\previous page.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

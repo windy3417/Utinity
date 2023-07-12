@@ -27,7 +27,7 @@ namespace Utility.Excel
                 IWorkbook workbook = new HSSFWorkbook();
 
                 //创建一个 sheet 表
-                ISheet sheet = workbook.CreateSheet(dt.TableName);
+                ISheet sheet = workbook.CreateSheet(reportName);
 
                 //创建一行
                 IRow rowH = sheet.CreateRow(0);
@@ -108,7 +108,7 @@ namespace Utility.Excel
             }
             catch (Exception ex)
             {
-                ex.ToString();
+               MessageBox.Show( ex.Message+ex.InnerException);
             }
         }
 

@@ -110,9 +110,6 @@ namespace Utility.Sql
 
 
 
-
-
-
         }
 
         #endregion
@@ -379,7 +376,7 @@ namespace Utility.Sql
                         // This catch block will handle any errors that may have occurred
                         // on the server that would cause the rollback to fail, such as
                         // a closed connection.
-                        MessageBox.Show("事务回滚失败" + ex.Message + ex.InnerException, "事务执行提示");
+                        MessageBox.Show("事务回滚失败" + ex2.Message + ex2.InnerException, "事务执行提示");
                     }
                 }
             }
@@ -434,7 +431,7 @@ namespace Utility.Sql
                         // This catch block will handle any errors that may have occurred
                         // on the server that would cause the rollback to fail, such as
                         // a closed connection.
-                        MessageBox.Show("事务回滚失败" + ex.Message + ex.InnerException, "事务执行提示");
+                        MessageBox.Show("事务回滚失败" + ex2.Message + ex2.InnerException, "事务执行提示");
                     }
                 }
             }
