@@ -1,4 +1,5 @@
 ﻿using System;
+
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+//using Utility.Common;
 
 namespace Utility.UControl
 {
@@ -198,9 +200,7 @@ namespace Utility.UControl
             this.tsbLastPage.Click += new System.EventHandler(this.tsbLastPage_Click);
         }
 
-   
-
-    
+      
 
         protected override void OnPaint(PaintEventArgs pe)
         {
@@ -275,9 +275,9 @@ namespace Utility.UControl
             var query = GetPagedData(_dataSource, Convert.ToInt32(_txtStartNo.Text), Convert.ToInt32(_txtPageSize.Text));
 
 
-            _tableBody.DataSource = query.ToList
-                ();
-           
+            _tableBody.DataSource = query.CopyToDataTable();
+
+
         }
 
 

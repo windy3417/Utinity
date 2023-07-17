@@ -1,6 +1,6 @@
 ﻿namespace Utility.UControl
 {
-    partial class TextBoxWithButton
+    partial class XmTextBoxWithButton
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -32,8 +32,7 @@
             // 
             // TextBoxWithButton
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+          
             this.Name = "TextBoxWithButton";
             this.Size = new System.Drawing.Size(200, 23);
             this.ResumeLayout(false);

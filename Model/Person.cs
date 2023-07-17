@@ -9,12 +9,11 @@ using System.Text;
 
 namespace Utility.Model
 {
-    [Table("person")]
-  public  class PersonModel
+   
+  public  class Person
     {
-      
-            [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-            public int ID { get; set; }
+               
+            public int PersonId { get; set; }
             [Key]
             public string Code { get; set; }
             public string Name { get; set; }

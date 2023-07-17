@@ -28,7 +28,7 @@ namespace Utility.UI.Authority
         /// </summary>
         private void initializeDatasource()
         {
-            cmb_user.DataSource = new PersonService().people().Where<PersonModel>(c =>c.FailuerDate ==null ).
+            cmb_user.DataSource = new PersonService().people().Where<Person>(c =>c.FailuerDate ==null ).
                 Select((c) => new { c.Code, c.Name,c.pwd,c.EffectDate }).ToList();
 
             cmb_user.DisplayMember = "name";

@@ -28,7 +28,7 @@ namespace Utility.DAL
                 //throw new UnintentionalCodeFirstException();
             }
 
-            public virtual DbSet<PersonModel> Person { get; set; }
+            public virtual DbSet<Person> Person { get; set; }
            
         
     }

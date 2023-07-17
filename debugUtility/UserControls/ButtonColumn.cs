@@ -16,7 +16,7 @@ namespace debugUtility.UserControls
     {
         void test()
         {
-            TextBoxWithButton textBoxWithButton = new TextBoxWithButton();
+            XmTextBoxWithButton textBoxWithButton = new XmTextBoxWithButton();
             
         }
         

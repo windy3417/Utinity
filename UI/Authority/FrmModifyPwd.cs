@@ -39,7 +39,7 @@ namespace Utility.UI.Authority
         private void initializeDatasource()
         {
             ModifyPwdEventArgs modify = new ModifyPwdEventArgs();
-            cmb_user.DataSource = new PersonService().people().Where<PersonModel>(c => c.FailuerDate == null && c.Code == userCode).
+            cmb_user.DataSource = new PersonService().people().Where<Person>(c => c.FailuerDate == null && c.Code == userCode).
                 Select((c) => new { c.Code, c.Name, c.pwd, c.EffectDate }).ToList();
 
             cmb_user.DisplayMember = "name";

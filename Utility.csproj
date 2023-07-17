@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Utility</RootNamespace>
     <AssemblyName>Utility</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
@@ -50,8 +50,8 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.0.8, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>packages\SharpZipLib.1.3.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>packages\log4net.2.0.12\lib\net40\log4net.dll</HintPath>
@@ -81,6 +81,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.SQLite, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\lib\net40\System.Data.SQLite.dll</HintPath>
     </Reference>
@@ -101,6 +102,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\CustomLINQtoDataSetMethods.cs" />
+    <Compile Include="Common\ObjectShredder.cs" />
     <Compile Include="DAL\AuthorityContext.cs" />
     <Compile Include="DAL\ConnectString.cs" />
     <Compile Include="DAL\DeleteService.cs" />
@@ -123,7 +126,7 @@
     <Compile Include="Model\CurrentUser.cs" />
     <Compile Include="Model\EnumCommon.cs" />
     <Compile Include="Model\FileInfoModel.cs" />
-    <Compile Include="Model\PersonModel.cs" />
+    <Compile Include="Model\Person.cs" />
     <Compile Include="Sql\Sqlhelper.cs" />
     <Compile Include="Sql\SQLiteColumn.cs" />
     <Compile Include="Sql\SQLiteColumnList.cs" />
@@ -169,11 +172,11 @@
     <Compile Include="UControl\PagingReader.Designer.cs">
       <DependentUpon>PagingReader.cs</DependentUpon>
     </Compile>
-    <Compile Include="UControl\TextBoxWithButton.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="UControl\XmTextBoxWithButton.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UControl\TextBoxWithButton.Designer.cs">
-      <DependentUpon>TextBoxWithButton.cs</DependentUpon>
+    <Compile Include="UControl\XmTextBoxWithButton.Designer.cs">
+      <DependentUpon>XmTextBoxWithButton.cs</DependentUpon>
     </Compile>
     <Compile Include="UControl\txtBoxWithDate.cs">
       <SubType>UserControl</SubType>
@@ -298,8 +301,8 @@
     <EmbeddedResource Include="UControl\PagingReader.resx">
       <DependentUpon>PagingReader.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UControl\TextBoxWithButton.resx">
-      <DependentUpon>TextBoxWithButton.cs</DependentUpon>
+    <EmbeddedResource Include="UControl\XmTextBoxWithButton.resx">
+      <DependentUpon>XmTextBoxWithButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UControl\txtBoxWithDate.resx">
       <DependentUpon>txtBoxWithDate.cs</DependentUpon>
@@ -417,6 +420,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\previous page.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button.BMP" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

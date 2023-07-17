@@ -15,7 +15,7 @@ namespace Utility.DAL.Services
         /// 返回用户列表
         /// </summary>
         /// <returns></returns>
-        public List<PersonModel> people()
+        public List<Person> people()
         {
             using (var db=new AuthorityContext())
             {

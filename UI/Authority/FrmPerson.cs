@@ -24,7 +24,7 @@ namespace Utility.UI.Authority
 
         #region 变量
         //新增时,dataGridview绑定的数据源，以体现新增的结果
-        List<PersonModel> archivesList = new List<PersonModel>();
+        List<Person> archivesList = new List<Person>();
         //最大客户编号
         int maxCode;
         //dataGridView控件的数据来源，true为查询时绑定，
@@ -102,7 +102,7 @@ namespace Utility.UI.Authority
             //取最大编号时速度太慢，三秒左右，同时最大号算法有误，取到第10号则不向上递增了???。
             using (var db = new AuthorityContext())
             {
-                PersonModel person = new PersonModel();
+                Person person = new Person();
 
                 var Query = from s in db.Person.AsNoTracking()
 
@@ -143,9 +143,9 @@ namespace Utility.UI.Authority
 
                     AuthorityContext db = new AuthorityContext();
 
-                    List<PersonModel> del = (from d in db.Person
+                    List<Person> del = (from d in db.Person
                                              where d.Code == selected
-                                             select d).ToList<PersonModel>();
+                                             select d).ToList<Person>();
                     //移除数据库的数据
                     db.Person.Remove(del[0]);
                     db.SaveChanges();
@@ -158,7 +158,7 @@ namespace Utility.UI.Authority
                     if (saveOrModifQueryFlag == saveOrChangeOrQueryMolde.save.ToString())
                     {
 
-                        List<PersonModel> person = archivesList.Where(c => c.Code == selected).ToList<PersonModel>();
+                        List<Person> person = archivesList.Where(c => c.Code == selected).ToList<Person>();
 
                     }
                     bind_gv_dateSource();
@@ -241,7 +241,7 @@ namespace Utility.UI.Authority
                 {
 
                     string personCode = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-                    PersonModel person = db.Person.Where(c => c.Code == personCode).FirstOrDefault();
+                    Person person = db.Person.Where(c => c.Code == personCode).FirstOrDefault();
 
                     person.FailuerDate = DateTime.Now.Date;
 
@@ -273,7 +273,7 @@ namespace Utility.UI.Authority
                 {
 
                     string personCode = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-                    PersonModel person = db.Person.Where(c => c.Code == personCode).FirstOrDefault();
+                    Person person = db.Person.Where(c => c.Code == personCode).FirstOrDefault();
 
                     person.FailuerDate = null;
                     person.EffectDate = DateTime.Now.Date;
@@ -458,7 +458,7 @@ namespace Utility.UI.Authority
                     using (var db = new AuthorityContext())
                     {
 
-                        PersonModel person = new PersonModel();
+                        Person person = new Person();
                         person.Code = txt_cusCode.Text;
                         person.Name = this.txt_cusName.Text;
                         person.pwd = Encrypt.Encode(txt_pwd.Text);
@@ -497,7 +497,7 @@ namespace Utility.UI.Authority
                 {
                     using (var db = new AuthorityContext())
                     {
-                        PersonModel person = db.Person.Where(c => c.Code.ToString() == txt_cusCode.Text).FirstOrDefault();
+                        Person person = db.Person.Where(c => c.Code.ToString() == txt_cusCode.Text).FirstOrDefault();
 
                         person.Code =txt_cusCode.Text;
 
@@ -534,7 +534,7 @@ namespace Utility.UI.Authority
                     using (var db = new AuthorityContext())
                     {
                         string code = txt_cusCode.Text;
-                        PersonModel w = db.Person.Where(s => s.Code == code).FirstOrDefault();
+                        Person w = db.Person.Where(s => s.Code == code).FirstOrDefault();
                         w.pwd = Encrypt.Encode(auth.pwd);
                         db.SaveChanges();
                         MessageBox.Show("密码修改成功", "密码修改提示");
@@ -562,7 +562,7 @@ namespace Utility.UI.Authority
             //查询状态的数据源
             if (saveOrModifQueryFlag == saveOrChangeOrQueryMolde.query.ToString())
             {
-                this.dataGridView1.DataSource = new AuthorityContext().Person.ToList<PersonModel>();
+                this.dataGridView1.DataSource = new AuthorityContext().Person.ToList<Person>();
             }
             //新增状态的数据源
             else

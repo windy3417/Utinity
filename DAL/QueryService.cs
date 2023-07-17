@@ -137,7 +137,7 @@ namespace Utility.DAL
         /// </summary>
         /// <param name="dataSource"></param>
         /// <returns></returns>
-        public static List<TEntity> GetDataList<TEntity>(SqlParameter[] sqlParameters, DataSourceType dataSource) where TEntity : class, new()
+        public static List<TEntity> GetSingleTableRows<TEntity>(SqlParameter[] sqlParameters, DataSourceType dataSource) where TEntity : class, new()
         {
             TEntity model = new TEntity();
             List<TEntity> entityList = new List<TEntity>();
@@ -420,7 +420,9 @@ namespace Utility.DAL
                 foreach (var item in proInfo)
                 {
                     var propertyName = item.Name;
-                    if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface)
+                    if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface &
+                        !propertyName.EndsWith("Header") & !item.PropertyType.Name.EndsWith("Header") &
+                        !propertyName.EndsWith("Archive") & !item.PropertyType.Name.EndsWith("Archive"))
                     {
                         //Sets the property value for a specified model.
 
@@ -434,10 +436,7 @@ namespace Utility.DAL
                         {
                             item.SetValue(model, sqlDataReader[propertyName], null);
                         }
-                        //}
-                        //var val= sqlDataReader[propertyName] is DBNull ? "" : sqlDataReader[propertyName];
-                        //    item.SetValue(model, val, null);
-                        //}
+                       
                     }
 
                 }
@@ -518,7 +517,7 @@ namespace Utility.DAL
                 (p => p.GetCustomAttributes(typeof(KeyAttribute), false).Length > 0).FirstOrDefault();
 
             var fkMain = modelTypeMain.GetProperties().Where
-                (p => p.GetCustomAttributes(typeof(ForeignKeyAttribute), false).Length > 0);
+                (p => p.Name.ToLower().EndsWith("id"));
 
 
             #endregion
@@ -586,7 +585,7 @@ namespace Utility.DAL
                 (p => p.GetCustomAttributes(typeof(KeyAttribute), false).Length > 0).FirstOrDefault();
 
             var fkMain = modelTypeMain.GetProperties().Where
-                (p => p.GetCustomAttributes(typeof(ForeignKeyAttribute), false).Length > 0);
+                (p => p.Name.ToLower().EndsWith("id"));
 
            
             
@@ -626,14 +625,6 @@ namespace Utility.DAL
 
 
 
-
-
-
-
-
-
-
-
         }
 
 
@@ -667,10 +658,17 @@ namespace Utility.DAL
               (p => p.GetCustomAttributes(typeof(KeyAttribute), false).Length > 0).FirstOrDefault();
             PropertyInfo pkMain = modelTypeMain.GetProperties().Where
                 (p => p.GetCustomAttributes(typeof(KeyAttribute), false).Length > 0).FirstOrDefault();
+
+            //the foreignKeyAttribut exist in EF and .netFramwork 4.5 ,so erros throw 
+            //var fkMain = modelTypeMain.GetProperties().Where
+            //    (p => p.GetCustomAttributes(typeof(ForeignKeyAttribute), false).Length > 0);
+            //var fkDetails = modelTypeDetails.GetProperties().
+            //    Where(p => p.GetCustomAttributes(typeof(ForeignKeyAttribute), false).Length > 0);
+
             var fkMain = modelTypeMain.GetProperties().Where
-                (p => p.GetCustomAttributes(typeof(ForeignKeyAttribute), false).Length > 0);
+             (p => p.Name.ToLower().EndsWith("id"));
             var fkDetails = modelTypeDetails.GetProperties().
-                Where(p => p.GetCustomAttributes(typeof(ForeignKeyAttribute), false).Length > 0);
+                Where(p => p.Name.ToLower().EndsWith("id"));
 
             #endregion
 
