@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Utility.UControl
 {
-    public partial class txtBoxWithDate : UserControl
+    public partial class XmTxtBoxWithDate : UserControl
     {
-        public txtBoxWithDate()
+        public XmTxtBoxWithDate()
         {
             InitializeComponent();
             //日期格式化

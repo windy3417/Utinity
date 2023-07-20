@@ -1,7 +1,7 @@
 ﻿
 namespace Utility.UControl
 {
-    partial class PagingReader
+    partial class XmPagingReader
     {
         /// <summary>
         /// 必需的设计器变量。

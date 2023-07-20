@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="Common\CustomLINQtoDataSetMethods.cs" />
     <Compile Include="Common\ObjectShredder.cs" />
+    <Compile Include="Common\Validation.cs" />
     <Compile Include="DAL\AuthorityContext.cs" />
     <Compile Include="DAL\ConnectString.cs" />
     <Compile Include="DAL\DeleteService.cs" />
@@ -132,11 +133,11 @@
     <Compile Include="Sql\SQLiteColumnList.cs" />
     <Compile Include="Sql\SQLiteHelper.cs" />
     <Compile Include="Sql\SQLiteTable.cs" />
-    <Compile Include="Style\ButtonColumns.cs" />
-    <Compile Include="Style\CalendarColumn.cs" />
-    <Compile Include="Style\DataGridViewCheckBoxHeaderCell.cs" />
-    <Compile Include="Style\DataGridViewDoubleBuffer.cs" />
-    <Compile Include="Style\DataGridViewStyle.cs" />
+    <Compile Include="DataGridView\ButtonColumns.cs" />
+    <Compile Include="DataGridView\CalendarColumn.cs" />
+    <Compile Include="DataGridView\DataGridViewCheckBoxHeaderCell.cs" />
+    <Compile Include="DataGridView\DataGridViewDoubleBuffer.cs" />
+    <Compile Include="DataGridView\DataGridViewStyle.cs" />
     <Compile Include="UControl\DbConnectControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -166,11 +167,11 @@
       <DependentUpon>ImageToIcon.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UControl\PagingReader.cs">
+    <Compile Include="UControl\XmPagingReader.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UControl\PagingReader.Designer.cs">
-      <DependentUpon>PagingReader.cs</DependentUpon>
+    <Compile Include="UControl\XmPagingReader.Designer.cs">
+      <DependentUpon>XmPagingReader.cs</DependentUpon>
     </Compile>
     <Compile Include="UControl\XmTextBoxWithButton.cs">
       <SubType>Component</SubType>
@@ -178,11 +179,11 @@
     <Compile Include="UControl\XmTextBoxWithButton.Designer.cs">
       <DependentUpon>XmTextBoxWithButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="UControl\txtBoxWithDate.cs">
+    <Compile Include="UControl\XmTxtBoxWithDate.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UControl\txtBoxWithDate.Designer.cs">
-      <DependentUpon>txtBoxWithDate.cs</DependentUpon>
+    <Compile Include="UControl\XmTxtBoxWithDate.Designer.cs">
+      <DependentUpon>XmTxtBoxWithDate.cs</DependentUpon>
     </Compile>
     <Compile Include="UControl\XmToolStrip.cs">
       <SubType>Component</SubType>
@@ -298,14 +299,14 @@
     <EmbeddedResource Include="UControl\DbConnectControl.resx">
       <DependentUpon>DbConnectControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UControl\PagingReader.resx">
-      <DependentUpon>PagingReader.cs</DependentUpon>
+    <EmbeddedResource Include="UControl\XmPagingReader.resx">
+      <DependentUpon>XmPagingReader.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UControl\XmTextBoxWithButton.resx">
       <DependentUpon>XmTextBoxWithButton.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UControl\txtBoxWithDate.resx">
-      <DependentUpon>txtBoxWithDate.cs</DependentUpon>
+    <EmbeddedResource Include="UControl\XmTxtBoxWithDate.resx">
+      <DependentUpon>XmTxtBoxWithDate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Authority\FrmPerson.resx">
       <DependentUpon>FrmPerson.cs</DependentUpon>

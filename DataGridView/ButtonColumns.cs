@@ -27,17 +27,20 @@ namespace Utility.Style
 
         public void AddButtonToEditingControl(DataGridViewEditingControlShowingEventArgs e, DataGridView dataGridView,
             string columnName)
+
+
         {
-
             DataGridViewTextBoxEditingControl textBox = e.Control as DataGridViewTextBoxEditingControl;
-            if (textBox != null)
+            //the refButton will display in the textBox though the column is not designated ,
+            //so i think the eidtCotrol is the same one  for any same type column
+            textBox.Controls.Clear();
+            DataGridViewCell currentCell = dataGridView.CurrentCell;
+            if (currentCell.ColumnIndex == dataGridView.Columns[columnName].Index)
             {
+                
 
-
-                DataGridViewCell currentCell = dataGridView.CurrentCell;
-                if (currentCell.ColumnIndex == dataGridView.Columns[columnName].Index)
+                if (textBox != null)
                 {
-
                     //because the width of editingcotrol is vary between first and sencode time it is shown 
                     if (this.callEditingCotrolAmount == 0)
                     {
@@ -59,10 +62,15 @@ namespace Utility.Style
                     textBox.Controls.Remove(RefButton);
                     textBox.Controls.Add(RefButton);
 
-
-
                 }
+                
+                          
+
+
+
             }
+        
+            
         }
     }
 

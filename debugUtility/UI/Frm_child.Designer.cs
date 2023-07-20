@@ -34,9 +34,9 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.txt_mendDate = new System.Windows.Forms.TextBox();
-            this.userControl11 = new Utility.UControl.txtBoxWithDate();
-            this.txtBoxWithDatePicker2 = new Utility.UControl.txtBoxWithDate();
-            this.txtBoxWithDatePicker1 = new Utility.UControl.txtBoxWithDate();
+            this.userControl11 = new Utility.UControl.XmTxtBoxWithDate();
+            this.txtBoxWithDatePicker2 = new Utility.UControl.XmTxtBoxWithDate();
+            this.txtBoxWithDatePicker1 = new Utility.UControl.XmTxtBoxWithDate();
       
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -164,12 +164,12 @@
 
         #endregion
 
-        private Utility.UControl.txtBoxWithDate txtBoxWithDatePicker1;
+        private Utility.UControl.XmTxtBoxWithDate txtBoxWithDatePicker1;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private Utility.UControl.txtBoxWithDate txtBoxWithDatePicker2;
-        private Utility.UControl.txtBoxWithDate userControl11;
+        private Utility.UControl.XmTxtBoxWithDate txtBoxWithDatePicker2;
+        private Utility.UControl.XmTxtBoxWithDate userControl11;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txt_mendDate;
      

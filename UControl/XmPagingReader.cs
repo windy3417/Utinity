@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace Utility.UControl
 {
-    public partial class PagingReader : ToolStrip
+    public partial class XmPagingReader : ToolStrip
     {
-        public PagingReader()
+        public XmPagingReader()
         {
             InitializeComponent();
             InitializeControls();
@@ -36,6 +36,7 @@ namespace Utility.UControl
         private System.Windows.Forms.ToolStripButton tsbPrePage;
         private System.Windows.Forms.ToolStripButton tsbNextPage;
         private System.Windows.Forms.ToolStripButton tsbLastPage;
+        ToolStripButton tsbGoTo;
 
         DataGridView _tableBody;
         IEnumerable<DataRow> _dataSource;
@@ -154,9 +155,20 @@ namespace Utility.UControl
             this.tsbLastPage.Size = new System.Drawing.Size(23, 22);
             this.tsbLastPage.Text = "toolStripButton1";
 
+            //tsbGoTo
+            this.tsbGoTo = new ToolStripButton();
+            this.tsbGoTo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+       
+           
+            this.tsbGoTo.Name = "tsbGoTo";
+            this.tsbGoTo.Size = new System.Drawing.Size(30, 22);
+            this.tsbGoTo.Text = "跳转";
+
+
             // bnPaging
             // to align to right side of toolstrip, need to add toolstripItem reverse
             this.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                tsbGoTo,
             this.tsbLastPage,
               this.tsbNextPage,
              this._txtEndNo,
@@ -198,9 +210,10 @@ namespace Utility.UControl
             this.tsbPrePage.Click += new System.EventHandler(this.tsbPrePage_Click);
             this.tsbNextPage.Click += new System.EventHandler(this.tsbNextPage_Click);
             this.tsbLastPage.Click += new System.EventHandler(this.tsbLastPage_Click);
+            _txtPageSize.Enter += RedisplayAccordingPageSize;
         }
 
-      
+    
 
         protected override void OnPaint(PaintEventArgs pe)
         {
@@ -208,6 +221,11 @@ namespace Utility.UControl
         }
 
         #region implemnet pageing
+        private void RedisplayAccordingPageSize(object sender, EventArgs e)
+        {
+           _txtEndNo.Text= (Math.Ceiling(_dataSource.Count() /  Convert.ToDecimal(_txtPageSize.Text))).ToString();
+            tsbFirstPage.PerformClick();
+        }
 
         private void tsbFirstPage_Click(object sender, EventArgs e)
         {

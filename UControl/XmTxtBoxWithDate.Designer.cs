@@ -1,6 +1,6 @@
 ﻿namespace Utility.UControl
 {
-    partial class txtBoxWithDate
+    partial class XmTxtBoxWithDate
     {
         /// <summary> 
         /// 必需的设计器变量。

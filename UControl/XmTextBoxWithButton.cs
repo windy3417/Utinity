@@ -47,6 +47,8 @@ namespace Utility.UControl
             _refButton.Image = Properties.Resources.button;
             _refButton.MouseHover += _refButton_MouseHover;
             _refButton.Leave += _refButton_Leave;
+            _refButton.Parent = this;
+            _refButton.Anchor = AnchorStyles.Right;
         }
 
         private void _refButton_Leave(object sender, EventArgs e)

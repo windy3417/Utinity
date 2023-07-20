@@ -41,9 +41,9 @@
             this.txt_userID = new System.Windows.Forms.TextBox();
             this.txt_userName = new System.Windows.Forms.TextBox();
             this.lbl_regitrationDate = new System.Windows.Forms.Label();
-            this.tbd_effect = new Utility.UControl.txtBoxWithDate();
+            this.tbd_effect = new Utility.UControl.XmTxtBoxWithDate();
             this.label4 = new System.Windows.Forms.Label();
-            this.tbd_failure = new Utility.UControl.txtBoxWithDate();
+            this.tbd_failure = new Utility.UControl.XmTxtBoxWithDate();
             this.label5 = new System.Windows.Forms.Label();
             this.txt_pwd = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -433,8 +433,8 @@
         protected System.Windows.Forms.TextBox txt_userID;
         protected System.Windows.Forms.TextBox txt_userName;
         protected System.Windows.Forms.TextBox txt_pwd;
-        protected Utility.UControl.txtBoxWithDate tbd_effect;
-        protected Utility.UControl.txtBoxWithDate tbd_failure;
+        protected Utility.UControl.XmTxtBoxWithDate tbd_effect;
+        protected Utility.UControl.XmTxtBoxWithDate tbd_failure;
 
         protected System.Windows.Forms.DataGridView dgv_person;
 
