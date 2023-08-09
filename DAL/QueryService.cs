@@ -73,6 +73,67 @@ namespace Utility.DAL
 
         }
 
+        /// <summary>
+        /// select single table with parameter
+        /// </summary>
+        /// <param name="dataSource"></param>
+        /// <returns></returns>
+        public static List<TEntity> GetSingleTable<TEntity>(SqlParameter[] sqlParameters, DataSourceType dataSource) where TEntity : class, new()
+        {
+            TEntity model = new TEntity();
+            List<TEntity> entityList = new List<TEntity>();
+            Type modelType = model.GetType();
+            string tableName = modelType.Name.Replace("Model", "");
+            StringBuilder sql = new StringBuilder($"select * from {tableName} where 1=1");
+            foreach (var para in sqlParameters)
+            {
+                sql.Append($"  and {para.ParameterName.Replace("@", "")}='{para.Value}'");
+            }
+
+            PropertyInfo[] proInfo = modelType.GetProperties();
+
+
+            SqlDataReader sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), sqlParameters, dataSource);
+            while (sqlDataReader.Read())
+            {
+                #region 赋值给单一实体
+                TEntity m = new TEntity();
+                foreach (var item in proInfo)
+                {
+                    var propertyName = item.Name;
+                    if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface &
+                        !propertyName.EndsWith("Header") & !item.PropertyType.Name.EndsWith("Header"))
+                    {
+
+
+
+                        //处理空值
+                        if (sqlDataReader[propertyName] is DBNull)
+                        {
+                            item.SetValue(m, null, null);
+                        }
+                        else
+                        {
+                            item.SetValue(m, sqlDataReader[propertyName], null);
+                        }
+                    }
+
+                }
+
+                entityList.Add(m);
+
+
+
+                #endregion
+
+            }
+
+            return entityList;
+
+
+
+        }
+
         public static List<TEntity> GetSingleTable<TEntity>(string[] columns, string fullTextSearchString,DataSourceType dataSource) where TEntity : class, new()
         {
             TEntity model = new TEntity();
@@ -132,66 +193,7 @@ namespace Utility.DAL
 
         }
 
-        /// <summary>
-        /// select single table with parameter
-        /// </summary>
-        /// <param name="dataSource"></param>
-        /// <returns></returns>
-        public static List<TEntity> GetSingleTableRows<TEntity>(SqlParameter[] sqlParameters, DataSourceType dataSource) where TEntity : class, new()
-        {
-            TEntity model = new TEntity();
-            List<TEntity> entityList = new List<TEntity>();
-            Type modelType = model.GetType();
-            string tableName = modelType.Name.Replace("Model", "");
-            StringBuilder sql = new StringBuilder($"select * from {tableName} where 1=1");
-            foreach (var para in sqlParameters)
-            {
-                sql.Append($"  and {para.ParameterName.Replace("@", "")}='{para.Value}'");
-            }
-
-            PropertyInfo[] proInfo = modelType.GetProperties();
-
-
-            SqlDataReader sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), sqlParameters, dataSource);
-            while (sqlDataReader.Read())
-            {
-                #region 赋值给单一实体
-                TEntity m = new TEntity();
-                foreach (var item in proInfo)
-                {
-                    var propertyName = item.Name;
-                    if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface & 
-                        !propertyName.EndsWith("Header") & !item.PropertyType.Name.EndsWith("Header"))
-                    {
-
-
-
-                        //处理空值
-                        if (sqlDataReader[propertyName] is DBNull)
-                        {
-                            item.SetValue(m, null, null);
-                        }
-                        else
-                        {
-                            item.SetValue(m, sqlDataReader[propertyName], null);
-                        }
-                    }
-
-                }
-
-                entityList.Add(m);
-
-
-
-                #endregion
-
-            }
-
-            return entityList;
-
-
-
-        }
+      
 
         /// <summary>
         /// select single table with parameter

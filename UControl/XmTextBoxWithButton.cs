@@ -12,7 +12,6 @@ namespace Utility.UControl
     public partial class XmTextBoxWithButton : TextBox
     {
 
-
         public XmTextBoxWithButton()
         {
             InitializeComponent();
@@ -23,11 +22,9 @@ namespace Utility.UControl
         }
 
 
-
-        #region vart
-
-     
-        public Button _refButton;
+        #region vary
+             
+         Button _refButton;
 
         #endregion
 

@@ -757,7 +757,7 @@ namespace Utility.UI
         //显示行标
         private void dgv_content_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle styleDataGridView = new DataGridViewStyle();
+            DataGridViewStyle styleDataGridView = new DataGridViewStyle(dgv_content);
             styleDataGridView.DisplayRowHeader(e, dgv_content);
         }
     }

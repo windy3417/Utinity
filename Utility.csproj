@@ -112,6 +112,8 @@
     <Compile Include="DAL\SaveService.cs" />
     <Compile Include="DAL\Services\PersonService.cs" />
     <Compile Include="DAL\UpdateService.cs" />
+    <Compile Include="DataGridViewUI\DataGridViewPagingPrint.cs" />
+    <Compile Include="DataGridViewUI\DataGridViewRowsAssociateChoose.cs" />
     <Compile Include="Excel\ExportExcel.cs" />
     <Compile Include="Excel\ReadCellsValue.cs" />
     <Compile Include="Excel\SetCellsValue.cs" />
@@ -133,11 +135,11 @@
     <Compile Include="Sql\SQLiteColumnList.cs" />
     <Compile Include="Sql\SQLiteHelper.cs" />
     <Compile Include="Sql\SQLiteTable.cs" />
-    <Compile Include="DataGridView\ButtonColumns.cs" />
-    <Compile Include="DataGridView\CalendarColumn.cs" />
-    <Compile Include="DataGridView\DataGridViewCheckBoxHeaderCell.cs" />
-    <Compile Include="DataGridView\DataGridViewDoubleBuffer.cs" />
-    <Compile Include="DataGridView\DataGridViewStyle.cs" />
+    <Compile Include="DataGridViewUI\ButtonColumns.cs" />
+    <Compile Include="DataGridViewUI\CalendarColumn.cs" />
+    <Compile Include="DataGridViewUI\DataGridViewCheckBoxHeaderCell.cs" />
+    <Compile Include="DataGridViewUI\DataGridViewDoubleBuffer.cs" />
+    <Compile Include="DataGridViewUI\DataGridViewStyle.cs" />
     <Compile Include="UControl\DbConnectControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

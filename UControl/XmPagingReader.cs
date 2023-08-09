@@ -36,6 +36,9 @@ namespace Utility.UControl
         private System.Windows.Forms.ToolStripButton tsbPrePage;
         private System.Windows.Forms.ToolStripButton tsbNextPage;
         private System.Windows.Forms.ToolStripButton tsbLastPage;
+
+        private string[] _columnsForSum;
+
         ToolStripButton tsbGoTo;
 
         DataGridView _tableBody;
@@ -49,9 +52,10 @@ namespace Utility.UControl
 
         public IEnumerable<DataRow> DataSource { get => _dataSource; set => _dataSource = value; }
 
-        public string PageSize { get => _txtPageSize.Text;set => _txtPageSize.Text = value; }
-        public string TotalPages { get => _txtEndNo.Text; set => _txtEndNo.Text = value; }
+        public decimal PageSize { get =>Convert.ToDecimal( _txtPageSize.Text);set => _txtPageSize.Text = value.ToString(); }
+        public decimal TotalPages { get => Convert.ToDecimal(_txtEndNo.Text); set => _txtEndNo.Text = value.ToString(); }
         public string StartNo { get => _txtStartNo.Text; set => _txtStartNo.Text = value; }
+        public string[] ColumnsForSum { get => _columnsForSum; set => _columnsForSum = value; }
         #endregion
 
         void InitializeControls()
@@ -73,7 +77,7 @@ namespace Utility.UControl
             this._txtPageSize = new ToolStripTextBox();
             this._txtPageSize.Font = new System.Drawing.Font("Segoe UI", 9F);
             this._txtPageSize.Name = "txtPageSize";
-            this._txtPageSize.Size = new System.Drawing.Size(20, 25);
+            this._txtPageSize.Size = new System.Drawing.Size(40, 25);
             this._txtPageSize.Text = "10";
             // 
             // labRow
@@ -97,7 +101,7 @@ namespace Utility.UControl
             this.tsbFirstPage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbFirstPage.Name = "tsbFirstPage";
             this.tsbFirstPage.Size = new System.Drawing.Size(23, 22);
-            this.tsbFirstPage.Text = "toolStripButton1";
+            this.tsbFirstPage.Text = "第一页";
 
             // 
             // tsbPrePage
@@ -108,7 +112,7 @@ namespace Utility.UControl
             this.tsbPrePage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPrePage.Name = "tsbPrePage";
             this.tsbPrePage.Size = new System.Drawing.Size(23, 22);
-            this.tsbPrePage.Text = "toolStripButton1";
+            this.tsbPrePage.Text = "前一页";
 
             // 
             // tsbStartNo
@@ -117,7 +121,7 @@ namespace Utility.UControl
             this._txtStartNo.Font = new System.Drawing.Font("Segoe UI", 9F);
             this._txtStartNo.Name = "tsbStartNo";
             this._txtStartNo.Size = new System.Drawing.Size(20, 25);
-            this._txtStartNo.Text = "0";
+            this._txtStartNo.Text = "1";
             // 
             // labNumber
             // 
@@ -142,7 +146,7 @@ namespace Utility.UControl
             this.tsbNextPage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNextPage.Name = "tsbNextPage";
             this.tsbNextPage.Size = new System.Drawing.Size(23, 22);
-            this.tsbNextPage.Text = "toolStripButton1";
+            this.tsbNextPage.Text = "下一页";
 
             // 
             // tsbLastPage
@@ -153,7 +157,7 @@ namespace Utility.UControl
             this.tsbLastPage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbLastPage.Name = "tsbLastPage";
             this.tsbLastPage.Size = new System.Drawing.Size(23, 22);
-            this.tsbLastPage.Text = "toolStripButton1";
+            this.tsbLastPage.Text = "最后一页";
 
             //tsbGoTo
             this.tsbGoTo = new ToolStripButton();
@@ -182,13 +186,12 @@ namespace Utility.UControl
              this.labDisplayPerPage});
           
       
-                  
-           
+                     
                 
             
            
            
-            //either i++ from 0 or i-- from count ,the result is the same 
+            //either i++ from 0 or i-- from count ,the align result is the same 
 
             for (int i =this.Items.Count-1 ; i>=0 ; i--)
             
@@ -197,8 +200,7 @@ namespace Utility.UControl
             }
             
 
-            
-          
+                    
         
          
         }
@@ -214,13 +216,12 @@ namespace Utility.UControl
         }
 
     
-
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
         }
 
-        #region implemnet pageing
+        #region  Access the contents of the specified page..
         private void RedisplayAccordingPageSize(object sender, EventArgs e)
         {
            _txtEndNo.Text= (Math.Ceiling(_dataSource.Count() /  Convert.ToDecimal(_txtPageSize.Text))).ToString();
@@ -229,12 +230,19 @@ namespace Utility.UControl
 
         private void tsbFirstPage_Click(object sender, EventArgs e)
         {
-            IEnumerable<DataRow> query = GetPagedData(_dataSource, 1, Convert.ToInt32(_txtPageSize.Text));
+            IEnumerable<DataRow> query = GetPagedData(_dataSource, 1);
 
             _txtStartNo.Text = "1";
-            _tableBody.DataSource = query.ToList();
-          
+
+            var q = query.CopyToDataTable();
+
+            AddSumRow(q);
+
+            _tableBody.DataSource = q;
+
         }
+
+        
 
         private void tsbPrePage_Click(object sender, EventArgs e)
         {
@@ -271,35 +279,65 @@ namespace Utility.UControl
 
         private void tsbLastPage_Click(object sender, EventArgs e)
         {
-            var query = GetPagedData(_dataSource, Convert.ToInt32(_txtEndNo.Text), Convert.ToInt32(_txtPageSize.Text));
+            var query = GetPagedData(_dataSource, Convert.ToInt32(_txtEndNo.Text));
 
             _txtStartNo.Text = _txtEndNo.Text;
-            _tableBody.DataSource = query.ToList();
+            _tableBody.DataSource = query.CopyToDataTable();
            
         }
 
+        private void AddSumRow(DataTable q)
+        {
+            if (!(_columnsForSum is null))
+            {
+                
+                int i = q.Rows.Count;
+                              
+                Dictionary<string, decimal> sums =new Dictionary<string, decimal>();
+               
+             
+                foreach (var item in _columnsForSum)
+                {
+                    sums.Add(item,q.AsEnumerable().Sum(a => a.Field<decimal>(item)));
+                                       
+                }
+                q.Rows.Add();
+                foreach (var item in _columnsForSum)
+                {
+                    var l = sums[item];
+                    q.Rows[i - 1].SetField<decimal>(item, sums[item]);
+                    
+                }
+                
+            }
+        }
         #endregion
 
         #region get data
 
-        public IEnumerable<T> GetPagedData<T>(IEnumerable<T> data, int pageNumber, int pageSize)
+        public IEnumerable<T> GetPagedData<T>(IEnumerable<T> dataSource, int desingedPageNumber)
         {
-            int skipCount = (pageNumber - 1) * pageSize;
-            return data.Skip(skipCount).Take(pageSize);
+            int skipCount = (desingedPageNumber - 1) * Convert.ToInt32( _txtPageSize.Text);
+            return dataSource.Skip(skipCount).Take(Convert.ToInt32( _txtPageSize.Text));
         }
+        #endregion
 
+        #region bind data
         private void BindData()
         {
-            var query = GetPagedData(_dataSource, Convert.ToInt32(_txtStartNo.Text), Convert.ToInt32(_txtPageSize.Text));
-
-
-            _tableBody.DataSource = query.CopyToDataTable();
+            var query = GetPagedData(_dataSource, Convert.ToInt32(_txtStartNo.Text));
+            var q = query.CopyToDataTable();
+            AddSumRow(q);
+            _tableBody.DataSource = q;
 
 
         }
 
 
         #endregion
+
+
+      
 
 
     }

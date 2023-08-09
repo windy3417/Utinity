@@ -73,7 +73,7 @@ namespace Utility.Excel
 
         }
 
-        public void SetStringCell(string bookName, string sheetName, string ext, string[] cells, string content)
+        public void SetStringCell(string bookName, string sheetName, string ext, string[] cellPosition, string content)
         {
             XSSFWorkbook xSSF;
             HSSFWorkbook hssfwb;
@@ -91,7 +91,7 @@ namespace Utility.Excel
                     sheet = xSSF.GetSheet(sheetName);
 
                     //sheet.GetRow(Convert.ToInt32(cells[0]) - 1).GetCell(Convert.ToInt32(cells[1]) - 1).SetCellType(CellType.Blank);
-                    sheet.GetRow(Convert.ToInt32(cells[0]) - 1).GetCell(Convert.ToInt32(cells[1]) - 1).SetCellValue(content);
+                    sheet.GetRow(Convert.ToInt32(cellPosition[0]) - 1).GetCell(Convert.ToInt32(cellPosition[1]) - 1).SetCellValue(content);
 
                 }
 
@@ -112,7 +112,7 @@ namespace Utility.Excel
                     sheet = hssfwb.GetSheet(sheetName);
 
                     //sheet.GetRow(Convert.ToInt32(cells[0]) - 1).GetCell(Convert.ToInt32(cells[1]) - 1).SetCellType(CellType.Blank);
-                    sheet.GetRow(Convert.ToInt32(cells[0]) - 1).GetCell(Convert.ToInt32(cells[1]) - 1).SetCellValue(content);
+                    sheet.GetRow(Convert.ToInt32(cellPosition[0]) - 1).GetCell(Convert.ToInt32(cellPosition[1]) - 1).SetCellValue(content);
 
                 }
 
@@ -134,14 +134,74 @@ namespace Utility.Excel
 
         }
 
-        public void SetFixRegion<T>(string bookName, string sheetName, string ext, int rowNo, int columnNo ,T content)
+        public void SetStringCell<T>(string bookName, string sheetName,  int columnIdex, List<T> content)
+        {
+            XSSFWorkbook xSSF;
+          
+            ISheet sheet;
+
+            #region read file, then colsed automaticaly,so can not write
+
+                        
+                using (FileStream file = new FileStream(bookName, FileMode.Open, FileAccess.Read))
+                {
+                    xSSF = new XSSFWorkbook(file);
+                    sheet = xSSF.GetSheet(sheetName);
+
+                    for (int i = 0; i < content.Count; i++)
+                    {
+                        if (content.GetType().Equals(typeof(System.String)))
+                        {
+                            sheet.GetRow(i).GetCell(columnIdex - 1).SetCellType(CellType.String);
+                            sheet.GetRow(i).GetCell(columnIdex - 1).SetCellValue(content.ToString());
+                        }
+
+                        if (content.GetType().Equals(typeof(System.Double)))
+                        {
+                            sheet.GetRow(i - 1).GetCell(columnIdex - 1).SetCellType(CellType.Numeric);
+                            sheet.GetRow(i - 1).GetCell(columnIdex - 1).SetCellValue(Convert.ToDouble(content));
+
+                        }
+
+                        if (content.GetType().Equals(typeof(System.DateTime)))
+                        {
+
+                            sheet.GetRow(i - 1).GetCell(columnIdex - 1).SetCellValue(Convert.ToDateTime(content));
+
+                        }
+
+                    }
+
+
+
+                }
+
+
+                using (FileStream file = new FileStream(bookName, FileMode.Open, FileAccess.Write))
+                {
+                    xSSF.Write(file);
+                }
+
+
+            
+
+         
+            #endregion
+
+
+
+
+
+        }
+
+        public void SetFixRegion<T>(string bookName, string sheetName, string fileExtentionName, int rowNo, int columnNo ,T content)
         {
             XSSFWorkbook xSSF;
             HSSFWorkbook hssfwb;
             ISheet sheet;
          
 
-            if (ext == ".xlsx")
+            if (fileExtentionName == ".xlsx")
             {
 
                 using (FileStream file = new FileStream(bookName, FileMode.Open, FileAccess.Read))
@@ -182,7 +242,7 @@ namespace Utility.Excel
             }
 
 
-            if (ext == ".xls")
+            if (fileExtentionName == ".xls")
             {
                 using (FileStream file = new FileStream(bookName, FileMode.Open, FileAccess.Read))
                 {

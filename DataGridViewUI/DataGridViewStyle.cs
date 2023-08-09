@@ -9,6 +9,43 @@ namespace Utility.Style
 {
     public class DataGridViewStyle
     {
+        #region vary
+
+        bool _amountFlag;
+        DataGridView _dgvReport;
+        #endregion
+
+        #region property
+
+        public bool AmountFlag { get =>  _amountFlag ; set => _amountFlag=value; }
+        public DataGridView dgvReport { get => _dgvReport; set => _dgvReport = value; }
+
+        #endregion
+
+        #region construct function
+
+        public DataGridViewStyle()
+        {
+
+        }
+
+        public DataGridViewStyle(DataGridView dataGridView)
+        {
+            _amountFlag = true;
+            _dgvReport = dataGridView;
+            dataGridView.RowPostPaint += DataGridView_RowPostPaint;
+            DataGridViewColumnHeaderStyle();
+        }
+
+      
+        #endregion
+
+
+        private void DataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            DisplayRowNo(e, _dgvReport, _amountFlag);
+        }
+
         /// <summary>
         /// 显示行号
         /// </summary>
@@ -91,7 +128,7 @@ namespace Utility.Style
         /// 表头样式，局中、加粗
         /// </summary>
         /// <param name="dataGridView"></param>
-        public void DataGridViewColumnHeaderStyle(DataGridView dataGridView)
+        public void DataGridViewColumnHeaderStyle( DataGridView dataGridView)
         {
             //表头样式
             DataGridViewCellStyle style = new DataGridViewCellStyle();
@@ -101,12 +138,27 @@ namespace Utility.Style
             style.BackColor = Color.LightSkyBlue;
             style.Font = new Font(dataGridView.Font, FontStyle.Bold);
 
-
             dataGridView.ColumnHeadersDefaultCellStyle = style;
             //dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
 
             dataGridView.AutoResizeColumns();
 
+        }
+
+        private void DataGridViewColumnHeaderStyle()
+        {
+            //表头样式
+            DataGridViewCellStyle style = new DataGridViewCellStyle();
+            style.Alignment =
+                DataGridViewContentAlignment.MiddleCenter;
+            style.ForeColor = Color.IndianRed;
+            style.BackColor = Color.LightSkyBlue;
+            style.Font = new Font(_dgvReport.Font, FontStyle.Bold);
+
+            _dgvReport.ColumnHeadersDefaultCellStyle = style;
+            //dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
+
+            _dgvReport.AutoResizeColumns();
 
         }
 

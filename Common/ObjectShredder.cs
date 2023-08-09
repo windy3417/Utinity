@@ -169,11 +169,21 @@ namespace Utility.Common
             {
                 if (!_ordinalMap.ContainsKey(p.Name))
                 {
+                    // 当字段类型是Nullable<>时
+                    Type colType = p.PropertyType; 
+                    
+                    if ((colType.IsGenericType) && (colType.GetGenericTypeDefinition() == typeof(Nullable<>)))
+                     {
+                        
+                        colType = colType.GetGenericArguments()[0];
+                    }
                     // Add the property as a column in the table if it doesn't exist
                     // already.
-                    DataColumn dc = table.Columns.Contains(p.Name) ? table.Columns[p.Name]
-                        : table.Columns.Add(p.Name, p.PropertyType);
+                    //DataColumn dc = table.Columns.Contains(p.Name) ? table.Columns[p.Name]
+                    //    : table.Columns.Add(p.Name, p.PropertyType);
 
+                    DataColumn dc = table.Columns.Contains(p.Name) ? table.Columns[p.Name]
+                      : table.Columns.Add(p.Name, colType);
                     // Add the property to the ordinal map.
                     _ordinalMap.Add(p.Name, dc.Ordinal);
                 }
