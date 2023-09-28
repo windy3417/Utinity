@@ -444,7 +444,7 @@ namespace DebugUtility
 
             ToolStripItem toolStripItem = (ToolStripItem)sender;
                 // Instantiate the form using reflection
-                Type formType = Type.GetType("DebugUtility.UI."+toolStripItem.Name);
+                Type formType = Type.GetType(toolStripItem.Tag.ToString());
                 Form form = (Form)Activator.CreateInstance(formType);
 
                        

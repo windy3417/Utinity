@@ -12,6 +12,7 @@ using System.Windows.Forms;
 
 namespace Utility.UControl
 {
+    //The first page of the report that invokes the paging control needs to be automatically summed up for the first time
     public partial class XmPagingReader : ToolStrip
     {
         public XmPagingReader()
@@ -37,6 +38,7 @@ namespace Utility.UControl
         private System.Windows.Forms.ToolStripButton tsbNextPage;
         private System.Windows.Forms.ToolStripButton tsbLastPage;
 
+        //The column names in the Datatable must be consistent with the column names in the dataGridView in order to make total and style modifications
         private string[] _columnsForSum;
 
         ToolStripButton tsbGoTo;
@@ -120,7 +122,7 @@ namespace Utility.UControl
             this._txtStartNo = new ToolStripTextBox();
             this._txtStartNo.Font = new System.Drawing.Font("Segoe UI", 9F);
             this._txtStartNo.Name = "tsbStartNo";
-            this._txtStartNo.Size = new System.Drawing.Size(20, 25);
+            this._txtStartNo.Size = new System.Drawing.Size(40, 25);
             this._txtStartNo.Text = "1";
             // 
             // labNumber
@@ -239,11 +241,11 @@ namespace Utility.UControl
             AddSumRow(q);
 
             _tableBody.DataSource = q;
+            TableStyle();
 
         }
 
         
-
         private void tsbPrePage_Click(object sender, EventArgs e)
         {
             int startNo;
@@ -283,7 +285,8 @@ namespace Utility.UControl
 
             _txtStartNo.Text = _txtEndNo.Text;
             _tableBody.DataSource = query.CopyToDataTable();
-           
+            TableStyle();
+
         }
 
         private void AddSumRow(DataTable q)
@@ -291,7 +294,7 @@ namespace Utility.UControl
             if (!(_columnsForSum is null))
             {
                 
-                int i = q.Rows.Count;
+               
                               
                 Dictionary<string, decimal> sums =new Dictionary<string, decimal>();
                
@@ -302,6 +305,7 @@ namespace Utility.UControl
                                        
                 }
                 q.Rows.Add();
+                int i = q.Rows.Count;
                 foreach (var item in _columnsForSum)
                 {
                     var l = sums[item];
@@ -329,15 +333,28 @@ namespace Utility.UControl
             var q = query.CopyToDataTable();
             AddSumRow(q);
             _tableBody.DataSource = q;
+            TableStyle();
 
 
         }
 
+        private void TableStyle()
+        {
+
+            if (!(_columnsForSum is null))
+            {
+                Utility.Style.DataGridViewStyle style = new Utility.Style.DataGridViewStyle();
+                style.ThoundSeparate(_tableBody, _columnsForSum);
+                style.FontBond(_tableBody, _columnsForSum);
+
+            }
+
+        }
 
         #endregion
 
 
-      
+
 
 
     }

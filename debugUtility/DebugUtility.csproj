@@ -163,6 +163,12 @@
     <Compile Include="UI\ClassTest\FrmSMB.Designer.cs">
       <DependentUpon>FrmSMB.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Controls\FrmDataGridViewWithTreeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\FrmDataGridViewWithTreeView.Designer.cs">
+      <DependentUpon>FrmDataGridViewWithTreeView.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\FrmTabControl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -298,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ClassTest\FrmSMB.resx">
       <DependentUpon>FrmSMB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\FrmDataGridViewWithTreeView.resx">
+      <DependentUpon>FrmDataGridViewWithTreeView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\FrmTabControl.resx">
       <DependentUpon>FrmTabControl.cs</DependentUpon>

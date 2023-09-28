@@ -9,6 +9,7 @@ namespace Utility.Common
 {
     /// <summary>
     ///  Implement CopyToDataTable<T> Where the Generic Type T Is Not a DataRow
+    ///  This is an extension method for type that implements IENUMBERABLE<T>
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class ObjectShredder<T>
@@ -117,6 +118,12 @@ namespace Utility.Common
             return table;
         }
 
+        /// <summary>
+        /// Writes data from  the type that implements the interface of IEnumerable<T>  to the DataTable
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="instance"></param>
+        /// <returns></returns>
         public object[] ShredObject(DataTable table, T instance)
         {
 
