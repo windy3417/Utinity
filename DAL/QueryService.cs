@@ -18,23 +18,30 @@ namespace Utility.DAL
 
         #region single table query
         /// <summary>
-        /// 单表全数化查询
+        /// query single table without parameters
         /// </summary>
         /// <param name="dataSource"></param>
         /// <returns></returns>
-        public static List<TEntity> GetSingleTable<TEntity>(DataSourceType dataSource) where TEntity : class, new()
+        public static List<TEntity> GetListFromSingleTable<TEntity>(DataSourceType dataSource,string accountNo="") where TEntity : class, new()
         {
             TEntity model = new TEntity();
             List<TEntity> entityList = new List<TEntity>();
             Type modelType = model.GetType();
             string tableName = modelType.Name.Replace("Model", "");
             StringBuilder sql = new StringBuilder($"select * from {tableName} where 1=1");
+            SqlDataReader sqlDataReader;
 
 
             PropertyInfo[] proInfo = modelType.GetProperties();
+            if (accountNo != "")
+            {
+                sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), dataSource,accountNo);
+            }
+            else
+            {
+                sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), dataSource);
+            }
 
-
-            SqlDataReader sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), dataSource);
             while (sqlDataReader.Read())
             {
                 #region 赋值给单一实体
@@ -78,13 +85,15 @@ namespace Utility.DAL
         /// </summary>
         /// <param name="dataSource"></param>
         /// <returns></returns>
-        public static List<TEntity> GetSingleTable<TEntity>(SqlParameter[] sqlParameters, DataSourceType dataSource) where TEntity : class, new()
+        public static List<TEntity> GetListFromSingleTable<TEntity>(SqlParameter[] sqlParameters, DataSourceType dataSource,string U8AccountNo="") where TEntity : class, new()
         {
             TEntity model = new TEntity();
             List<TEntity> entityList = new List<TEntity>();
             Type modelType = model.GetType();
             string tableName = modelType.Name.Replace("Model", "");
             StringBuilder sql = new StringBuilder($"select * from {tableName} where 1=1");
+
+            SqlDataReader sqlDataReader;
             foreach (var para in sqlParameters)
             {
                 sql.Append($"  and {para.ParameterName.Replace("@", "")}='{para.Value}'");
@@ -92,8 +101,16 @@ namespace Utility.DAL
 
             PropertyInfo[] proInfo = modelType.GetProperties();
 
+            if (U8AccountNo != "")
+            {
+                sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(),sqlParameters, dataSource, U8AccountNo);
+            }
+            else
+            {
+                sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(),sqlParameters, dataSource);
+            }
 
-            SqlDataReader sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), sqlParameters, dataSource);
+        
             while (sqlDataReader.Read())
             {
                 #region 赋值给单一实体
@@ -102,7 +119,9 @@ namespace Utility.DAL
                 {
                     var propertyName = item.Name;
                     if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface &
-                        !propertyName.EndsWith("Header") & !item.PropertyType.Name.EndsWith("Header"))
+                        !propertyName.EndsWith("Header") & !item.PropertyType.Name.EndsWith("Header")
+                       &
+                        !propertyName.EndsWith("Archive") & !item.PropertyType.Name.EndsWith("Archive"))
                     {
 
 
@@ -257,6 +276,90 @@ namespace Utility.DAL
         }
 
         /// <summary>
+        /// 单表全数参数化查询
+        /// </summary>
+        /// <param name="dataSource"></param>
+        /// <returns></returns>
+        public static List<TEntity> GetDataList<TEntity>(List<SqlParameter> sqlParameters, DataSourceType dataSource, string accountNo = "") where TEntity : class, new()
+        {
+            TEntity model = new TEntity();
+            List<TEntity> entityList = new List<TEntity>();
+            Type modelType = model.GetType();
+            string tableName = modelType.Name.Replace("Model", "");
+            StringBuilder sql = new StringBuilder($"select * from {tableName} where 1=1");
+            SqlDataReader sqlDataReader;
+            foreach (var para in sqlParameters)
+            {
+                sql.Append($"  and {para.ParameterName.Replace("@", "")}='{para.Value}'");
+            }
+
+            PropertyInfo[] proInfo = modelType.GetProperties();
+
+            if (accountNo != "")
+            {
+                sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), sqlParameters.ToArray(), dataSource);
+            }
+            else
+            {
+                sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), sqlParameters.ToArray(), dataSource);
+            }
+
+            while (sqlDataReader.Read())
+            {
+                #region 赋值给单一实体
+                TEntity m = new TEntity();
+                foreach (var item in proInfo)
+                {
+                    var propertyName = item.Name;
+                    var typeName = item.PropertyType.Name;
+                    if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface)
+                    {
+
+
+                        try
+                        {
+                            if (sqlDataReader[propertyName] is null)
+                            {
+                                item.SetValue(m, null, null);
+                            }
+                            else
+                            {
+                                item.SetValue(m, sqlDataReader[propertyName], null);
+                            }
+
+                        }
+                        catch (Exception)
+                        {
+                            if (item.PropertyType.Name == "Nullable`1")
+                            {
+                                item.SetValue(m, null, null);
+
+                            }
+                            else
+                            {
+                                item.SetValue(m, "", null);
+                            }
+
+                        }
+                    }
+
+                }
+
+                entityList.Add(m);
+
+
+
+                #endregion
+
+            }
+
+            return entityList;
+
+
+
+        }
+
+        /// <summary>
         /// select single table with parameter
         /// </summary>
         /// <param name="dataSource"></param>
@@ -316,88 +419,14 @@ namespace Utility.DAL
 
         }
 
-        /// <summary>
-        /// 单表全数参数化查询
-        /// </summary>
-        /// <param name="dataSource"></param>
-        /// <returns></returns>
-        public static List<TEntity> GetDataList<TEntity>(List<SqlParameter> sqlParameters, DataSourceType dataSource) where TEntity : class, new()
-        {
-            TEntity model = new TEntity();
-            List<TEntity> entityList = new List<TEntity>();
-            Type modelType = model.GetType();
-            string tableName = modelType.Name.Replace("Model", "");
-            StringBuilder sql = new StringBuilder($"select * from {tableName} where 1=1");
-            foreach (var para in sqlParameters)
-            {
-                sql.Append($"  and {para.ParameterName.Replace("@", "")}='{para.Value}'");
-            }
-
-            PropertyInfo[] proInfo = modelType.GetProperties();
-
-
-            SqlDataReader sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), sqlParameters.ToArray(), dataSource);
-            while (sqlDataReader.Read())
-            {
-                #region 赋值给单一实体
-                TEntity m = new TEntity();
-                foreach (var item in proInfo)
-                {
-                    var propertyName = item.Name;
-                    var typeName = item.PropertyType.Name;
-                    if (!propertyName.EndsWith("Model") & !item.PropertyType.Name.EndsWith("Model") & !item.PropertyType.IsInterface)
-                    {
-
-
-                        try
-                        {
-                            if (sqlDataReader[propertyName] is null)
-                            {
-                                item.SetValue(m, null, null);
-                            }
-                            else
-                            {
-                                item.SetValue(m, sqlDataReader[propertyName], null);
-                            }
-                          
-                        }
-                        catch (Exception)
-                        {
-                            if (item.PropertyType.Name== "Nullable`1")
-                            {
-                                item.SetValue(m, null, null);
-                                
-                            }
-                            else
-                            {
-                                item.SetValue(m, "", null);
-                            }
-                           
-                        } 
-                    }
-
-                }
-
-                entityList.Add(m);
-
-
-
-                #endregion
-
-            }
-
-            return entityList;
-
-
-
-        }
+    
 
         /// <summary>
         /// Get single row with parameters
         /// </summary>
         /// <param name="sqlParameters"></param>
         /// <returns></returns>
-        public static TEntity GetEntity<TEntity>(SqlParameter[] sqlParameters, DataSourceType dataSourceType) where TEntity : class, new()
+        public static TEntity GetItemFromSingleTable<TEntity>(SqlParameter[] sqlParameters, DataSourceType dataSourceType) where TEntity : class, new()
         {
             TEntity model = new TEntity();
 
@@ -635,7 +664,7 @@ namespace Utility.DAL
 
 
         /// <summary>
-        /// 三表联接数据查询
+        /// triple table query
         /// </summary>
         /// <param name="dataSource"></param>
         /// <returns></returns>

@@ -41,75 +41,86 @@ namespace Utility.Sql
         /// 数据源类型
         /// </param>
         /// <returns></returns>
-        public static SqlConnection sqlConnection(DataSourceType dataSourceType)
+        public static SqlConnection sqlConnection(DataSourceType dataSourceType, string accountNo="")
         {
+                      
+            string connectedKey;
+        
 
-            string conString;
-            string deConString;
-            SqlConnection sqlConnection;
-
-            if (dataSourceType == DataSourceType.u8)
+            if (dataSourceType == DataSourceType.u8 && accountNo != "")
             {
-                string connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.u8);
-                conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
-                deConString = Encrypt.Decode(conString);
+                connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.u8);
+                return ConnectString(connectedKey+accountNo);
+                //conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
+                //deConString = Encrypt.Decode(conString);
 
-                sqlConnection = new SqlConnection(deConString);
+                //sqlConnection = new SqlConnection(deConString);
 
-                return sqlConnection;
+                //return sqlConnection;
             }
 
             if (dataSourceType == DataSourceType.ufsystem)
             {
-                string connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.ufsystem);
-                conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
-                deConString = Encrypt.Decode(conString);
+                connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.ufsystem);
+                return ConnectString(connectedKey);
+                //conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
+                //deConString = Encrypt.Decode(conString);
 
-                sqlConnection = new SqlConnection(deConString);
+                //sqlConnection = new SqlConnection(deConString);
 
-                return sqlConnection;
+                //return sqlConnection;
             }
 
             if (dataSourceType == DataSourceType.it)
             {
-                string connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.it);
-                conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
-                deConString = Encrypt.Decode(conString);
-
-                sqlConnection = new SqlConnection(deConString);
-
-                return sqlConnection;
-            }
-            else
-            {
-                if (dataSourceType == DataSourceType.plug)
-                {
-                    string connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.plug);
-                    conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
-                    deConString = Encrypt.Decode(conString);
-
-                    sqlConnection = new SqlConnection(deConString);
-
-                    return sqlConnection;
-                }
-
-                conString = ConfigurationManager.ConnectionStrings[Enum.GetName(typeof(DataSourceType), DataSourceType.business)].ToString();
+                connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.it);
+                return ConnectString(connectedKey);
                 //conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
-                deConString = Encrypt.Decode(conString);
+                //deConString = Encrypt.Decode(conString);
 
+                //sqlConnection = new SqlConnection(deConString);
 
-
-
-                sqlConnection = new SqlConnection(deConString);
-
-                return sqlConnection;
+                //return sqlConnection;
             }
 
+            if (dataSourceType == DataSourceType.plug)
+            {
+                connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.plug);
+                return ConnectString(connectedKey);
+                //conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
+                //deConString = Encrypt.Decode(conString);
 
+                //sqlConnection = new SqlConnection(deConString);
 
+                //return sqlConnection;
+            }
 
+            if (dataSourceType == DataSourceType.business)
+            {
+                connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.business);
+                return ConnectString(connectedKey);
 
+            }
 
+                return null;
+
+           
+
+        }
+
+        /// <summary>
+        /// DECRYPTION CONNECTION STRING
+        /// </summary>
+        /// <param name="connectedKey"></param>
+        /// <returns></returns>
+        private static SqlConnection ConnectString( string connectedKey)
+        {
+           string encryptedString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
+           string deConString = Encrypt.Decode(encryptedString);
+
+           SqlConnection  sqlConnection = new SqlConnection(deConString);
+
+            return sqlConnection;
         }
 
         #endregion
@@ -188,10 +199,18 @@ namespace Utility.Sql
         /// <param name="dataSourceType">数据源类型</param>
         /// <param name="parameters">可能带的参数</param> 
         /// <returns>返回一张查询结果表</returns> 
-        public static SqlDataReader GetSqlDataReader(string strSql, SqlParameter[] parameters, DataSourceType dataSourceType)
+        public static SqlDataReader GetSqlDataReader(string strSql, SqlParameter[] parameters, DataSourceType dataSourceType,string accountNo="")
         {
-
-            SqlConnection connection = sqlConnection(dataSourceType);
+            SqlConnection connection;
+            if (accountNo != "")
+            {
+                connection = sqlConnection(dataSourceType,accountNo);
+            }
+            else
+            {
+                connection = sqlConnection(dataSourceType);
+            }   
+      
             connection.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -226,10 +245,18 @@ namespace Utility.Sql
         /// <param name="dataSourceType">数据源类型</param>
         /// <param name="parameters">可能带的参数</param> 
         /// <returns>返回一张查询结果表</returns> 
-        public static SqlDataReader GetSqlDataReader(string strSql, DataSourceType dataSourceType)
+        public static SqlDataReader GetSqlDataReader(string strSql, DataSourceType dataSourceType,string accountNo="")
         {
 
-            SqlConnection connection = sqlConnection(dataSourceType);
+            SqlConnection connection;
+            if (accountNo != "")
+            {
+                connection = sqlConnection(dataSourceType, accountNo);
+            }
+            else
+            {
+                connection = sqlConnection(dataSourceType);
+            }
             connection.Open();
 
             SqlCommand cmd = new SqlCommand();

@@ -232,7 +232,7 @@ namespace Utility.DAL
         /// <param name="value"></param>
         /// <param name="filterFild"></param>
         /// <param name="sqlparameters"></param>
-        public static void Update<TEntity>(TEntity entity, string filed , object value, string filterFild, SqlParameter[] sqlparameters) where TEntity : class
+        public static void Update<TEntity>(TEntity entity, string filed , object value, string filterFild, object filterVlue) where TEntity : class
               , new()
         {
 
@@ -241,12 +241,14 @@ namespace Utility.DAL
                
                     
                     string tableName = entity.GetType().Name;
-                    string sql = $"update {tableName} set { filed} ={value} where {filterFild}=@{filterFild} ";
-                Sqlhelper.UpdateWithparameters(sql, Sqlhelper.DataSourceType.business, sqlparameters);
+                    string sql = $"update {tableName} set { filed} =@{filed} where {filterFild}=@{filterFild} ";
+                SqlParameter[] para = new SqlParameter[] { new SqlParameter("@" + filterFild, filterVlue),
+                new SqlParameter("@"+filed,value)};
+                
+                Sqlhelper.UpdateWithparameters(sql, Sqlhelper.DataSourceType.business, para);
 
                     //data after change
                  
-
 
                     MessageBox.Show("数据修改成功");
 

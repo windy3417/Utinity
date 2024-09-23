@@ -114,6 +114,7 @@
     <Compile Include="DAL\UpdateService.cs" />
     <Compile Include="DataGridViewUI\DataGridViewPagingPrint.cs" />
     <Compile Include="DataGridViewUI\DataGridViewRowsAssociateChoose.cs" />
+    <Compile Include="Encrypt\U8Encrypt.cs" />
     <Compile Include="Excel\ExportExcel.cs" />
     <Compile Include="Excel\ReadCellsValue.cs" />
     <Compile Include="Excel\SetCellsValue.cs" />
@@ -139,7 +140,9 @@
     <Compile Include="DataGridViewUI\CalendarColumn.cs" />
     <Compile Include="DataGridViewUI\DataGridViewCheckBoxHeaderCell.cs" />
     <Compile Include="DataGridViewUI\DataGridViewDoubleBuffer.cs" />
-    <Compile Include="DataGridViewUI\DataGridViewStyle.cs" />
+    <Compile Include="Style\DataGridViewStyle.cs" />
+    <Compile Include="Style\CloseChildForm.cs" />
+    <Compile Include="Style\TabControlStyle.cs" />
     <Compile Include="UControl\DbConnectControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -28,6 +29,46 @@ namespace Utility.Validate
                 
 
                 i++;
+
+
+            }
+            return true;
+
+
+        }
+
+        public static bool inputVlidate(Panel panHeader)
+        {
+
+            for (int i = 0; i < panHeader.Controls.Count;)
+            {
+
+
+                if (panHeader.Controls[i].Text == "" || panHeader.Controls[i].Text == null)
+                {
+                    MessageBox.Show(panHeader.Controls[i].Tag + "必填项不能为空", "输入校验");
+                    ((TextBox)panHeader.Controls[i]).BackColor = Color.Red;
+                    ((TextBox)panHeader.Controls[i]).Focus();
+                    return false;
+                    
+                }
+
+
+                i++;
+
+
+            }
+
+            //if the content of all textBox is not empty,change the backColor of it 
+            foreach (var item in panHeader.Controls)
+            {
+
+                if (item.GetType().Name == "TextBox")
+                {
+
+                    ((TextBox)item).BackColor = Color.White;
+
+                }
 
 
             }

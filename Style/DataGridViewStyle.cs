@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows.Forms;
 
 namespace Utility.Style
+
 {
     public class DataGridViewStyle
     {
@@ -55,7 +56,13 @@ namespace Utility.Style
         {
             Color color = datagridview.RowHeadersDefaultCellStyle.ForeColor;
             using (SolidBrush b = new SolidBrush(color))
+
             {
+                int rowHeight = e.RowBounds.Height;
+                int rowNumberWidth = (datagridview.RowHeadersWidth - e.Graphics.MeasureString((e.RowIndex + 1).ToString(), e.InheritedRowStyle.Font).ToSize().Width) / 2;
+                int rowNumberHeight = (rowHeight - e.InheritedRowStyle.Font.Height) / 2;
+                int centerX = e.RowBounds.Location.X + (rowNumberWidth / 2);
+                int centerY = e.RowBounds.Location.Y + (rowNumberHeight / 2);
                 if ((e.RowIndex + 1) < datagridview.Rows.Count)
                 {
 
@@ -63,10 +70,13 @@ namespace Utility.Style
                         color = datagridview.RowHeadersDefaultCellStyle.SelectionForeColor;
                     else
                         color = datagridview.RowHeadersDefaultCellStyle.ForeColor;
-                  
-                        //在指定位置并且用指定的 Brush 和 Font 对象绘制指定的文本字符串
-                        e.Graphics.DrawString((e.RowIndex + 1).ToString(), e.InheritedRowStyle.Font,
-                            b, e.RowBounds.Location.X + 5, e.RowBounds.Location.Y + 6);
+
+                    //在指定位置并且用指定的 Brush 和 Font 对象绘制指定的文本字符串
+
+                    e.Graphics.DrawString((e.RowIndex + 1).ToString(), e.InheritedRowStyle.Font,
+                                b, centerX, centerY);
+                    //e.Graphics.DrawString((e.RowIndex + 1).ToString(), e.InheritedRowStyle.Font,
+                    //        b, e.RowBounds.Location.X + 5, e.RowBounds.Location.Y + 6);
 
                     
                 }

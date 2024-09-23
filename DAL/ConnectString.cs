@@ -85,7 +85,7 @@ namespace Utility.DAL
 
             // 打开可执行的配置文件*.exe.config 
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-
+         
             // 如果连接串已存在，首先删除它 
             if (conectionStringExist)
             {
