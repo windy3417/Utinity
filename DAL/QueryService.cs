@@ -219,7 +219,7 @@ namespace Utility.DAL
         /// </summary>
         /// <param name="dataSource"></param>
         /// <returns></returns>
-        public static List<TEntity> GetDataList<TEntity>( DataSourceType dataSource) where TEntity : class, new()
+        public static List<TEntity> GetDataList<TEntity>( DataSourceType dataSource,string accountNo="") where TEntity : class, new()
         {
 
            
@@ -233,9 +233,21 @@ namespace Utility.DAL
            
 
             PropertyInfo[] proInfo = modelType.GetProperties();
+            SqlDataReader sqlDataReader;
 
+            if (string.IsNullOrEmpty(accountNo))
+            {
+                 sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), dataSource);
+            }
 
-            SqlDataReader sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), dataSource);
+           
+            else
+            {
+                 sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), dataSource, accountNo);
+            }
+            
+
+            
             while (sqlDataReader.Read())
             {
                 #region 赋值给单一实体
@@ -297,7 +309,7 @@ namespace Utility.DAL
 
             if (accountNo != "")
             {
-                sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), sqlParameters.ToArray(), dataSource);
+                sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), sqlParameters.ToArray(), dataSource, accountNo);
             }
             else
             {
@@ -426,10 +438,11 @@ namespace Utility.DAL
         /// </summary>
         /// <param name="sqlParameters"></param>
         /// <returns></returns>
-        public static TEntity GetItemFromSingleTable<TEntity>(SqlParameter[] sqlParameters, DataSourceType dataSourceType) where TEntity : class, new()
+        public static TEntity GetItemFromSingleTable<TEntity>(SqlParameter[] sqlParameters, DataSourceType dataSourceType,string U8AccountNo="") where TEntity : class, new()
         {
+            TEntity result = null;
             TEntity model = new TEntity();
-
+            SqlDataReader sqlDataReader;
             Type modelType = model.GetType();
             string tableName = modelType.Name.Replace("Model", "");
             StringBuilder sql = new StringBuilder($"select * from {tableName} where 1=1");
@@ -440,10 +453,20 @@ namespace Utility.DAL
 
             PropertyInfo[] proInfo = modelType.GetProperties();
 
+            if (U8AccountNo != "")
+            {
+                sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), sqlParameters, dataSourceType,U8AccountNo);
+            }
 
+            else
+            {
+                sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), sqlParameters, dataSourceType);
+            }
 
-
-            SqlDataReader sqlDataReader = Sqlhelper.GetSqlDataReader(sql.ToString(), sqlParameters, dataSourceType);
+            if (!sqlDataReader.HasRows)
+            {
+                return result;
+            }
 
             while (sqlDataReader.Read())
             {

@@ -4,7 +4,7 @@ using System.IO;
 
 using System.Text;
 
-namespace Utility
+namespace Utility.Encrypt
 {
     /// <summary>
     /// 加密解密实用类。

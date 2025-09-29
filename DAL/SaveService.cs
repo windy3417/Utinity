@@ -83,7 +83,7 @@ namespace Utility.DAL
         /// <typeparam name="TEntity2"></typeparam>
         /// <param name="entity1"></param>
         /// <param name="entity2"></param>
-        public void SaveDate<TEntity1, TEntity2,Context>(TEntity1 entity1, TEntity2 entity2) where TEntity1 : class where TEntity2 : class
+        public void SaveRowForEachTable<TEntity1, TEntity2,Context>(TEntity1 entity1, TEntity2 entity2) where TEntity1 : class where TEntity2 : class
                         where Context : DbContext, new ()
         {
 

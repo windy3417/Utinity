@@ -196,11 +196,11 @@
     <Compile Include="UControl\XmToolStrip.Designer.cs">
       <DependentUpon>XmToolStrip.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Authority\FrmPerson.cs">
+    <Compile Include="UI\Authority\FrmUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Authority\FrmPerson.Designer.cs">
-      <DependentUpon>FrmPerson.cs</DependentUpon>
+    <Compile Include="UI\Authority\FrmUser.Designer.cs">
+      <DependentUpon>FrmUser.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Authority\FrmModifyPwd.cs">
       <SubType>Form</SubType>
@@ -313,8 +313,8 @@
     <EmbeddedResource Include="UControl\XmTxtBoxWithDate.resx">
       <DependentUpon>XmTxtBoxWithDate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Authority\FrmPerson.resx">
-      <DependentUpon>FrmPerson.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Authority\FrmUser.resx">
+      <DependentUpon>FrmUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Authority\FrmAuthorization.resx">
       <DependentUpon>FrmAuthorization.cs</DependentUpon>

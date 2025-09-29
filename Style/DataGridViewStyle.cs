@@ -147,11 +147,16 @@ namespace Utility.Style
             style.ForeColor = Color.IndianRed;
             style.BackColor = Color.LightSkyBlue;
             style.Font = new Font(dataGridView.Font, FontStyle.Bold);
+            style.WrapMode = DataGridViewTriState.True;
+            
 
             dataGridView.ColumnHeadersDefaultCellStyle = style;
-            //dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-
-            dataGridView.AutoResizeColumns();
+           
+            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridView.AutoResizeColumnHeadersHeight();
+           
+            //worse the performance
+            //dataGridView.AutoResizeColumns();
 
         }
 

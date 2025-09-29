@@ -12,6 +12,7 @@ namespace Utility.Sql
     public class Sqlhelper
     {
 
+        
         #region 动态数据源增删改查
 
         /// <summary>
@@ -116,12 +117,48 @@ namespace Utility.Sql
         private static SqlConnection ConnectString( string connectedKey)
         {
            string encryptedString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
-           string deConString = Encrypt.Decode(encryptedString);
+           string deConString = Encrypt.Encrypt.Decode(encryptedString);
 
            SqlConnection  sqlConnection = new SqlConnection(deConString);
 
             return sqlConnection;
         }
+
+
+        //get connection string only  ,don't return sqlConnection ,accountNo is a optional parameters
+        public static string GetConnectionString(DataSourceType dataSourceType, string accountNo = "")
+        {
+            string connectedKey;
+            if (dataSourceType == DataSourceType.u8 && accountNo != "")
+            {
+                connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.u8);
+                return ConnectString(connectedKey + accountNo).ConnectionString;
+            }
+            if (dataSourceType == DataSourceType.ufsystem)
+            {
+                connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.ufsystem);
+                return ConnectString(connectedKey).ConnectionString;
+            }
+            if (dataSourceType == DataSourceType.it)
+            {
+                connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.it);
+                return ConnectString(connectedKey).ConnectionString;
+            }
+            if (dataSourceType == DataSourceType.plug)
+            {
+                connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.plug);
+                return ConnectString(connectedKey).ConnectionString;
+            }
+            if (dataSourceType == DataSourceType.business)
+            {
+                connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.business);
+                return ConnectString(connectedKey).ConnectionString;
+            }
+            return null;
+        }
+
+
+
 
         #endregion
 
@@ -133,15 +170,25 @@ namespace Utility.Sql
         /// <param name="dataSourceType"></param>
         /// <returns></returns>
 
-        public static DataTable GetDataTable(string strSql, DataSourceType dataSource)
+        public static DataTable GetDataTable(string strSql, DataSourceType dataSource,string accountNo="")
         {
-
-            using (SqlConnection conn = sqlConnection(dataSource))
+            SqlConnection connection;
+            if (accountNo != "")
             {
-                conn.Open();
+                connection = sqlConnection(dataSource, accountNo);
+            }
+            else
+            {
+                connection = sqlConnection(dataSource);
+            }
+
+            using (connection)
+            {
+
+                connection.Open();
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.Connection = conn;
+                    cmd.Connection = connection;
                     cmd.CommandText = @strSql;
 
                   
@@ -183,7 +230,6 @@ namespace Utility.Sql
 
             }
         }
-
 
 
         #endregion
@@ -277,7 +323,136 @@ namespace Utility.Sql
 
         #endregion
 
+        #region transation
+        //暂用于创建数据表的事务
+        /// <summary>
+        /// 数据库及表结构的创建
+        /// </summary>
+        /// <param name="SQLstring"></param>
+        /// <param name="dataSourceType" >数据源类型</param>
+        /// <returns>执行结果成功标志</returns>
+        public static bool ExecuteSqlTransaction(string SQLstring, DataSourceType dataSourceType)
+        {
+            using (SqlConnection connection = sqlConnection(dataSourceType))
+            {
+                connection.Open();
 
+                SqlCommand command = connection.CreateCommand();
+                SqlTransaction transaction;
+
+                // Start a local transaction.
+                transaction = connection.BeginTransaction("SampleTransaction");
+
+                // Must assign both transaction object and connection
+                // to Command object for a pending local transaction
+                command.Connection = connection;
+                command.Transaction = transaction;
+
+                try
+                {
+                    command.CommandText = SQLstring;
+
+                    command.ExecuteNonQuery();
+
+
+                    // Attempt to commit the transaction.
+                    transaction.Commit();
+                    return true;
+
+                }
+
+
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("事务执行失败" + ex.Message + ex.InnerException, "事务执行提示");
+                    return false;
+
+
+
+                    // Attempt to roll back the transaction.
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        // This catch block will handle any errors that may have occurred
+                        // on the server that would cause the rollback to fail, such as
+                        // a closed connection.
+                        MessageBox.Show("事务回滚失败" + ex2.Message + ex2.InnerException, "事务执行提示");
+                    }
+                }
+            }
+        }
+
+        public static bool ExecuteSqlTransaction(string SQLstring, SqlParameter[] sqlParameters, DataSourceType dataSourceType,string u8AccountNo="")
+        {
+            SqlConnection connection;
+            if (u8AccountNo != "")
+            {
+                connection = sqlConnection(dataSourceType, u8AccountNo);
+            }
+            else
+            {
+                connection = sqlConnection(dataSourceType);
+            }
+            using (connection)
+          
+            {
+                connection.Open();
+
+                SqlCommand command = connection.CreateCommand();
+                SqlTransaction transaction;
+
+                // Start a local transaction.
+                transaction = connection.BeginTransaction("SampleTransaction");
+
+                // Must assign both transaction  and connection
+                // to Command  for a pending local transaction
+                command.Connection = connection;
+                command.Transaction = transaction;
+
+                try
+                {
+                    command.CommandText = SQLstring;
+                    command.Parameters.AddRange(sqlParameters);
+                    command.ExecuteNonQuery();
+
+
+                    // Attempt to commit the transaction.
+                    transaction.Commit();
+                    return true;
+
+                }
+
+
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("事务执行失败" + ex.Message + ex.InnerException, "事务执行提示");
+                    return false;
+
+
+
+                    // Attempt to roll back the transaction.
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        // This catch block will handle any errors that may have occurred
+                        // on the server that would cause the rollback to fail, such as
+                        // a closed connection.
+                        MessageBox.Show("事务回滚失败" + ex2.Message + ex2.InnerException, "事务执行提示");
+                    }
+                }
+            }
+        }
+
+
+        #endregion
 
         /// <summary>
         /// 执行外挂数据库的存储过程
@@ -346,128 +521,7 @@ namespace Utility.Sql
 
         }
 
-        #region transation
-        //暂用于创建数据表的事务
-        /// <summary>
-        /// 数据库及表结构的创建
-        /// </summary>
-        /// <param name="SQLstring"></param>
-        /// <param name="dataSourceType" >数据源类型</param>
-        /// <returns>执行结果成功标志</returns>
-        public static bool ExecuteSqlTransaction(string SQLstring, DataSourceType dataSourceType)
-        {
-            using (SqlConnection connection = sqlConnection(dataSourceType))
-            {
-                connection.Open();
-
-                SqlCommand command = connection.CreateCommand();
-                SqlTransaction transaction;
-
-                // Start a local transaction.
-                transaction = connection.BeginTransaction("SampleTransaction");
-
-                // Must assign both transaction object and connection
-                // to Command object for a pending local transaction
-                command.Connection = connection;
-                command.Transaction = transaction;
-
-                try
-                {
-                    command.CommandText = SQLstring;
-
-                    command.ExecuteNonQuery();
-
-
-                    // Attempt to commit the transaction.
-                    transaction.Commit();
-                    return true;
-
-                }
-
-
-                catch (Exception ex)
-                {
-
-                    MessageBox.Show("事务执行失败" + ex.Message + ex.InnerException, "事务执行提示");
-                    return false;
-
-
-
-                    // Attempt to roll back the transaction.
-                    try
-                    {
-                        transaction.Rollback();
-                    }
-                    catch (Exception ex2)
-                    {
-                        // This catch block will handle any errors that may have occurred
-                        // on the server that would cause the rollback to fail, such as
-                        // a closed connection.
-                        MessageBox.Show("事务回滚失败" + ex2.Message + ex2.InnerException, "事务执行提示");
-                    }
-                }
-            }
-        }
-
-        public static bool ExecuteSqlTransaction(string SQLstring, SqlParameter[] sqlParameters, DataSourceType dataSourceType)
-        {
-            using (SqlConnection connection = sqlConnection(dataSourceType))
-            {
-                connection.Open();
-
-                SqlCommand command = connection.CreateCommand();
-                SqlTransaction transaction;
-
-                // Start a local transaction.
-                transaction = connection.BeginTransaction("SampleTransaction");
-
-                // Must assign both transaction object and connection
-                // to Command object for a pending local transaction
-                command.Connection = connection;
-                command.Transaction = transaction;
-
-                try
-                {
-                    command.CommandText = SQLstring;
-                    command.Parameters.AddRange(sqlParameters);
-                    command.ExecuteNonQuery();
-
-
-                    // Attempt to commit the transaction.
-                    transaction.Commit();
-                    return true;
-
-                }
-
-
-                catch (Exception ex)
-                {
-
-                    MessageBox.Show("事务执行失败" + ex.Message + ex.InnerException, "事务执行提示");
-                    return false;
-
-
-
-                    // Attempt to roll back the transaction.
-                    try
-                    {
-                        transaction.Rollback();
-                    }
-                    catch (Exception ex2)
-                    {
-                        // This catch block will handle any errors that may have occurred
-                        // on the server that would cause the rollback to fail, such as
-                        // a closed connection.
-                        MessageBox.Show("事务回滚失败" + ex2.Message + ex2.InnerException, "事务执行提示");
-                    }
-                }
-            }
-        }
-
-
-        #endregion
-
-
+     
 
         /// <summary>
         /// 带参数执行对数据的增删改操作
@@ -495,6 +549,34 @@ namespace Utility.Sql
 
         }
 
+        ///<summary> 
+        /// execute sql without return 
+        /// </summary> 
+        /// <param name="strSql"></param> 
+        /// <param name="parameters"></param> 
+        public static void ExecuteQuery(string strSql, DataSourceType dataSource, string accountNo="")
+        {
+            SqlConnection connection;
+            if (accountNo != "")
+            {
+                connection = sqlConnection(dataSource, accountNo);
+            }
+            else
+            {
+                connection = sqlConnection(dataSource);
+            }
+
+            connection.Open();
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = connection;
+                cmd.CommandText = strSql;
+               
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+        }
+
         #endregion
 
         #region 单一数据源增删改查询
@@ -509,7 +591,7 @@ namespace Utility.Sql
             {
                 string conString = ConfigurationManager.ConnectionStrings["businessConection"].ToString();
 
-                string deConString = Encrypt.Decode(conString);
+                string deConString = Encrypt.Encrypt.Decode(conString);
                 //ConnectionStringSettings conStrings = new ConnectionStringSettings("busynessDate", deConString);
                 SqlConnection sqlConnection = new SqlConnection(deConString);
 

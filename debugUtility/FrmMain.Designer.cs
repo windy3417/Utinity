@@ -48,6 +48,7 @@
             this.控件测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeViewToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.折叠报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.功能测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.webBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +65,7 @@
             this.personToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.horizonLine1 = new Utility.UControl.HorizonLine();
-            this.折叠报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.用户信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,7 +112,7 @@
             // Frm_imageFormatConvert
             // 
             this.Frm_imageFormatConvert.Name = "Frm_imageFormatConvert";
-            this.Frm_imageFormatConvert.Size = new System.Drawing.Size(142, 22);
+            this.Frm_imageFormatConvert.Size = new System.Drawing.Size(180, 22);
             this.Frm_imageFormatConvert.Text = "图片转ICON";
             this.Frm_imageFormatConvert.Click += new System.EventHandler(this.MenuItemClick);
             // 
@@ -148,7 +149,8 @@
             // 表单ToolStripMenuItem
             // 
             this.表单ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.普通单据ToolStripMenuItem});
+            this.普通单据ToolStripMenuItem,
+            this.用户信息ToolStripMenuItem});
             this.表单ToolStripMenuItem.Name = "表单ToolStripMenuItem";
             this.表单ToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.表单ToolStripMenuItem.Text = "表单";
@@ -156,7 +158,7 @@
             // 普通单据ToolStripMenuItem
             // 
             this.普通单据ToolStripMenuItem.Name = "普通单据ToolStripMenuItem";
-            this.普通单据ToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.普通单据ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.普通单据ToolStripMenuItem.Text = "普通单据";
             this.普通单据ToolStripMenuItem.Click += new System.EventHandler(this.普通单据ToolStripMenuItem_Click);
             // 
@@ -220,16 +222,24 @@
             // treeViewToolStripMenuItem1
             // 
             this.treeViewToolStripMenuItem1.Name = "treeViewToolStripMenuItem1";
-            this.treeViewToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.treeViewToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
             this.treeViewToolStripMenuItem1.Text = "TreeView";
             this.treeViewToolStripMenuItem1.Click += new System.EventHandler(this.treeViewToolStripMenuItem1_Click);
             // 
             // tabPagesToolStripMenuItem
             // 
             this.tabPagesToolStripMenuItem.Name = "tabPagesToolStripMenuItem";
-            this.tabPagesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tabPagesToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.tabPagesToolStripMenuItem.Text = "tabPages";
             this.tabPagesToolStripMenuItem.Click += new System.EventHandler(this.tabPagesToolStripMenuItem_Click);
+            // 
+            // 折叠报表ToolStripMenuItem
+            // 
+            this.折叠报表ToolStripMenuItem.Name = "折叠报表ToolStripMenuItem";
+            this.折叠报表ToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.折叠报表ToolStripMenuItem.Tag = "DebugUtility.UI.Controls.FrmDataGridViewWithTreeView";
+            this.折叠报表ToolStripMenuItem.Text = "折叠报表";
+            this.折叠报表ToolStripMenuItem.Click += new System.EventHandler(this.MenuItemClick);
             // 
             // 功能测试ToolStripMenuItem
             // 
@@ -359,13 +369,11 @@
             this.horizonLine1.Size = new System.Drawing.Size(288, 1);
             this.horizonLine1.TabIndex = 0;
             // 
-            // 折叠报表ToolStripMenuItem
+            // 用户信息ToolStripMenuItem
             // 
-            this.折叠报表ToolStripMenuItem.Name = "折叠报表ToolStripMenuItem";
-            this.折叠报表ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.折叠报表ToolStripMenuItem.Tag = "DebugUtility.UI.Controls.FrmDataGridViewWithTreeView";
-            this.折叠报表ToolStripMenuItem.Text = "折叠报表";
-            this.折叠报表ToolStripMenuItem.Click += new System.EventHandler(this.MenuItemClick);
+            this.用户信息ToolStripMenuItem.Name = "用户信息ToolStripMenuItem";
+            this.用户信息ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.用户信息ToolStripMenuItem.Text = "用户信息";
             // 
             // Frm_main
             // 
@@ -424,6 +432,7 @@
         private System.Windows.Forms.ToolStripMenuItem 普通单据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tabPagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 折叠报表ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 用户信息ToolStripMenuItem;
     }
 }
 

@@ -20,7 +20,7 @@ namespace DebugUtility.UI.ClassTest
         private void tsbSha1_Click(object sender, EventArgs e)
         {
 
-            rtbEncrypted.Text = Utility.Encrypt.Sha1(rtbText.Text);
+            rtbEncrypted.Text = Utility.Encrypt.Encrypt.Sha1(rtbText.Text);
         }
     }
 }

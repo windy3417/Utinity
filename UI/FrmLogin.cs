@@ -74,7 +74,7 @@ namespace Utility.UI
                 //登录系统
                 if (ch_changePWD.Checked == false)
                 {
-                    string pwd = Encrypt.Encode(txt_pwd.Text);
+                    string pwd = Encrypt.Encrypt.Encode(txt_pwd.Text);
 
                     if (checkPwd(txt_userID.Text,pwd))
                     {
@@ -96,7 +96,7 @@ namespace Utility.UI
                 else
                 {
 
-                    string pwd = Encrypt.Encode(txt_pwd.Text);
+                    string pwd = Encrypt.Encrypt.Encode(txt_pwd.Text);
                     changePWD(pwd);
 
                 }

@@ -1,6 +1,6 @@
 ﻿namespace Utility.UI.Authority
 {
-    partial class FrmPerson
+    partial class FrmUser
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_voucherStatus = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvBody = new System.Windows.Forms.DataGridView();
             this.cusCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.effectDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,7 +57,7 @@
             this.tsbEnable = new System.Windows.Forms.ToolStripButton();
             this.tsb_close = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBody)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -66,7 +66,7 @@
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel1.Controls.Add(this.lbl_voucherStatus);
-            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.dgvBody);
             this.panel1.Controls.Add(this.lbl_customer);
             this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Location = new System.Drawing.Point(27, 28);
@@ -78,7 +78,7 @@
             // 
             this.lbl_voucherStatus.AutoSize = true;
             this.lbl_voucherStatus.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lbl_voucherStatus.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_voucherStatus.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl_voucherStatus.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lbl_voucherStatus.Location = new System.Drawing.Point(642, 4);
             this.lbl_voucherStatus.Name = "lbl_voucherStatus";
@@ -86,37 +86,37 @@
             this.lbl_voucherStatus.TabIndex = 3;
             this.lbl_voucherStatus.Text = "档案状态：";
             // 
-            // dataGridView1
+            // dgvBody
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvBody.AllowUserToAddRows = false;
+            this.dgvBody.AllowUserToDeleteRows = false;
+            this.dgvBody.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvBody.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvBody.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvBody.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBody.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cusCode,
             this.cusName,
             this.effectDate,
             this.failuerDate});
-            this.dataGridView1.Location = new System.Drawing.Point(3, 241);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(738, 150);
-            this.dataGridView1.TabIndex = 2;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.DataGridView1_SelectionChanged);
+            this.dgvBody.Location = new System.Drawing.Point(3, 241);
+            this.dgvBody.Name = "dgvBody";
+            this.dgvBody.ReadOnly = true;
+            this.dgvBody.RowTemplate.Height = 23;
+            this.dgvBody.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBody.Size = new System.Drawing.Size(738, 150);
+            this.dgvBody.TabIndex = 2;
+            this.dgvBody.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dgvBody.SelectionChanged += new System.EventHandler(this.DataGridView1_SelectionChanged);
             // 
             // cusCode
             // 
@@ -156,7 +156,7 @@
             // lbl_customer
             // 
             this.lbl_customer.AutoSize = true;
-            this.lbl_customer.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_customer.Font = new System.Drawing.Font("SimSun", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl_customer.Location = new System.Drawing.Point(337, 32);
             this.lbl_customer.Name = "lbl_customer";
             this.lbl_customer.Size = new System.Drawing.Size(134, 21);
@@ -270,7 +270,7 @@
             this.tsb_add.Image = global::Utility.Properties.Resources.add;
             this.tsb_add.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_add.Name = "tsb_add";
-            this.tsb_add.Size = new System.Drawing.Size(52, 22);
+            this.tsb_add.Size = new System.Drawing.Size(53, 22);
             this.tsb_add.Text = "增加";
             this.tsb_add.Click += new System.EventHandler(this.Tsb_add_Click);
             // 
@@ -279,7 +279,7 @@
             this.tsb_abandon.Image = global::Utility.Properties.Resources.abandon;
             this.tsb_abandon.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_abandon.Name = "tsb_abandon";
-            this.tsb_abandon.Size = new System.Drawing.Size(52, 22);
+            this.tsb_abandon.Size = new System.Drawing.Size(53, 22);
             this.tsb_abandon.Text = "放弃";
             this.tsb_abandon.Click += new System.EventHandler(this.Tsb_abandon_Click);
             // 
@@ -288,7 +288,7 @@
             this.tsb_save.Image = global::Utility.Properties.Resources.save;
             this.tsb_save.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_save.Name = "tsb_save";
-            this.tsb_save.Size = new System.Drawing.Size(52, 22);
+            this.tsb_save.Size = new System.Drawing.Size(53, 22);
             this.tsb_save.Text = "保存";
             this.tsb_save.Click += new System.EventHandler(this.Tsb_save_Click);
             // 
@@ -297,7 +297,7 @@
             this.tsb_modify.Image = global::Utility.Properties.Resources.edit;
             this.tsb_modify.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_modify.Name = "tsb_modify";
-            this.tsb_modify.Size = new System.Drawing.Size(52, 22);
+            this.tsb_modify.Size = new System.Drawing.Size(53, 22);
             this.tsb_modify.Text = "修改";
             this.tsb_modify.Click += new System.EventHandler(this.Tsb_modify_Click);
             // 
@@ -306,7 +306,7 @@
             this.tsb_query.Image = global::Utility.Properties.Resources.Search;
             this.tsb_query.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_query.Name = "tsb_query";
-            this.tsb_query.Size = new System.Drawing.Size(52, 22);
+            this.tsb_query.Size = new System.Drawing.Size(53, 22);
             this.tsb_query.Text = "查询";
             this.tsb_query.Click += new System.EventHandler(this.tsb_query_Click);
             // 
@@ -315,7 +315,7 @@
             this.tsb_delete.Image = global::Utility.Properties.Resources.delete;
             this.tsb_delete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_delete.Name = "tsb_delete";
-            this.tsb_delete.Size = new System.Drawing.Size(52, 22);
+            this.tsb_delete.Size = new System.Drawing.Size(53, 22);
             this.tsb_delete.Text = "删除";
             this.tsb_delete.Click += new System.EventHandler(this.tsb_delete_Click);
             // 
@@ -324,7 +324,7 @@
             this.tsb_pwdModify.Image = global::Utility.Properties.Resources.Authorized;
             this.tsb_pwdModify.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_pwdModify.Name = "tsb_pwdModify";
-            this.tsb_pwdModify.Size = new System.Drawing.Size(76, 22);
+            this.tsb_pwdModify.Size = new System.Drawing.Size(79, 22);
             this.tsb_pwdModify.Text = "密码修改";
             this.tsb_pwdModify.Click += new System.EventHandler(this.tsb_pwdModify_Click);
             // 
@@ -333,7 +333,7 @@
             this.tsbDisable.Image = global::Utility.Properties.Resources.invalid;
             this.tsbDisable.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbDisable.Name = "tsbDisable";
-            this.tsbDisable.Size = new System.Drawing.Size(52, 22);
+            this.tsbDisable.Size = new System.Drawing.Size(53, 22);
             this.tsbDisable.Text = "注销";
             this.tsbDisable.Click += new System.EventHandler(this.tsbDisable_Click);
             // 
@@ -342,7 +342,7 @@
             this.tsbEnable.Image = global::Utility.Properties.Resources.enable;
             this.tsbEnable.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEnable.Name = "tsbEnable";
-            this.tsbEnable.Size = new System.Drawing.Size(52, 22);
+            this.tsbEnable.Size = new System.Drawing.Size(53, 22);
             this.tsbEnable.Text = "启用";
             this.tsbEnable.Click += new System.EventHandler(this.tsbEnable_Click);
             // 
@@ -351,7 +351,7 @@
             this.tsb_close.Image = global::Utility.Properties.Resources.exit;
             this.tsb_close.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_close.Name = "tsb_close";
-            this.tsb_close.Size = new System.Drawing.Size(52, 22);
+            this.tsb_close.Size = new System.Drawing.Size(53, 22);
             this.tsb_close.Text = "关闭";
             this.tsb_close.Click += new System.EventHandler(this.Tsb_close_Click);
             // 
@@ -369,7 +369,7 @@
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Frm_customer_KeyPress);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBody)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -393,7 +393,7 @@
         private System.Windows.Forms.ToolStripButton tsb_close;
     
         private System.Windows.Forms.ToolStripButton tsb_add;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvBody;
         private System.Windows.Forms.ToolStripButton tsb_modify;
         private System.Windows.Forms.ToolStripButton tsb_query;
         private System.Windows.Forms.ToolStripButton tsb_delete;

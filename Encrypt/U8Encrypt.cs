@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Utilities.Encrypt
+namespace Utility.Encrypt
 {
     /// <summary>
     /// the encrypt method for u8

@@ -71,7 +71,7 @@ namespace Utility.DAL
                 "User ID=" + m.UserName + ";Password="
                 + m.Pwd + ";Pooling=False;";
             //加密码连接字符串
-            string encryptConString = Utility.Encrypt.Encode(conString);
+            string encryptConString = Utility.Encrypt.Encrypt.Encode(conString);
 
 
             if (ConfigurationManager.ConnectionStrings[connectKey] != null)
@@ -148,11 +148,11 @@ namespace Utility.DAL
          
                       
             //加密码连接字符串
-            m.DataSource = Utility.Encrypt.Encode(m.DataSource);
-            m.DataBase = Utility.Encrypt.Encode(m.DataBase);
-            m.FileDirectory = Utility.Encrypt.Encode(m.FileDirectory);
-            m.UserName= Utility.Encrypt.Encode(m.UserName);
-            m.Pwd = Utility.Encrypt.Encode(m.Pwd);
+            m.DataSource = Utility.Encrypt.Encrypt.Encode(m.DataSource);
+            m.DataBase = Utility.Encrypt.Encrypt.Encode(m.DataBase);
+            m.FileDirectory = Utility.Encrypt.Encrypt.Encode(m.FileDirectory);
+            m.UserName= Utility.Encrypt.Encrypt.Encode(m.UserName);
+            m.Pwd = Utility.Encrypt.Encrypt.Encode(m.Pwd);
 
          
 
@@ -187,11 +187,11 @@ namespace Utility.DAL
 
 
                 //加密码连接字符串
-                m.DataSource = Utility.Encrypt.Decode(m.DataSource);
-                m.DataBase = Utility.Encrypt.Decode(m.DataBase);
-                m.FileDirectory = Encrypt.Decode(m.FileDirectory);
-                m.UserName = Utility.Encrypt.Decode(m.UserName);
-                m.Pwd = Utility.Encrypt.Decode(m.Pwd);
+                m.DataSource = Utility.Encrypt.Encrypt.Decode(m.DataSource);
+                m.DataBase = Utility.Encrypt.Encrypt.Decode(m.DataBase);
+                m.FileDirectory = Encrypt.Encrypt.Decode(m.FileDirectory);
+                m.UserName = Utility.Encrypt.Encrypt.Decode(m.UserName);
+                m.Pwd = Utility.Encrypt.Encrypt.Decode(m.Pwd);
 
                 return m;
             }

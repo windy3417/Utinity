@@ -310,7 +310,7 @@ namespace DebugUtility
 
         private void personToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.UI.Authority.FrmPerson f = new FrmPerson();
+            Utility.UI.Authority.FrmUser f = new FrmUser();
             string tabPageText = f.Text;
             Utility.UI.EmbedForm embed = new Utility.UI.EmbedForm();
             embed.openForm(f, tabPageText, tabControl1, panel1);

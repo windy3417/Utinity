@@ -13,9 +13,9 @@ using Utility.Model;
 
 namespace Utility.UI.Authority
 {
-    public partial class FrmPerson : Form
+    public partial class FrmUser : Form
     {
-        public FrmPerson()
+        public FrmUser()
         {
             InitializeComponent();
             this.initialize();
@@ -57,7 +57,7 @@ namespace Utility.UI.Authority
             this.tsb_delete.Enabled = false;
             tsb_abandon.Enabled = false;
 
-            this.dataGridView1.AutoGenerateColumns = false;
+            this.dgvBody.AutoGenerateColumns = false;
             this.tableLayoutPanel1.Enabled = false;
             lbl_voucherStatus.Visible = false;
 
@@ -86,7 +86,7 @@ namespace Utility.UI.Authority
             if (saveOrModifQueryFlag != saveOrChangeOrQueryMolde.save.ToString())
             {
                 saveOrModifQueryFlag = saveOrChangeOrQueryMolde.save.ToString();
-                this.dataGridView1.DataSource = null;
+                this.dgvBody.DataSource = null;
             }
 
             this.tsb_save.Enabled = true;
@@ -135,9 +135,9 @@ namespace Utility.UI.Authority
         private void tsb_delete_Click(object sender, EventArgs e)
         {
 
-            if (dataGridView1.Rows.Count > 0)
+            if (dgvBody.Rows.Count > 0)
             {
-             string  selected = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+             string  selected = dgvBody.SelectedRows[0].Cells[0].Value.ToString();
                 if (DialogResult.Yes == MessageBox.Show("是否确定删除", "删除提醒", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
 
@@ -217,9 +217,9 @@ namespace Utility.UI.Authority
             this.tsb_modify.Enabled = true;
 
             this.tsb_delete.Enabled = true;
-            if (dataGridView1.Rows.Count > 0)
+            if (dgvBody.Rows.Count > 0)
             {
-                this.dataGridView1.Rows[0].Selected = true;
+                this.dgvBody.Rows[0].Selected = true;
             }
 
 
@@ -235,12 +235,12 @@ namespace Utility.UI.Authority
         /// <param name="e"></param>
         private void tsbDisable_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.Rows.Count > 0)
+            if (dgvBody.Rows.Count > 0)
             {
                 using (var db = new AuthorityContext())
                 {
 
-                    string personCode = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                    string personCode = dgvBody.CurrentRow.Cells[0].Value.ToString();
                     Person person = db.Person.Where(c => c.Code == personCode).FirstOrDefault();
 
                     person.FailuerDate = DateTime.Now.Date;
@@ -267,12 +267,12 @@ namespace Utility.UI.Authority
         private void tsbEnable_Click(object sender, EventArgs e)
         {
 
-            if (dataGridView1.Rows.Count > 0)
+            if (dgvBody.Rows.Count > 0)
             {
                 using (var db = new AuthorityContext())
                 {
 
-                    string personCode = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                    string personCode = dgvBody.CurrentRow.Cells[0].Value.ToString();
                     Person person = db.Person.Where(c => c.Code == personCode).FirstOrDefault();
 
                     person.FailuerDate = null;
@@ -461,7 +461,7 @@ namespace Utility.UI.Authority
                         Person person = new Person();
                         person.Code = txt_cusCode.Text;
                         person.Name = this.txt_cusName.Text;
-                        person.pwd = Encrypt.Encode(txt_pwd.Text);
+                        person.pwd = Utility.Encrypt.Encrypt.Encode(txt_pwd.Text);
                         person.EffectDate = DateTime.Now.Date;
 
 
@@ -502,7 +502,7 @@ namespace Utility.UI.Authority
                         person.Code =txt_cusCode.Text;
 
                         person.Name = this.txt_cusName.Text;
-                        person.pwd = Encrypt.Encode(txt_pwd.Text);
+                        person.pwd = Utility.Encrypt.Encrypt.Encode(txt_pwd.Text);
 
 
                         db.SaveChanges();
@@ -535,10 +535,10 @@ namespace Utility.UI.Authority
                     {
                         string code = txt_cusCode.Text;
                         Person w = db.Person.Where(s => s.Code == code).FirstOrDefault();
-                        w.pwd = Encrypt.Encode(auth.pwd);
+                        w.pwd = Utility.Encrypt.Encrypt.Encode(auth.pwd);
                         db.SaveChanges();
                         MessageBox.Show("密码修改成功", "密码修改提示");
-                        txt_pwd.Text = Encrypt.Encode(auth.pwd);
+                        txt_pwd.Text = Utility.Encrypt.Encrypt.Encode(auth.pwd);
                     }
                 }
                 catch (Exception ex)
@@ -557,17 +557,17 @@ namespace Utility.UI.Authority
         /// </summary>
         private void bind_gv_dateSource()
         {
-            this.dataGridView1.DataSource = null;
+            this.dgvBody.DataSource = null;
             //使用EF速度很慢,不使用默认的DBContext连接字符串后，效率有提升???
             //查询状态的数据源
             if (saveOrModifQueryFlag == saveOrChangeOrQueryMolde.query.ToString())
             {
-                this.dataGridView1.DataSource = new AuthorityContext().Person.ToList<Person>();
+                this.dgvBody.DataSource = new AuthorityContext().Person.ToList<Person>();
             }
             //新增状态的数据源
             else
             {
-                this.dataGridView1.DataSource = archivesList;
+                this.dgvBody.DataSource = archivesList;
             }
 
 
@@ -595,8 +595,8 @@ namespace Utility.UI.Authority
             clearDate();
             if (e.RowIndex > -1)
             {
-                this.txt_cusCode.Text = this.dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                this.txt_cusName.Text = this.dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                this.txt_cusCode.Text = this.dgvBody.Rows[e.RowIndex].Cells[0].Value.ToString();
+                this.txt_cusName.Text = this.dgvBody.Rows[e.RowIndex].Cells[1].Value.ToString();
 
 
             }

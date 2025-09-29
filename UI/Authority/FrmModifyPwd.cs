@@ -75,7 +75,7 @@ namespace Utility.UI.Authority
             //this.DialogResult = DialogResult.OK;
             if (txt_pwd.Text != "" && txt_newPwd.Text != "")
             {
-                string pwd = Encrypt.Encode(txt_pwd.Text);
+                string pwd = Encrypt.Encrypt.Encode(txt_pwd.Text);
 
 
                 if (new PersonService().LoginValidate(cmb_user.SelectedValue.ToString(), pwd))

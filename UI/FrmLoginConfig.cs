@@ -103,7 +103,7 @@ namespace Utility.UI
             if (ConfigurationManager.ConnectionStrings[conectDataBase] != null)
             {
                 string conString = ConfigurationManager.ConnectionStrings[conectDataBase].ToString();
-                string deConString = Encrypt.Decode(conString);
+                string deConString = Encrypt.Encrypt.Decode(conString);
                 int dataBaseIndex = deConString.IndexOf("Catalog=");
                 int UserIndex = deConString.IndexOf(";User");
 
@@ -118,7 +118,7 @@ namespace Utility.UI
             if (ConfigurationManager.ConnectionStrings[conectPlugDataBase] != null)
             {
                 string conString = ConfigurationManager.ConnectionStrings[conectPlugDataBase].ToString();
-                string deConString = Encrypt.Decode(conString);
+                string deConString = Encrypt.Encrypt.Decode(conString);
                 int dataBaseIndex = deConString.IndexOf("Catalog=");
                 int UserIndex = deConString.IndexOf(";User");
 
@@ -175,7 +175,7 @@ namespace Utility.UI
                 "User ID=" + txt_plugUser.Text + ";Password="
                 + txt_plugPWD.Text + ";Pooling=False;";
             //加密码连接字符串
-            string encryptConString = Utility.Encrypt.Encode(conString);
+            string encryptConString = Utility.Encrypt.Encrypt.Encode(conString);
 
 
             if (ConfigurationManager.ConnectionStrings["business"] != null)
