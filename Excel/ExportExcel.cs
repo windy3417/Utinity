@@ -165,13 +165,7 @@ namespace Utility.Excel
                     }
 
 
-                    //导出列表中所有存在值的单元格数据，如无值则报错
-
-                    //DataGridViewTextBoxColumn tbc = (DataGridViewTextBoxColumn)col;
-                    //rowH.CreateCell(col.Index).SetCellValue(col.HeaderText);
-                    //exportColumn.Add(col.Index);
-                    //设置单元格格式
-                    //    rowH.Cells[col.Index].CellStyle = cellStyle;
+                    
 
 
                 }

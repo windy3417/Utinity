@@ -245,7 +245,7 @@ namespace Utility.DAL
                 SqlParameter[] para = new SqlParameter[] { new SqlParameter("@" + filterFild, filterVlue),
                 new SqlParameter("@"+filed,value)};
                 
-                Sqlhelper.UpdateWithparameters(sql, Sqlhelper.DataSourceType.business, para);
+                Sqlhelper.UpdateWithparameters(Sqlhelper.DataSourceType.business,sql, para);
 
                     //data after change
                  

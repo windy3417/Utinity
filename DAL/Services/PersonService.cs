@@ -59,5 +59,27 @@ namespace Utility.DAL.Services
                 return false;
             }
         }
+
+
+        //return user name by userID
+        public string getUserName(string userID)
+        {
+            string sql = "select  *  from  [people] where code=@userID   ";
+            SqlParameter[] sqlParameters =
+            {
+                new SqlParameter("@userID",userID ),
+              
+            };
+
+            SqlDataReader sqlDataReader = Utility.Sql.Sqlhelper.GetSqlDataReader(sql, sqlParameters, DataSourceType.business);
+            if (sqlDataReader.HasRows)
+            {
+               
+                Person m=new Person();
+                return m.Name = sqlDataReader[m.Name].ToString();
+
+            }
+            return null;
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace ReportTransfer.DAL
     {
         public U8Context()
 
-           : base(Utility.Sql.Sqlhelper.sqlConnection(Utility.Sql.Sqlhelper.DataSourceType.u8), true)
+           : base(Utility.Sql.Sqlhelper.GetSqlConnection(Utility.Sql.Sqlhelper.DataSourceType.u8), true)
         {
         }
 

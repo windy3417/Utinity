@@ -330,7 +330,7 @@ namespace Utility.DAL
 
                         try
                         {
-                            if (sqlDataReader[propertyName] is null)
+                            if (sqlDataReader[propertyName] is DBNull)
                             {
                                 item.SetValue(m, null, null);
                             }

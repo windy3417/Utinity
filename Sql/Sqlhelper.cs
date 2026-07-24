@@ -12,7 +12,7 @@ namespace Utility.Sql
     public class Sqlhelper
     {
 
-        
+
         #region 动态数据源增删改查
 
         /// <summary>
@@ -42,52 +42,37 @@ namespace Utility.Sql
         /// 数据源类型
         /// </param>
         /// <returns></returns>
-        public static SqlConnection sqlConnection(DataSourceType dataSourceType, string accountNo="")
+        public static SqlConnection GetSqlConnection(DataSourceType dataSourceType, string accountNo = "")
         {
-                      
+
             string connectedKey;
-        
+
 
             if (dataSourceType == DataSourceType.u8 && accountNo != "")
             {
                 connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.u8);
-                return ConnectString(connectedKey+accountNo);
-                //conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
-                //deConString = Encrypt.Decode(conString);
-
-                //sqlConnection = new SqlConnection(deConString);
-
-                //return sqlConnection;
+                return GetSqlConnetion(connectedKey + accountNo);
+                
             }
 
             if (dataSourceType == DataSourceType.ufsystem)
             {
                 connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.ufsystem);
-                return ConnectString(connectedKey);
-                //conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
-                //deConString = Encrypt.Decode(conString);
-
-                //sqlConnection = new SqlConnection(deConString);
-
-                //return sqlConnection;
+                return GetSqlConnetion(connectedKey);
+               
             }
 
             if (dataSourceType == DataSourceType.it)
             {
                 connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.it);
-                return ConnectString(connectedKey);
-                //conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
-                //deConString = Encrypt.Decode(conString);
-
-                //sqlConnection = new SqlConnection(deConString);
-
-                //return sqlConnection;
+                return GetSqlConnetion(connectedKey);
+                
             }
 
             if (dataSourceType == DataSourceType.plug)
             {
                 connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.plug);
-                return ConnectString(connectedKey);
+                return GetSqlConnetion(connectedKey);
                 //conString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
                 //deConString = Encrypt.Decode(conString);
 
@@ -99,13 +84,13 @@ namespace Utility.Sql
             if (dataSourceType == DataSourceType.business)
             {
                 connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.business);
-                return ConnectString(connectedKey);
+                return GetSqlConnetion(connectedKey);
 
             }
 
-                return null;
+            return null;
 
-           
+
 
         }
 
@@ -114,12 +99,12 @@ namespace Utility.Sql
         /// </summary>
         /// <param name="connectedKey"></param>
         /// <returns></returns>
-        private static SqlConnection ConnectString( string connectedKey)
+        public  static SqlConnection GetSqlConnetion(string connectedKey)
         {
-           string encryptedString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
-           string deConString = Encrypt.Encrypt.Decode(encryptedString);
+            string encryptedString = ConfigurationManager.ConnectionStrings[connectedKey].ToString();
+            string deConString = Encrypt.Encrypt.Decode(encryptedString);
 
-           SqlConnection  sqlConnection = new SqlConnection(deConString);
+            SqlConnection sqlConnection = new SqlConnection(deConString);
 
             return sqlConnection;
         }
@@ -132,27 +117,27 @@ namespace Utility.Sql
             if (dataSourceType == DataSourceType.u8 && accountNo != "")
             {
                 connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.u8);
-                return ConnectString(connectedKey + accountNo).ConnectionString;
+                return GetSqlConnetion(connectedKey + accountNo).ConnectionString;
             }
             if (dataSourceType == DataSourceType.ufsystem)
             {
                 connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.ufsystem);
-                return ConnectString(connectedKey).ConnectionString;
+                return GetSqlConnetion(connectedKey).ConnectionString;
             }
             if (dataSourceType == DataSourceType.it)
             {
                 connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.it);
-                return ConnectString(connectedKey).ConnectionString;
+                return GetSqlConnetion(connectedKey).ConnectionString;
             }
             if (dataSourceType == DataSourceType.plug)
             {
                 connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.plug);
-                return ConnectString(connectedKey).ConnectionString;
+                return GetSqlConnetion(connectedKey).ConnectionString;
             }
             if (dataSourceType == DataSourceType.business)
             {
                 connectedKey = Enum.GetName(typeof(DataSourceType), DataSourceType.business);
-                return ConnectString(connectedKey).ConnectionString;
+                return GetSqlConnetion(connectedKey).ConnectionString;
             }
             return null;
         }
@@ -170,16 +155,16 @@ namespace Utility.Sql
         /// <param name="dataSourceType"></param>
         /// <returns></returns>
 
-        public static DataTable GetDataTable(string strSql, DataSourceType dataSource,string accountNo="")
+        public static DataTable GetDataTable(string strSql, DataSourceType dataSource, string accountNo = "")
         {
             SqlConnection connection;
             if (accountNo != "")
             {
-                connection = sqlConnection(dataSource, accountNo);
+                connection = GetSqlConnection(dataSource, accountNo);
             }
             else
             {
-                connection = sqlConnection(dataSource);
+                connection = GetSqlConnection(dataSource);
             }
 
             using (connection)
@@ -191,7 +176,7 @@ namespace Utility.Sql
                     cmd.Connection = connection;
                     cmd.CommandText = @strSql;
 
-                  
+
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {
                         DataTable dataTable = new DataTable();
@@ -204,10 +189,19 @@ namespace Utility.Sql
         }
 
 
-        public static DataTable GetDataTable(string strSql, SqlParameter[] sqlParameters, DataSourceType dataSource)
+        public static DataTable GetDataTable(string strSql, SqlParameter[] sqlParameters, DataSourceType dataSource,string accountNo="")
         {
+            SqlConnection conn;
+            if (string.IsNullOrEmpty(accountNo))
+            {
+                conn = GetSqlConnection(dataSource);
+            }
 
-            using (SqlConnection conn = sqlConnection(dataSource))
+            else
+            {
+                conn = GetSqlConnection(dataSource, accountNo);
+            } 
+            using (conn)
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand())
@@ -245,18 +239,18 @@ namespace Utility.Sql
         /// <param name="dataSourceType">数据源类型</param>
         /// <param name="parameters">可能带的参数</param> 
         /// <returns>返回一张查询结果表</returns> 
-        public static SqlDataReader GetSqlDataReader(string strSql, SqlParameter[] parameters, DataSourceType dataSourceType,string accountNo="")
+        public static SqlDataReader GetSqlDataReader(string strSql, SqlParameter[] parameters, DataSourceType dataSourceType, string accountNo = "")
         {
             SqlConnection connection;
             if (accountNo != "")
             {
-                connection = sqlConnection(dataSourceType,accountNo);
+                connection = GetSqlConnection(dataSourceType, accountNo);
             }
             else
             {
-                connection = sqlConnection(dataSourceType);
-            }   
-      
+                connection = GetSqlConnection(dataSourceType);
+            }
+
             connection.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -265,14 +259,14 @@ namespace Utility.Sql
             cmd.Connection = connection;
             cmd.CommandText = strSql;
 
-         
+
             cmd.Parameters.AddRange(parameters);
             //执行完后不能调用sqlconection.close方法去关闭连接，否则sqldatareader对象无法调用
             //其read方法，采用commandBehavior.closeConection枚举可在关闭sqldatareader时自动
             //关闭SqlConnection,同时也说明Command.ExecuteReader方法并未执行真正的查询，仅仅是
             //构造SqlDataReader对象
 
-           
+
             SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
 
 
@@ -291,17 +285,17 @@ namespace Utility.Sql
         /// <param name="dataSourceType">数据源类型</param>
         /// <param name="parameters">可能带的参数</param> 
         /// <returns>返回一张查询结果表</returns> 
-        public static SqlDataReader GetSqlDataReader(string strSql, DataSourceType dataSourceType,string accountNo="")
+        public static SqlDataReader GetSqlDataReader(string strSql, DataSourceType dataSourceType, string accountNo = "")
         {
 
             SqlConnection connection;
             if (accountNo != "")
             {
-                connection = sqlConnection(dataSourceType, accountNo);
+                connection = GetSqlConnection(dataSourceType, accountNo);
             }
             else
             {
-                connection = sqlConnection(dataSourceType);
+                connection = GetSqlConnection(dataSourceType);
             }
             connection.Open();
 
@@ -311,7 +305,7 @@ namespace Utility.Sql
             cmd.CommandText = strSql;
 
 
-            
+
             SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
 
             return reader;
@@ -333,7 +327,7 @@ namespace Utility.Sql
         /// <returns>执行结果成功标志</returns>
         public static bool ExecuteSqlTransaction(string SQLstring, DataSourceType dataSourceType)
         {
-            using (SqlConnection connection = sqlConnection(dataSourceType))
+            using (SqlConnection connection = GetSqlConnection(dataSourceType))
             {
                 connection.Open();
 
@@ -386,19 +380,19 @@ namespace Utility.Sql
             }
         }
 
-        public static bool ExecuteSqlTransaction(string SQLstring, SqlParameter[] sqlParameters, DataSourceType dataSourceType,string u8AccountNo="")
+        public static bool ExecuteSqlTransaction(string SQLstring, SqlParameter[] sqlParameters, DataSourceType dataSourceType, string u8AccountNo = "")
         {
             SqlConnection connection;
             if (u8AccountNo != "")
             {
-                connection = sqlConnection(dataSourceType, u8AccountNo);
+                connection = GetSqlConnection(dataSourceType, u8AccountNo);
             }
             else
             {
-                connection = sqlConnection(dataSourceType);
+                connection = GetSqlConnection(dataSourceType);
             }
             using (connection)
-          
+
             {
                 connection.Open();
 
@@ -492,11 +486,11 @@ namespace Utility.Sql
         /// <param name="SQLstring"></param>
         /// <param name="dataSourceType" >数据源类型</param>
         /// <returns>执行结果成功标志</returns>
-        public static bool ExecuteWithNoneParameter(string SQLstring, DataSourceType dataSourceType)
+        public static bool ExecuteWithNoneParameter(DataSourceType dataSourceType,string SQLstring )
         {
             try
             {
-                SqlConnection connection = sqlConnection(dataSourceType);
+                SqlConnection connection = GetSqlConnection(dataSourceType);
                 connection.Open();
 
                 SqlCommand cmd = new SqlCommand();
@@ -521,16 +515,16 @@ namespace Utility.Sql
 
         }
 
-     
+
 
         /// <summary>
         /// 带参数执行对数据的增删改操作
         /// </summary>
         /// <param name="SQLstring"></param>
-        public static int UpdateWithparameters(string SQLstring, DataSourceType dataSourceType, SqlParameter[] sqlParameters)
+        public static int UpdateWithparameters(DataSourceType dataSourceType,string SQLstring,  SqlParameter[] sqlParameters, string accountNo = "")
         {
 
-            using (SqlConnection connection = sqlConnection(dataSourceType))
+            using (SqlConnection connection = GetSqlConnection(dataSourceType,accountNo))
             {
                 connection.Open();
 
@@ -538,6 +532,7 @@ namespace Utility.Sql
 
                 cmd.Connection = connection;
                 cmd.CommandText = SQLstring;
+                
 
                 cmd.Parameters.AddRange(sqlParameters);
                 int influnce = cmd.ExecuteNonQuery();
@@ -554,27 +549,37 @@ namespace Utility.Sql
         /// </summary> 
         /// <param name="strSql"></param> 
         /// <param name="parameters"></param> 
-        public static void ExecuteQuery(string strSql, DataSourceType dataSource, string accountNo="")
+        public static int ExecuteSql(DataSourceType dataSource,string strSql, string accountNo = "")
         {
-            SqlConnection connection;
-            if (accountNo != "")
+            using (SqlConnection connection = accountNo != "" ?
+                   GetSqlConnection(dataSource, accountNo) :
+                   GetSqlConnection(dataSource))
             {
-                connection = sqlConnection(dataSource, accountNo);
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand(strSql, connection))
+                {
+                    return cmd.ExecuteNonQuery();
+                }
             }
-            else
-            {
-                connection = sqlConnection(dataSource);
-            }
+        }
 
-            connection.Open();
-            using (SqlCommand cmd = new SqlCommand())
+        public static int ExecuteSql(DataSourceType dataSource, string sql, SqlParameter[] sqlParameters, string accountNo = "")
+        {
+            using (SqlConnection connection = accountNo != "" ?
+                   GetSqlConnection(dataSource, accountNo) :
+                   GetSqlConnection(dataSource))
             {
+                
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = sql;
                 cmd.Connection = connection;
-                cmd.CommandText = strSql;
-               
-                cmd.ExecuteNonQuery();
+                cmd.Parameters.AddRange(sqlParameters);
+
+                connection.Open();
+                return cmd.ExecuteNonQuery();
+                
             }
-            connection.Close();
         }
 
         #endregion
@@ -782,7 +787,7 @@ namespace Utility.Sql
         /// </summary> 
         /// <param name="strSql"></param> 
         /// <param name="parameters"></param> 
-        public static void ExecuteNonQuery(SqlConnection conn, string strSql, params SqlParameter[] parameters)
+        public static int ExecuteNonQuery(SqlConnection conn, string strSql, params SqlParameter[] parameters)
         {
 
 
@@ -795,7 +800,7 @@ namespace Utility.Sql
                 {
                     cmd.Parameters.Add(p);
                 }
-                cmd.ExecuteNonQuery();
+              return  cmd.ExecuteNonQuery();
             }
             conn.Close();
         }
